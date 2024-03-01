@@ -30,7 +30,7 @@ spec:
             command:
             - curl
             - -f
-            - http://localhost:8096/jellyfin/health
+            - http://localhost:8096/health
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
