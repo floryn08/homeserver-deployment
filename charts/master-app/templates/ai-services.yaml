@@ -20,5 +20,10 @@ spec:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
       selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}
-    syncOptions:
-      - CreateNamespace=true
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ .Values.aiServices.namespace }}
+  labels:
+    name: {{ .Values.aiServices.namespace }}

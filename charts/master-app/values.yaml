@@ -21,7 +21,7 @@ gameServers:
   namespace: game-servers
   path: charts/stack-apps/game-servers
 
-homeSutomation:
+homeAutomation:
   namespace: home-automation
   path: charts/stack-apps/home-automation
 

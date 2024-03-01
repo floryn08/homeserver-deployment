@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.homeSutomation.namespace }}
+  name: {{ .Values.homeAutomation.namespace }}
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: {{ .Values.homeSutomation.namespace }}
+    namespace: {{ .Values.homeAutomation.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.homeSutomation.path }}
+    path: {{ .Values.homeAutomation.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:
@@ -20,5 +20,10 @@ spec:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
       selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}
-    syncOptions:
-      - CreateNamespace=true
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ .Values.homeAutomation.namespace }}
+  labels:
+    name: {{ .Values.homeAutomation.namespace }}
