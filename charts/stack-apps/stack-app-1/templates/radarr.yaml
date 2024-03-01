@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-app-1
+  name: radarr
 spec:
   project: default
   destination:
@@ -9,7 +9,7 @@ spec:
     namespace: default
   source:
     repoURL: https://github.com/floryn08/homeserver-deployment
-    path: charts/stack-apps
+    path: charts/services/radarr
     chart: test
     targetRevision: HEAD
   syncPolicy:
