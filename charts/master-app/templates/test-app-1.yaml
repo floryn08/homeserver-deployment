@@ -1,24 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-app-1
+  name: stack-app-1
 spec:
-  project: server
   destination:
-    server: https://kubernetes.default.svc
     namespace: server
+    server: 'https://kubernetes.default.svc'
   source:
-    repoURL: https://github.com/floryn08/homeserver-deployment
     path: charts/stack-apps/stack-app-1
+    repoURL: 'https://github.com/floryn08/homeserver-deployment'
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  sources: []
+  project: server
   syncPolicy:
     automated:
       prune: true
-    syncOptions:
-      - RespectIgnoreDifferences=true
-    retry:
-      limit: 15
-      backoff:
-        duration: 10s
-        factor: 3
-        maxDuration: 3m0s
+      selfHeal: true
