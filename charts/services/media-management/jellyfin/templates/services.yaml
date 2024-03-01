@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jellyfin-loadbalancer
+  namespace: media-management
+spec:
+  type: LoadBalancer
+  ports:
+  - name: jellyfin-http
+    port: 8097
+    targetPort: jellyfin-http
+  - name: jellyfin-https
+    port: 8921
+    targetPort: jellyfin-https
+  selector:
+    app: jellyfin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jellyfin-clusterip
+  namespace: media-management
+spec:
+  type: ClusterIP
+  ports:
+  - name: jellyfin-http
+    port: 8097
+    targetPort: jellyfin-http
+  - name: jellyfin-https
+    port: 8921
+    targetPort: jellyfin-https
+  selector:
+    app: jellyfin
