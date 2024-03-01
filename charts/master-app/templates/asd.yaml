@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-app
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  source:
+    repoURL: https://github.com/floryn08/homeserver-deployment
+    path: charts/services
+    chart: test
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: 15
+      backoff:
+        duration: 10s
+        factor: 3
+        maxDuration: 3m0s
