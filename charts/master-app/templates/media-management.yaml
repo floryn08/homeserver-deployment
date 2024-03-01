@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: stack-app-2
+  name: media-management
   namespace: argocd
 spec:
   destination:
     namespace: server
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/stack-apps/stack-app-2
+    path: charts/stack-apps/media-management
     repoURL: 'https://github.com/floryn08/homeserver-deployment'
     targetRevision: HEAD
     helm:

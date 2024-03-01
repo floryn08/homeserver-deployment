@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: stack-app-1
+  name: core-services
   namespace: argocd
 spec:
   destination:
     namespace: server
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/stack-apps/stack-app-1
+    path: charts/stack-apps/core-services
     repoURL: 'https://github.com/floryn08/homeserver-deployment'
     targetRevision: HEAD
     helm:
