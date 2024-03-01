@@ -9,8 +9,8 @@ spec:
     namespace: server
   source:
     repoURL: https://github.com/floryn08/homeserver-deployment
-    path: charts/services
-    chart: test
+    path: charts/services/stack-app-2
+    chart: stack-app-2
     targetRevision: HEAD
   syncPolicy:
     automated:
