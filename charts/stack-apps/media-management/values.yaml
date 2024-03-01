@@ -1,0 +1,14 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: media-management
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+jellyfin:
+  path: charts/services/media-management/jellyfin

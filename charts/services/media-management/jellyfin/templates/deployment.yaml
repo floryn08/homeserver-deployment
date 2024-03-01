@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: media-management
+  annotations:
+    # kompose.cmd: kompose convert -c -f docker-compose-resolved.yaml
+    # kompose.version: 1.32.0 (765fde254)
+    # traefik.enable: "true"
+    # traefik.http.routers.jellyfin-alt.entrypoints: web
+    # traefik.http.routers.jellyfin-alt.rule: Host(`adsdasdasd`) && PathPrefix(`/jellyfin`)
+    # traefik.http.routers.jellyfin.entrypoints: websecure
+    # traefik.http.routers.jellyfin.rule: Host(`example.com`) && PathPrefix(`/jellyfin`)
+    # traefik.http.routers.jellyfin.tls.certresolver: letsencrypt
+    # traefik.http.services.jellyfin.loadbalancer.server.port: "8096"
+  # labels:
+  #   io.kompose.service: jellyfin
+  name: jellyfin
+spec:
+  replicas: 1
+  # selector:
+  #   matchLabels:
+  #     io.kompose.service: jellyfin
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        # kompose.cmd: kompose convert -c -f docker-compose-resolved.yaml
+        # kompose.version: 1.32.0 (765fde254)
+        # traefik.enable: "true"
+        # traefik.http.routers.jellyfin-alt.entrypoints: web
+        # traefik.http.routers.jellyfin-alt.rule: Host(`adsdasdasd`) && PathPrefix(`/jellyfin`)
+        # traefik.http.routers.jellyfin.entrypoints: websecure
+        # traefik.http.routers.jellyfin.rule: Host(`example.com`) && PathPrefix(`/jellyfin`)
+        # traefik.http.routers.jellyfin.tls.certresolver: letsencrypt
+        # traefik.http.services.jellyfin.loadbalancer.server.port: "8096"
+      labels:
+        # io.kompose.network/media-management-network: "true"
+        # io.kompose.network/proxy-network: "true"
+        # io.kompose.service: jellyfin
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/Bucharest
+          image: linuxserver/jellyfin:10.8.13
+          livenessProbe:
+            exec:
+              command:
+                - curl
+                - -f
+                - http://localhost:8096/jellyfin/health
+            failureThreshold: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          name: jellyfin
+          ports:
+            - containerPort: 8096
+              name: jellyfin-http
+            - containerPort: 8920
+              name: jellyfin-https
+            # - containerPort: 7359
+            #   name: jellyfin-media
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            # - mountPath: /config
+            #   name: jellyfin-claim0
+            # - mountPath: /data/tvshows
+            #   name: jellyfin-claim1
+            # - mountPath: /data/movies
+            #   name: jellyfin-claim2
+            # - mountPath: /data/anime
+            #   name: jellyfin-claim3
+            # - mountPath: /data/music
+            #   name: jellyfin-claim4
+      restartPolicy: Always
+      securityContext:
+        supplementalGroups:
+          - 44
+      volumes:
+        - name: volv
+          persistentVolumeClaim:
+          claimName: local-path-pvc
+        # - name: jellyfin-claim0
+        #   persistentVolumeClaim:
+        #     claimName: jellyfin-claim0
+        # - name: jellyfin-claim1
+        #   persistentVolumeClaim:
+        #     claimName: jellyfin-claim1
+        # - name: jellyfin-claim2
+        #   persistentVolumeClaim:
+        #     claimName: jellyfin-claim2
+        # - name: jellyfin-claim3
+        #   persistentVolumeClaim:
+        #     claimName: jellyfin-claim3
+        # - name: jellyfin-claim4
+        #   persistentVolumeClaim:
+        #     claimName: jellyfin-claim4
