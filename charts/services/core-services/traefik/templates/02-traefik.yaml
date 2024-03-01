@@ -24,6 +24,6 @@ spec:
             - --providers.kubernetesingress
           ports:
             - name: web
-              containerPort: 81
+              containerPort: 80
             - name: dashboard
-              containerPort: 8089
+              containerPort: 8080
