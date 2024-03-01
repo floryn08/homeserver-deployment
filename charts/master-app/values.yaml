@@ -1,0 +1,34 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+aiServices:
+  namespace: ai-services
+  path: charts/stack-apps/ai-services
+
+coreServices:
+  namespace: core-services
+  path: charts/stack-apps/core-services
+
+gameServers:
+  namespace: game-servers
+  path: charts/stack-apps/game-servers
+
+homeSutomation:
+  namespace: home-automation
+  path: charts/stack-apps/home-automation
+
+mediaManagement:
+  namespace: media-management
+  path: charts/stack-apps/media-management
+
+utilityServices:
+  namespace: utility-services
+  path: charts/stack-apps/utility-services

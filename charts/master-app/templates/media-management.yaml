@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: media-management
-  namespace: argocd
+  name: {{ .Values.mediaManagement.namespace }}
+  namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: server
-    server: 'https://kubernetes.default.svc'
+    namespace: {{ .Values.mediaManagement.namespace }}
+    server: {{ .Values.server }}
   source:
-    path: charts/stack-apps/media-management
-    repoURL: 'https://github.com/floryn08/homeserver-deployment'
-    targetRevision: HEAD
+    path: {{ .Values.mediaManagement.path }}
+    repoURL: {{ .Values.repoUrl }}
+    targetRevision: {{ .Values.targetRevision }}
     helm:
       valueFiles:
         - values.yaml
   sources: []
-  project: server
+  project: {{ .Values.project }}
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: {{ .Values.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}

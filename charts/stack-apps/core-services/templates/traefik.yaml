@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.coreServices.namespace }}
+  name: {{ .Values.traefik.namespace }}
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: {{ .Values.coreServices.namespace }}
+    namespace: {{ .Values.traefik.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.coreServices.path }}
+    path: {{ .Values.traefik.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:

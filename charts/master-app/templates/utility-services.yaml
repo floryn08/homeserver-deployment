@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.coreServices.namespace }}
+  name: {{ .Values.utilityServices.namespace }}
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: {{ .Values.coreServices.namespace }}
+    namespace: {{ .Values.utilityServices.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.coreServices.path }}
+    path: {{ .Values.utilityServices.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:

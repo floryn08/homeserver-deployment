@@ -10,7 +10,7 @@ spec:
     namespace: server
   source:
     repoURL: https://github.com/floryn08/homeserver-deployment
-    path: charts/services/radarr
+    path: charts/services/media-management/radarr
     targetRevision: HEAD
   syncPolicy:
     automated:

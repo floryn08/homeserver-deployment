@@ -1,0 +1,14 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+traefik:
+  namespace: core-services
+  path: charts/services/core-services/traefik
