@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.traefik.namespace }}
+  name: traefik
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
