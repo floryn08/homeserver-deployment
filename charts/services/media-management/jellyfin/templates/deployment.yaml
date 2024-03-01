@@ -41,11 +41,11 @@ spec:
           containerPort: 8920
         volumeMounts:
         - name: config
-          mountPath: /home/flow/test
+          mountPath: /config
       securityContext:
         supplementalGroups:
         - 44
       volumes:
-      - name: volv
+      - name: config
         persistentVolumeClaim:
         claimName: local-path-pvc
