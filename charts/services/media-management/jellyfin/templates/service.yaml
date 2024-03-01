@@ -7,8 +7,8 @@ spec:
   type: LoadBalancer
   ports:
   - port: 8096
-    targetPort: jellyfinHttp
+    targetPort: jellyfin-http
   - port: 8920
-    targetPort: jellyfinHttps
+    targetPort: jellyfin-https
   selector:
     app: jellyfin

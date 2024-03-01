@@ -35,9 +35,9 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
         ports:
-        - name: jellyfinHttp
+        - name: jellyfin-http
           containerPort: 8096
-        - name: jellyfinHttps
+        - name: jellyfin-https
           containerPort: 8920
         volumeMounts:
         - name: config
