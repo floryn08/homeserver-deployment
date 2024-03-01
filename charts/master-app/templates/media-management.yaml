@@ -20,10 +20,3 @@ spec:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
       selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}
----
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: {{ .Values.mediaManagement.namespace }}
-  labels:
-    name: {{ .Values.mediaManagement.namespace }}

@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: {{ .Values.traefik.namespace }}
+    namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
     path: {{ .Values.traefik.path }}
