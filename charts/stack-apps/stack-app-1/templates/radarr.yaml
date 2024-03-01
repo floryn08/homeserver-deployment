@@ -10,7 +10,6 @@ spec:
   source:
     repoURL: https://github.com/floryn08/homeserver-deployment
     path: charts/services/radarr
-    chart: radarr
     targetRevision: HEAD
   syncPolicy:
     automated:

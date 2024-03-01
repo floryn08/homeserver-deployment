@@ -10,7 +10,6 @@ spec:
   source:
     repoURL: https://github.com/floryn08/homeserver-deployment
     path: charts/stack-apps/stack-app-1
-    chart: stack-app-1
     targetRevision: HEAD
   syncPolicy:
     automated:
