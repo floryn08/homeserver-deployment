@@ -3,10 +3,10 @@ kind: Application
 metadata:
   name: sonarr
 spec:
-  project: default
+  project: server
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: server
   source:
     repoURL: https://github.com/floryn08/homeserver-deployment
     path: charts/services/sonarr
