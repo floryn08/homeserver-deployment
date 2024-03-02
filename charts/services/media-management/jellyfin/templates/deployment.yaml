@@ -48,4 +48,4 @@ spec:
       volumes:
       - name: config
         persistentVolumeClaim:
-        claimName: local-path-pvc
+        claimName: hdd1-persistent-volume
