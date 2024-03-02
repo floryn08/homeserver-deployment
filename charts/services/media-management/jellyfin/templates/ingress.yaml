@@ -7,9 +7,7 @@ spec:
   - host: jellyfin2.thebatcave.uk
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
+      - backend:
           service:
             name: jellyfin-clusterip
             port:
