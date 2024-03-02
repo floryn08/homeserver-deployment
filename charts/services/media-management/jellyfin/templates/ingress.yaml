@@ -4,6 +4,7 @@ metadata:
   name: jellyfin-ingress
   namespace: media-management
 spec:
+  ingressClassName: jellyfin
   rules:
   - host: jellyfin2.thebatcave.uk
     http:
