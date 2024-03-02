@@ -15,4 +15,4 @@ spec:
           service:
             name: jellyfin-loadbalancer
             port:
-              number: 8097
+              name: jellyfin-http
