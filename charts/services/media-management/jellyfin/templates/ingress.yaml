@@ -13,4 +13,5 @@ spec:
         backend:
           service:
             name: jellyfin-loadbalancer
-            port: 8096
+            port:
+              number: 8097
