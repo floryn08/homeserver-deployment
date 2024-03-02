@@ -17,13 +17,14 @@ spec:
     spec:
       serviceAccountName: traefik-account
       containers:
-        - name: traefik
-          image: traefik:2.11.0
-          args:
-            - --api.insecure
-            - --providers.kubernetesingress
-          ports:
-            - name: web
-              containerPort: 80
-            - name: dashboard
-              containerPort: 8080
+      - name: traefik
+        image: traefik:2.11.0
+        args:
+        - --api.insecure
+        - --providers.kubernetesingress
+        - --providers.kubernetesingress.ingressendpoint.publishedservice=core-services/traefik-web-service
+        ports:
+        - name: web
+          containerPort: 80
+        - name: dashboard
+          containerPort: 8080
