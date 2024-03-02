@@ -11,6 +11,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: jellyfin-clusterip
+            name: jellyfin-loadbalancer
             port:
               name: jellyfin-http
