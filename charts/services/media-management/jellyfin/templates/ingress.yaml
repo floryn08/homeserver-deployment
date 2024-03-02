@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jellyfin-ingress
+  namespace: media-management
 spec:
   rules:
   - host: jellyfin2.thebatcave.uk
@@ -12,5 +13,4 @@ spec:
         backend:
           service:
             name: jellyfin-loadbalancer
-            port:
-              name: jellyfin-http
+            port: 8096
