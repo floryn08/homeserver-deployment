@@ -26,11 +26,11 @@ spec:
         - name: SERVER_PASS
           value: parola123
         - name: SERVER_PUBLIC
-          value: true
+          value: "true"
         - name: SUPERVISOR_HTTP
-          value: false
+          value: "false"
         - name: STATUS_HTTP
-          value: true
+          value: "true"
         - name: SERVER_ARGS
           value: -crossplay
         - name: ADMINLIST_IDS
@@ -44,6 +44,13 @@ spec:
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
+        ports:
+        - name: game-port
+          containerPort: 2456
+        - name: query-port
+          containerPort: 2457
+        - name: http-status
+          containerPort: 80
         volumeMounts:
         - name: config
           mountPath: /config
