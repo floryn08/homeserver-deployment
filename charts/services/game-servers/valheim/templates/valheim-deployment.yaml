@@ -54,7 +54,7 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
-        - name: valheim
+        - name: data
           mountPath: /opt/valheim
         - name: localtime
           mountPath: /etc/localtime
@@ -68,11 +68,11 @@ spec:
       volumes:
       - name: config
         hostPath:
-          path: /home/flow/test/valheim/config
+          path: /home/flow/appdata/game-servers/valheim/config
           type: DirectoryOrCreate
-      - name: valheim
+      - name: data
         hostPath:
-          path: /home/flow/test/valheim/valheim-files
+          path: /home/flow/appdata/game-servers/valheim/data
           type: DirectoryOrCreate
       - name: localtime
         hostPath:
