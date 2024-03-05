@@ -18,6 +18,7 @@ spec:
       containers:
       - name: valheim-server-discord-bot
         image: ghcr.io/floryn08/valheim-server-discord-bot:dev-k3s
+        imagePullPolicy: Always
         env:
         - name: CONTAINER_NAME
           value: valheim
