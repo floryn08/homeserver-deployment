@@ -69,11 +69,11 @@ spec:
       - name: config
         hostPath:
           path: /home/flow/test/valheim/config
-          type: Directory
+          type: DirectoryOrCreate
       - name: valheim
         hostPath:
           path: /home/flow/test/valheim/valheim-files
-          type: Directory
+          type: DirectoryOrCreate
       - name: localtime
         hostPath:
           path: /etc/localtime
