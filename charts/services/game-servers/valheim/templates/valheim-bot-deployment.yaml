@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: valheim-server-discord-bot
-        image: valheim-server-discord-bot:k3s-dev
+        image: ghcr.io/floryn08/valheim-server-discord-bot:dev-k3s
         env:
         - name: CONTAINER_NAME
           value: valheim
