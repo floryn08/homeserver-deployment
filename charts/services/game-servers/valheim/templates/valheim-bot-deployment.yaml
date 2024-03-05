@@ -22,15 +22,15 @@ spec:
         - name: CONTAINER_NAME
           value: valheim
         - name: DISCORD_CLIENT_ID
-          value: 1203275931343654912
+          value: "1203275931343654912"
         - name: DISCORD_TOKEN
           value: "MTIwMzI3NTkzMTM0MzY1NDkxMg.GI6dzs.YYevCISipAnBiHYXRKKDp8BTQGFTa7fwIR0XgU"
         - name: GUILD_ID
-          value: 1204742127104430102
+          value: "1204742127104430102"
         - name: JOIN_CODE_LOOP_COUNT
-          value: 20
+          value: "20"
         - name: JOIN_CODE_LOOP_TIMEOUT_MILLIS
-          value: 5000
+          value: "5000"
         - name: SERVER_NAME
           value: TheBatCave
         - name: ARGO_PASS
