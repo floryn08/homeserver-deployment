@@ -24,7 +24,7 @@ spec:
         - name: DISCORD_CLIENT_ID
           value: 1203275931343654912
         - name: DISCORD_TOKEN
-          value: MTIwMzI3NTkzMTM0MzY1NDkxMg.GI6dzs.YYevCISipAnBiHYXRKKDp8BTQGFTa7fwIR0XgU
+          value: "MTIwMzI3NTkzMTM0MzY1NDkxMg.GI6dzs.YYevCISipAnBiHYXRKKDp8BTQGFTa7fwIR0XgU"
         - name: GUILD_ID
           value: 1204742127104430102
         - name: JOIN_CODE_LOOP_COUNT
