@@ -74,11 +74,11 @@ spec:
         hostPath:
         path: /home/flow/test/valheim/valheim-files
         type: Directory
-      - name: config
+      - name: localtime
         hostPath:
         path: /etc/localtime
         type: File
-      - name: config
+      - name: timezone
         hostPath:
-        path: /etc/localtime
+        path: /etc/timezone
         type: File
