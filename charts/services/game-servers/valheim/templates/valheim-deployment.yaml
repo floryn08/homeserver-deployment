@@ -68,17 +68,17 @@ spec:
       volumes:
       - name: config
         hostPath:
-        path: /home/flow/test/valheim/config
-        type: Directory
+          path: /home/flow/test/valheim/config
+          type: Directory
       - name: valheim
         hostPath:
-        path: /home/flow/test/valheim/valheim-files
-        type: Directory
+          path: /home/flow/test/valheim/valheim-files
+          type: Directory
       - name: localtime
         hostPath:
-        path: /etc/localtime
-        type: File
+          path: /etc/localtime
+          type: File
       - name: timezone
         hostPath:
-        path: /etc/timezone
-        type: File
+          path: /etc/timezone
+          type: File
