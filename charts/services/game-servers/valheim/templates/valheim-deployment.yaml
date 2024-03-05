@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valheim
+  namespace: game-servers
+  labels:
+    app: valheim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: valheim
+  template:
+    metadata:
+      labels:
+        app: valheim
+    spec:
+      containers:
+      - name: valheim
+        image: ghcr.io/lloesche/valheim-server:latest
+        env:
+        - name: SERVER_NAME
+          value: TheBatCave
+        - name: WORLD_NAME
+          value: TheBatCave
+        - name: SERVER_PASS
+          value: parola123
+        - name: SERVER_PUBLIC
+          value: true
+        - name: SUPERVISOR_HTTP
+          value: false
+        - name: STATUS_HTTP
+          value: true
+        - name: SERVER_ARGS
+          value: -crossplay
+        - name: ADMINLIST_IDS
+          value: floryn08
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost/status.json
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: valheim
+          mountPath: /opt/valheim
+        - name: localtime
+          mountPath: /etc/localtime
+          readOnly: true
+        - name: timezone
+          mountPath: /etc/timezone
+          readOnly: true
+      securityContext:
+        supplementalGroups:
+        - 44
+      volumes:
+      - name: config
+        hostPath:
+        path: /home/flow/test/valheim/config
+        type: Directory
+      - name: valheim
+        hostPath:
+        path: /home/flow/test/valheim/valheim-files
+        type: Directory
+      - name: config
+        hostPath:
+        path: /etc/localtime
+        type: File
+      - name: config
+        hostPath:
+        path: /etc/localtime
+        type: File

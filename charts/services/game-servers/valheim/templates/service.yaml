@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: valheim-service
+  namespace: game-servers
+spec:
+  type: ClusterIP
+  selector:
+    app: valheim
