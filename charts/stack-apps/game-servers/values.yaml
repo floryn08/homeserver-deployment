@@ -12,3 +12,6 @@ syncPolicy:
 
 valheim:
   path: charts/services/game-servers/valheim
+
+minecraft:
+  path: charts/services/game-servers/minecraft

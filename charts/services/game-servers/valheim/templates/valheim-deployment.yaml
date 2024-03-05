@@ -62,9 +62,6 @@ spec:
         - name: timezone
           mountPath: /etc/timezone
           readOnly: true
-      securityContext:
-        supplementalGroups:
-        - 44
       volumes:
       - name: config
         hostPath:
