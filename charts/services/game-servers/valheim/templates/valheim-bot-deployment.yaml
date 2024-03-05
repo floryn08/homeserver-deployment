@@ -36,7 +36,7 @@ spec:
         - name: ARGO_PASS
           valueFrom:
             secretKeyRef:
-              name: argocd-initial-admin-secret
+              name: argocd-password
               key: password
         livenessProbe:
           exec:
