@@ -5,5 +5,15 @@ metadata:
   namespace: game-servers
 spec:
   type: ClusterIP
+  ports:
+  - name: game-port
+    port: 2456
+    targetPort: game-port
+  - name: query-port
+    port: 2457
+    targetPort: query-port
+  - name: http-status
+    port: 80
+    targetPort: http-status
   selector:
     app: valheim
