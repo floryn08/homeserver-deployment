@@ -47,5 +47,6 @@ spec:
         - 44
       volumes:
       - name: config
-        persistentVolumeClaim:
-        claimName: hdd1-persistent-volume
+        hostPath:
+          path: /home/flow/test/jellyfin/config
+          type: DirectoryOrCreate
