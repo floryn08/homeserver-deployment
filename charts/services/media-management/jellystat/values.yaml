@@ -1,11 +1,11 @@
 image: cyfershepard/jellystat:unstable
 ports:
-- name: prowlarr
-  containerPort: 9696
-  externalPort: 9696
+- name: jellystat
+  containerPort: 3000
+  externalPort: 8087
   protocol: TCP
 volumes:
-- name: config
-  hostPath: /home/flow/appdata/media-management/prowlarr
-  podPath: /config
+- name: backup
+  hostPath: /home/flow/appdata/media-management/jellystat/backup
+  podPath: /app/backend/backup-data
 

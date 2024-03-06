@@ -39,7 +39,7 @@ spec:
             command:
             - curl
             - -f
-            - http://localhost:9696/ping
+            - http://localhost:3000
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
