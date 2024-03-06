@@ -14,7 +14,7 @@ ports:
   type: UDP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/media-management/radarr
+  hostPath: /home/flow/appdata/media-management/qbittorent
   podPath: /config
 - name: media
   hostPath: /mnt/hdd
