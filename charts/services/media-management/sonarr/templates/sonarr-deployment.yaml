@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media-management
+  labels:
+    app: sonarr
+spec:
+  selector:
+    matchLabels:
+      app: sonarr
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+      - name: sonarr
+        image: linuxserver/sonarr:4.0.2
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: sonarr-configmap
+        ports:
+        - containerPort: 8989
+          hostPort: 8989
+          protocol: TCP
+          name: sonarr-port
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /media
+          name: media
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost:8989/ping
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+      volumes:
+      - name: config
+        hostPath:
+          path: /home/flow/test/sonarr/config
+          type: DirectoryOrCreate
+      - name: media
+        hostPath:
+          path: /home/flow/test/sonarr/media
+          type: DirectoryOrCreate
