@@ -1,10 +1,10 @@
 image: ghcr.io/alexjustesen/speedtest-tracker:v0.17.2
 ports:
-- name: speedtest-tracker-http
+- name: http
   containerPort: 80
   externalPort: 8081
   protocol: TCP
-- name: speedtest-tracker-https
+- name: https
   containerPort: 443
   externalPort: 8443
   protocol: TCP
