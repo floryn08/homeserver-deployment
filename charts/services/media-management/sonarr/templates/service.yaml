@@ -7,7 +7,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 8989
-    targetPort: 8989
+    targetPort: sonarr-port
     name: sonarr-port
   selector:
     app: sonarr
