@@ -12,3 +12,6 @@ syncPolicy:
 
 jellyfin:
   path: charts/services/media-management/jellyfin
+
+sonarr:
+  path: charts/services/media-management/sonarr
