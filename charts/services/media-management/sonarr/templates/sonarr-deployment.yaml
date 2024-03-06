@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sonarr
-  namespace: media-management
+  namespace: {{ .Release.Namespace }}
   labels:
     app: sonarr
 spec:
@@ -22,7 +22,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
-            name: sonarr-configmap
+            name: {{ .Release.Name }}-configmap
         ports:
         - containerPort: 8989
           hostPort: 8989
@@ -49,9 +49,9 @@ spec:
       volumes:
       - name: config
         hostPath:
-          path: /home/flow/test/sonarr/config
+          path: {{ .Values.sonarr.configPath }}
           type: DirectoryOrCreate
       - name: media
         hostPath:
-          path: /home/flow/test/sonarr/media
+          path: {{ .Values.sonarr.mediaPath }}
           type: DirectoryOrCreate

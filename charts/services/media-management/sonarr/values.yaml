@@ -1,0 +1,3 @@
+sonarr:
+  configPath: /home/flow/appdata/media-management/sonarr
+  mediaPath: /mnt/hdd
