@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: minecraft-configmap
+  namespace: game-servers
+data:
+  AUTOPAUSE_TIMEOUT_EST: "300"
+  AUTOPAUSE_TIMEOUT_INIT: "150"
+  DIFFICULTY: hard
+  ENABLE_AUTOPAUSE: "true"
+  ENABLE_WHITELIST: "true"
+  EULA: "true"
+  EXISTING_OPS_FILE: MERGE
+  EXISTING_WHITELIST_FILE: MERGE
+  MAX_MEMORY: 8G
+  MAX_TICK_TIME: "-1"
+  MOTD: IaCucu
+  ONLINE_MODE: "false"
+  OPS: floryn08
+  OVERRIDE_SERVER_PROPERTIES: "true"
+  SERVER_NAME: TheBatCave
+  TYPE: VANILLA
+  VERSION: 1.20.4
+  VIEW_DISTANCE: "16"
+  WHITELIST: floryn08,DrakiaX

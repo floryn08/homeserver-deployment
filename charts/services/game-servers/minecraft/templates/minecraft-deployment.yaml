@@ -18,45 +18,9 @@ spec:
       containers:
       - name: minecraft
         image: itzg/minecraft-server:2024.2.2
-        env:
-        - name: AUTOPAUSE_TIMEOUT_EST
-          value: "300"
-        - name: AUTOPAUSE_TIMEOUT_INIT
-          value: "150"
-        - name: DIFFICULTY
-          value: hard
-        - name: ENABLE_AUTOPAUSE
-          value: "true"
-        - name: ENABLE_WHITELIST
-          value: "true"
-        - name: EULA
-          value: "true"
-        - name: EXISTING_OPS_FILE
-          value: MERGE
-        - name: EXISTING_WHITELIST_FILE
-          value: MERGE
-        - name: MAX_MEMORY
-          value: 8G
-        - name: MAX_TICK_TIME
-          value: "-1"
-        - name: MOTD
-          value: IaCucu
-        - name: ONLINE_MODE
-          value: "false"
-        - name: OPS
-          value: floryn08,DrakiaX
-        - name: OVERRIDE_SERVER_PROPERTIES
-          value: "true"
-        - name: SERVER_NAME
-          value: TheBatCave
-        - name: TYPE
-          value: VANILLA
-        - name: VERSION
-          value: 1.20.4
-        - name: VIEW_DISTANCE
-          value: "16"
-        - name: WHITELIST
-          value: floryn08,DrakiaX
+        envFrom:
+        - configMapRef:
+            name: minecraft-configmap
         ports:
         - name: minecraft-port
           containerPort: 25565
@@ -69,6 +33,10 @@ spec:
         - name: timezone
           mountPath: /etc/timezone
           readOnly: true
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 8Gi
       volumes:
       - name: data
         hostPath:
