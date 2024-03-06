@@ -25,8 +25,6 @@ spec:
             name: {{ .Release.Name }}-configmap
         ports:
         - containerPort: 8989
-          hostPort: 8989
-          protocol: TCP
           name: sonarr-port
         volumeMounts:
         - mountPath: /config

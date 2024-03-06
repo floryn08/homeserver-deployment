@@ -8,7 +8,6 @@ spec:
   ports:
   - port: 8989
     targetPort: 8989
-    protocol: TCP
     name: sonarr-port
   selector:
     app: sonarr
