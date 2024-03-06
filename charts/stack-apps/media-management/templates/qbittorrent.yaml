@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: qbitcorrent
+  name: qbitorrent
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.qbitcorrent.path }}
+    path: {{ .Values.qbitorrent.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
   project: {{ .Values.project }}
