@@ -27,3 +27,6 @@ qbittorrent:
 
 prowlarr:
   path: charts/services/media-management/prowlarr
+
+jellystat:
+  path: charts/services/media-management/jellystat
