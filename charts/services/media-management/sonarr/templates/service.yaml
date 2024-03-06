@@ -6,8 +6,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8099
-    targetPort: 8089
+  - port: 8990
+    targetPort: 8989
     protocol: TCP
     name: sonarr-port
   selector:
