@@ -1,0 +1,22 @@
+image: lscr.io/linuxserver/qbittorrent:4.6.3
+ports:
+- name: webui
+  containerPort: 8383
+  externalPort: 8383
+  type: TCP
+- name: qt-tcp
+  containerPort: 6881
+  externalPort: 6881
+  type: TCP
+- name: qt-udp
+  containerPort: 6881
+  externalPort: 6881
+  type: UDP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/media-management/radarr
+  podPath: /config
+- name: media
+  hostPath: /mnt/hdd
+  podPath: /media
+

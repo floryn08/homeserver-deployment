@@ -21,3 +21,6 @@ radarr:
 
 bazarr:
   path: charts/services/media-management/bazarr
+
+qbitcorrent:
+  path: charts/services/media-management/qbitcorrent
