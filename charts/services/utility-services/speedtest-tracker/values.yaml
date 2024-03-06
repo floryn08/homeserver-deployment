@@ -1,0 +1,14 @@
+image: ghcr.io/alexjustesen/speedtest-tracker:v0.17.2
+ports:
+- name: speedtest-tracker-http
+  containerPort: 80
+  externalPort: 8081
+  protocol: TCP
+- name: speedtest-tracker-https
+  containerPort: 443
+  externalPort: 8443
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/utility-services/speedtest/config
+  podPath: /config

@@ -1,0 +1,14 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: utility-services
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+speedtestTracker:
+  path: charts/services/utility-services/speedtest-tracker
