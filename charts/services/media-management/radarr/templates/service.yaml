@@ -6,7 +6,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8989
+  - port: {{ .Values.externalPort }}
     targetPort: {{ .Release.Name }}-port
     name: {{ .Release.Name }}-port
   selector:

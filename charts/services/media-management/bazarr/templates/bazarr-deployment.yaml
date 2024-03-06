@@ -18,25 +18,31 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: linuxserver/sonarr:4.0.2
+        image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap
         ports:
-        - containerPort: 8989
+        - containerPort: {{ .Values.containerPort }}
           name: {{ .Release.Name }}-port
         volumeMounts:
         - mountPath: /config
           name: config
-        - mountPath: /media
-          name: media
+        - mountPath: /movies
+          name: movies
+        - mountPath: /tv
+          name: tv
+        - mountPath: /anime
+          name: anime
         livenessProbe:
           exec:
             command:
             - curl
             - -f
-            - http://localhost:8989/ping
+            - http://localhost:6767/api/system/health
+            - --header
+            - X-API-KEY:{{ .Values.apiKey }}
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
@@ -47,9 +53,17 @@ spec:
       volumes:
       - name: config
         hostPath:
-          path: {{ .Values.sonarr.configPath }}
+          path: {{ .Values.configPath }}
           type: DirectoryOrCreate
-      - name: media
+      - name: movies
         hostPath:
-          path: {{ .Values.sonarr.mediaPath }}
+          path: {{ .Values.moviesPath }}
+          type: DirectoryOrCreate
+      - name: tv
+        hostPath:
+          path: {{ .Values.tvPath }}
+          type: DirectoryOrCreate
+      - name: anime
+        hostPath:
+          path: {{ .Values.animePath }}
           type: DirectoryOrCreate

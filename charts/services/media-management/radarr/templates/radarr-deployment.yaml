@@ -18,13 +18,13 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: linuxserver/sonarr:4.0.2
+        image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap
         ports:
-        - containerPort: 8989
+        - containerPort: {{ .Values.containerPort }}
           name: {{ .Release.Name }}-port
         volumeMounts:
         - mountPath: /config
@@ -36,7 +36,7 @@ spec:
             command:
             - curl
             - -f
-            - http://localhost:8989/ping
+            - http://localhost:7878/ping
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
@@ -47,9 +47,9 @@ spec:
       volumes:
       - name: config
         hostPath:
-          path: {{ .Values.sonarr.configPath }}
+          path: {{ .Values.configPath }}
           type: DirectoryOrCreate
       - name: media
         hostPath:
-          path: {{ .Values.sonarr.mediaPath }}
+          path: {{ .Values.mediaPath }}
           type: DirectoryOrCreate

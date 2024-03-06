@@ -15,3 +15,6 @@ jellyfin:
 
 sonarr:
   path: charts/services/media-management/sonarr
+
+radarr:
+  path: charts/services/media-management/radarr
