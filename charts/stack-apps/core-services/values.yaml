@@ -12,3 +12,6 @@ syncPolicy:
 
 traefik:
   path: charts/services/core-services/traefik
+
+postgres:
+  path: charts/services/core-services/postgres

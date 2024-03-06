@@ -1,0 +1,11 @@
+image: postgres:16.2-alpine
+postgresUser: user
+ports:
+- name: postgres
+  containerPort: 5432
+  externalPort: 5432
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: /home/flow/appdata/core-services/postgres/data
+  podPath: /var/lib/postgresql/data
