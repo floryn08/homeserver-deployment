@@ -24,3 +24,6 @@ bazarr:
 
 qbittorrent:
   path: charts/services/media-management/qbittorrent
+
+prowlarr:
+  path: charts/services/media-management/prowlarr

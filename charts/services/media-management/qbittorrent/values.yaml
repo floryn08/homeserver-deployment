@@ -3,15 +3,15 @@ ports:
 - name: webui
   containerPort: 8383
   externalPort: 8383
-  type: TCP
+  protocol: TCP
 - name: qt-tcp
   containerPort: 6881
   externalPort: 6881
-  type: TCP
+  protocol: TCP
 - name: qt-udp
   containerPort: 6881
   externalPort: 6881
-  type: UDP
+  protocol: UDP
 volumes:
 - name: config
   hostPath: /home/flow/appdata/media-management/qbittorrent
