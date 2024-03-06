@@ -22,5 +22,5 @@ radarr:
 bazarr:
   path: charts/services/media-management/bazarr
 
-qbitorrent:
-  path: charts/services/media-management/qbitorrent
+qbittorrent:
+  path: charts/services/media-management/qbittorrent
