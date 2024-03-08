@@ -7,4 +7,4 @@ data:
   PUID: "1000"
   PGID: "1000"
   TZ: Europe/Bucharest
-  JELLYFIN_PublishedServerUrl: "192.168.0.150"
+  JELLYFIN_PublishedServerUrl: 192.168.0.150

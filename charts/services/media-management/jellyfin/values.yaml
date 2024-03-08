@@ -1,14 +1,14 @@
 image: linuxserver/jellyfin:10.8.13
 ports:
-- name: web
+- name: http
   containerPort: 8096
   externalPort: 8096
   protocol: TCP
-- name: websecure
+- name: https
   containerPort: 8920
   externalPort: 8920
   protocol: TCP
-- name: mediaserver
+- name: media
   containerPort: 7359
   externalPort: 7359
   protocol: UDP
