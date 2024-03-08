@@ -1,0 +1,31 @@
+image: linuxserver/jellyfin:10.8.13
+ports:
+- name: webui
+  containerPort: 8096
+  externalPort: 8096
+  protocol: TCP
+- name: webui
+  containerPort: 8920
+  externalPort: 8920
+  protocol: TCP
+- name: webui
+  containerPort: 7359
+  externalPort: 7359
+  protocol: UDP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/media-management/jellyfin
+  podPath: /config
+- name: tv
+  hostPath: /mnt/hdd/tv
+  podPath: /data/tvshows
+- name: movies
+  hostPath: /mnt/hdd/movies
+  podPath: /data/movies
+- name: anime
+  hostPath: /mnt/hdd/anime
+  podPath: /data/anime
+- name: music
+  hostPath: /mnt/hdd/music
+  podPath: /data/music
+

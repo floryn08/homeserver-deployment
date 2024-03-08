@@ -5,10 +5,20 @@ metadata:
   namespace: media-management
 spec:
   rules:
-  - host: jellyfin2.thebatcave.uk
+  - host: thebatcave.uk
     http:
       paths:
-      - path: /
+      - path: /jellyfin
+        pathType: Prefix
+        backend:
+          service:
+            name: jellyfin-loadbalancer
+            port:
+              name: jellyfin-http
+  - host: thebatcave.go.ro
+    http:
+      paths:
+      - path: /jellyfin
         pathType: Prefix
         backend:
           service:

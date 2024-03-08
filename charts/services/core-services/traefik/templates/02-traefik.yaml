@@ -1,30 +1,51 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traefik-deployment
-  namespace: core-services
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: traefik
+    app: {{ .Release.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: traefik
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: traefik
+        app: {{ .Release.Name }}
     spec:
-      serviceAccountName: traefik-account
+      serviceAccountName: {{ .Release.Name }}-account
       containers:
-      - name: traefik
-        image: traefik:2.11.0
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
         args:
+        - --log.level=DEBUG
+        - --ping=true
         - --api.insecure
         - --providers.kubernetesingress
-        - --providers.kubernetesingress.ingressendpoint.publishedservice=core-services/traefik-web-service
+        - --providers.kubernetesingress.ingressendpoint.publishedservice={{ .Release.Namespace }}/{{ .Release.Name }}-service
+        - --entrypoints.web.address=:80
+        - --entrypoints.websecure.address=:443
+        - --certificatesresolvers.letsencrypt.acme.httpchallenge=true
+        - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
+        - --certificatesresolvers.letsencrypt.acme.email=florin.vasilica95@gmail.com
+        - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
         ports:
-        - name: web
-          containerPort: 80
-        - name: dashboard
-          containerPort: 8080
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}-port
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        {{- range $index, $val := $.Values.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $val.name }}
+        {{ end -}}
+      volumes:
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
+        hostPath:
+          path: {{ $val.hostPath }}
+          type: DirectoryOrCreate
+      {{ end -}}

@@ -1,53 +1,56 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jellyfin
-  namespace: media-management
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: jellyfin
+    app: {{ .Release.Name }}
 spec:
-  revisionHistoryLimit: 1
-  replicas: 0
   selector:
     matchLabels:
-      app: jellyfin
+      app: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
-        app: jellyfin
+        app: {{ .Release.Name }}
     spec:
       containers:
-      - name: jellyfin
-        image: linuxserver/jellyfin:10.8.13
-        env:
-        - name: PGID
-          value: "1000"
-        - name: PUID
-          value: "1000"
-        - name: TZ
-          value: Europe/Bucharest
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        ports:
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}-port
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        {{- range $index, $val := $.Values.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $val.name }}
+        {{ end -}}
         livenessProbe:
           exec:
             command:
             - curl
             - -f
-            - http://localhost:8096/health
+            - http://localhost:8096/jellyfin/health
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
-        ports:
-        - name: jellyfin-http
-          containerPort: 8096
-        - name: jellyfin-https
-          containerPort: 8920
-        volumeMounts:
-        - name: config
-          mountPath: /config
-      securityContext:
-        supplementalGroups:
-        - 44
+        resources:
+          limits:
+            cpu: 4000m
+            memory: 4Gi
       volumes:
-      - name: config
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
         hostPath:
-          path: /home/flow/test/jellyfin/config
+          path: {{ $val.hostPath }}
           type: DirectoryOrCreate
+      {{ end -}}

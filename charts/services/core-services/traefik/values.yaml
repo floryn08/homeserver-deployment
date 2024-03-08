@@ -1,0 +1,18 @@
+image: traefik:2.11.0
+ports:
+- name: web
+  containerPort: 80
+  externalPort: 80
+  protocol: TCP
+- name: websecure
+  containerPort: 443
+  externalPort: 443
+  protocol: TCP
+- name: dashboard
+  containerPort: 8080
+  externalPort: 8082
+  protocol: TCP
+volumes:
+- name: letsencrypt
+  hostPath: /home/flow/appdata/core-services/letsencrypt
+  podPath: /letsencrypt
