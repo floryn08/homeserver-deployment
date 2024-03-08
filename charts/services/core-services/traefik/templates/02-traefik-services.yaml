@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   type: LoadBalancer
+  ports:
   {{- range $key, $val := $.Values.ports }}
   - port: {{ $val.externalPort }}
     targetPort: {{ $val.name }}-port
