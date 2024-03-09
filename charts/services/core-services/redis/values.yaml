@@ -1,0 +1,8 @@
+image: redis:7.2.4-alpine
+ports:
+- name: redis
+  containerPort: 6379
+  externalPort: 6379
+  protocol: TCP
+volumes: []
+

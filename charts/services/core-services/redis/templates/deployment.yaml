@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        ports:
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}-port
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        {{- range $index, $val := $.Values.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $val.name }}
+        {{ end -}}
+        livenessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+      volumes:
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
+        hostPath:
+          path: {{ $val.hostPath }}
+          type: DirectoryOrCreate
+      {{ end -}}

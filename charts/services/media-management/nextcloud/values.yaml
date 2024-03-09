@@ -1,0 +1,14 @@
+image: linuxserver/nextcloud:28.0.2
+ports:
+- name: webui
+  containerPort: 80
+  externalPort: 1102
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/media-management/nextcloud
+  podPath: /config
+- name: media
+  hostPath: /mnt/hdd2/nextcloud
+  podPath: /data
+
