@@ -1,6 +1,6 @@
 image: linuxserver/nextcloud:28.0.2
 ports:
-- name: webui
+- name: nextcloud
   containerPort: 80
   externalPort: 1102
   protocol: TCP

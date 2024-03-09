@@ -17,4 +17,4 @@ spec:
           service:
             name: {{ .Release.Name }}-loadbalancer
             port:
-              name: webui
+              name: {{ .Release.Name }}-port
