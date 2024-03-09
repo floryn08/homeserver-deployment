@@ -15,3 +15,6 @@ traefik:
 
 postgres:
   path: charts/services/core-services/postgres
+
+redis:
+  path: charts/services/core-services/redis

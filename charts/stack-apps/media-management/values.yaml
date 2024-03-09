@@ -30,3 +30,6 @@ prowlarr:
 
 jellystat:
   path: charts/services/media-management/jellystat
+
+nextcloud:
+  path: charts/services/media-management/nextcloud
