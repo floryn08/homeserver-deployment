@@ -39,7 +39,12 @@ spec:
             command:
             - sh
             - -c
-            - curl -sSf http://localhost/status.php | grep '"installed":true' | grep '"maintenance":false' | grep '"needsDbUpgrade":false' || exit 1
+            - >-
+              curl -sSf http://localhost/status.php | 
+              grep '"installed":true' |
+              grep '"maintenance":false' |
+              grep '"needsDbUpgrade":false' ||
+              exit 1
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
