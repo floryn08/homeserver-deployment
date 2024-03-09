@@ -33,10 +33,6 @@ spec:
         - name: timezone
           mountPath: /etc/timezone
           readOnly: true
-        resources:
-          limits:
-            cpu: 2000m
-            memory: 8Gi
       volumes:
       - name: data
         hostPath:
