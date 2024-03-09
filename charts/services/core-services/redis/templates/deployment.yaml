@@ -29,11 +29,6 @@ spec:
           name: {{ $val.name }}-port
           protocol: {{ $val.protocol }}
         {{ end -}}
-        volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
-        - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
-        {{ end -}}
         livenessProbe:
           exec:
             command:
@@ -42,10 +37,3 @@ spec:
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
