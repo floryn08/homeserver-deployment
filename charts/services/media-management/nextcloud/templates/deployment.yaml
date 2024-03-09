@@ -37,9 +37,9 @@ spec:
         livenessProbe:
           exec:
             command:
-            - curl
-            - -sSf
-            - http://localhost/status.php | grep '"installed":true' | grep '"maintenance":false' | grep '"needsDbUpgrade":false' || exit 1
+            - sh
+            - -c
+            - curl -sSf http://localhost/status.php | grep '"installed":true' | grep '"maintenance":false' | grep '"needsDbUpgrade":false' || exit 1
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
