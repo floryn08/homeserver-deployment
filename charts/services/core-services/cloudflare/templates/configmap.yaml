@@ -17,4 +17,4 @@ data:
     # - hostname: wizarr.thebatcave.uk
     #   servive: wizarr-loadbalancer.media-management.svc
     - hostname: vault.thebatcave.uk
-      servive: vault-service.utility-services.svc
+      servive: http://vault-service.utility-services.svc
