@@ -29,9 +29,9 @@ spec:
           name: {{ $val.name }}
         {{ end -}}
       volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
+        {{- range $index, $val := $.Values.volumes }}
+        - name: {{ $val.name }}
+          hostPath:
+            path: {{ $val.hostPath }}
+            type: DirectoryOrCreate
+        {{ end -}}
