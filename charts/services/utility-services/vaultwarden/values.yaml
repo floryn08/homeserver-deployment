@@ -2,7 +2,7 @@ image: vaultwarden/server:1.30.3
 ports:
 - name: http
   containerPort: 80
-  externalPort: 80
+  externalPort: 9765
   protocol: TCP
 volumes:
 - name: data
