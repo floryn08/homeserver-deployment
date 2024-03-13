@@ -17,5 +17,5 @@ data:
     # - hostname: wizarr.thebatcave.uk
     #   service: wizarr-loadbalancer.media-management.svc
     - hostname: vault.thebatcave.uk
-      service: vaultwarden-service.utility-services.svc
+      service: http://vaultwarden-service.utility-services.svc:80
     - service: http_status:404
