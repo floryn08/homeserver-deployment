@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-configmap
+  namespace: {{ .Release.Namespace }}
+data:
+  PUSH_ENABLED: true
+  PUSH_INSTALLATION_ID: ea5b9d70-ec56-4950-b22e-b088008b92de
+  PUSH_INSTALLATION_KEY: WH866cl3A4GKRkOihdI6
+  SIGNUPS_ALLOWED: false
+  SMTP_HOST: smtp.gmail.com
+  SMTP_FROM: floryn.euro.2007@gmail.com
+  SMTP_PORT: 587
+  SMTP_SSL: true
+  SMTP_USERNAME: floryn.euro.2007@gmail.com
+  SMTP_PASSWORD: zagtdfwmrmtqffbj
+  ADMIN_TOKEN: pixbirouservetel01

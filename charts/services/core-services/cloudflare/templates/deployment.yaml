@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        command:
+        - cloudflared
+        - tunnel
+        - --config
+        - /etc/cloudflared/config/config.yaml
+        - run
+        args:
+        - --token
+        - eyJhIjoiOTdlOGQzODI0MzZlYmM0ZWIxOTY0NjdjNTQ2NmZiYWYiLCJ0IjoiYjQyNjZjZTAtOTBmOS00ZWVkLWE4NTEtNTQ0Y2RkZDUzNjU1IiwicyI6Ik9XSXhaR1EzWmpndE1ETTRZUzAwWTJOakxUazRPRFl0WVRWbE16UmxPR1l4WVdVMCJ9
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap       
+        volumeMounts:
+        - name: config
+          mountPath: /etc/cloudflared/config
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            # Cloudflared has a /ready endpoint which returns 200 if and only if
+            # it has an active connection to the edge.
+            path: /ready
+            port: 2000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
+      volumes:
+      - name: config
+        configMap:
+          name: {{ .Release.Name }}-configmap
+          items:
+          - key: config.yaml
+            path: config.yaml

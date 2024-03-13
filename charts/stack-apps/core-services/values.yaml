@@ -18,3 +18,6 @@ postgres:
 
 redis:
   path: charts/services/core-services/redis
+
+cloudflare:
+  path: charts/services/core-services/cloudflare

@@ -12,3 +12,6 @@ syncPolicy:
 
 speedtestTracker:
   path: charts/services/utility-services/speedtest-tracker
+
+vaultwarden:
+  path: charts/services/utility-services/vaultwarden

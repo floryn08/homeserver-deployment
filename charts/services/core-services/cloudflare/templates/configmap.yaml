@@ -1,0 +1,20 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-configmap
+  namespace: {{ .Release.Namespace }}
+data:
+  config.yaml: |
+    # Name of the tunnel you want to run
+    tunnel: thebatcave-tunnel
+    # credentials-file: /etc/cloudflared/creds/credentials.json
+    # Serves the metrics server under /metrics and the readiness server under /ready
+    metrics: 0.0.0.0:2000
+    no-autoupdate: true
+    ingress:
+    - hostname: jellyseerr.thebatcave.uk
+      servive: jellyseer-loadbalancer.media-management.svc
+    - hostname: wizarr.thebatcave.uk
+      servive: wizarr-loadbalancer.media-management.svc
+    - hostname: vault.thebatcave.uk
+      servive: vault-service.utility-services.svc

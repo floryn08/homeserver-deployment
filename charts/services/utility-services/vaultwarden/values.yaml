@@ -1,0 +1,10 @@
+image: vaultwarden/server:1.30.3
+ports:
+- name: http
+  containerPort: 80
+  externalPort: 80
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: /home/flow/appdata/utility-services/vaultwarden/data
+  podPath: /data
