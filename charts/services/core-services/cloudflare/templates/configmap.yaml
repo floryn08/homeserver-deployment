@@ -13,8 +13,8 @@ data:
     no-autoupdate: true
     ingress:
     # - hostname: jellyseerr.thebatcave.uk
-    #   servive: jellyseer-loadbalancer.media-management.svc
+    #   service: jellyseer-loadbalancer.media-management.svc
     # - hostname: wizarr.thebatcave.uk
-    #   servive: wizarr-loadbalancer.media-management.svc
+    #   service: wizarr-loadbalancer.media-management.svc
     - hostname: vault.thebatcave.uk
-      servive: http://vault-service.utility-services.svc
+      service: vault-service.utility-services.svc
