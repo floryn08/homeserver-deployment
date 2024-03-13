@@ -28,7 +28,7 @@ spec:
         - run
         args:
         - --token
-        - eyJhIjoiOTdlOGQzODI0MzZlYmM0ZWIxOTY0NjdjNTQ2NmZiYWYiLCJ0IjoiYjQyNjZjZTAtOTBmOS00ZWVkLWE4NTEtNTQ0Y2RkZDUzNjU1IiwicyI6Ik9XSXhaR1EzWmpndE1ETTRZUzAwWTJOakxUazRPRFl0WVRWbE16UmxPR1l4WVdVMCJ9
+        - eyJhIjoiOTdlOGQzODI0MzZlYmM0ZWIxOTY0NjdjNTQ2NmZiYWYiLCJ0IjoiZWNmNTRhNjItYjIxMi00OGE3LWJhMjMtZTJiZGMxZDM1ZTFhIiwicyI6Ik1HUXpPREEwTVdNdFpXSTJOUzAwWVRkakxXRTFOelV0TnpVd01qSTFPVGswTTJJeCJ9
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap       
