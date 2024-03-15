@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: esphome
+  name: home-assistant
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.esphome.path }}
+    path: {{ .Values.homeAssistant.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
   project: {{ .Values.project }}
