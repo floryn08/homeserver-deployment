@@ -1,0 +1,26 @@
+image: esphome/esphome:2024.2.1
+ports:
+- name: web
+  containerPort: 6052
+  externalPort: 6052
+  protocol: TCP
+- name: server
+  containerPort: 6123
+  externalPort: 6123
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/home-automation/esphome/config
+  podPath: /config
+  type: DirectoryOrCreate
+
+- name: localtime
+  hostPath: /etc/localtime
+  podPath: /etc/localtime
+  type: File
+
+- name: timezone
+  hostPath: /etc/timezone
+  podPath: /etc/timezone
+  type: File
+

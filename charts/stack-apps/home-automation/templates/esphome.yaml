@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prowlarr
+  namespace: {{ .Values.argocdNamespace }}
+spec:
+  destination:
+    namespace: {{ .Values.namespace }}
+    server: {{ .Values.server }}
+  source:
+    path: {{ .Values.prowlarr.path }}
+    repoURL: {{ .Values.repoUrl }}
+    targetRevision: {{ .Values.targetRevision }}
+  project: {{ .Values.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}

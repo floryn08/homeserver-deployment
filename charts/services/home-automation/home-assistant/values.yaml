@@ -1,0 +1,12 @@
+image: esphome/esphome:2024.2.1
+ports:
+- name: http
+  containerPort: 8123
+  externalPort: 8123
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/home-automation/homeassistant
+  podPath: /config
+  type: DirectoryOrCreate
+
