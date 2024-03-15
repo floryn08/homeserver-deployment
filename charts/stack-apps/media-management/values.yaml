@@ -33,3 +33,9 @@ jellystat:
 
 nextcloud:
   path: charts/services/media-management/nextcloud
+
+jellyseerr:
+  path: charts/services/media-management/jellyseerr
+
+wizarr:
+  path: charts/services/media-management/wizarr

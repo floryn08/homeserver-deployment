@@ -1,0 +1,11 @@
+image: fallenbagel/jellyseerr:1.7.0
+ports:
+- name: jellyseerr
+  containerPort: 5055
+  externalPort: 5055
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/media-management/jellyseerr/config
+  podPath: /app/config
+
