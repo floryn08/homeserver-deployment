@@ -1,4 +1,4 @@
-image: esphome/esphome:2024.2.1
+image: ghcr.io/home-assistant/home-assistant:2024.2.4
 ports:
 - name: http
   containerPort: 8123
