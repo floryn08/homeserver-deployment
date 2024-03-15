@@ -1,6 +1,6 @@
 image: filebrowser/filebrowser:v2.27.0
 ports:
-- name: filebrowser
+- name: fb
   containerPort: 80
   externalPort: 8888
   protocol: TCP
@@ -9,7 +9,7 @@ volumes:
   hostPath: /home/flow/appdata/core-services/filebrowser/database.db
   podPath: /database.db
   type: FileOrCreate
-  
+
 - name: mnt
   hostPath: /mnt
   podPath: /srv
