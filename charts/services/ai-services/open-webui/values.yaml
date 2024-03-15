@@ -1,0 +1,11 @@
+image: ghcr.io/open-webui/open-webui:main
+ports:
+- name: open-webui
+  containerPort: 8080
+  externalPort: 8080
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/ai-services/ollama-webui
+  podPath: /app/backend/data
+

@@ -1,0 +1,17 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: ai-services
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+ollama:
+  path: charts/services/ai-services/ollama
+
+openWebui:
+  path: charts/services/ai-services/open-webui

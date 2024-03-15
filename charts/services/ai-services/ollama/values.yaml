@@ -1,0 +1,11 @@
+image: ollama/ollama:0.1.27
+ports:
+- name: ollama
+  containerPort: 11434
+  externalPort: 11434
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/ai-services/ollama
+  podPath: /root/.ollama
+
