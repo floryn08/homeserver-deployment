@@ -16,6 +16,13 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      volumes:
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
+        hostPath:
+          path: {{ $val.hostPath }}
+          type: DirectoryOrCreate
+      {{ end -}}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -34,20 +41,3 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
-        livenessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - >-
-              curl -f http://localhost:8080
-          failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
