@@ -40,7 +40,7 @@ spec:
             - sh
             - -c
             - >-
-              curl -f http://localhost:11434
+              wget -O - http://localhost:11434
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
