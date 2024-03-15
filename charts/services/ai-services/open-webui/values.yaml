@@ -2,7 +2,7 @@ image: ghcr.io/open-webui/open-webui:main
 ports:
 - name: open-webui
   containerPort: 8080
-  externalPort: 8080
+  externalPort: 8088
   protocol: TCP
 volumes:
 - name: config
