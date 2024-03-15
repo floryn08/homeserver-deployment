@@ -8,7 +8,7 @@ volumes:
 - name: config
   hostPath: /home/flow/appdata/core-services/duplicacy/config
   podPath: /config
-  
+
 - name: cache
   hostPath: /home/flow/appdata/core-services/duplicacy/cache
   podPath: /cache
@@ -29,7 +29,7 @@ volumes:
   hostPath: /mnt/hdd2
   podPath: /storage
 
-- name: config
+- name: media
   hostPath: /mnt/hdd
   podPath: /local-media
 
