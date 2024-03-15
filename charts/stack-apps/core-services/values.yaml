@@ -19,5 +19,11 @@ postgres:
 redis:
   path: charts/services/core-services/redis
 
-cloudflare:
-  path: charts/services/core-services/cloudflare
+ddclient:
+  path: charts/services/core-services/ddclient
+
+pgadmin:
+  path: charts/services/core-services/pgadmin
+
+filebrowser:
+  path: charts/services/core-services/filebrowser

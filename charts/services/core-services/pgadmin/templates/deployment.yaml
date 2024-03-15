@@ -40,7 +40,7 @@ spec:
             - sh
             - -c
             - >-
-              curl -f http://localhost:8080
+              wget -O - http://localhost/misc/ping
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
@@ -49,5 +49,5 @@ spec:
       - name: {{ $val.name }}
         hostPath:
           path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
+          type: {{ $val.type }}
       {{ end -}}

@@ -1,0 +1,13 @@
+image: dpage/pgadmin4:8.3
+
+ports:
+- name: pgadmin4
+  containerPort: 80
+  externalPort: 5050
+  protocol: TCP
+
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/core-services/pgadmin/data
+  podPath: /var/lib/pgadmin
+  type: DirectoryOrCreate

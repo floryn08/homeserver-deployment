@@ -1,0 +1,35 @@
+image: hotio/duplicacy:release-1.7.2
+ports:
+- name: duplicacy
+  containerPort: 3875
+  externalPort: 3875
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/core-services/duplicacy/config
+  podPath: /config
+  
+- name: cache
+  hostPath: /home/flow/appdata/core-services/duplicacy/cache
+  podPath: /cache
+
+- name: logs
+  hostPath: /home/flow/appdata/core-services/duplicacy/logs
+  podPath: /logs
+
+- name: backups
+  hostPath: /mnt/hdd2/backups
+  podPath: /backups
+
+- name: source
+  hostPath: /home/flow
+  podPath: /source
+
+- name: storage
+  hostPath: /mnt/hdd2
+  podPath: /storage
+
+- name: config
+  hostPath: /mnt/hdd
+  podPath: /local-media
+

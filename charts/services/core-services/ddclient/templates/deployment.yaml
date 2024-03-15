@@ -40,7 +40,9 @@ spec:
             - sh
             - -c
             - >-
-              curl -f http://localhost:8080
+              wget --output-document - --quiet http://localhost:5055/api/v1/status | 
+              grep -q '"restartRequired":false' ||
+              exit 1
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5

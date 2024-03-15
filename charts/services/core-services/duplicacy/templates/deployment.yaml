@@ -40,7 +40,7 @@ spec:
             - sh
             - -c
             - >-
-              curl -f http://localhost:8080
+              curl -f http://localhost:3875
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
