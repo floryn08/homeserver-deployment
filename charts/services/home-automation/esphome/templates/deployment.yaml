@@ -16,6 +16,13 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      hostNetwork: true
+      securityContext:
+        capabilities:
+          add:
+            - NET_ADMIN
+            - NET_RAW
+            - NET_BROADCAST
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
