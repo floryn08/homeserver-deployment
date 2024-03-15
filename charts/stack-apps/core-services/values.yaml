@@ -27,3 +27,9 @@ pgadmin:
 
 filebrowser:
   path: charts/services/core-services/filebrowser
+
+mqtt:
+  path: charts/services/core-services/mqtt
+
+duplicacy:
+  path: charts/services/core-services/duplicacy
