@@ -17,7 +17,7 @@ volumes:
   hostPath: /home/flow/appdata/utility-services/pihole/etc-pihole/
   podPath: /etc/pihole/
   type: DirectoryOrCreate
-- name: etc-pihole
+- name: etc-dnsmasq
   hostPath: /home/flow/appdata/utility-services/pihole/etc-dnsmasq.d/
   podPath: /etc/dnsmasq.d/
   type: DirectoryOrCreate
