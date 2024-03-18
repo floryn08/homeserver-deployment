@@ -8,7 +8,7 @@ spec:
   ports:
   {{- range $key, $val := $.Values.ports }}
   - port: {{ $val.externalPort }}
-    targetPort: {{ $val.name }}-port
+    targetPort: {{ $val.name }}
     name: {{ $val.name }}-port
     protocol: {{ $val.protocol }}
   {{ end -}}
