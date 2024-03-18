@@ -16,6 +16,13 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      volumes:
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
+        hostPath:
+          path: {{ $val.hostPath }}
+          type: {{ $val.type }}
+      {{ end -}}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -34,21 +41,4 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
-        livenessProbe:
-          httpGet:
-            port: http
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            port: http
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          failureThreshold: 10
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: {{ $val.type }}
-      {{ end -}}
+
