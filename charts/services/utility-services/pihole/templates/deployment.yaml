@@ -41,4 +41,16 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
-
+        livenessProbe:
+          httpGet:
+            port: http
+            path: /admin
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: http
+            path: /admin
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 10
