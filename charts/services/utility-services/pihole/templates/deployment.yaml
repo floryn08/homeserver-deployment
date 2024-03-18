@@ -36,12 +36,12 @@ spec:
         {{ end -}}
         livenessProbe:
           httpGet:
-            port: http-port
+            port: http
           initialDelaySeconds: 10
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            port: http-port
+            port: http
           initialDelaySeconds: 10
           periodSeconds: 10
           failureThreshold: 10
