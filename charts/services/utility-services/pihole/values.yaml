@@ -1,0 +1,23 @@
+image: pihole/pihole:2024.02.2
+ports:
+- name: dns-tcp
+  containerPort: 53
+  externalPort: 53
+  protocol: TCP
+- name: dns-udp
+  containerPort: 53
+  externalPort: 53
+  protocol: UDP
+- name: http
+  containerPort: 80
+  externalPort: 8080
+  protocol: TCP
+volumes:
+- name: etc-pihole
+  hostPath: /home/flow/appdata/utility-services/pihole/etc-pihole/
+  podPath: /etc/pihole/
+  type: DirectoryOrCreate
+- name: etc-pihole
+  hostPath: /home/flow/appdata/utility-services/pihole/etc-dnsmasq.d/
+  podPath: /etc/dnsmasq.d/
+  type: DirectoryOrCreate

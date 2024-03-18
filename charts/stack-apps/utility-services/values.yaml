@@ -15,3 +15,9 @@ speedtestTracker:
 
 vaultwarden:
   path: charts/services/utility-services/vaultwarden
+
+pihole:
+  path: charts/services/utility-services/pihole
+
+wireguard:
+  path: charts/services/utility-services/wireguard
