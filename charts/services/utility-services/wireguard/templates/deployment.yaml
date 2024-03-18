@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 10.43.0.30
+      volumes:
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
+        hostPath:
+          path: {{ $val.hostPath }}
+          type: {{ $val.type }}
+      {{ end -}}
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          sysctls:
+            - name: net.ipv4.ip_forward
+              value: "1"
+            - name: net.ipv4.conf.all.src_valid_mark
+              value: "1"
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_MODULE
+          privileged: true
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        ports:
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        {{- range $index, $val := $.Values.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $val.name }}
+        {{ end -}}

@@ -1,0 +1,15 @@
+image: ghcr.io/wg-easy/wg-easy:11
+ports:
+- name: wg-udp
+  containerPort: 51820
+  externalPort: 51820
+  protocol: UDP
+- name: wg-tcp
+  containerPort: 51821
+  externalPort: 51821
+  protocol: TCP
+volumes:
+- name: wireguard
+  hostPath: /home/flow/appdata/utility-services/wireguard
+  podPath: /etc/wireguard
+  type: DirectoryOrCreate
