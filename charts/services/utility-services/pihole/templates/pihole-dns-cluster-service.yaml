@@ -6,7 +6,6 @@ metadata:
 spec:
   type: ClusterIP
   clusterIP: 10.43.0.30
-  externalTrafficPolicy: Local
   ports:
     - name: dns-udp
       port: 53
