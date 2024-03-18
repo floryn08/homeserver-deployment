@@ -22,10 +22,10 @@ spec:
             value: "1"
           - name: net.ipv4.conf.all.src_valid_mark
             value: "1"
-      dnsPolicy: "None"
-      dnsConfig:
-        nameservers:
-          - 10.43.0.30
+      # dnsPolicy: "None"
+      # dnsConfig:
+      #   nameservers:
+      #     - 10.43.0.30
       volumes:
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
