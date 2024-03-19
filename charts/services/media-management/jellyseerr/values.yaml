@@ -1,4 +1,4 @@
-image: fallenbagel/jellyseerr:1.7.0
+image: fallenbagel/jellyseerr:develop
 ports:
 - name: jellyseerr
   containerPort: 5055
