@@ -1,0 +1,22 @@
+image: ghcr.io/paperless-ngx/paperless-ngx:2.5.4
+ports:
+- name: minecraft
+  containerPort: 25565
+  externalPort: 20281
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: /home/flow/appdata/game-servers/minecraft
+  podPath: /data
+  type: DirectoryOrCreate
+  readOnly: false
+- name: localtime
+  hostPath: /etc/localtime
+  podPath: /etc/localtime
+  type: File
+  readOnly: true
+- name: timezone
+  hostPath: /etc/timezone
+  podPath: /etc/timezone
+  type: File
+  readOnly: true
