@@ -24,3 +24,6 @@ wireguard:
 
 paperlessNgx:
   path: charts/services/utility-services/paperless-ngx
+
+changedetection:
+  path: charts/services/utility-services/changedetection

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-chrome
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}-chrome
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-chrome
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-chrome
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-chrome
+        image: {{ .Values.chromeImage }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        ports:
+        - containerPort: 3000
+          name: chrome
+          protocol: TCP
+
