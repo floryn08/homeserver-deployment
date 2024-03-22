@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
