@@ -36,3 +36,6 @@ duplicacy:
 
 vault:
   path: charts/services/core-services/vault
+
+vaultSecretsOperator:
+  path: charts/services/core-services/vault-secrets-operator
