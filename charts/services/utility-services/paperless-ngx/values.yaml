@@ -6,18 +6,18 @@ ports:
   protocol: TCP
 volumes:
 - name: data
-  hostPath: ${MEDIA_HDD_PATH}/documents/paperless-ngx/data
+  hostPath: /mnt/hdd/documents/paperless-ngx/data
   podPath: /usr/src/paperless/data
   type: DirectoryOrCreate
 - name: media
-  hostPath: ${MEDIA_HDD_PATH}/documents/paperless-ngx/media
+  hostPath: /mnt/hdd/documents/paperless-ngx/media
   podPath: /usr/src/paperless/media
   type: DirectoryOrCreate
 - name: export
-  hostPath: ${MEDIA_HDD_PATH}/documents/paperless-ngx/export
+  hostPath: /mnt/hdd/documents/paperless-ngx/export
   podPath: /usr/src/paperless/export
   type: DirectoryOrCreate
 - name: consume
-  hostPath: ${MEDIA_HDD_PATH}/documents/paperless-ngx/consume
+  hostPath: /mnt/hdd/documents/paperless-ngx/consume
   podPath: /usr/src/paperless/consume
   type: DirectoryOrCreate
