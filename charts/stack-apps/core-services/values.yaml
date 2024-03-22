@@ -33,3 +33,6 @@ mqtt:
 
 duplicacy:
   path: charts/services/core-services/duplicacy
+
+vault:
+  path: charts/services/core-services/vault
