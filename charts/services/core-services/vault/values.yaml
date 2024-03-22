@@ -5,6 +5,8 @@ vault:
     enabled: false
   server:
     enabled: true
+    dataStorage:
+      storageClass: manual
   ui:
     enabled: true
     serviceType: "LoadBalancer"
