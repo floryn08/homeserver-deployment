@@ -7,5 +7,5 @@ data:
   PORT: "5000"
   PUID: "1000"
   PGID: "1000"
-  PLAYWRIGHT_DRIVER_URL: ws://{{ .Release.Name }}-chrome-service:3000/?stealth=1&--disable-web-security=true
+  PLAYWRIGHT_DRIVER_URL: ws://{{ .Release.Name }}-chrome-service.utility-services.svc:3000/?stealth=1&--disable-web-security=true
   MAX_CONCURRENT_SESSIONS: "10"
