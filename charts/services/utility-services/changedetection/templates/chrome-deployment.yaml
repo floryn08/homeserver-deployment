@@ -20,9 +20,8 @@ spec:
       - name: {{ .Release.Name }}-chrome
         image: {{ .Values.chromeImage }}
         imagePullPolicy: IfNotPresent
-        envFrom:
-        - configMapRef:
-            name: {{ .Release.Name }}-configmap
+        env:
+          MAX_CONCURRENT_SESSIONS: "10"
         ports:
         - containerPort: 3000
           name: chrome
