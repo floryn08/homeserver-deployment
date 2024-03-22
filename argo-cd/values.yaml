@@ -1,0 +1,8 @@
+argo-cd:
+  configs:
+    exec.enabled: true
+  dex:
+    enabled: false
+  server:
+    extraArgs:
+    - --insecure
