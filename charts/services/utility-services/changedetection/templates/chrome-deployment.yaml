@@ -21,7 +21,8 @@ spec:
         image: {{ .Values.chromeImage }}
         imagePullPolicy: IfNotPresent
         env:
-          MAX_CONCURRENT_SESSIONS: "10"
+          - name: MAX_CONCURRENT_SESSIONS
+            value: "10"
         ports:
         - containerPort: 3000
           name: chrome
