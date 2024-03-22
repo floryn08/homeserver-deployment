@@ -19,6 +19,7 @@ spec:
       containers:
       - name: valheim
         image: ghcr.io/lloesche/valheim-server:latest
+        imagePullPolicy: Always
         env:
         - name: SERVER_NAME
           value: TheBatCave
