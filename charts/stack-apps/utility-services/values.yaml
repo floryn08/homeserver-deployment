@@ -21,3 +21,6 @@ pihole:
 
 wireguard:
   path: charts/services/utility-services/wireguard
+
+paperlessNgx:
+  path: charts/services/utility-services/paperless-ngx
