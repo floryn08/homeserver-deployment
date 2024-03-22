@@ -30,3 +30,6 @@ changedetection:
 
 homepage:
   path: charts/services/utility-services/homepage
+
+scrutiny:
+  path: charts/services/utility-services/scrutiny
