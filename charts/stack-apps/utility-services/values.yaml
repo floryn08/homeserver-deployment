@@ -27,3 +27,6 @@ paperlessNgx:
 
 changedetection:
   path: charts/services/utility-services/changedetection
+
+homepage:
+  path: charts/services/utility-services/homepage
