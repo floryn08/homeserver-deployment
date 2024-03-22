@@ -4,17 +4,17 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ .Release.Name }}
   replicas: 1
   revisionHistoryLimit: 1
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       hostNetwork: true
       containers:

@@ -11,4 +11,4 @@ spec:
     name: chrome
     protocol: TCP
   selector:
-    app: {{ .Release.Name }}-chrome
+    app.kubernetes.io/name: {{ .Release.Name }}-chrome

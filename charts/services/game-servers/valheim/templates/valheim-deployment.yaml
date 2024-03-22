@@ -4,17 +4,17 @@ metadata:
   name: valheim
   namespace: game-servers
   labels:
-    app: valheim
+    app.kubernetes.io/name: valheim
 spec:
   replicas: 0
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: valheim
+      app.kubernetes.io/name: valheim
   template:
     metadata:
       labels:
-        app: valheim
+        app.kubernetes.io/name: valheim
     spec:
       containers:
       - name: valheim

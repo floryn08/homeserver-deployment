@@ -10,4 +10,4 @@ spec:
     targetPort: {{ .Release.Name }}-port
     name: {{ .Release.Name }}-port
   selector:
-    app: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Release.Name }}

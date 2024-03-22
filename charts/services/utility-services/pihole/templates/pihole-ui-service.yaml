@@ -11,4 +11,4 @@ spec:
       targetPort: 80
       protocol: TCP
   selector:
-    app: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Release.Name }}

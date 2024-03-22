@@ -16,4 +16,4 @@ spec:
     port: 80
     targetPort: http-status
   selector:
-    app: valheim
+    app.kubernetes.io/name: valheim

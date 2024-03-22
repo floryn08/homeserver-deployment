@@ -4,17 +4,17 @@ metadata:
   name: valheim-server-discord-bot
   namespace: game-servers
   labels:
-    app: valheim-server-discord-bot
+    app.kubernetes.io/name: valheim-server-discord-bot
 spec:
   replicas: 0
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: valheim-server-discord-bot
+      app.kubernetes.io/name: valheim-server-discord-bot
   template:
     metadata:
       labels:
-        app: valheim-server-discord-bot
+        app.kubernetes.io/name: valheim-server-discord-bot
     spec:
       containers:
       - name: valheim-server-discord-bot
