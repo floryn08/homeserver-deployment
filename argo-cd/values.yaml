@@ -27,7 +27,7 @@ argo-cd:
     extraContainers:
     - name: avp
       command: [/var/run/argocd/argocd-cmp-server]
-      image: alpine:3.8
+      image: alpine:3.19
       securityContext:
         runAsNonRoot: true
         runAsUser: 999
@@ -50,7 +50,7 @@ argo-cd:
         mountPath: /usr/local/bin/argocd-vault-plugin
     - name: avp-helm
       command: [/var/run/argocd/argocd-cmp-server]
-      image: alpine:3.8
+      image: alpine:3.19
       securityContext:
         runAsNonRoot: true
         runAsUser: 999
