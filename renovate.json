@@ -28,32 +28,32 @@
       "versionScheme": "regex:^arm64v8-(?<compatibility>)?.*-ls(?<minor>\\d+)?$"
     },
     {
-      "matchFileNames": ["charts/core-services/*"],
+      "matchFileNames": ["charts/services/core-services/*"],
       "groupName": "Core services",
       "groupSlug": "core-services"
     },
     {
-      "matchFileNames": ["charts/home-automation/*"],
+      "matchFileNames": ["charts/services/home-automation/*"],
       "groupName": "Home automation",
       "groupSlug": "home-automation"
     },
     {
-      "matchFileNames": ["charts/media-management/*"],
+      "matchFileNames": ["charts/services/media-management/*"],
       "groupName": "Media management",
       "groupSlug": "media-management"
     },
     {
-      "matchFileNames": ["charts/utility-services/*"],
+      "matchFileNames": ["charts/services/utility-services/*"],
       "groupName": "Utility services",
       "groupSlug": "utility-services"
     },
     {
-      "matchFileNames": ["charts/ai-services/*"],
+      "matchFileNames": ["charts/services/ai-services/*"],
       "groupName": "AI Services",
       "groupSlug": "ai-services"
     },
     {
-      "matchFileNames": ["charts/game-servers/*"],
+      "matchFileNames": ["charts/services/game-servers/*"],
       "groupName": "Game Servers",
       "groupSlug": "game-servers"
     }
