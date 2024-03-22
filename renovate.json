@@ -2,5 +2,60 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "assignees": [
+    "floryn08"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": ["^linuxserver\\/", "^hotio\\/"],
+      "versionScheme": "regex:^(?<compatibility>.*(\\d+\\.)?)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+    },
+    {
+      "packagePatterns": ["^.+\/linuxserver\\/prowlarr"],
+      "allowedVersions": "/^(\\d{1,3}\\.)(\\d*\\.)*\\d{1,3}$/"
+    },
+    {
+      "packagePatterns": ["^.+\/linuxserver\\/qbittorrent"],
+      "allowedVersions": "/^\\d\\.\\d+\\.\\d+$/"
+    },
+    {
+      "packagePatterns": ["^mcuadros\\/ofelia"],
+      "allowedVersions": "/^(\\?\\!3)(\\d*\\.)*\\d{1,3}$/"
+    },
+    {
+      "packagePatterns": ["^.+\/linuxserver\\/tvheadend"],
+      "versionScheme": "regex:^arm64v8-(?<compatibility>)?.*-ls(?<minor>\\d+)?$"
+    },
+    {
+      "matchFileNames": ["charts/core-services/*"],
+      "groupName": "Core services",
+      "groupSlug": "core-services"
+    },
+    {
+      "matchFileNames": ["charts/home-automation/*"],
+      "groupName": "Home automation",
+      "groupSlug": "home-automation"
+    },
+    {
+      "matchFileNames": ["charts/media-management/*"],
+      "groupName": "Media management",
+      "groupSlug": "media-management"
+    },
+    {
+      "matchFileNames": ["charts/utility-services/*"],
+      "groupName": "Utility services",
+      "groupSlug": "utility-services"
+    },
+    {
+      "matchFileNames": ["charts/ai-services/*"],
+      "groupName": "AI Services",
+      "groupSlug": "ai-services"
+    },
+    {
+      "matchFileNames": ["charts/game-servers/*"],
+      "groupName": "Game Servers",
+      "groupSlug": "game-servers"
+    }
   ]
 }
