@@ -1,4 +1,4 @@
-image: linuxserver/nextcloud:28.0.2
+image: linuxserver/nextcloud:28.0.3
 ports:
 - name: nextcloud
   containerPort: 80
