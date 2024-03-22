@@ -19,7 +19,7 @@ spec:
       containers:
       - name: {{ .Release.Name }}-chrome
         image: {{ .Values.chromeImage }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
           - name: MAX_CONCURRENT_SESSIONS
             value: "10"
