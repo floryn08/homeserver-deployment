@@ -11,3 +11,4 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: "/home/flow/appdata/core-services/vault/data"
+    type: DirectoryOrCreate
