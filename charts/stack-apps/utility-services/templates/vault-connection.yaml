@@ -1,0 +1,7 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: vaultconnection-{{ .Release.Namespace }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  address: http://vault.core-services.svc:8200
