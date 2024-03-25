@@ -1,22 +1,22 @@
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: {{ .Release.Name }}-pv
-  namespace: {{ .Release.Namespace }}
-  annotations:
-    vault.hashicorp.com/agent-inject-secret-hostPath: "vault/data/myapp/config"
-    vault.hashicorp.com/agent-inject-template-hostPath: |
-      {{`{{- with secret "vault/data/myapp/config" -}}
-      path: "{{ .Data.data.path }}"
-      {{- end }}`}}
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    # path: "/home/flow/appdata/core-services/vault/data"
-    type: DirectoryOrCreate
+# kind: PersistentVolume
+# apiVersion: v1
+# metadata:
+#   name: {{ .Release.Name }}-pv
+#   namespace: {{ .Release.Namespace }}
+#   annotations:
+#     vault.hashicorp.com/agent-inject-secret-hostPath: "vault/data/myapp/config"
+#     vault.hashicorp.com/agent-inject-template-hostPath: |
+#       {{`{{- with secret "vault/data/myapp/config" -}}
+#       path: "{{ .Data.data.path }}"
+#       {{- end }}`}}
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     # path: "/home/flow/appdata/core-services/vault/data"
+#     type: DirectoryOrCreate
