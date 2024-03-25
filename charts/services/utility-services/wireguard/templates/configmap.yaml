@@ -1,9 +1,9 @@
-kind: Secret
+kind: ConfigMap
 apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
 data:
-  WG_HOST:
+  WG_HOST: 
   WG_DEFAULT_DNS:
   UI_TRAFFIC_STATS:
