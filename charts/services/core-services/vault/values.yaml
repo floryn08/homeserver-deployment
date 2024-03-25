@@ -4,6 +4,7 @@ vault:
   injector:
     enabled: false
   server:
+    logLevel: debug
     enabled: true
     dataStorage:
       storageClass: manual
