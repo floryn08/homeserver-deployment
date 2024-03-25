@@ -10,5 +10,5 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/utility-services/speedtest/config
+  hostPath: ~/appdata/utility-services/speedtest/config
   podPath: /config
