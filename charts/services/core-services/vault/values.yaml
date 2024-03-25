@@ -2,7 +2,7 @@ vault:
   global:
     namespace: core-services
   injector:
-    enabled: false
+    enabled: true
   server:
     logLevel: debug
     enabled: true
