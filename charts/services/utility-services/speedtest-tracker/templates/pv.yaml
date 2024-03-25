@@ -6,9 +6,9 @@ metadata:
   annotations:
     vault.hashicorp.com/agent-inject-secret-hostPath: "vault/data/myapp/config"
     vault.hashicorp.com/agent-inject-template-hostPath: |
-      {{` {{- with secret "vault/data/myapp/config" -}}
+      {{`{{- with secret "vault/data/myapp/config" -}}
       path: "{{ .Data.data.path }}"
-      {{- end }} ``}}
+      {{- end }}`}}
   labels:
     type: local
 spec:
