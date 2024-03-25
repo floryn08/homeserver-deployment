@@ -4,11 +4,11 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
 data:
-  PUID: "1000"
-  PGID: "1000"
-  DB_CONNECTION: pgsql
-  DB_HOST: postgres-loadbalancer.core-services.svc
-  DB_PORT: "5432"
-  DB_DATABASE: speedtest-tracker
-  DB_USERNAME: user
-  DB_PASSWORD: parola123
+  PUID: 
+  PGID: 
+  DB_CONNECTION: 
+  DB_HOST: 
+  DB_PORT: 
+  DB_DATABASE: 
+  DB_USERNAME: 
+  DB_PASSWORD: 
