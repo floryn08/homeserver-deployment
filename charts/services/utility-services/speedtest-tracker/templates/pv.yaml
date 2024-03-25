@@ -1,7 +1,8 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: data-vault-pv
+  name: {{ .Release.Name }}-pv
+  namespace: {{ .Release.Namespace }}
   annotations:
     vault.hashicorp.com/agent-inject-secret-hostPath: "vault/data/myapp/config"
     vault.hashicorp.com/agent-inject-template-hostPath: |
