@@ -4,12 +4,12 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
 data:
-  PUID: 1000
-  PGID: 1000
+  PUID: '1000'
+  PGID: '1000'
   TZ: Etc/UTC
   PASSWORD: password #optional
-  HASHED_PASSWORD:  #optional
+  HASHED_PASSWORD: '' #optional
   SUDO_PASSWORD: password #optional
-  SUDO_PASSWORD_HASH:  #optional
+  SUDO_PASSWORD_HASH: '' #optional
   PROXY_DOMAIN: code-server.my.domain #optional
   DEFAULT_WORKSPACE: /config/workspace #optional
