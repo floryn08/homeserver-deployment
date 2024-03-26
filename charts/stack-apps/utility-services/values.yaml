@@ -33,3 +33,6 @@ homepage:
 
 scrutiny:
   path: charts/services/utility-services/scrutiny
+
+codeServer:
+  path: charts/services/utility-services/code-server
