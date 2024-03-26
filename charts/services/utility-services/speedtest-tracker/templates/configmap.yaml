@@ -4,11 +4,11 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
 data:
-  PUID: 
-  PGID: 
-  DB_CONNECTION: 
-  DB_HOST: 
-  DB_PORT: 
-  DB_DATABASE: 
-  DB_USERNAME: 
-  DB_PASSWORD: 
+  PUID: ''
+  PGID: ''
+  DB_CONNECTION: ''
+  DB_HOST: ''
+  DB_PORT: ''
+  DB_DATABASE: ''
+  DB_USERNAME: ''
+  DB_PASSWORD: ''

@@ -4,14 +4,14 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
 data:
-  PUSH_ENABLED:
-  PUSH_INSTALLATION_ID: 
-  PUSH_INSTALLATION_KEY: 
-  SIGNUPS_ALLOWED: 
-  SMTP_HOST: 
-  SMTP_FROM: 
-  SMTP_PORT: 
-  SMTP_SSL: 
-  SMTP_USERNAME: 
-  SMTP_PASSWORD: 
-  ADMIN_TOKEN: 
+  PUSH_ENABLED: ''
+  PUSH_INSTALLATION_ID: ''
+  PUSH_INSTALLATION_KEY: ''
+  SIGNUPS_ALLOWED: ''
+  SMTP_HOST: ''
+  SMTP_FROM: ''
+  SMTP_PORT: ''
+  SMTP_SSL: ''
+  SMTP_USERNAME: ''
+  SMTP_PASSWORD: ''
+  ADMIN_TOKEN: ''
