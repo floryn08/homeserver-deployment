@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/code-server:v4.22.1
+image: lscr.io/linuxserver/code-server:4.22.1
 ports:
 - name: http
   containerPort: 8443
