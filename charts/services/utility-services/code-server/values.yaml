@@ -10,4 +10,4 @@ volumes:
   podPath: /config
 - name: code
   hostPath: /home/flow/github
-  podPath: /code
+  podPath: /config/workspace
