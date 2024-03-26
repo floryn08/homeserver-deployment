@@ -41,3 +41,10 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
