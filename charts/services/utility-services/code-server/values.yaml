@@ -1,0 +1,13 @@
+image: lscr.io/linuxserver/code-server:v4.22.1
+ports:
+- name: http
+  containerPort: 8443
+  externalPort: 8091
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: /home/flow/appdata/utility-services/code-server/config
+  podPath: /config
+- name: code
+  hostPath: /home/flow/github
+  podPath: /code
