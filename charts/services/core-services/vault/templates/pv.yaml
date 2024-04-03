@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/flow/appdata/core-services/vault/data"
+    path: /home/flow/appdata/core-services/vault/data
     type: DirectoryOrCreate
