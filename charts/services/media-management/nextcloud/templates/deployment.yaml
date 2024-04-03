@@ -46,8 +46,8 @@ spec:
               grep '"needsDbUpgrade":false' ||
               exit 1
           failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 30
       volumes:
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
