@@ -16,7 +16,8 @@ spec:
         - name: HELM_ARGS
           value: -f values.yaml
         - name: TEST
-          value: test
+          value: |
+          {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . | b64enc }}
   project: {{ .Values.project }}
   syncPolicy:
     automated:
