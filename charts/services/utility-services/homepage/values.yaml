@@ -1,4 +1,4 @@
-image: ghcr.io/gethomepage/homepage:v0.8.8
+image: ghcr.io/gethomepage/homepage:v0.8.10
 namespace: utility-services
 ports:
 - name: http
