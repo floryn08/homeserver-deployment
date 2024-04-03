@@ -11,6 +11,9 @@ spec:
     path: {{ .Values.jellystat.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . | indent 8 }}
   project: {{ .Values.project }}
   syncPolicy:
     automated:

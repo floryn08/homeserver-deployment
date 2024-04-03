@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/name: {{ .Release.Name }}
 spec:
@@ -33,7 +33,7 @@ spec:
         - --ping=true
         - --api.insecure
         - --providers.kubernetesingress
-        - --providers.kubernetesingress.ingressendpoint.publishedservice={{ .Release.Namespace }}/{{ .Release.Name }}-service
+        - --providers.kubernetesingress.ingressendpoint.publishedservice={{ .Values.namespace }}/{{ .Release.Name }}-service
         - --entrypoints.web.address=:80
         - --entrypoints.websecure.address=:443
         - --certificatesresolvers.letsencrypt.acme.httpchallenge=true

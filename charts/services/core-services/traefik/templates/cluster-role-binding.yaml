@@ -2,7 +2,7 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: {{ .Release.Name }}-role-binding
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -10,4 +10,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: {{ .Release.Name }}-account
-    namespace: {{ .Release.Namespace }}
+    namespace: {{ .Values.namespace }}
