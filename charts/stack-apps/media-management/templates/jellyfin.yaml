@@ -11,7 +11,7 @@ spec:
     path: {{ .Values.jellyfin.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-     plugin:
+    plugin:
       env:
         - name: HELM_ARGS
           value: -f values.yaml
