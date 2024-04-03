@@ -1,4 +1,5 @@
 image: ghcr.io/open-webui/open-webui:main
+namespace: ai-services
 ports:
 - name: open-webui
   containerPort: 8080

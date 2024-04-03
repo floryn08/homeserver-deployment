@@ -1,4 +1,5 @@
 image: redis:7.2.4-alpine
+namespace: core-services
 ports:
 - name: redis
   containerPort: 6379

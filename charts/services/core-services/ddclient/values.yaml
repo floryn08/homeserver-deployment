@@ -1,4 +1,5 @@
 image: linuxserver/ddclient:3.11.2
+namespace: core-services
 ports: []
 volumes:
 - name: config

@@ -1,4 +1,5 @@
 image: ollama/ollama:0.1.27
+namespace: ai-services
 ports:
 - name: ollama
   containerPort: 11434

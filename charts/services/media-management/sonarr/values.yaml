@@ -1,3 +1,4 @@
 sonarr:
   configPath: <path:kv/data/hostPath#appdata>/media-management/sonarr
   mediaPath: /mnt/hdd
+namespace: media-management

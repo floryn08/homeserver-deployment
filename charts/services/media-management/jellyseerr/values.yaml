@@ -1,4 +1,5 @@
 image: fallenbagel/jellyseerr:develop
+namespace: media-management
 ports:
 - name: jellyseerr
   containerPort: 5055

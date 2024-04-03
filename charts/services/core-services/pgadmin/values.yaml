@@ -1,5 +1,5 @@
 image: dpage/pgadmin4:8.3
-
+namespace: core-services
 ports:
 - name: pgadmin4
   containerPort: 80

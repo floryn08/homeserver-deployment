@@ -1,4 +1,5 @@
 image: linuxserver/nextcloud:28.0.2
+namespace: media-management
 ports:
 - name: nextcloud
   containerPort: 80

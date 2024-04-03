@@ -3,3 +3,4 @@ vault-secrets-operator:
     enabled: true
     address: http://vault.core-services.svc:8200
     skipTLSVerify: true
+namespace: core-services

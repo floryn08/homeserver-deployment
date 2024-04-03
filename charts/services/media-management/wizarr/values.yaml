@@ -1,4 +1,5 @@
 image: ghcr.io/wizarrrr/wizarr:3.5.1
+namespace: media-management
 ports:
 - name: wizarr
   containerPort: 5690

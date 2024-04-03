@@ -1,4 +1,5 @@
 image: itzg/minecraft-server:2024.2.2
+namespace: game-servers
 ports:
 - name: minecraft
   containerPort: 25565

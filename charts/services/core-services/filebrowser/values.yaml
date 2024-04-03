@@ -1,4 +1,5 @@
 image: filebrowser/filebrowser:v2.27.0
+namespace: core-services
 ports:
 - name: fb
   containerPort: 80

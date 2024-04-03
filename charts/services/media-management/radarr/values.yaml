@@ -3,3 +3,4 @@ externalPort: 7878
 containerPort: 7878
 configPath: <path:kv/data/hostPath#appdata>/media-management/radarr
 mediaPath: /mnt/hdd
+namespace: media-management

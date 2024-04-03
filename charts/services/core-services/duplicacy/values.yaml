@@ -1,4 +1,5 @@
 image: hotio/duplicacy:release-1.7.2
+namespace: core-services
 ports:
 - name: duplicacy
   containerPort: 3875

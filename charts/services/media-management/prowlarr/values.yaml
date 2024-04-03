@@ -1,4 +1,5 @@
 image: linuxserver/prowlarr:1.13.3
+namespace: media-management
 ports:
 - name: prowlarr
   containerPort: 9696
