@@ -11,6 +11,7 @@ spec:
     path: {{ .Values.speedtestTracker.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
+    plugin:
     helm:
       values: |
         {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . | indent 8 }}
