@@ -2,7 +2,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-configmap
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.namespace }}
 data:
   PORT: "5000"
   PUID: "1000"

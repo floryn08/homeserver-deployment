@@ -1,5 +1,4 @@
 image: ghcr.io/alexjustesen/speedtest-tracker:v0.17.2
-namespace: utility-services
 ports:
 - name: http
   containerPort: 80

@@ -2,6 +2,6 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-configmap
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.namespace }}
 data:
   TZ: Europe/Bucharest
