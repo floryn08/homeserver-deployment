@@ -17,7 +17,7 @@ spec:
           value: -f values.yaml
         - name: TEST
           value: |
-          {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . }}
+          {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . | indent 8 | b64enc }}
   project: {{ .Values.project }}
   syncPolicy:
     automated:
