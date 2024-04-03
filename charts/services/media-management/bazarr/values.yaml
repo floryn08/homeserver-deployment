@@ -1,7 +1,7 @@
 image: linuxserver/bazarr:1.4.2
 externalPort: 6767
 containerPort: 6767
-configPath: /home/flow/appdata/media-management/bazarr
+configPath: <path:kv/data/hostPath#appdata>/media-management/bazarr
 moviesPath: /mnt/hdd/movies
 tvPath: /mnt/hdd/tv
 animePath: /mnt/hdd/anime

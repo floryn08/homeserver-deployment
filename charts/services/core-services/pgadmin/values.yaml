@@ -8,6 +8,6 @@ ports:
 
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/core-services/pgadmin/data
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/pgadmin/data
   podPath: /var/lib/pgadmin
   type: DirectoryOrCreate

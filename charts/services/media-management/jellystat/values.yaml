@@ -6,6 +6,6 @@ ports:
   protocol: TCP
 volumes:
 - name: backup
-  hostPath: /home/flow/appdata/media-management/jellystat/backup
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellystat/backup
   podPath: /app/backend/backup-data
 

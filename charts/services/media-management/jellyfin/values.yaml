@@ -14,7 +14,7 @@ ports:
   protocol: UDP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/media-management/jellyfin
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
   podPath: /config
 - name: tv
   hostPath: /mnt/hdd/tv

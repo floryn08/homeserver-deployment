@@ -10,7 +10,7 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/home-automation/esphome/config
+  hostPath: <path:kv/data/hostPath#appdata>/home-automation/esphome/config
   podPath: /config
   type: DirectoryOrCreate
 

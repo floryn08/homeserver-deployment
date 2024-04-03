@@ -70,11 +70,11 @@ spec:
       volumes:
       - name: config
         hostPath:
-          path: /home/flow/appdata/game-servers/valheim/config
+          path: <path:kv/data/hostPath#appdata>/game-servers/valheim/config
           type: DirectoryOrCreate
       - name: data
         hostPath:
-          path: /home/flow/appdata/game-servers/valheim/data
+          path: <path:kv/data/hostPath#appdata>/game-servers/valheim/data
           type: DirectoryOrCreate
       - name: localtime
         hostPath:

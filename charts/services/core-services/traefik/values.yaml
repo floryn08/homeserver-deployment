@@ -14,5 +14,5 @@ ports:
   protocol: TCP
 volumes:
 - name: letsencrypt
-  hostPath: /home/flow/appdata/core-services/letsencrypt
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
   podPath: /letsencrypt

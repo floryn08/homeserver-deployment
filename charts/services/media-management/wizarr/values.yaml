@@ -6,6 +6,6 @@ ports:
   protocol: TCP
 volumes:
 - name: data
-  hostPath: /home/flow/appdata/media-management/wizarr/database
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/wizarr/database
   podPath: /data/database
 

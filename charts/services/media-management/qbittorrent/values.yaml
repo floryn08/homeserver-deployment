@@ -14,7 +14,7 @@ ports:
   protocol: UDP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/media-management/qbittorrent
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/qbittorrent
   podPath: /config
 - name: media
   hostPath: /mnt/hdd

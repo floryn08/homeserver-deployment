@@ -13,17 +13,17 @@ ports:
 
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/core-services/mqtt/config/mosquitto.conf
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/mqtt/config/mosquitto.conf
   podPath: /mosquitto/config/mosquitto.conf
   type: FileOrCreate
 
 - name: data
-  hostPath: /home/flow/appdata/core-services/mqtt/data
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/mqtt/data
   podPath: /mosquitto/data
   type: DirectoryOrCreate
 
 - name: log
-  hostPath: /home/flow/appdata/core-services/mqtt/log
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/mqtt/log
   podPath: /mosquitto/log
   type: DirectoryOrCreate
 

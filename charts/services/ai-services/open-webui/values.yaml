@@ -6,6 +6,6 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/ai-services/ollama-webui
+  hostPath: <path:kv/data/hostPath#appdata>/ai-services/ollama-webui
   podPath: /app/backend/data
 

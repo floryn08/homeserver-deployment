@@ -6,7 +6,7 @@ ports:
   protocol: TCP
 volumes:
 - name: data
-  hostPath: /home/flow/appdata/game-servers/minecraft
+  hostPath: <path:kv/data/hostPath#appdata>/game-servers/minecraft
   podPath: /data
   type: DirectoryOrCreate
   readOnly: false

@@ -6,7 +6,7 @@ ports:
   protocol: TCP
 volumes:
 - name: db
-  hostPath: /home/flow/appdata/core-services/filebrowser/database.db
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/filebrowser/database.db
   podPath: /database.db
   type: FileOrCreate
 

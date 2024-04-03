@@ -1,5 +1,5 @@
 image: linuxserver/radarr:5.3.6
 externalPort: 7878
 containerPort: 7878
-configPath: /home/flow/appdata/media-management/radarr
+configPath: <path:kv/data/hostPath#appdata>/media-management/radarr
 mediaPath: /mnt/hdd

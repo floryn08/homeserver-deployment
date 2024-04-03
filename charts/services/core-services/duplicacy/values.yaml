@@ -6,15 +6,15 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/core-services/duplicacy/config
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/duplicacy/config
   podPath: /config
 
 - name: cache
-  hostPath: /home/flow/appdata/core-services/duplicacy/cache
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/duplicacy/cache
   podPath: /cache
 
 - name: logs
-  hostPath: /home/flow/appdata/core-services/duplicacy/logs
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/duplicacy/logs
   podPath: /logs
 
 - name: backups

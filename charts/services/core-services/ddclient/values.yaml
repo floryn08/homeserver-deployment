@@ -2,6 +2,6 @@ image: linuxserver/ddclient:3.11.2
 ports: []
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/core-services/ddclient
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/ddclient
   podPath: /app/config
 
