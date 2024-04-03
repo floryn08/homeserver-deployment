@@ -14,7 +14,6 @@ spec:
     helm:
       values: |
         {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . | indent 8 }}
-  sources: []
   project: {{ .Values.project }}
   syncPolicy:
     automated:
