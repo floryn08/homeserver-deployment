@@ -1,4 +1,4 @@
-image: linuxserver/nextcloud:28.0.2
+image: linuxserver/nextcloud:28.0.4
 namespace: media-management
 ports:
 - name: nextcloud
