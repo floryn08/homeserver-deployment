@@ -15,6 +15,8 @@ spec:
       env:
         - name: HELM_ARGS
           value: -f values.yaml
+        - name: TEST
+          value: test
   project: {{ .Values.project }}
   syncPolicy:
     automated:
