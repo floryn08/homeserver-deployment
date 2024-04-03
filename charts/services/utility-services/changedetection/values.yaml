@@ -1,4 +1,5 @@
 image: ghcr.io/dgtlmoon/changedetection.io:0.45.14
+namespace: utility-services
 chromeImage: browserless/chrome:latest
 ports:
 - name: http
@@ -7,6 +8,6 @@ ports:
   protocol: TCP
 volumes:
 - name: datastore
-  hostPath: /home/flow/appdata/utility-services/changedetection
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/changedetection
   podPath: /datastore
   type: DirectoryOrCreate

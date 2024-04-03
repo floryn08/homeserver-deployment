@@ -1,4 +1,5 @@
 image: ghcr.io/gethomepage/homepage:v0.8.8
+namespace: utility-services
 ports:
 - name: http
   containerPort: 3000
@@ -6,7 +7,7 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: /home/flow/appdata/utility-services/homepage/config
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/homepage/config
   podPath: /app/config
   type: DirectoryOrCreate
 - name: media

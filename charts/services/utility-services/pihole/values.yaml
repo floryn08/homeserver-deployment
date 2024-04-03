@@ -1,4 +1,5 @@
 image: pihole/pihole:2024.02.2
+namespace: utility-services
 ports:
 - name: dns-tcp
   containerPort: 53
@@ -14,10 +15,10 @@ ports:
   protocol: TCP
 volumes:
 - name: etc-pihole
-  hostPath: /home/flow/appdata/utility-services/pihole/etc-pihole/
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/pihole/etc-pihole/
   podPath: /etc/pihole/
   type: DirectoryOrCreate
 - name: etc-dnsmasq
-  hostPath: /home/flow/appdata/utility-services/pihole/etc-dnsmasq.d/
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/pihole/etc-dnsmasq.d/
   podPath: /etc/dnsmasq.d/
   type: DirectoryOrCreate

@@ -11,9 +11,10 @@ spec:
     path: {{ .Values.wireguard.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    helm:
-      values: |
-        {{- tpl (include "yamlParseRec" (dict "yaml" .Values )) . | indent 8 }}
+    plugin:
+      env:
+        - name: HELM_ARGS
+          value: -f values.yaml
   project: {{ .Values.project }}
   syncPolicy:
     automated:
