@@ -1,4 +1,4 @@
-image: ghcr.io/wg-easy/wg-easy:11
+image: ghcr.io/wg-easy/wg-easy:12
 namespace: utility-services
 ports:
 - name: wg-udp
