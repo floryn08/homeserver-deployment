@@ -14,7 +14,6 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-  sources: []
   project: {{ .Values.project }}
   syncPolicy:
     automated:
