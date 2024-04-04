@@ -34,8 +34,8 @@ spec:
               - SYS_RAWIO
           privileged: true
         envFrom:
-        - configMapRef:
-            name: {{ .Release.Name }}-configmap
+        - secretRef:
+            name: {{ .Release.Name }}
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
