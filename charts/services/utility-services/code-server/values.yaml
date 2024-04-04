@@ -10,5 +10,5 @@ volumes:
   hostPath: <path:kv/data/hostPath#appdata>/utility-services/code-server/config
   podPath: /config
 - name: code
-  hostPath: /home/flow/github
+  hostPath: <path:kv/data/hostPath#codeServerFolder>
   podPath: /config/workspace
