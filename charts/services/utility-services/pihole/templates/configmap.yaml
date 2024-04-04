@@ -4,7 +4,6 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  TZ: Europe/Bucharest
-  WEBPASSWORD: parola123
-  PIHOLE_DNS_: "1.1.1.1"
-  # ServerIP: ${LOCAL_IP}
+  TZ: ''
+  WEBPASSWORD: ''
+  PIHOLE_DNS_: ''

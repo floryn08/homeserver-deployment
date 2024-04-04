@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  TZ: Europe/Bucharest
+  TZ: ''

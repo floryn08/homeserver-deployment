@@ -11,10 +11,10 @@ volumes:
   podPath: /app/config
   type: DirectoryOrCreate
 - name: media
-  hostPath: /mnt/hdd
+  hostPath: <path:kv/data/hostPath#mediaHdd>
   podPath: /media
   type: Directory
 - name: backup
-  hostPath: /mnt/hdd2
+  hostPath: <path:kv/data/hostPath#backupHdd>
   podPath: /backup
   type: Directory

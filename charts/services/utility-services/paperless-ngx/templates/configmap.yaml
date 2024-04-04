@@ -4,9 +4,9 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  USERMAP_UID: "1000"
-  USERMAP_GID: "1000"
-  PAPERLESS_TIME_ZONE: Europe/Bucharest
-  PAPERLESS_REDIS: redis://redis-loadbalancer.core-services.svc
-  PAPERLESS_OCR_LANGUAGES: ron #install romanian OCR
-  PAPERLESS_OCR_LANGUAGE: ron #set default ocr language
+  USERMAP_UID: ''
+  USERMAP_GID: ''
+  PAPERLESS_TIME_ZONE: ''
+  PAPERLESS_REDIS: ''
+  PAPERLESS_OCR_LANGUAGES: '' 
+  PAPERLESS_OCR_LANGUAGE: ''
