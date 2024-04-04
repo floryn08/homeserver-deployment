@@ -5,11 +5,6 @@ targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: core-services
 
-vault:
-  url: http://vault.core-services.svc:8200
-  authType: kubernetes
-  mount: kubernetes
-
 syncPolicy:
   automated:
     prune: true
@@ -41,6 +36,9 @@ duplicacy:
 
 vault:
   path: charts/services/core-services/vault
+  url: http://vault.core-services.svc:8200
+  authType: kubernetes
+  mount: kubernetes
 
 vaultSecretsOperator:
   path: charts/services/core-services/vault-secrets-operator
