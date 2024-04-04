@@ -5,6 +5,11 @@ targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: game-servers
 
+vault:
+  url: http://vault.core-services.svc:8200
+  authType: kubernetes
+  mount: kubernetes
+
 syncPolicy:
   automated:
     prune: true
