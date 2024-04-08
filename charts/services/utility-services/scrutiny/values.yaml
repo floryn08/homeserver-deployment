@@ -1,4 +1,4 @@
-image: ghcr.io/analogj/scrutiny:v0.8.0-omnibus
+image: ghcr.io/analogj/scrutiny:v0.8.1-omnibus
 namespace: utility-services
 ports:
 - name: http
