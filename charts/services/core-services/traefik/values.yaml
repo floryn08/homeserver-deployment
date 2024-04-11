@@ -1,4 +1,4 @@
-image: traefik:2.11.0
+image: traefik:2.11.1
 namespace: core-services
 ports:
 - name: web
