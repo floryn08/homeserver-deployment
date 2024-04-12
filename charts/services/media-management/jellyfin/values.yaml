@@ -1,7 +1,7 @@
 image: linuxserver/jellyfin:10.8.13
 namespace: media-management
-primaryDomain: wizarr.<path:kv/data/domains#primaryDomain>
-secondaryDomain: wizarr.<path:kv/data/domains#secondaryDomain>
+primaryDomain: <path:kv/data/domains#primaryDomain>
+secondaryDomain: <path:kv/data/domains#secondaryDomain>
 ports:
 - name: http
   containerPort: 8096
