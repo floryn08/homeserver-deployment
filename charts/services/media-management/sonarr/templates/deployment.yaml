@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: linuxserver/sonarr:4.0.2
+        image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
