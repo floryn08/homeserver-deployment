@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  PGID: "1000"
-  PUID: "1000"
-  TZ: Europe/Bucharest
-  WEBUI_PORT: "8383"
+  PGID: ''
+  PUID: ''
+  TZ: ''
+  WEBUI_PORT: ''

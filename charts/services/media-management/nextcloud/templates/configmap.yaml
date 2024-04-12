@@ -4,12 +4,12 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  PUID: "1000"
-  PGID: "1000"
-  TZ: Europe/Bucharest
-  POSTGRES_HOST: postgres-loadbalancer.core-services.svc
-  POSTGRES_DB: nextcloud_db
-  POSTGRES_USER: user
-  POSTGRES_PASSWORD: parola123
-  REDIS_HOST: redis-loadbalancer.core-services.svc
-  REDIS_HOST_PASSWORD: parola123
+  PUID: ''
+  PGID: ''
+  TZ: ''
+  POSTGRES_HOST: ''
+  POSTGRES_DB: ''
+  POSTGRES_USER: ''
+  POSTGRES_PASSWORD: ''
+  REDIS_HOST: ''
+  REDIS_HOST_PASSWORD: ''

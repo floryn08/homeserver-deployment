@@ -4,5 +4,5 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  LOG_LEVEL: debug
-  TZ: Europe/Bucharest
+  LOG_LEVEL: ''
+  TZ: ''

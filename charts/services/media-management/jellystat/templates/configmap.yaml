@@ -4,10 +4,10 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  POSTGRES_USER: user
-  POSTGRES_PASSWORD: parola123
-  POSTGRES_DATABASE: jellystat_db
-  POSTGRES_IP: postgres-loadbalancer.core-services.svc
-  POSTGRES_PORT: "5432"
-  JWT_SECRET: d1214872a50390580ba052f13d663de02dff7b1d0aff32dc7b71f70adec6a691
-  TZ: Europe/Bucharest
+  POSTGRES_USER: ''
+  POSTGRES_PASSWORD: ''
+  POSTGRES_DATABASE: ''
+  POSTGRES_IP: ''
+  POSTGRES_PORT: ''
+  JWT_SECRET: ''
+  TZ: ''
