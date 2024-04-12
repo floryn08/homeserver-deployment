@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  OLLAMA_API_BASE_URL: http://ollama-service.ai-services.svc:11434/api
+  OLLAMA_API_BASE_URL: http://ollama-service.ai-services.svc:11434
