@@ -3,7 +3,7 @@ namespace: media-management
 externalPort: 6767
 containerPort: 6767
 configPath: <path:kv/data/hostPath#appdata>/media-management/bazarr
-moviesPath: /mnt/hdd/movies
-tvPath: /mnt/hdd/tv
-animePath: /mnt/hdd/anime
-apiKey: 5c33e6c7e6271d45ddbc92bb7019f70a
+moviesPath: <path:kv/data/hostPath#mediaHdd>/movies
+tvPath: <path:kv/data/hostPath#mediaHdd>/tv
+animePath: <path:kv/data/hostPath#mediaHdd>/anime
+apiKey: <path:kv/data/media-management/bazarr#apiKey>

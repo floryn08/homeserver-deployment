@@ -8,7 +8,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   rules:
-  - host: thebatcave.go.ro
+  - host: {{ .Values.secondaryDomain }}
     http:
       paths:
       - path: /jellyfin

@@ -2,5 +2,5 @@ image: linuxserver/radarr:5.3.6
 externalPort: 7878
 containerPort: 7878
 configPath: <path:kv/data/hostPath#appdata>/media-management/radarr
-mediaPath: /mnt/hdd
+mediaPath: <path:kv/data/hostPath#mediaHdd>
 namespace: media-management

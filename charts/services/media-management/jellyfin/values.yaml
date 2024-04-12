@@ -1,5 +1,7 @@
 image: linuxserver/jellyfin:10.8.13
 namespace: media-management
+primaryDomain: wizarr.<path:kv/data/domains#primaryDomain>
+secondaryDomain: wizarr.<path:kv/data/domains#secondaryDomain>
 ports:
 - name: http
   containerPort: 8096
@@ -18,15 +20,15 @@ volumes:
   hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
   podPath: /config
 - name: tv
-  hostPath: /mnt/hdd/tv
+  hostPath: <path:kv/data/hostPath#mediaHdd>/tv
   podPath: /data/tvshows
 - name: movies
-  hostPath: /mnt/hdd/movies
+  hostPath: <path:kv/data/hostPath#mediaHdd>/movies
   podPath: /data/movies
 - name: anime
-  hostPath: /mnt/hdd/anime
+  hostPath: <path:kv/data/hostPath#mediaHdd>/anime
   podPath: /data/anime
 - name: music
-  hostPath: /mnt/hdd/music
+  hostPath: <path:kv/data/hostPath#mediaHdd>/music
   podPath: /data/music
 

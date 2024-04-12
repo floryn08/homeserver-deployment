@@ -8,7 +8,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "false"
 spec:
   rules:
-  - host: nextcloud.thebatcave.uk
+  - host: nextcloud.{{ .Values.domain }}
     http:
       paths:
       - path: /

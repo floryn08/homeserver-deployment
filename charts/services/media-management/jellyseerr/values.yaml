@@ -1,5 +1,6 @@
 image: fallenbagel/jellyseerr:develop
 namespace: media-management
+domain: <path:kv/data/domains#primaryDomain>
 ports:
 - name: jellyseerr
   containerPort: 5055

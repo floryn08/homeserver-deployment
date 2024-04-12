@@ -1,5 +1,6 @@
 image: ghcr.io/wizarrrr/wizarr:3.5.1
 namespace: media-management
+domain: <path:kv/data/domains#primaryDomain>
 ports:
 - name: wizarr
   containerPort: 5690

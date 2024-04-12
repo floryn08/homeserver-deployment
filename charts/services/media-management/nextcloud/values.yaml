@@ -1,5 +1,6 @@
 image: linuxserver/nextcloud:28.0.4
 namespace: media-management
+domain: <path:kv/data/domains#primaryDomain>
 ports:
 - name: nextcloud
   containerPort: 80
@@ -10,6 +11,6 @@ volumes:
   hostPath: <path:kv/data/hostPath#appdata>/media-management/nextcloud
   podPath: /config
 - name: media
-  hostPath: /mnt/hdd2/nextcloud
+  hostPath: <path:kv/data/hostPath#storageHdd>/nextcloud
   podPath: /data
 

@@ -8,7 +8,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "false"
 spec:
   rules:
-  - host: jellyseerr.thebatcave.uk
+  - host: jellyseerr.{{ .Values.domain }}
     http:
       paths:
       - path: /
