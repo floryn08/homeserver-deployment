@@ -21,8 +21,8 @@ spec:
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
-        - configMapRef:
-            name: {{ .Release.Name }}-configmap
+        - secretRef:
+            name: {{ .Release.Name }}
         ports:
         - containerPort: 8989
           name: {{ .Release.Name }}-port
