@@ -21,7 +21,7 @@ spec:
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
-        - configMapRef:
+        - secretRef:
             name: {{ .Release.Name }}-configmap
         ports:
         {{- range $key, $val := $.Values.ports }}
