@@ -1,4 +1,4 @@
-image: linuxserver/sonarr:4.0.3
+image: linuxserver/sonarr:4.0.4
 sonarr:
   configPath: <path:kv/data/hostPath#appdata>/media-management/sonarr
   mediaPath: <path:kv/data/hostPath#mediaHdd>
