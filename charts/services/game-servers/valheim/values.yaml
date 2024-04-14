@@ -5,19 +5,19 @@ ports:
 - name: 2456
   containerPort: 2456
   externalPort: 2456
-  protocol: udp
+  protocol: UDP
 - name: 2457
   containerPort: 2457
   externalPort: 2457
-  protocol: udp
+  protocol: UDP
 - name: 2458
   containerPort: 2458
   externalPort: 2458
-  protocol: udp
+  protocol: UDP
 - name: status
   containerPort: 8093
   externalPort: 8093
-  protocol: udp
+  protocol: UDP
 volumes:
 - name: saves
   hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/saves
