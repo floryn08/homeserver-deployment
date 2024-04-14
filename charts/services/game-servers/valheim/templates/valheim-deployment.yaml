@@ -30,7 +30,15 @@ spec:
         env:
         - secretRef:
           name: {{ .Release.Name }}
-
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost/status:8093
+          failureThreshold: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
