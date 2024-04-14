@@ -37,8 +37,8 @@ spec:
             - -f
             - http://localhost/status:8093
           failureThreshold: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 25
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
