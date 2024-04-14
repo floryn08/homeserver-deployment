@@ -1,0 +1,603 @@
+Europe/Bucharest
+2024-04-14 21:37:59 - #[INFO]: ###########################################################################
+2024-04-14 21:37:59 - [Valheim][INFO]: Valheim Server - Sun Apr 14 09:37:59 PM EEST 2024
+2024-04-14 21:37:59 - [Valheim][INFO]: Initializing your container...
+2024-04-14 21:37:59 - [Valheim][INFO]: Total memory: 31GB
+2024-04-14 21:37:59 - #[INFO]: ###########################################################################
+Configuring Preset Env
+export DEBUG_MODE=0
+export ODIN_CONFIG_FILE="/home/steam/valheim/config.json"
+export ODIN_DISCORD_FILE="/home/steam/valheim/discord.json"
+export ODIN_WORKING_DIR=""
+export SAVE_LOCATION="/home/steam/.config/unity3d/IronGate/Valheim"
+export MODS_LOCATION="/home/steam/staging/mods"
+export GAME_LOCATION="/home/steam/valheim"
+export BACKUP_LOCATION="/home/steam/backups"
+export NAME="TheBatCave"
+export ADDRESS=""
+export PORT=2456
+export PUBLIC=1
+export ENABLE_CROSSPLAY=1
+export UPDATE_ON_STARTUP=0
+export SERVER_EXTRA_LAUNCH_ARGS=""
+export WEBHOOK_URL=""
+export WEBHOOK_STATUS_SUCCESSFUL=1
+export WEBHOOK_STATUS_FAILED=1
+export WEBHOOK_STATUS_RUNNING=1
+export WEBHOOK_INCLUDE_PUBLIC_IP=0
+export AUTO_UPDATE=1
+export AUTO_BACKUP=1
+export AUTO_BACKUP_REMOVE_OLD=1
+export AUTO_BACKUP_DAYS_TO_LIVE=3
+export AUTO_BACKUP_ON_UPDATE=1
+export AUTO_BACKUP_ON_SHUTDOWN=1
+export AUTO_BACKUP_PAUSE_WITH_NO_PLAYERS=0
+export VALHEIM_PLUS_RELEASES_URL=""
+export VALHEIM_PLUS_DOWNLOAD_URL=""
+export BEPINEX_RELEASES_URL="https://valheim.thunderstore.io/api/experimental/package/denikson/BepInExPack_Valheim/"
+export BEPINEX_DOWNLOAD_URL=""
+export BEPINEX_FULL_RELEASES_URL=""
+Preset Env Configured
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Update Enabled...
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Update Schedule: 0 1 * * *
+0 1 * * * BASH_ENV=/env.sh /bin/bash /home/steam/scripts/auto_update.sh >> /home/steam/valheim/logs/auto-update.out 2>&1
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Enabled...
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Schedule: */15 * * * *
+*/15 * * * * BASH_ENV=/env.sh /bin/bash /home/steam/scripts/auto_backup.sh >> /home/steam/valheim/logs/auto-backup.out 2>&1
+2024-04-14 21:37:59 - [Valheim][INFO]: Setting up file systems
+usermod: no changes
+2024-04-14 21:37:59 - [Valheim][INFO]: Navigating to steam home...
+2024-04-14 21:37:59 - [Valheim][INFO]: Launching as server...
+2024-04-14 21:37:59 - #[INFO]: ###########################################################################
+2024-04-14 21:37:59 - [Valheim][INFO]: Valheim Server - Sun Apr 14 09:37:59 PM EEST 2024
+2024-04-14 21:37:59 - [Valheim][INFO]: STEAM_UID 1000 - STEAM_GUID 1000
+2024-04-14 21:37:59 - [Valheim][INFO]: Installing Valheim via odin 2.1.0...
+2024-04-14 21:37:59 - #[INFO]: ###########################################################################
+2024-04-14 21:37:59 - [Valheim][INFO]: Variables loaded.....
+2024-04-14 21:37:59 - [Valheim][INFO]: Port: 2456
+2024-04-14 21:37:59 - [Valheim][INFO]: Name: TheBatCave
+2024-04-14 21:37:59 - [Valheim][INFO]: World: TheBatCave
+2024-04-14 21:37:59 - [Valheim][INFO]: Public: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: With Crossplay: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: Password: (REDACTED)
+2024-04-14 21:37:59 - [Valheim][INFO]: Preset:
+2024-04-14 21:37:59 - [Valheim][INFO]: Modifiers:
+2024-04-14 21:37:59 - [Valheim][INFO]: Set Key:
+2024-04-14 21:37:59 - [Valheim][INFO]: Has Webhook: false
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Update: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup On Update: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup On Shutdown: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Pause With No Players: 0
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Pause With Players:
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Remove Old: 1
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Days To Live: 3
+2024-04-14 21:37:59 - [Valheim][INFO]: Auto Backup Nice Level:
+2024-04-14 21:37:59 - [Valheim][INFO]: Update On Startup: 0
+2024-04-14 21:37:59 - [Valheim][INFO]: Mods:
+2024-04-14 21:37:59 - #[INFO]: ###########################################################################
+2024-04-14 21:37:59 - [Valheim][INFO]: Running Install...
+2024-04-14 21:37:59 - [Valheim][INFO]: Skipping install process, looks like valheim_server is already installed :)
+2024-04-14 21:37:59 - [Valheim][INFO]: Initializing Variables....
+[ODIN][INFO]  - Successfully written /home/steam/valheim/config.json
+2024-04-14 21:37:59 - [Valheim][INFO]: Checking for TYPE flag
+2024-04-14 21:37:59 - [Valheim][INFO]: Found Type Vanilla
+2024-04-14 21:37:59 - [Valheim][INFO]: Running with Vanilla Valheim <3
+2024-04-14 21:37:59 - [Valheim][INFO]: Starting server...
+[ODIN][INFO]  - Starting web server....
+[ODIN][INFO]  - Navigate to http://127.0.0.1:8093/status to view the server status.
+[ODIN][INFO]  - Server::run; addr=0.0.0.0:8093
+[ODIN][INFO]  - listening on http://0.0.0.0:8093
+[ODIN][INFO]  - Setting up start scripts...
+[ODIN][INFO]  - Looking for burial mounds...
+[ODIN][INFO]  - Executing: /home/steam/valheim/valheim_server.x86_64 .....
+[ODIN][INFO]  - Password found, adding password flag.
+[ODIN][INFO]  - Launching with Crossplay! <3
+[ODIN][INFO]  - Launching Command...
+[ODIN][INFO]  - Everything looks good! Running normally!
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=4194304"
+    "memorysetup-bucket-allocator-block-count=1"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=4194304"
+    "memorysetup-profiler-bucket-allocator-block-count=1"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=4194304"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Mono path[0] = '/home/steam/valheim/valheim_server_Data/Managed'
+Mono config path = '/home/steam/valheim/valheim_server_Data/MonoBleedingEdge/etc'
+Preloaded 'libDiskSpacePlugin.so'
+Preloaded 'libparty.so'
+Preloaded 'libsteam_api.so'
+[Physics::Module] Initialized MultithreadedJobDispatcher with 11 workers.
+Initialize engine version: 2022.3.17f1 (4fc78088f837)
+[Subsystems] Discovering subsystems at path /home/steam/valheim/valheim_server_Data/UnitySubsystems
+Forcing GfxDevice: Null
+GfxDevice: creating device client; threaded=0; jobified=0
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.070 seconds
+- Finished resetting the current domain, in  0.001 seconds
+ERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+There is no texture data available to upload.
+UnloadTime: 0.433668 ms
+Privilege Multiplayer is not known on this platform. Privilege therefore is granted without check...
+Privilege UserGeneratedContent is not known on this platform. Privilege therefore is granted without check...
+Privilege CrossPlay is not known on this platform. Privilege therefore is granted without check...
+04/14/2024 21:37:59: Set background loading budget to Low
+ERROR: Shader TextMeshPro/Mobile/Distance Field shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader GUI/Text Shader shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'TextMeshPro/Distance Field' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader TextMeshPro/Distance Field shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'TextMeshPro/Distance Field' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Unloading 5 Unused Serialized files (Serialized files now loaded: 9)
+UnloadTime: 0.126895 ms
+04/14/2024 21:38:00: Fetching PlatformPrefs 'GuiScale' before loading defaults
+04/14/2024 21:38:00: Fetching PlatformPrefs 'GuiScale' before loading defaults
+Unloading 171 unused Assets to reduce memory usage. Loaded Objects now: 2143.
+Total: 1.638636 ms (FindLiveObjects: 0.110961 ms CreateObjectMapping: 0.066209 ms MarkObjects: 1.362969 ms  DeleteObjects: 0.098283 ms)
+
+04/14/2024 21:38:00: Starting to load scene:start.unity (169d7618616154c03be07e9ad3af5893)
+04/14/2024 21:38:00: Set background loading budget to Normal
+2024-04-14 21:38:01 - [Valheim][INFO]: Herding Graydwarfs...
+==> /home/steam/valheim/logs/valheim_server.log <==
+[ODIN][INFO]  - Success, daemonized
+
+==> /home/steam/valheim/logs/valheim_server.err <==
+
+==> /home/steam/valheim/logs/output.log <==
+
+==> /home/steam/valheim/logs/auto-update.out <==
+
+==> /home/steam/valheim/logs/auto-backup.out <==
+04/14/2024 21:38:04: Set background loading budget to High
+The referenced script on this Behaviour (Game Object '<null>') is missing!
+Couldn't create a Convex Mesh from source mesh "default" within the maximum polygons limit (256). The partial hull will be used. Consider simplifying your mesh.
+Couldn't create a Convex Mesh from source mesh "default" within the maximum polygons limit (256). The partial hull will be used. Consider simplifying your mesh.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 964)
+ERROR: Shader Legacy Shaders/VertexLit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Heightmap' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Heightmap shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Heightmap' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Creature shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Legacy Shaders/Transparent/VertexLit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/LitGui shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Unlit/Lighting shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Trilinearmap' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Trilinearmap shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Trilinearmap' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Bonemass' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Bonemass shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Bonemass' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Gradient Mapped Particle (Unlit) shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Lux Lit Particles/ Bumped shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Legacy Shaders/Particles/Alpha Blended shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/Decal shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard TwoSided' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Standard TwoSided shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard TwoSided' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Particles/Standard Surface2' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Particles/Standard Surface2 shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Particles/Standard Surface2' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Yggdrasil_root' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Yggdrasil_root shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Yggdrasil_root' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/FlowOpaque shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Grass' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Grass shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Grass' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Particles/Standard Unlit2' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Particles/Standard Unlit2 shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Particles/Standard Unlit2' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Vegetation' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Vegetation shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Vegetation' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Standard (Specular setup)' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Standard (Specular setup) shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard (Specular setup)' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/SkyObject' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/SkyObject shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/SkyObject' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Blob' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Blob shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Blob' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader TextMeshPro/Distance Field (Surface) shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/Piece shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/Tar shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Player' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Player shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Player' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Clouds' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Clouds shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Clouds' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/ShadowBlob' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/ShadowBlob shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/ShadowBlob' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Distortion' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Distortion shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Distortion' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Particles/Additive shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Water' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Water shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Water' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Legacy Shaders/Transparent/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Transparent/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Transparent/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/StaticRock shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Standard shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Lux Lit Particles/ Tess Bumped': fallback shader 'Lux Lit Particles/ Bumped Smoke' not found
+WARNING: Shader Unsupported: 'Lux Lit Particles/ Tess Bumped' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Lux Lit Particles/ Tess Bumped shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Lux Lit Particles/ Tess Bumped' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/ParticleDecal shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/GuiScroll shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/LitParticles' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/LitParticles shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/LitParticles' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/WaterMask' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/WaterMask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/WaterMask' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Unlit/Color shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/AlphaParticle shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Smoke Balls' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Smoke Balls shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Smoke Balls' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Particles/Alpha Blended Premultiply shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/Flow shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/Rug shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Autodesk Interactive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Autodesk Interactive shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Autodesk Interactive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+04/14/2024 21:38:14: Set background loading budget to Low
+UnloadTime: 5.408461 ms
+Only custom filters can be played. Please add a custom filter or an audioclip to the audiosource (Amb_MainMenu).
+HDR Render Texture not supported, disabling HDR on reflection probe.
+04/14/2024 21:38:14: Setting -savedir to: /home/steam/.config/unity3d/IronGate/Valheim
+04/14/2024 21:38:14: Get create world TheBatCave
+ERROR: Shader TextMeshPro/Mobile/Distance Field shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+04/14/2024 21:38:14: Using environment steamid 892970
+04/14/2024 21:38:14: Using steam APPID:892970
+[S_API] SteamAPI_Init(): Loaded local 'steamclient.so' OK.
+CAppInfoCacheReadFromDiskThread took 0 milliseconds to initialize
+Setting breakpad minidump AppID = 892970
+SteamInternal_SetMinidumpSteamID:  Caching Steam ID:  76561197960265728 [API loaded no]
+[S_API FAIL] Tried to access Steam interface SteamNetworkingUtils004 before SteamAPI_Init succeeded.
+dlmopen steamservice.so failed: steamservice.so: cannot open shared object file: No such file or directory
+04/14/2024 21:38:14: Server ID 90071992547409920
+04/14/2024 21:38:14: Authentication:k_ESteamNetworkingAvailability_Waiting
+04/14/2024 21:38:14: Steam game server initialized
+04/14/2024 21:38:14: Using default prefs
+04/14/2024 21:38:14: Valheim version: l-0.217.46 (network version 23)
+Trying to set graphic mode to 'Custom'
+Graphic mode 'Custom' applied!
+04/14/2024 21:38:14: Worldgenerator version setup:2
+04/14/2024 21:38:14: Console: Valheim l-0.217.46 (network version 23)
+04/14/2024 21:38:14: Console:
+04/14/2024 21:38:14: Console: type "help" - for commands
+04/14/2024 21:38:14: Console:
+04/14/2024 21:38:14: Render threading mode:SingleThreaded
+04/14/2024 21:38:14: Set button "CamZoomIn" to None!
+04/14/2024 21:38:14: Set button "CamZoomOut" to None!
+04/14/2024 21:38:14: Set button "CamZoomIn" to None!
+04/14/2024 21:38:14: Set button "CamZoomOut" to None!
+04/14/2024 21:38:14: Missing audio clip in music respawn
+ERROR: Shader UI/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+04/14/2024 21:38:14: Builder started
+04/14/2024 21:38:15: Loaded localization file #0 - 'localization' language: 'English'
+04/14/2024 21:38:15: Loaded localization file #1 - 'localization_extra' language: 'English'
+04/14/2024 21:38:15: Loaded localization file #2 - 'heightmap_message' language: 'English'
+04/14/2024 21:38:15: Loaded localization file #3 - 'localization_hildir' language: 'English'
+04/14/2024 21:38:15: Loaded localization file #4 - 'localization_emotes' language: 'English'
+04/14/2024 21:38:15: Sending PlayFab login request (attempt 1)
+04/14/2024 21:38:15: Login postponed until ID has been set.
+The shader Hidden/Dof/DepthOfFieldHdr (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.DepthOfField) is not supported on this platform!
+The image effect Main Camera (UnityStandardAssets.ImageEffects.DepthOfField) has been disabled as it's not supported on the current platform.
+The shader Hidden/SunShaftsComposite (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) is not supported on this platform!
+The shader Hidden/SimpleClear (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) is not supported on this platform!
+The image effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) has been disabled as it's not supported on the current platform.
+04/14/2024 21:38:15: Starting music menu
+WARNING: Shader Unsupported: 'TextMeshPro/Distance Field' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader TextMeshPro/Distance Field shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'TextMeshPro/Distance Field' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader TextMeshPro/Sprite shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+Unloading 71889 unused Assets to reduce memory usage. Loaded Objects now: 156458.
+Total: 107.845370 ms (FindLiveObjects: 9.958294 ms CreateObjectMapping: 21.130663 ms MarkObjects: 62.044585 ms  DeleteObjects: 14.711456 ms)
+
+ERROR: Shader UI/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'UI/Unlit/Transparent' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'UI/Unlit/Transparent' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/WaterBottom' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/WaterBottom shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/WaterBottom' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Unlit/DepthWrite shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Hidden/RadialSegementShader shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Hidden/RadialCutoutShader shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/UI_BGBlur' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/UI_BGBlur shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/UI_BGBlur' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/Yggdrasil' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/Yggdrasil shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/Yggdrasil' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/mapshader shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/icon shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+Unloading 3 Unused Serialized files (Serialized files now loaded: 960)
+UnloadTime: 9.898236 ms
+HDR Render Texture not supported, disabling HDR on reflection probe.
+HDR Render Texture not supported, disabling HDR on reflection probe.
+04/14/2024 21:38:15: Using default prefs
+04/14/2024 21:38:15: Console: Valheim l-0.217.46 (network version 23)
+04/14/2024 21:38:15: Console:
+04/14/2024 21:38:15: Console: type "help" - for commands
+04/14/2024 21:38:15: Console:
+04/14/2024 21:38:15: isModded: False
+04/14/2024 21:38:15: Zonesystem Awake 759189
+04/14/2024 21:38:15: DungeonDB Awake 759189
+04/14/2024 21:38:15: Registering lobby
+04/14/2024 21:38:15: PlayFab custom ID set to "PlayFab_TheBatCave_2456_6bffda0afbf9ef190dab9c7d65b5e6d5"
+04/14/2024 21:38:15: Sending PlayFab login request (attempt 2)
+04/14/2024 21:38:15: Semaphore type: SemaphoreSlim
+04/14/2024 21:38:15: Worldgenerator version setup:2
+04/14/2024 21:38:18: Audioman already exist, destroying self
+04/14/2024 21:38:18: Console: /w [text] - Whisper
+04/14/2024 21:38:18: Console: /s [text] - Shout
+04/14/2024 21:38:18: Console: /die - Kill yourself
+04/14/2024 21:38:18: Console: /resetspawn - Reset spawn point
+04/14/2024 21:38:18: Console: /[emote]
+04/14/2024 21:38:18: Console: Emotes: wave, sit, challenge, cheer, nonono, thumbsup, point, blowkiss, bow, cower, cry, despair, flex, comehere, headbang, kneel, laugh, roar, shrug, dance
+04/14/2024 21:38:18: Console:
+04/14/2024 21:38:18: PlayFab logged in as "PlayFab_TheBatCave_2456_6bffda0afbf9ef190dab9c7d65b5e6d5"
+04/14/2024 21:38:18: PlayFab local entity ID is F965366E7CB8D5BA
+04/14/2024 21:38:18: New session server "TheBatCave" that has join code , now 0 player(s)
+04/14/2024 21:38:18: Register PlayFab server "TheBatCave" with IP 188.24.189.211:2456
+04/14/2024 21:38:18: Server 'TheBatCave' begin PlayFab create and join network for server
+Unloading 361 unused Assets to reduce memory usage. Loaded Objects now: 156399.
+Total: 45.391824 ms (FindLiveObjects: 6.134021 ms CreateObjectMapping: 11.707479 ms MarkObjects: 27.177527 ms  DeleteObjects: 0.372289 ms)
+
+04/14/2024 21:38:18: Zonesystem Start 759189
+04/14/2024 21:38:18: Added 3 locations, 0 vegetations, 0 environments, 0 biome env-setups, 0 clutter  from main
+04/14/2024 21:38:18: Added 1 locations, 0 vegetations, 2 environments, 0 biome env-setups, 0 clutter  from main
+04/14/2024 21:38:18: Added 27 locations, 25 vegetations, 5 environments, 1 biome env-setups, 3 clutter  from main
+04/14/2024 21:38:18: Added 4 locations, 0 vegetations, 1 environments, 0 biome env-setups, 0 clutter  from main
+04/14/2024 21:38:18: DungeonDB Start 759189
+04/14/2024 21:38:18: ZRpc timeout set to 30s
+04/14/2024 21:38:18: ZNET START
+04/14/2024 21:38:18: Load world: TheBatCave (TheBatCave)
+04/14/2024 21:38:18: Loading 77839 zdos, my sessionID: 1271001887, data version: 33
+04/14/2024 21:38:18: Loading in ZDOs
+04/14/2024 21:38:18: Adding to Dictionary
+04/14/2024 21:38:18: Adding to Sectors
+04/14/2024 21:38:18: Connecting Portals, Spawners & ZSyncTransforms
+ConnectSpawners => Connected 44 spawners and 16 'done' spawners.
+04/14/2024 21:38:18: Loaded 10088 locations
+04/14/2024 21:38:18: Unloading unused assets
+Unloading 0 Unused Serialized files (Serialized files now loaded: 960)
+The shader Hidden/Dof/DepthOfFieldHdr (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.DepthOfField) is not supported on this platform!
+The image effect Main Camera (UnityStandardAssets.ImageEffects.DepthOfField) has been disabled as it's not supported on the current platform.
+The shader Hidden/SunShaftsComposite (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) is not supported on this platform!
+The shader Hidden/SimpleClear (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) is not supported on this platform!
+The image effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) has been disabled as it's not supported on the current platform.
+Am I Host? True
+04/14/2024 21:38:18: Game server connected
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 156400.
+Total: 62.677479 ms (FindLiveObjects: 6.198289 ms CreateObjectMapping: 12.860811 ms MarkObjects: 43.422326 ms  DeleteObjects: 0.195679 ms)
+
+04/14/2024 21:38:22: Joined PlayFab Party network with ID "646d4044-6a4d-40f9-a2cf-14dc9f19f98b|AwAeDLqaaKcncMhBa75X5ue4J2Sc3k5vcnRoRXVyb3BlAAAAAAAAAAAA7nipmXpd/Ohe5QQcQyDL8X43thImISbKGj4Y0JB+V5wnZlBkbnMtaXIwLTgxZTUtNDdlMmVlMGMtZjE3MS00OGNhLWJiYzYtYjQ5YzdjY2NiYzc5Lm5vcnRoZXVyb3BlLmNsb3VkYXBwLmF6dXJlLmNvbQ=="
+04/14/2024 21:38:23: Created PlayFab lobby with ID "421611e8-1f01-4cab-a3f0-1aee348a6176.r-20230509", ConnectionString "cv2:421611e8-1f01-4cab-a3f0-1aee348a6176.r-20230509|451107|kv1:zbsE1W19MzaYEtksPHLJr8SByWEnq8dlRJ6Rvc24tBo=" and owned by "F965366E7CB8D5BA"
+04/14/2024 21:38:23: Session "TheBatCave" registered with join code 790998
+04/14/2024 21:38:24: Retry join-code check 99
+04/14/2024 21:38:26: Session "TheBatCave" with join code 790998 and IP 188.24.189.211:2456 is active with 0 player(s)
+[Valheim][steam]: ###########################################################################
+[Valheim][steam]: Valheim Server - Sun Apr 14 21:45:01 EEST 2024 Backup Process
+[Valheim][steam]: Starting auto backup process...
+[Valheim][steam]: Removing old backups...
+[Valheim][steam]: Creating backup...
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/adminlist.txt to backup file, with path /adminlist.txt
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/bannedlist.txt to backup file, with path /bannedlist.txt
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/permittedlist.txt to backup file, with path /permittedlist.txt
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/prefs to backup file, with path /prefs
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/worlds_local to backup file, with path /worlds_local
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/worlds_local/TheBatCave.db to backup file, with path /worlds_local/TheBatCave.db
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/worlds_local/TheBatCave.db.old to backup file, with path /worlds_local/TheBatCave.db.old
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/worlds_local/TheBatCave.fwl to backup file, with path /worlds_local/TheBatCave.fwl
+[ODIN][INFO]  - Adding /home/steam/.config/unity3d/IronGate/Valheim/worlds_local/TheBatCave.fwl.old to backup file, with path /worlds_local/TheBatCave.fwl.old
+[Valheim][steam]: Backup process complete! Created 20240414-214501-backup.tar.gz
+[Valheim][steam]: ###########################################################################
+04/14/2024 21:45:18: Update PlayFab entity token
+04/14/2024 21:45:19: PlayFab listen socket child connected to remote player D4A3C52073F03DF8
+04/14/2024 21:45:19: Player joined server "TheBatCave" that has join code 790998, now 1 player(s)
+04/14/2024 21:45:19: Muted PlayFab remote player D4A3C52073F03DF8
+04/14/2024 21:45:19: PlayFab socket with remote ID playfab/D4A3C52073F03DF8 received local Platform ID Steam_76561198004445096
+04/14/2024 21:45:19: ZRpc timeout set to 90s
+04/14/2024 21:45:19: Got handshake from client playfab/D4A3C52073F03DF8
+04/14/2024 21:45:22: Network version check, their:23, mine:23
+04/14/2024 21:45:22: Server: New peer connected,sending global keys
+04/14/2024 21:45:38: Got character ZDOID from Bunasiua : 2283811697:2
+04/14/2024 21:45:38: Console: <color=orange>Bunasiua</color>: <color=#FFEB04FF>I HAVE ARRIVED!</color>
+04/14/2024 21:45:46: Time 23430.3799356185, day:12    nextm:23670.0000107288  skipspeed:19.9683395925288
+Am I Host? True
+04/14/2024 21:45:58: Available space to current user: 74229452800. Saving is blocked if below: 11461002 bytes. Warnings are given if below: 22922004
+04/14/2024 21:45:58: PrepareSave: clone done in 41ms
+04/14/2024 21:45:58: PrepareSave: ZDOExtraData.PrepareSave done in 23 ms
+04/14/2024 21:45:58: World save writing starting
+04/14/2024 21:45:58: World save writing started
+04/14/2024 21:45:58: Saved 77840 ZDOs
+04/14/2024 21:45:58: World save writing finishing
+04/14/2024 21:45:58: World save writing finished
+04/14/2024 21:45:58: World saved ( 274.237ms )
+04/14/2024 21:45:58: Considering autobackup. World time: 460.34, short time: 7200, long time: 43200, backup count: 4
+04/14/2024 21:45:58: Skipping backup. World session not long enough.
+Am I Host? True
+04/14/2024 21:47:36: RPC_Disconnect
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:1 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:2 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:24 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:106 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:114 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:110 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:108 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:112 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:109 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:111 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:113 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:115 owner 2283811697
+04/14/2024 21:47:36: Destroying abandoned non persistent zdo 2283811697:107 owner 2283811697
+ZPlayFabSocket::Dispose. State: CONNECTED
+ZPlayFabSocket::Dispose. leave lobby. LobbyId:
+ZPlayFabSocket::Dispose. State: CLOSED
+04/14/2024 21:47:36: Player connection lost server "TheBatCave" that has join code 790998, now 0 player(s)
+04/14/2024 21:48:18:  Connections 0 ZDOS:77837  sent:0 recv:0
+04/14/2024 21:48:21: Lobby 421611e8-1f01-4cab-a3f0-1aee348a6176.r-20230509 for world 'TheBatCave' and network 646d4044-6a4d-40f9-a2cf-14dc9f19f98b|AwAeDLqaaKcncMhBa75X5ue4J2Sc3k5vcnRoRXVyb3BlAAAAAAAAAAAA7nipmXpd/Ohe5QQcQyDL8X43thImISbKGj4Y0JB+V5wnZlBkbnMtaXIwLTgxZTUtNDdlMmVlMGMtZjE3MS00OGNhLWJiYzYtYjQ5YzdjY2NiYzc5Lm5vcnRoZXVyb3BlLmNsb3VkYXBwLmF6dXJlLmNvbQ== refreshed
