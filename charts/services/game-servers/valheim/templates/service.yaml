@@ -1,19 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: valheim-service
-  namespace: game-servers
+  name: {{ .Release.Name }}-service
+  namespace: {{ .Values.namespace }}
 spec:
   type: ClusterIP
   ports:
-  - name: game-port
-    port: 2456
-    targetPort: game-port
-  - name: query-port
-    port: 2457
-    targetPort: query-port
-  - name: http-status
-    port: 80
-    targetPort: http-status
+  {{- range $key, $val := $.Values.ports }}
+  - port: {{ $val.externalPort }}
+    targetPort: {{ $val.name }}-port
+    name: {{ $val.name }}-port
+    protocol: {{ $val.protocol }}
+  {{ end -}}
   selector:
-    app.kubernetes.io/name: valheim
+    app.kubernetes.io/name: {{ .Release.Name }}
