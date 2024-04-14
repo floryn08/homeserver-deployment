@@ -20,7 +20,11 @@ coreServices:
 gameServers:
   namespace: game-servers
   path: charts/stack-apps/game-servers
-
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      
 homeAutomation:
   namespace: home-automation
   path: charts/stack-apps/home-automation

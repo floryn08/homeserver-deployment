@@ -17,5 +17,5 @@ spec:
   project: {{ .Values.project }}
   syncPolicy:
     automated:
-      prune: {{ .Values.syncPolicy.automated.prune }}
-      selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}
+      prune: {{ .Values.gameServers.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.gameServers.syncPolicy.automated.selfHeal }}
