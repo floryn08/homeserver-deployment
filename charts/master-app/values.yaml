@@ -22,9 +22,9 @@ gameServers:
   path: charts/stack-apps/game-servers
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
-      
+      prune: false
+      selfHeal: false
+
 homeAutomation:
   namespace: home-automation
   path: charts/stack-apps/home-automation
