@@ -27,9 +27,9 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
-        env:
+        envFrom:
         - secretRef:
-            name: {{ .Release.Name }}
+          name: {{ .Release.Name }}
         livenessProbe:
           exec:
             command:
