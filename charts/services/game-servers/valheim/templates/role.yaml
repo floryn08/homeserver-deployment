@@ -9,12 +9,7 @@ rules:
     resources:
       - deployments
     verbs:
-      - get
-      - list
-      - patch
-  - apiGroups:
-      - apps
-    resources:
-      - deployments/status
-    verbs:
       - update
+      - list
+      - get
+      - patch
