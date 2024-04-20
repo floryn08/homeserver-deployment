@@ -8,7 +8,6 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 1
-  serviceAccountName: {{ .Release.Name }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ .Release.Name }}-server-discord-bot
@@ -17,6 +16,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}-server-discord-bot
     spec:
+      serviceAccountName: {{ .Release.Name }}
       containers:
       - name: {{ .Release.Name }}-server-discord-bot
         image: ghcr.io/floryn08/{{ .Release.Name }}-server-discord-bot:dev-k3s
