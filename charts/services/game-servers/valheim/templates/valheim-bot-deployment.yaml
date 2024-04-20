@@ -1,86 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: valheim-server-discord-bot
-  namespace: game-servers
+  name: {{ .Release.Name }}-server-discord-bot
+  namespace: {{ .Values.namespace }}
   labels:
-    app.kubernetes.io/name: valheim-server-discord-bot
+    app.kubernetes.io/name: {{ .Release.Name }}-server-discord-bot
 spec:
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 1
+  serviceAccountName: {{ .Release.Name }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: valheim-server-discord-bot
+      app.kubernetes.io/name: {{ .Release.Name }}-server-discord-bot
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: valheim-server-discord-bot
+        app.kubernetes.io/name: {{ .Release.Name }}-server-discord-bot
     spec:
       containers:
-      - name: valheim-server-discord-bot
-        image: ghcr.io/floryn08/valheim-server-discord-bot:dev-k3s
+      - name: {{ .Release.Name }}-server-discord-bot
+        image: ghcr.io/floryn08/{{ .Release.Name }}-server-discord-bot:dev-k3s
         imagePullPolicy: Always
-        env:
-        - name: CONTAINER_NAME
-          value: valheim
-        - name: DISCORD_CLIENT_ID
-          value: "1203275931343654912"
-        - name: DISCORD_TOKEN
-          value: "MTIwMzI3NTkzMTM0MzY1NDkxMg.GI6dzs.YYevCISipAnBiHYXRKKDp8BTQGFTa7fwIR0XgU"
-        - name: GUILD_ID
-          value: "1204742127104430102"
-        - name: JOIN_CODE_LOOP_COUNT
-          value: "20"
-        - name: JOIN_CODE_LOOP_TIMEOUT_MILLIS
-          value: "5000"
-        - name: SERVER_NAME
-          value: TheBatCave
-        - name: ARGO_PASS
-          valueFrom:
-            secretKeyRef:
-              name: argocd-password
-              key: password
-        livenessProbe:
-          exec:
-            command:
-            - curl
-            - -f
-            - http://localhost/status.json
-          failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
-        ports:
-        - name: game-port
-          containerPort: 2456
-        - name: query-port
-          containerPort: 2457
-        - name: http-status
-          containerPort: 80
-        volumeMounts:
-        - name: config
-          mountPath: /config
-        - name: data
-          mountPath: /opt/valheim
-        - name: localtime
-          mountPath: /etc/localtime
-          readOnly: true
-        - name: timezone
-          mountPath: /etc/timezone
-          readOnly: true
-      volumes:
-      - name: config
-        hostPath:
-          path: <path:kv/data/hostPath#appdata>/game-servers/valheim/config
-          type: DirectoryOrCreate
-      - name: data
-        hostPath:
-          path: <path:kv/data/hostPath#appdata>/game-servers/valheim/data
-          type: DirectoryOrCreate
-      - name: localtime
-        hostPath:
-          path: /etc/localtime
-          type: File
-      - name: timezone
-        hostPath:
-          path: /etc/timezone
-          type: File
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-discord-bot

@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  DISCORD_TOKEN: ''
+  DISCORD_CLIENT_ID: ''
+  GUILD_ID: ''
+  PORTAINER_URL: ''
+  PORTAINER_API_KEY: ''
+  CONTAINER_NAME: ''
+  SERVER_NAME: ''
+  JOIN_CODE_LOOP_COUNT: ''
+  JOIN_CODE_LOOP_TIMEOUT_MILLIS: ''
