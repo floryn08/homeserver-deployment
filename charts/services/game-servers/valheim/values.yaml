@@ -1,6 +1,6 @@
 namespace: game-servers
 image: mbround18/valheim:2.4.1
-discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:0.6.0
+discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:0.7.0
 ports:
 - name: 2456
   containerPort: 2456
