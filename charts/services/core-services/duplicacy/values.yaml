@@ -19,18 +19,18 @@ volumes:
   podPath: /logs
 
 - name: backups
-  hostPath: /mnt/hdd2/backups
+  hostPath: <path:kv/data/hostPath#backupHdd>/backups
   podPath: /backups
 
 - name: source
-  hostPath: /home/flow
+  hostPath: <path:kv/data/core-services/duplicacy#source>
   podPath: /source
 
 - name: storage
-  hostPath: /mnt/hdd2
+  hostPath:  <path:kv/data/hostPath#storageHdd>
   podPath: /storage
 
 - name: media
-  hostPath: /mnt/hdd
+  hostPath: <path:kv/data/hostPath#mediaHdd>
   podPath: /local-media
 
