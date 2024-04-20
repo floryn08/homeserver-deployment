@@ -13,3 +13,10 @@ rules:
       - list
       - get
       - patch
+  - apiGroups:
+      - core
+    resources:
+      - pods
+    verbs:
+      - list
+      - get
