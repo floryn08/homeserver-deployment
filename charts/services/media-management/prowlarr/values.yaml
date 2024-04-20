@@ -1,4 +1,4 @@
-image: linuxserver/prowlarr:1.15.0
+image: linuxserver/prowlarr:1.16.2
 namespace: media-management
 ports:
 - name: prowlarr
