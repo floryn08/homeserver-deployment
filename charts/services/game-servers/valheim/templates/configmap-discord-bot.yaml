@@ -6,7 +6,7 @@ metadata:
 data:
   DISCORD_TOKEN: ''
   DISCORD_CLIENT_ID: ''
-  GUILD_ID: ''
+  GUILD_IDS: ''
   PORTAINER_URL: ''
   PORTAINER_API_KEY: ''
   CONTAINER_NAME: ''
