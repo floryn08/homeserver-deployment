@@ -28,6 +28,11 @@ spec:
           hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/backups
           podPath: /home/steam/backups
           type: DirectoryOrCreate
+        valheim-discord-bot:
+          namespace: game-servers
+          discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:0.7.11
+          vault:
+            enabled: true
   project: {{ .Values.project }}
   syncPolicy:
     automated:
