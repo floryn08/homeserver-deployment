@@ -11,28 +11,6 @@ spec:
     path: {{ .Values.valheim.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    helm:
-      valueFiles: 
-        - values.yaml
-      values: |
-        volumes:
-        - name: saves
-          hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/saves
-          podPath: /home/steam/.config/unity3d/IronGate/Valheim
-          type: DirectoryOrCreate
-        - name: server
-          hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/server
-          podPath: /home/steam/valheim
-          type: DirectoryOrCreate
-        - name: backups
-          hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/backups
-          podPath: /home/steam/backups
-          type: DirectoryOrCreate
-        valheim-discord-bot:
-          namespace: game-servers
-          discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:0.7.11
-          vault:
-            enabled: true
   project: {{ .Values.project }}
   syncPolicy:
     automated:
