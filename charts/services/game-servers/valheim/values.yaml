@@ -1,6 +1,5 @@
 namespace: game-servers
 image: mbround18/valheim:2.4.2
-discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:dev-multi-guild-ids
 ports:
 - name: 2456
   containerPort: 2456
@@ -31,3 +30,9 @@ volumes:
   hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/backups
   podPath: /home/steam/backups
   type: DirectoryOrCreate
+
+valheim-discord-bot:
+  namespace: game-servers
+  discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:0.7.11
+  vault:
+    enabled: true
