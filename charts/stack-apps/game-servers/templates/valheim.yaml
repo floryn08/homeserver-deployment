@@ -12,6 +12,8 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      valueFiles: 
+        - values.yaml
       values: |
         volumes:
         - name: saves
