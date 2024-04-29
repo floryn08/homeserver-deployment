@@ -11,10 +11,21 @@ spec:
     path: {{ .Values.valheim.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    plugin:
-      env:
-        - name: HELM_ARGS
-          value: -f values.yaml
+    helm:
+      values: |
+        volumes:
+        - name: saves
+          hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/saves
+          podPath: /home/steam/.config/unity3d/IronGate/Valheim
+          type: DirectoryOrCreate
+        - name: server
+          hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/server
+          podPath: /home/steam/valheim
+          type: DirectoryOrCreate
+        - name: backups
+          hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/backups
+          podPath: /home/steam/backups
+          type: DirectoryOrCreate
   project: {{ .Values.project }}
   syncPolicy:
     automated:
