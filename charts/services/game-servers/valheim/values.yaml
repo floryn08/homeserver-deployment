@@ -33,6 +33,5 @@ volumes:
 
 valheim-discord-bot:
   namespace: game-servers
-  discordBotImage: ghcr.io/floryn08/valheim-server-discord-bot:0.7.14
   vault:
     enabled: true
