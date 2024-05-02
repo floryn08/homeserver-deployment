@@ -17,7 +17,8 @@ traefik:
       expose:
         default: true
     web:
-      asDefault: true
+      redirectTo: 
+        port: websecure
   certResolvers: 
     letsencrypt:
       email: florin.vasilica95@gmail.com
