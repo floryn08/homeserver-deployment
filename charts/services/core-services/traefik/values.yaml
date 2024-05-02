@@ -17,3 +17,21 @@ volumes:
 - name: letsencrypt
   hostPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
   podPath: /letsencrypt
+
+traefik:
+  namespaceOverride: core-services
+  providers:
+    kubernetesCRD:
+      allowCrossNamespace: true
+    kubernetesIngress:
+      publishedService:
+        enabled: true
+  ports:
+    web:
+      asDefault: true
+  certResolvers: 
+    letsencrypt:
+      email: florin.vasilica95@gmail.com
+      httpChallenge:
+        entrypoint: web
+      storage: /letsencrypt/acme.json
