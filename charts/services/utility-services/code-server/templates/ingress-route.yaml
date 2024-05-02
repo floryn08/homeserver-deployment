@@ -10,9 +10,9 @@ spec:
     - kind: Rule
       match: Host(`code.thebatcave.uk`)
       priority: 10 
-      # middlewares: 
-      #   - name: {{ .Release.Name }} 
-      #     namespace: {{ .Values.namespace }} 
+      middlewares: 
+        - name: {{ .Release.Name }} 
+          namespace: {{ .Values.namespace }} 
       services: 
         - kind: Service
           name: {{ .Release.Name }}
