@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`code.thebatcave.uk`)
+      match: Host(`code.thebatcave.uk`) && PathPrefix(`/`)
       middlewares: 
         - name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
