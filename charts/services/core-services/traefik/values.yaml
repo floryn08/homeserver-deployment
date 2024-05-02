@@ -20,6 +20,8 @@ volumes:
 
 traefik:
   namespaceOverride: core-services
+  deployment: 
+    revisionHistoryLimit: 1
   providers:
     kubernetesCRD:
       allowCrossNamespace: true
