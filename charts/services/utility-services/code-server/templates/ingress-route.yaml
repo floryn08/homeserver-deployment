@@ -10,8 +10,8 @@ spec:
     - kind: Rule
       match: Host(`code.thebatcave.uk`)
       middlewares: 
-        - name: authentik
-          namespace: core-services 
+        - name: {{ .Release.Name }}
+          namespace: {{ .Values.namespace }} 
       priority: 10
       services: 
         - kind: Service

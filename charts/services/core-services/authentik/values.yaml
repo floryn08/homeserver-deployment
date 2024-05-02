@@ -31,7 +31,7 @@ authentik:
 
   server:
     ingress:
-      enabled: false
+      enabled: true
       https: false
       ingressClassName: traefik
       hosts:
