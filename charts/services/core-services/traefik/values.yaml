@@ -22,6 +22,9 @@ traefik:
   namespaceOverride: core-services
   deployment: 
     revisionHistoryLimit: 1
+  podSecurityContext:
+    runAsGroup: 1000
+    runAsUser: 1000
   providers:
     kubernetesCRD:
       allowCrossNamespace: true
