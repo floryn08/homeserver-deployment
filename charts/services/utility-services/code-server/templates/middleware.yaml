@@ -5,7 +5,7 @@ metadata:
     namespace: {{ .Values.namespace }}
 spec:
     forwardAuth:
-        address: http://authentik-server.core-services.svc:8094
+        address: http://authentik-server.core-services.svc:8094/outpost.goauthentik.io/auth/traefik
         trustForwardHeader: true
         authResponseHeaders:
             - X-authentik-username
