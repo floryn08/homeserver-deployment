@@ -27,6 +27,9 @@ traefik:
       publishedService:
         enabled: true
   ports:
+    traefik:
+      expose:
+        default: true
     web:
       asDefault: true
   certResolvers: 
