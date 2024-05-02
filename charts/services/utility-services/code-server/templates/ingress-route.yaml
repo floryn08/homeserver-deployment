@@ -12,11 +12,19 @@ spec:
       middlewares: 
         - name: authentik
           namespace: core-services 
+      priority: 10
       services: 
         - kind: Service
           name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
           passHostHeader: true
           port: 8091 
+    - kind: Rule
+      match: "Host(`code.thebatcave.uk`) && PathPrefix(`/outpost.goauthentik.io/`)"
+      priority: 15
+      services:
+        - kind: Service
+          name: authentik-server
+          port: 8094
   tls:
     certResolver: letsencrypt
