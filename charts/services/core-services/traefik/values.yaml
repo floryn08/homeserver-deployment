@@ -6,8 +6,8 @@ traefik:
     runAsGroup: 1000
     runAsUser: 1000
   providers:
-    # kubernetesCRD:
-    #   allowCrossNamespace: true
+    kubernetesCRD:
+      allowCrossNamespace: true
     kubernetesIngress:
       publishedService:
         enabled: true

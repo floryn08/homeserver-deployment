@@ -1,3 +1,4 @@
+namespace: core-services
 authentik:
   authentik:
     log_level: trace
@@ -35,10 +36,13 @@ authentik:
       ingressClassName: traefik
       hosts:
         - auth.thebatcave.uk
+      paths:
+        - /outpost.goauthentik.io/
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
         traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+        traefik.ingress.kubernetes.io/router.middlewares: authentik@kubernetescrd
     containerPorts:
       http: 8094
       https: 8095
