@@ -20,7 +20,7 @@ spec:
           passHostHeader: true
           port: 8091 
     - kind: Rule
-      match: "Host(`code.thebatcave.uk`) && PathPrefix(`/outpost.goauthentik.io/`)"
+      match: Host(`code.thebatcave.uk`) && PathPrefix(`/outpost.goauthentik.io/`)
       priority: 15
       services:
         - kind: Service
