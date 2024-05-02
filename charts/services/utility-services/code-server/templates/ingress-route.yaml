@@ -10,8 +10,7 @@ spec:
     - kind: Rule
       match: Host(`code.thebatcave.uk`)
       middlewares: 
-        - name: {{ .Release.Name }} 
-          namespace: {{ .Values.namespace }} 
+        - name: authentik 
       services: 
         - kind: Service
           name: {{ .Release.Name }}
