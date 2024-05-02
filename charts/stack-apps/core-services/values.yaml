@@ -13,6 +13,9 @@ syncPolicy:
 traefik:
   path: charts/services/core-services/traefik
 
+authentik:
+  path: charts/services/core-services/authentik
+
 postgres:
   path: charts/services/core-services/postgres
 
