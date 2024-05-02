@@ -28,6 +28,7 @@ traefik:
         enabled: true
   ports:
     traefik:
+      port: 8082
       expose:
         default: true
     web:
