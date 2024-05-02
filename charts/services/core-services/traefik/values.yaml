@@ -38,6 +38,7 @@ traefik:
   certResolvers: 
     letsencrypt:
       email: florin.vasilica95@gmail.com
+      tlsChallenge: true
       httpChallenge:
-        entryPoint: web
+        entryPoint: "web"
       storage: /letsencrypt/acme.json
