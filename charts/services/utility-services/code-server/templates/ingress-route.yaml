@@ -17,15 +17,6 @@ spec:
         - kind: Service
           name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          passHostHeader: true
           port: 8091 
-    - kind: Rule
-      match: Host(`code.thebatcave.uk`) && PathPrefix(`/outpost.goauthentik.io/`)
-      priority: 15
-      services:
-        - kind: Service
-          name: authentik-server
-          namespace: core-services
-          port: 8094
   tls:
     certResolver: letsencrypt
