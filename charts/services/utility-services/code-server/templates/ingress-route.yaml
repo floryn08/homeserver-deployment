@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   entryPoints:
-    - web
+    - websecure
   routes: 
     - kind: Rule
       match: Host(`code.thebatcave.uk`)
@@ -19,3 +19,5 @@ spec:
           namespace: {{ .Values.namespace }} 
           passHostHeader: true
           port: 8091 
+  tls:
+    certResolver: letsencrypt
