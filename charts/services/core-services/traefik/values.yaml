@@ -42,3 +42,8 @@ traefik:
       httpChallenge:
         entryPoint: "web"
       storage: /letsencrypt/acme.json
+  persistence:
+    enabled: true
+    name: letsencrypt
+    path: /letsencrypt
+    storageClass: manual
