@@ -33,5 +33,5 @@ traefik:
     letsencrypt:
       email: florin.vasilica95@gmail.com
       httpChallenge:
-        entrypoint: web
+        entryPoint: web
       storage: /letsencrypt/acme.json
