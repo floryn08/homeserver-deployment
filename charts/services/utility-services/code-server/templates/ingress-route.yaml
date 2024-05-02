@@ -25,6 +25,7 @@ spec:
       services:
         - kind: Service
           name: authentik-server
+          namespace: core-services
           port: 8094
   tls:
     certResolver: letsencrypt
