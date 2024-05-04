@@ -1,4 +1,4 @@
-image: esphome/esphome:2024.3.2
+image: esphome/esphome:2024.4.2
 namespace: home-automation
 ports:
 - name: web
