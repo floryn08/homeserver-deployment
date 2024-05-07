@@ -1,4 +1,4 @@
-image: ghcr.io/paperless-ngx/paperless-ngx:2.7.2
+image: ghcr.io/paperless-ngx/paperless-ngx:2.8.1
 namespace: utility-services
 ports:
 - name: http
