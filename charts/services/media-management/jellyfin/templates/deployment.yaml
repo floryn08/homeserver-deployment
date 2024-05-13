@@ -33,6 +33,7 @@ spec:
         {{- range $index, $val := $.Values.volumes }}
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
+          readOnly: {{ $val.readOnly }}
         {{ end -}}
         livenessProbe:
           exec:

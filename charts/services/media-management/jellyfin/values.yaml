@@ -19,16 +19,25 @@ volumes:
 - name: config
   hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
   podPath: /config
+  readOnly: false
 - name: tv
   hostPath: <path:kv/data/hostPath#mediaHdd>/tv
   podPath: /data/tvshows
+  readOnly: true
 - name: movies
   hostPath: <path:kv/data/hostPath#mediaHdd>/movies
   podPath: /data/movies
+  readOnly: true
 - name: anime
   hostPath: <path:kv/data/hostPath#mediaHdd>/anime
   podPath: /data/anime
+  readOnly: true
 - name: music
   hostPath: <path:kv/data/hostPath#mediaHdd>/music
   podPath: /data/music
+  readOnly: true
+- name: gpu
+  hostPath: /dev/dri
+  podPath: /dev/dri
+  readOnly: true
 
