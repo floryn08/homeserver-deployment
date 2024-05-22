@@ -1,4 +1,4 @@
-image: filebrowser/filebrowser:v2.29.0
+image: filebrowser/filebrowser:v2.30.0
 namespace: core-services
 ports:
 - name: fb
