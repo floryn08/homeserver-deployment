@@ -21,3 +21,8 @@ volumes:
   podPath: /etc/timezone
   type: File
   readOnly: true
+- name: mods
+  hostPath: <path:kv/data/hostPath#appdata>/game-servers/minecraft/mods
+  podPath: /mods
+  type: DirectoryOrCreate
+  readOnly: false
