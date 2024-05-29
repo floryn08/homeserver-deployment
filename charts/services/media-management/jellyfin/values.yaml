@@ -38,6 +38,6 @@ volumes:
   type: DirectoryOrCreate
 - name: gpu
   hostPath: /dev/dri/renderD128
-  podPath: /dev/dri/renderD129
+  podPath: /dev/dri/renderD128
   type: ""
 
