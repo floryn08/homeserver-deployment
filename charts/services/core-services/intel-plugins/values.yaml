@@ -1,0 +1,2 @@
+intel-device-plugins-gpu:
+  resourceManager: false
