@@ -1,4 +1,4 @@
 intel-device-plugins-gpu:
   name: intel-igpu
   sharedDevNum: 5
-  resourceManager: false
+  resourceManager: true
