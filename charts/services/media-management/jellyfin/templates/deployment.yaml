@@ -23,6 +23,11 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        resources:
+          requests: 
+              gpu.intel.com/i915: "1" 
+          limits: 
+              gpu.intel.com/i915: "1" 
         envFrom:
         - secretRef:
             name: {{ .Release.Name }}
