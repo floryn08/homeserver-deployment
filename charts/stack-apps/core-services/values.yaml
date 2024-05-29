@@ -45,3 +45,9 @@ vault:
 
 vaultSecretsOperator:
   path: charts/services/core-services/vault-secrets-operator
+
+certManager:
+  path: charts/services/core-services/cert-manager
+
+intelPlugins:
+  path: charts/services/core-services/intel-plugins
