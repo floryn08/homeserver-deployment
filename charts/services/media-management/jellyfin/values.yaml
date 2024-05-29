@@ -39,5 +39,5 @@ volumes:
 - name: gpu
   hostPath: /dev/dri/renderD128
   podPath: /dev/dri/renderD129
-  type: Socket
+  type: ""
 
