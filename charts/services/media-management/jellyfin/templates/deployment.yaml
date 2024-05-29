@@ -17,8 +17,9 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       securityContext:
+        privileged: true
         supplementalGroups:
-        - 44
+          - 44
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
