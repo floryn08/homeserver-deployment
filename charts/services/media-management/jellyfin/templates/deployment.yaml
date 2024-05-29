@@ -56,5 +56,5 @@ spec:
       - name: {{ $val.name }}
         hostPath:
           path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
+          type: {{ $val.type }}
       {{ end -}}
