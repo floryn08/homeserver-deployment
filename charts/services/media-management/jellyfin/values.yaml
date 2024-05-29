@@ -32,6 +32,6 @@ volumes:
   hostPath: <path:kv/data/hostPath#mediaHdd>/music
   podPath: /data/music
 - name: gpu
-  hostPath: /dev/dri
-  podPath: /dev/dri
+  hostPath: /dev/dri/renderD128
+  podPath: /dev/dri/renderD129
 
