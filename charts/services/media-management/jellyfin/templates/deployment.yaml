@@ -16,14 +16,14 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
-      securityContext:
-        privileged: true
-        supplementalGroups:
-          - 44
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+          supplementalGroups:
+            - 44
         # resources:
         #   requests: 
         #       gpu.intel.com/i915: "1" 
