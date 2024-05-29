@@ -16,6 +16,9 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      securityContext:
+        supplementalGroups:
+          - 44
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
