@@ -1,9 +1,12 @@
 dependencies:
+- name: node-feature-discovery
+  repository: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+  version: 0.16.0
 - name: intel-device-plugins-operator
   repository: https://intel.github.io/helm-charts/
   version: 0.30.0
 - name: intel-device-plugins-gpu
   repository: https://intel.github.io/helm-charts/
   version: 0.30.0
-digest: sha256:cb7dec2dd2b43b442f1b704a1cbfd644cee20edff652c45ff9fbd5b0410585c0
-generated: "2024-05-29T18:15:31.073593548+03:00"
+digest: sha256:b0d5be7024b7d18d3b7822eebf2b98e812b65ba087e832c026e730fd253326e0
+generated: "2024-05-29T18:31:32.044435549+03:00"
