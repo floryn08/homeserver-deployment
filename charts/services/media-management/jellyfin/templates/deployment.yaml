@@ -22,8 +22,6 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-          supplementalGroups:
-            - 44
         # resources:
         #   requests: 
         #       gpu.intel.com/i915: "1" 
