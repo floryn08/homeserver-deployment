@@ -14,4 +14,5 @@ spec:
           name: kubernetes
           namespace: default
           port: 443
-          serversTransport: kubernetes-api-transport
+  tls:
+    secretName: kubernetes-api-service-account-token
