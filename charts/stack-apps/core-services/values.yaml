@@ -45,15 +45,3 @@ vault:
 
 vaultSecretsOperator:
   path: charts/services/core-services/vault-secrets-operator
-
-certManager:
-  path: charts/services/core-services/cert-manager
-
-intelPluginsOperator:
-  path: charts/services/core-services/intel-device-plugins-operator
-
-intelPluginsGpu:
-  path: charts/services/core-services/intel-device-plugins-gpu
-
-nodeFeatureDiscovery:
-  path: charts/services/core-services/node-feature-discovery
