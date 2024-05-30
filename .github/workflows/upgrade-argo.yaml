@@ -15,7 +15,7 @@ jobs:
         with:
           method: service-account
           k8s-url: "${{ secrets.API_SERVER }}"
-          k8s-secret: "${{ secrets.SA_SECRET_NAME }}"
+          k8s-secret: "${{ secrets.SA_SECRET }}"
 
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
