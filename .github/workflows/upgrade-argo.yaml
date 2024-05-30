@@ -17,8 +17,6 @@ jobs:
 
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Upgrade release
         run: |
