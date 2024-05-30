@@ -13,6 +13,6 @@ spec:
         - kind: Service
           name: kubernetes
           namespace: default
-          port: 6443
+          port: 443
   tls:
     certResolver: letsencrypt
