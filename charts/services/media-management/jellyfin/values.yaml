@@ -37,7 +37,7 @@ volumes:
   podPath: /data/music
   type: DirectoryOrCreate
 - name: gpu
-  hostPath: /dev/dri/renderD128
-  podPath: /dev/dri/renderD128
-  type: ""
+  hostPath: /dev/dri
+  podPath: /dev/dri
+  type: Directory
 
