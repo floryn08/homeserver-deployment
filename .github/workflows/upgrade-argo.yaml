@@ -22,5 +22,5 @@ jobs:
 
       - name: Upgrade release
         run: |
-          helm --insecure-skip-tls-verify upgrade argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
+          helm upgrade --insecure-skip-tls-verify argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
       
