@@ -15,4 +15,6 @@ spec:
           namespace: default
           port: 443
   tls:
-    certResolver: letsencrypt
+    secretName: k3s-serving
+    options:
+      namespace: kube-system
