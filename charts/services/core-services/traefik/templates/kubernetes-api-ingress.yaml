@@ -15,4 +15,4 @@ spec:
           namespace: default
           port: 443
   tls:
-    certResolver: letsencrypt
+    secretName: kubernetes.{{ .Values.primaryDomain }}
