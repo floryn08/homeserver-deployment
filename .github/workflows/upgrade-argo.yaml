@@ -1,0 +1,26 @@
+name: Upgrade ArgoCD
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
+
+      - name: Set up Kubectl
+        uses: azure/k8s-set-context@v4.0.0
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4.2.0
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Upgrade release
+        run: |
+          helm upgrade argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
+      

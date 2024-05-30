@@ -1,3 +1,4 @@
+primaryDomain: <path:kv/data/domains#primaryDomain>
 traefik:
   namespaceOverride: core-services
   deployment: 

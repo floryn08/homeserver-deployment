@@ -1,0 +1,9 @@
+# TODO
+name: Install master-app in ArgoCD
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
