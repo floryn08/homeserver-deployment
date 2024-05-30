@@ -49,5 +49,11 @@ vaultSecretsOperator:
 certManager:
   path: charts/services/core-services/cert-manager
 
-intelPlugins:
-  path: charts/services/core-services/intel-plugins
+intelPluginsOperator:
+  path: charts/services/core-services/intel-device-plugins-operator
+
+intelPluginsGpu:
+  path: charts/services/core-services/intel-device-plugins-gpu
+
+nodeFeatureDiscovery:
+  path: charts/services/core-services/node-feature-discovery
