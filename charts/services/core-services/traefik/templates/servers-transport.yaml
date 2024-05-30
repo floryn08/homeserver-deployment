@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: ServersTransport
 metadata:
   name: kubernetes-api-transport
-  namespace: kube-system
+  namespace: default
 
 spec:
   serverName: {{ .Values.primaryDomain }}
