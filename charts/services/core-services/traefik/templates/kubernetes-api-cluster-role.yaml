@@ -5,41 +5,12 @@ metadata:
   namespace: {{ .Values.traefik.namespaceOverride }}
 rules:
   - apiGroups:
-      - ""
-      - apps
-      - autoscaling
-      - batch
-      - extensions
-      - policy
-      - rbac.authorization.k8s.io
-      - apiextensions.k8s.io
+    - '*'
     resources:
-      - pods
-      - componentstatuses
-      - configmaps
-      - customresourcedefinitions
-      - clusterroles
-      - clusterrolebindings
-      - daemonsets
-      - deployments
-      - events
-      - endpoints
-      - horizontalpodautoscalers
-      - ingress
-      - jobs
-      - limitranges
-      - namespaces
-      - nodes
-      - pods
-      - persistentvolumes
-      - persistentvolumeclaims
-      - resourcequotas
-      - replicasets
-      - replicationcontrollers
-      - roles
-      - rolebindings
-      - serviceaccounts
-      - services
-      - secrets
-      - statefulsets
-    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+    - '*'
+    verbs:
+    - '*'
+  - nonResourceURLs:
+    - '*'
+    verbs:
+    - '*'
