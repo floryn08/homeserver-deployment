@@ -21,7 +21,7 @@ jobs:
 
       - name: Upgrade release
         run: |
-          echo "${{ secrets.KUBECONFIG }}"" >> config.conf
+          echo "${{ secrets.KUBECONFIG }}" >> config.conf
           echo "KUBECONFIG=config.conf" >> $GITHUB_ENV
           kubectl get pods --namespace core-services
           helm upgrade argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
