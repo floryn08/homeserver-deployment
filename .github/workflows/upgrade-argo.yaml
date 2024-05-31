@@ -10,17 +10,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.6
 
-      - name: Set up Kubectl
-        uses: azure/k8s-set-context@v4.0.0
-        with:
-          method: kubeconfig
-          kubeconfig: "${{ secrets.KUBECONFIG }}"
+      # - name: Set up Kubectl
+      #   uses: azure/k8s-set-context@v4.0.0
+      #   with:
+      #     method: kubeconfig
+      #     kubeconfig: "${{ secrets.KUBECONFIG }}"
 
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
 
       - name: Upgrade release
         run: |
+          echo ${{ secrets.KUBECONFIG }} >> config.conf
+          echo "KUBECONFIG=config.conf" >> $GITHUB_ENV
           kubectl get pods --namespace core-services
           helm upgrade argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
       
