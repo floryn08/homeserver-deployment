@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/flow/appdata/core-services/letsencrypt
+    path: {{ .Values.letsencryptPath }}
     type: DirectoryOrCreate
