@@ -13,14 +13,13 @@ jobs:
       - name: Set up Kubectl
         uses: azure/k8s-set-context@v4.0.0
         with:
-          method: service-account
-          k8s-url: "${{ secrets.API_SERVER }}"
-          k8s-secret: "${{ secrets.SA_SECRET }}"
+          method: kubeconfig
+          kubeconfig: "${{ secrets.KUBECONFIG }}"
 
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
 
       - name: Upgrade release
         run: |
-          helm upgrade --insecure-skip-tls-verify argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
+          helm upgrade argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
       
