@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.traefik.namespaceOverride }}
 spec:
   entryPoints:
-    - web
+    - websecure
   routes: 
     - kind: Rule
       match: Host(`kubernetes.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
