@@ -4,17 +4,14 @@ metadata:
   name: kubernetes-api-cluster-role
   namespace: {{ .Values.traefik.namespaceOverride }}
 rules:
-  - nonResourceURLs: ["/version"]
-    verbs: ["get"]
-    
   - apiGroups:
-        - ""
-        - apps
-        - autoscaling
-        - batch
-        - extensions
-        - policy
-        - rbac.authorization.k8s.io
+      - ""
+      - apps
+      - autoscaling
+      - batch
+      - extensions
+      - policy
+      - rbac.authorization.k8s.io
     resources:
       - pods
       - componentstatuses
@@ -37,4 +34,5 @@ rules:
       - replicationcontrollers
       - serviceaccounts
       - services
+      - secrets
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
