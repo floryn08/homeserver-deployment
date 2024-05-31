@@ -1,5 +1,5 @@
 primaryDomain: <path:kv/data/domains#primaryDomain>
-letsencryptPath: <path:kv/data/hostPath#appdata>/appdata/core-services/letsencrypt
+letsencryptPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
 traefik:
   namespaceOverride: core-services
   deployment: 
