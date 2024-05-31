@@ -41,4 +41,5 @@ rules:
       - serviceaccounts
       - services
       - secrets
+      - statefulsets
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
