@@ -12,6 +12,7 @@ rules:
       - extensions
       - policy
       - rbac.authorization.k8s.io
+      - apiextensions.k8s.io
     resources:
       - pods
       - componentstatuses
