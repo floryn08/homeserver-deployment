@@ -18,6 +18,7 @@ rules:
       - componentstatuses
       - configmaps
       - customresourcedefinitions
+      - clusterroles
       - daemonsets
       - deployments
       - events
