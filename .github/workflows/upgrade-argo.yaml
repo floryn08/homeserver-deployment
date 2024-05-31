@@ -21,6 +21,6 @@ jobs:
 
       - name: Upgrade release
         run: |
-          helm init --service-account=kubernetes-api-service-account
+          kubectl get pods --namespace core-services
           helm upgrade argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
       
