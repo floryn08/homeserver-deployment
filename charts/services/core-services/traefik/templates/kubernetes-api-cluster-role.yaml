@@ -33,6 +33,7 @@ rules:
       - replicasets
       - replicationcontrollers
       - roles
+      - rolebindings
       - serviceaccounts
       - services
       - secrets
