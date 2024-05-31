@@ -16,6 +16,7 @@ rules:
       - pods
       - componentstatuses
       - configmaps
+      - customresourcedefinitions
       - daemonsets
       - deployments
       - events
