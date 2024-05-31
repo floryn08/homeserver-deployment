@@ -19,6 +19,7 @@ rules:
       - configmaps
       - customresourcedefinitions
       - clusterroles
+      - clusterrolebindings
       - daemonsets
       - deployments
       - events
