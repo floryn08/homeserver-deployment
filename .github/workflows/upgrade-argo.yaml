@@ -22,6 +22,5 @@ jobs:
 
       - name: Upgrade release
         run: |
-          kubectl get pods --namespace core-services --insecure-skip-tls-verify
           helm dep update ./argo-cd
           helm upgrade --kube-insecure-skip-tls-verify argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
