@@ -4,6 +4,9 @@ metadata:
   name: kubernetes-api-cluster-role
   namespace: {{ .Values.traefik.namespaceOverride }}
 rules:
+  - nonResourceURLs: ["/version"]
+    verbs: ["get"]
+    
   - apiGroups:
         - ""
         - apps
