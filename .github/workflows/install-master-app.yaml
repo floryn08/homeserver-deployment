@@ -1,4 +1,3 @@
-# TODO
 name: Install master-app in ArgoCD
 
 on:
@@ -14,4 +13,9 @@ jobs:
       - name: Set up Kubectl
         uses: azure/k8s-set-context@v4.0.0
         with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
+          method: service-account
+          k8s-url: "${{ secrets.API_SERVER }}"
+          k8s-secret: "${{ secrets.SA_SECRET }}"
+
+      - name: install argocd cli
+        run: 

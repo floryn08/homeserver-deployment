@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ .Release.Name }}
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   revisionHistoryLimit: 1
   template:
     metadata:
