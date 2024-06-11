@@ -1,4 +1,4 @@
-image: ghcr.io/home-assistant/home-assistant:2024.5.5
+image: ghcr.io/home-assistant/home-assistant:2024.6.2
 namespace: home-automation
 ports:
 - name: http
