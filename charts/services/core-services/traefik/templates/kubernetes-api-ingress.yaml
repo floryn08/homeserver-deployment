@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-api-ingress
+  namespace: {{ .Values.traefik.namespaceOverride }}
+spec:
+  entryPoints:
+    - websecure
+  routes: 
+    - kind: Rule
+      match: Host(`kubernetes.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
+      services: 
+        - kind: Service
+          name: kubernetes
+          namespace: default
+          port: 443
+          serversTransport: kubernetes-api-transport
+  tls:
+    certResolver: letsencrypt

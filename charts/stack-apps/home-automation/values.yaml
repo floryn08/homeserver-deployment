@@ -1,0 +1,22 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: home-automation
+
+vault:
+  url: http://vault.core-services.svc:8200
+  authType: kubernetes
+  mount: kubernetes
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+homeAssistant:
+  path: charts/services/home-automation/home-assistant
+
+esphome:
+  path: charts/services/home-automation/esphome

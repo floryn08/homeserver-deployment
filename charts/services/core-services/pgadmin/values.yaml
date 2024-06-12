@@ -1,0 +1,13 @@
+image: dpage/pgadmin4:8.8
+namespace: core-services
+ports:
+- name: pgadmin4
+  containerPort: 80
+  externalPort: 5050
+  protocol: TCP
+
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/pgadmin/data
+  podPath: /var/lib/pgadmin
+  type: DirectoryOrCreate

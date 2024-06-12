@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: kubernetes-api-transport
+  namespace: default
+
+spec:
+  serverName: {{ .Values.primaryDomain }}
+  insecureSkipVerify: true

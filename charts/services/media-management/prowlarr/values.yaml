@@ -1,0 +1,12 @@
+image: linuxserver/prowlarr:1.18.0
+namespace: media-management
+ports:
+- name: prowlarr
+  containerPort: 9696
+  externalPort: 9696
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/prowlarr
+  podPath: /config
+

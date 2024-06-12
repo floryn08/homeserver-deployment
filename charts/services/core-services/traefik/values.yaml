@@ -1,0 +1,35 @@
+primaryDomain: <path:kv/data/domains#primaryDomain>
+letsencryptPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
+traefik:
+  namespaceOverride: core-services
+  deployment: 
+    revisionHistoryLimit: 1
+  podSecurityContext:
+    runAsGroup: 1000
+    runAsUser: 1000
+  providers:
+    kubernetesCRD:
+      allowCrossNamespace: true
+    kubernetesIngress:
+      publishedService:
+        enabled: true
+  ports:
+    traefik:
+      exposedPort: 8082
+      expose:
+        default: true
+    web:
+      redirectTo: 
+        port: websecure
+  certResolvers: 
+    letsencrypt:
+      email: florin.vasilica95@gmail.com
+      tlsChallenge: true
+      httpChallenge:
+        entryPoint: "web"
+      storage: /letsencrypt/acme.json
+  persistence:
+    enabled: true
+    name: letsencrypt
+    path: /letsencrypt
+    storageClass: manual

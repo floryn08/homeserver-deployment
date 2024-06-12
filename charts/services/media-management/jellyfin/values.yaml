@@ -1,0 +1,43 @@
+image: linuxserver/jellyfin:10.9.6
+namespace: media-management
+primaryDomain: <path:kv/data/domains#primaryDomain>
+secondaryDomain: <path:kv/data/domains#secondaryDomain>
+ports:
+- name: http
+  containerPort: 8096
+  externalPort: 8096
+  protocol: TCP
+- name: https
+  containerPort: 8920
+  externalPort: 8920
+  protocol: TCP
+- name: media
+  containerPort: 7359
+  externalPort: 7359
+  protocol: UDP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
+  podPath: /config
+  type: DirectoryOrCreate
+- name: tv
+  hostPath: <path:kv/data/hostPath#mediaHdd>/tv
+  podPath: /data/tvshows
+  type: DirectoryOrCreate
+- name: movies
+  hostPath: <path:kv/data/hostPath#mediaHdd>/movies
+  podPath: /data/movies
+  type: DirectoryOrCreate
+- name: anime
+  hostPath: <path:kv/data/hostPath#mediaHdd>/anime
+  podPath: /data/anime
+  type: DirectoryOrCreate
+- name: music
+  hostPath: <path:kv/data/hostPath#mediaHdd>/music
+  podPath: /data/music
+  type: DirectoryOrCreate
+- name: gpu
+  hostPath: /dev/dri
+  podPath: /dev/dri
+  type: Directory
+

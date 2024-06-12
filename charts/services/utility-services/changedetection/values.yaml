@@ -1,0 +1,13 @@
+image: ghcr.io/dgtlmoon/changedetection.io:0.45.23
+namespace: utility-services
+chromeImage: browserless/chrome:latest
+ports:
+- name: http
+  containerPort: 5000
+  externalPort: 5000
+  protocol: TCP
+volumes:
+- name: datastore
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/changedetection
+  podPath: /datastore
+  type: DirectoryOrCreate

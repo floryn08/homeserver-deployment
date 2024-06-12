@@ -1,0 +1,36 @@
+image: hotio/duplicacy:release-1.7.2
+namespace: core-services
+ports:
+- name: duplicacy
+  containerPort: 3875
+  externalPort: 3875
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/duplicacy/config
+  podPath: /config
+
+- name: cache
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/duplicacy/cache
+  podPath: /cache
+
+- name: logs
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/duplicacy/logs
+  podPath: /logs
+
+- name: backups
+  hostPath: <path:kv/data/hostPath#backupHdd>/backups
+  podPath: /backups
+
+- name: source
+  hostPath: <path:kv/data/core-services/duplicacy#source>
+  podPath: /source
+
+- name: storage
+  hostPath:  <path:kv/data/hostPath#storageHdd>
+  podPath: /storage
+
+- name: media
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /local-media
+

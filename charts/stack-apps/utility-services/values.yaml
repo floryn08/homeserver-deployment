@@ -1,0 +1,43 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: utility-services
+
+vault:
+  url: http://vault.core-services.svc:8200
+  authType: kubernetes
+  mount: kubernetes
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+speedtestTracker:
+  path: charts/services/utility-services/speedtest-tracker
+
+vaultwarden:
+  path: charts/services/utility-services/vaultwarden
+
+pihole:
+  path: charts/services/utility-services/pihole
+
+wireguard:
+  path: charts/services/utility-services/wireguard
+
+paperlessNgx:
+  path: charts/services/utility-services/paperless-ngx
+
+changedetection:
+  path: charts/services/utility-services/changedetection
+
+homepage:
+  path: charts/services/utility-services/homepage
+
+scrutiny:
+  path: charts/services/utility-services/scrutiny
+
+codeServer:
+  path: charts/services/utility-services/code-server

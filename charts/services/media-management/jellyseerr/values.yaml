@@ -1,0 +1,13 @@
+image: fallenbagel/jellyseerr:develop
+namespace: media-management
+domain: <path:kv/data/domains#primaryDomain>
+ports:
+- name: jellyseerr
+  containerPort: 5055
+  externalPort: 5055
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyseerr/config
+  podPath: /app/config
+

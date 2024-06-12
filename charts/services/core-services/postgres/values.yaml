@@ -1,0 +1,12 @@
+image: postgres:16.3-alpine
+namespace: core-services
+postgresUser: user
+ports:
+- name: postgres
+  containerPort: 5432
+  externalPort: 5432
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/postgres/data
+  podPath: /var/lib/postgresql/data

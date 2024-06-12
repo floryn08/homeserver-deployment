@@ -1,0 +1,22 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: game-servers
+
+vault:
+  url: http://vault.core-services.svc:8200
+  authType: kubernetes
+  mount: kubernetes
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+valheim:
+  path: charts/services/game-servers/valheim
+
+minecraft:
+  path: charts/services/game-servers/minecraft

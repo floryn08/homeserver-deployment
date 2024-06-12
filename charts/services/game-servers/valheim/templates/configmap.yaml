@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  PORT: ''
+  NAME: ''
+  WORLD: ''
+  PASSWORD: ''
+  TZ: ''
+  PUBLIC: ''
+  AUTO_UPDATE: ''
+  AUTO_UPDATE_SCHEDULE: ''
+  AUTO_BACKUP: ''
+  AUTO_BACKUP_SCHEDULE: ''
+  AUTO_BACKUP_REMOVE_OLD: ''
+  AUTO_BACKUP_DAYS_TO_LIVE: ''
+  AUTO_BACKUP_ON_UPDATE: ''
+  AUTO_BACKUP_ON_SHUTDOWN: ''
+  WEBHOOK_URL: ''
+  WEBHOOK_INCLUDE_PUBLIC_IP: ''
+  UPDATE_ON_STARTUP: ''

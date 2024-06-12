@@ -1,0 +1,55 @@
+namespace: core-services
+authentik:
+  authentik:
+    log_level: trace
+    secret_key: SdC3Dgo42*rpZ3uerPNVwHj38qakcbrNo@a#o6Lg@B*f25AKDZ
+    postgresql:
+      name: authentik
+      host: postgres-loadbalancer.core-services.svc
+      port: 5432
+      user: user
+      password: parola123
+    # redis:
+    #   host: redis-loadbalancer.core-services.svc
+
+    email:
+      # -- SMTP Server emails are sent from, fully optional
+      host: "smtp.gmail.com"
+      port: 587
+      # -- SMTP credentials. When left empty, no authentication will be done.
+      username: "floryn.euro.2007@gmail.com"
+      # -- SMTP credentials. When left empty, no authentication will be done.
+      password: "zagtdfwmrmtqffbj"
+      # -- Enable either use_tls or use_ssl. They can't be enabled at the same time.
+      use_tls: false
+      # -- Enable either use_tls or use_ssl. They can't be enabled at the same time.
+      use_ssl: false
+      # -- Connection timeout in seconds
+      timeout: 30
+      # -- Email 'from' address can either be in the format "foo@bar.baz" or "authentik <foo@bar.baz>"
+      from: "floryn.euro.2007@gmail.com"
+
+  server:
+    ingress:
+      enabled: true
+      https: false
+      ingressClassName: traefik
+      hosts:
+        - auth.thebatcave.uk
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+    containerPorts:
+      http: 8094
+      https: 8095
+    service:
+      type: LoadBalancer
+      servicePortHttp: 8094
+      servicePortHttps: 8095
+
+  postgresql:
+    enabled: false
+
+  redis:
+    enabled: true

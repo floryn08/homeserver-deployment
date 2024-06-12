@@ -1,0 +1,15 @@
+image: ghcr.io/alexjustesen/speedtest-tracker:v0.19.0
+namespace: utility-services
+ports:
+- name: http
+  containerPort: 80
+  externalPort: 8081
+  protocol: TCP
+- name: https
+  containerPort: 443
+  externalPort: 8443
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/speedtest/config
+  podPath: /config

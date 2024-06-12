@@ -1,0 +1,18 @@
+image: filebrowser/filebrowser:v2.30.0
+namespace: core-services
+ports:
+- name: fb
+  containerPort: 80
+  externalPort: 8888
+  protocol: TCP
+volumes:
+- name: db
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/filebrowser/database.db
+  podPath: /database.db
+  type: FileOrCreate
+
+- name: mnt
+  hostPath: /mnt
+  podPath: /srv
+  type: DirectoryOrCreate
+

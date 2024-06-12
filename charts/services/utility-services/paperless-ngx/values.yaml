@@ -1,0 +1,24 @@
+image: ghcr.io/paperless-ngx/paperless-ngx:2.9.0
+namespace: utility-services
+ports:
+- name: http
+  containerPort: 8000
+  externalPort: 8085
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#paperlessNgx>/data
+  podPath: /usr/src/paperless/data
+  type: DirectoryOrCreate
+- name: media
+  hostPath: <path:kv/data/hostPath#paperlessNgx>/media
+  podPath: /usr/src/paperless/media
+  type: DirectoryOrCreate
+- name: export
+  hostPath: <path:kv/data/hostPath#paperlessNgx>/export
+  podPath: /usr/src/paperless/export
+  type: DirectoryOrCreate
+- name: consume
+  hostPath: <path:kv/data/hostPath#paperlessNgx>/consume
+  podPath: /usr/src/paperless/consume
+  type: DirectoryOrCreate
