@@ -8,7 +8,7 @@ This repository contains helm charts organized using the `App of Apps` strategy.
 - [ ] rename `services` folder to `apps`
 - [x] solve certificate issue for kubernetes api so that upgrade argocd action can work
 - [x] helm linting for argo-cd chart
-- [ ] find a way to use `sed` to replace the hostPath from vault pv.yaml
+- [x] find a way to replace the hostPath from vault pv.yaml
 - [ ] add prometheus/loki and grafana monitoring
 - [ ] better backup strategy?
 - [ ] better deployment strategy?
