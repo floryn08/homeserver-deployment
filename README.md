@@ -13,3 +13,5 @@ This repository contains helm charts organized using the `App of Apps` strategy.
 - [ ] better backup strategy?
 - [ ] better deployment strategy?
 - [ ] use ansible to faster deploy all requirements on a machine?
+- [ ] expose kubernetes api some other way to bypass cloudflare challenge in action
+- [ ] Use tokens from the TokenRequest API or manually created secret-based tokens instead of auto-generated secret-based tokens.
