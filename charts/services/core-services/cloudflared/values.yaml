@@ -1,4 +1,0 @@
-image: cloudflare/cloudflared:2024.6.0
-replicas: 1
-namespace: core-services
-secretRefresh: 15m
