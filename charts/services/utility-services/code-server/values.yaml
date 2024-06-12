@@ -1,0 +1,14 @@
+image: lscr.io/linuxserver/code-server:4.89.1
+namespace: utility-services
+ports:
+- name: http
+  containerPort: 8443
+  externalPort: 8091
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/code-server/config
+  podPath: /config
+- name: code
+  hostPath: <path:kv/data/hostPath#codeServerFolder>
+  podPath: /config/workspace

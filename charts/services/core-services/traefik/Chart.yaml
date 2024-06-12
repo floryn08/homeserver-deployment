@@ -1,0 +1,12 @@
+apiVersion: v2
+name: traefik
+description: A Helm chart for Kubernetes
+
+type: application
+
+version: 0.1.0
+
+dependencies:
+  - name: traefik
+    version: 28.2.0
+    repository: https://traefik.github.io/charts

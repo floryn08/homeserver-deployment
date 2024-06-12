@@ -1,0 +1,8 @@
+apiVersion: v2
+name: vault-secrets-operator
+description: A Helm chart for Kubernetes
+version: 0.1.0
+dependencies:
+- name: vault-secrets-operator
+  version: 0.7.1
+  repository: https://helm.releases.hashicorp.com

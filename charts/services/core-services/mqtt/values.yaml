@@ -1,0 +1,29 @@
+image: eclipse-mosquitto:2.0.18
+namespace: core-services
+ports:
+- name: mqtt
+  containerPort: 1883
+  externalPort: 1883
+  protocol: TCP
+
+- name: ws
+  containerPort: 9001
+  externalPort: 9001
+  protocol: TCP
+
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/mqtt/config/mosquitto.conf
+  podPath: /mosquitto/config/mosquitto.conf
+  type: FileOrCreate
+
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/mqtt/data
+  podPath: /mosquitto/data
+  type: DirectoryOrCreate
+
+- name: log
+  hostPath: <path:kv/data/hostPath#appdata>/core-services/mqtt/log
+  podPath: /mosquitto/log
+  type: DirectoryOrCreate
+

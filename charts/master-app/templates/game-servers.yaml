@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.gameServers.namespace }}
+  namespace: {{ .Values.argocdNamespace }}
+spec:
+  destination:
+    namespace: {{ .Values.gameServers.namespace }}
+    server: {{ .Values.server }}
+  source:
+    path: {{ .Values.gameServers.path }}
+    repoURL: {{ .Values.repoUrl }}
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      valueFiles:
+        - values.yaml
+  project: {{ .Values.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.gameServers.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.gameServers.syncPolicy.automated.selfHeal }}

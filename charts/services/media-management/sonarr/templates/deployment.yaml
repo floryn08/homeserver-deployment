@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}
+        ports:
+        - containerPort: 8989
+          name: {{ .Release.Name }}-port
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /media
+          name: media
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost:8989/ping
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes:
+      - name: config
+        hostPath:
+          path: {{ .Values.sonarr.configPath }}
+          type: DirectoryOrCreate
+      - name: media
+        hostPath:
+          path: {{ .Values.sonarr.mediaPath }}
+          type: DirectoryOrCreate

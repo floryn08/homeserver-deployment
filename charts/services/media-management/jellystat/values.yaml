@@ -1,0 +1,13 @@
+image: cyfershepard/jellystat:unstable
+namespace: media-management
+replicas: 0
+ports:
+- name: jellystat
+  containerPort: 3000
+  externalPort: 8087
+  protocol: TCP
+volumes:
+- name: backup
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellystat/backup
+  podPath: /app/backend/backup-data
+

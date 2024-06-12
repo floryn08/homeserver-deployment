@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-configmap
+  namespace: {{ .Values.namespace }}
+data:
+  PORT: ''
+  PUID: ''
+  PGID: ''
+  PLAYWRIGHT_DRIVER_URL: ''
+  MAX_CONCURRENT_SESSIONS: ''

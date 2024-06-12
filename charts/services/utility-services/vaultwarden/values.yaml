@@ -1,0 +1,11 @@
+image: vaultwarden/server:1.30.5
+namespace: utility-services
+ports:
+- name: http
+  containerPort: 80
+  externalPort: 9765
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/vaultwarden/data
+  podPath: /data

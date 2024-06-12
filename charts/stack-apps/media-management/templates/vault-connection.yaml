@@ -1,0 +1,7 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: vaultconnection-{{ .Values.namespace }}
+  namespace: {{ .Values.namespace }}
+spec:
+  address: {{ .Values.vault.url }}

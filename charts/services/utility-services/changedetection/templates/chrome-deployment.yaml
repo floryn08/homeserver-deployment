@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-chrome
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}-chrome
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}-chrome
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}-chrome
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-chrome
+        image: {{ .Values.chromeImage }}
+        imagePullPolicy: Always
+        env:
+          - name: MAX_CONCURRENT_SESSIONS
+            value: "10"
+        ports:
+        - containerPort: 3000
+          name: chrome
+          protocol: TCP
+

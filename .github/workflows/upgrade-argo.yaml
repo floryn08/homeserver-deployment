@@ -1,0 +1,35 @@
+name: Upgrade ArgoCD
+
+on:
+  workflow_dispatch: 
+  push: 
+    branches: 
+      - main
+    paths: 
+      - argo-cd/** 
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
+
+      - name: Set up Kubectl
+        uses: azure/k8s-set-context@v4.0.0
+        with:
+          method: service-account
+          k8s-url: "${{ secrets.API_SERVER }}"
+          k8s-secret: "${{ secrets.SA_SECRET }}"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4.2.0
+
+      - name: Lint
+        run: |
+          helm lint ./argo-cd
+
+      - name: Upgrade release
+        run: |
+          helm dep update ./argo-cd
+          helm upgrade --kube-insecure-skip-tls-verify argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml

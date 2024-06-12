@@ -1,0 +1,13 @@
+image: ghcr.io/wizarrrr/wizarr:4.1.1
+namespace: media-management
+domain: <path:kv/data/domains#primaryDomain>
+ports:
+- name: wizarr
+  containerPort: 5690
+  externalPort: 5690
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/wizarr/database
+  podPath: /data/database
+

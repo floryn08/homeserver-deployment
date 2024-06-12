@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: minecraft-configmap
+  namespace: game-servers
+data:
+  AUTOPAUSE_TIMEOUT_EST: ''
+  AUTOPAUSE_TIMEOUT_INIT: ''
+  DIFFICULTY: ''
+  ENABLE_AUTOPAUSE: ''
+  ENABLE_WHITELIST: ''
+  EULA: ''
+  EXISTING_OPS_FILE: ''
+  EXISTING_WHITELIST_FILE: ''
+  MAX_MEMORY: ''
+  MAX_TICK_TIME: ''
+  MOTD: ''
+  ONLINE_MODE: ''
+  OPS: ''
+  OVERRIDE_SERVER_PROPERTIES: ''
+  SERVER_NAME: ''
+  TYPE: ''
+  VERSION: ''
+  VIEW_DISTANCE: ''
+  WHITELIST: ''

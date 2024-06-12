@@ -1,0 +1,13 @@
+vault:
+  global:
+    namespace: core-services
+  injector:
+    enabled: true
+  server:
+    logLevel: debug
+    enabled: true
+    dataStorage:
+      storageClass: manual
+  ui:
+    enabled: true
+    serviceType: "LoadBalancer"

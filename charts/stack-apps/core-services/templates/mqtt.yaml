@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mqtt
+  namespace: {{ .Values.argocdNamespace }}
+spec:
+  destination:
+    namespace: {{ .Values.namespace }}
+    server: {{ .Values.server }}
+  source:
+    path: {{ .Values.mqtt.path }}
+    repoURL: {{ .Values.repoUrl }}
+    targetRevision: {{ .Values.targetRevision }}
+    plugin:
+      env:
+        - name: HELM_ARGS
+          value: -f values.yaml
+  project: {{ .Values.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}

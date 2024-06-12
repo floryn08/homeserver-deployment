@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      pod: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        pod: {{ .Release.Name }}
+    spec:
+      containers:
+      - args:
+        - tunnel
+        - --no-autoupdate
+        # In a k8s environment, the metrics server needs to listen outside the pod it runs on.
+        # The address 0.0.0.0:2000 allows any pod in the namespace.
+        - --metrics
+        - 0.0.0.0:2000
+        - run
+        - --token
+        - $(token)
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        name: cloudflared
+        livenessProbe:
+          httpGet:
+          # Cloudflared has a /ready endpoint which returns 200 if and only if
+          # it has an active connection to the edge.
+            path: /ready
+            port: 2000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
