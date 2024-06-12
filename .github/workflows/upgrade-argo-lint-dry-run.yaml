@@ -1,9 +1,10 @@
 name: Upgrade ArgoCD Dry Run
 
 on:
-  pull_request: 
-    paths: 
-      - argo-cd/** 
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - argo-cd/**
 
 jobs:
   dry-run:
@@ -18,6 +19,10 @@ jobs:
           method: service-account
           k8s-url: "${{ secrets.API_SERVER }}"
           k8s-secret: "${{ secrets.SA_SECRET }}"
+      
+      - name: Get access from cloudflare
+        run: |
+          curl -H "CF-Access-Client-Id: ${{ secrets.CF_CLIENT_ID }}" -H "CF-Access-Client-Secret: ${{ secrets.CF_CLIENT_SECRET }}" ${{ secrets.API_SERVER }}
 
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
@@ -31,5 +36,5 @@ jobs:
           helm lint ./argo-cd
 
       - name: Upgrade release dry run
-        run: |          
+        run: |
           helm upgrade --kube-insecure-skip-tls-verify --dry-run argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
