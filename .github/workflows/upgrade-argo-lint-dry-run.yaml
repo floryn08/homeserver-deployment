@@ -20,10 +20,6 @@ jobs:
           k8s-url: "${{ secrets.API_SERVER }}"
           k8s-secret: "${{ secrets.SA_SECRET }}"
       
-      - name: Get access from cloudflare
-        run: |
-          curl -H "CF-Access-Client-Id: ${{ secrets.CF_CLIENT_ID }}" -H "CF-Access-Client-Secret: ${{ secrets.CF_CLIENT_SECRET }}" ${{ secrets.API_SERVER }}
-
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
 
