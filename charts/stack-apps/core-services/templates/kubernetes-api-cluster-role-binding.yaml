@@ -3,7 +3,7 @@ kind: ClusterRoleBinding
 metadata:
   name: kubernetes-api-cluster-role-binding
 subjects:
-- namespace: {{ .Values.traefik.namespaceOverride }} 
+- namespace: {{ .Values.namespace }} 
   kind: ServiceAccount
   name: kubernetes-api-service-account 
 roleRef:
