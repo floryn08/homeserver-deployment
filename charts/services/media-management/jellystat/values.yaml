@@ -1,6 +1,6 @@
-image: cyfershepard/jellystat:unstable
+image: cyfershepard/jellystat:main
 namespace: media-management
-replicas: 0
+replicas: 1
 ports:
 - name: jellystat
   containerPort: 3000
