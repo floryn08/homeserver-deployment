@@ -1,4 +1,4 @@
-image: fallenbagel/jellyseerr:develop
+image: fallenbagel/jellyseerr:1.9.2
 namespace: media-management
 domain: <path:kv/data/domains#primaryDomain>
 ports:
