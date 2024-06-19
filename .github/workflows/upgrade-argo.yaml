@@ -25,11 +25,14 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v4.2.0
 
+      - name: Download dependencies
+        run: |
+          helm dep update ./argo-cd
+
       - name: Lint
         run: |
           helm lint ./argo-cd
 
       - name: Upgrade release
         run: |
-          helm dep update ./argo-cd
           helm upgrade --kube-insecure-skip-tls-verify argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
