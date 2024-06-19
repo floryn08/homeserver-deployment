@@ -4,6 +4,7 @@ argocdNamespace: argocd
 targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: core-services
+primaryDomain: <path:kv/data/domains#primaryDomain>
 
 syncPolicy:
   automated:
