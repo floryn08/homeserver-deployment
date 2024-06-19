@@ -11,9 +11,10 @@ spec:
     path: {{ .Values.coreServices.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    helm:
-      valueFiles:
-        - values.yaml
+    plugin:
+      env:
+        - name: HELM_ARGS
+          value: -f values.yaml
   project: {{ .Values.project }}
   syncPolicy:
     automated:
