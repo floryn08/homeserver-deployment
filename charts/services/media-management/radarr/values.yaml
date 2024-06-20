@@ -1,4 +1,4 @@
-image: linuxserver/radarr:5.6.0
+image: linuxserver/radarr:5.7.0
 externalPort: 7878
 containerPort: 7878
 configPath: <path:kv/data/hostPath#appdata>/media-management/radarr
