@@ -1,4 +1,4 @@
-image: pihole/pihole:2024.05.0
+image: pihole/pihole:2024.06.0
 namespace: utility-services
 ports:
 - name: dns-tcp
