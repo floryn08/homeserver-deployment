@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/code-server:4.90.2
+image: lscr.io/linuxserver/code-server:4.90.3
 namespace: utility-services
 ports:
 - name: http
