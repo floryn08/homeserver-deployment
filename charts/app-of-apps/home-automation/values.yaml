@@ -3,7 +3,7 @@ project: server
 argocdNamespace: argocd
 targetRevision: HEAD
 server: https://kubernetes.default.svc
-namespace: game-servers
+namespace: home-automation
 
 vault:
   url: http://vault.core-services.svc:8200
@@ -15,8 +15,8 @@ syncPolicy:
     prune: true
     selfHeal: true
 
-valheim:
-  path: charts/services/game-servers/valheim
+homeAssistant:
+  path: charts/apps/home-automation/home-assistant
 
-minecraft:
-  path: charts/services/game-servers/minecraft
+esphome:
+  path: charts/apps/home-automation/esphome

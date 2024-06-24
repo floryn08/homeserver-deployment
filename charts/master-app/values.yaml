@@ -11,15 +11,15 @@ syncPolicy:
 
 aiServices:
   namespace: ai-services
-  path: charts/stack-apps/ai-services
+  path: charts/app-of-apps/ai-services
 
 coreServices:
   namespace: core-services
-  path: charts/stack-apps/core-services
+  path: charts/app-of-apps/core-services
 
 gameServers:
   namespace: game-servers
-  path: charts/stack-apps/game-servers
+  path: charts/app-of-apps/game-servers
   syncPolicy:
     automated:
       prune: false
@@ -27,12 +27,12 @@ gameServers:
 
 homeAutomation:
   namespace: home-automation
-  path: charts/stack-apps/home-automation
+  path: charts/app-of-apps/home-automation
 
 mediaManagement:
   namespace: media-management
-  path: charts/stack-apps/media-management
+  path: charts/app-of-apps/media-management
 
 utilityServices:
   namespace: utility-services
-  path: charts/stack-apps/utility-services
+  path: charts/app-of-apps/utility-services

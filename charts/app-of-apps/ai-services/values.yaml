@@ -3,7 +3,7 @@ project: server
 argocdNamespace: argocd
 targetRevision: HEAD
 server: https://kubernetes.default.svc
-namespace: home-automation
+namespace: ai-services
 
 vault:
   url: http://vault.core-services.svc:8200
@@ -15,8 +15,8 @@ syncPolicy:
     prune: true
     selfHeal: true
 
-homeAssistant:
-  path: charts/services/home-automation/home-assistant
+ollama:
+  path: charts/apps/ai-services/ollama
 
-esphome:
-  path: charts/services/home-automation/esphome
+openWebui:
+  path: charts/apps/ai-services/open-webui

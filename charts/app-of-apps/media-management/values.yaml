@@ -1,0 +1,46 @@
+repoUrl: https://github.com/floryn08/homeserver-deployment
+project: server
+argocdNamespace: argocd
+targetRevision: HEAD
+server: https://kubernetes.default.svc
+namespace: media-management
+
+vault:
+  url: http://vault.core-services.svc:8200
+  authType: kubernetes
+  mount: kubernetes
+
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+
+jellyfin:
+  path: charts/apps/media-management/jellyfin
+
+sonarr:
+  path: charts/apps/media-management/sonarr
+
+radarr:
+  path: charts/apps/media-management/radarr
+
+bazarr:
+  path: charts/apps/media-management/bazarr
+
+qbittorrent:
+  path: charts/apps/media-management/qbittorrent
+
+prowlarr:
+  path: charts/apps/media-management/prowlarr
+
+jellystat:
+  path: charts/apps/media-management/jellystat
+
+nextcloud:
+  path: charts/apps/media-management/nextcloud
+
+jellyseerr:
+  path: charts/apps/media-management/jellyseerr
+
+wizarr:
+  path: charts/apps/media-management/wizarr
