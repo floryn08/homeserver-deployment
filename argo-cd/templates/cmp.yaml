@@ -32,6 +32,7 @@ data:
           - bash
           - "-c"
           - |
-            helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-            argocd-vault-plugin generate -s vault-configuration -            
+            helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . > template.yaml
+            argocd-vault-plugin generate -s vault-configuration template.yaml || true
+            cat template.yaml
       lockRepo: false
