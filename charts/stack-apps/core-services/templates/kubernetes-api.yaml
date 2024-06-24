@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.coreServices.namespace }}
+  name: kubernetes-api
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: {{ .Values.coreServices.namespace }}
+    namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.coreServices.path }}
+    path: {{ .Values.kubernetesApi.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    helm:
-      valueFiles:
-        - values.yaml
+    plugin:
+      env:
+        - name: HELM_ARGS
+          value: -f values.yaml
   project: {{ .Values.project }}
   syncPolicy:
     automated:

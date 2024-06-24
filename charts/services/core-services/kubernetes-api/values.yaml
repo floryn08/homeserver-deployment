@@ -1,0 +1,2 @@
+namespace: core-services
+primaryDomain: <path:kv/data/domains#primaryDomain>

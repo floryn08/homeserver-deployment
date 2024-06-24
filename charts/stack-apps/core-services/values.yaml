@@ -4,7 +4,6 @@ argocdNamespace: argocd
 targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: core-services
-primaryDomain: <path:kv/data/domains#primaryDomain>
 
 syncPolicy:
   automated:
@@ -47,5 +46,5 @@ vault:
 vaultSecretsOperator:
   path: charts/services/core-services/vault-secrets-operator
 
-cloudflared:
-  path: charts/services/core-services/cloudflared
+kubernetesApi:
+  path: charts/services/core-services/kubernetes-api
