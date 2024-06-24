@@ -4,27 +4,6 @@ metadata:
   name: cmp-plugin
   namespace: argocd
 data:
-  avp.yaml: |
-    apiVersion: argoproj.io/v1alpha1
-    kind: ConfigManagementPlugin
-    metadata:
-      name: argocd-vault-plugin
-    spec:
-      allowConcurrency: true
-      discover:
-        find:
-          command:
-            - sh
-            - "-c"
-            - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-      generate:
-        command:
-          - argocd-vault-plugin
-          - generate
-          - "-s"
-          - vault-configuration
-          - "."
-      lockRepo: false
   avp-helm.yaml: |
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
@@ -54,6 +33,5 @@ data:
           - "-c"
           - |
             helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-            argocd-vault-plugin generate -s vault-configuration - |
-            &>/dev/null
+            argocd-vault-plugin generate -s vault-configuration -            
       lockRepo: false

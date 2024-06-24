@@ -44,29 +44,6 @@ argo-cd:
             name: custom-tools
     
     extraContainers:
-      - name: avp
-        command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.11.3
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 999
-        volumeMounts:
-          - mountPath: /var/run/argocd
-            name: var-files
-          - mountPath: /home/argocd/cmp-server/plugins
-            name: plugins
-          - mountPath: /tmp
-            name: tmp
-
-          # Register plugins into sidecar
-          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: avp.yaml
-            name: cmp-plugin
-
-          # Important: Mount tools into $PATH
-          - name: custom-tools
-            subPath: argocd-vault-plugin
-            mountPath: /usr/local/bin/argocd-vault-plugin
 
       - name: avp-helm
         command: [/var/run/argocd/argocd-cmp-server]
