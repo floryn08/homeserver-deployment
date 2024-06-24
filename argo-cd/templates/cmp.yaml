@@ -54,5 +54,6 @@ data:
           - "-c"
           - |
             helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-            argocd-vault-plugin generate -s vault-configuration -
+            argocd-vault-plugin generate -s vault-configuration - |
+            &>/dev/null
       lockRepo: false
