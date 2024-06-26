@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: REPLACE_ME
+    path: {{ .Values.vaultDataPath }}
     type: DirectoryOrCreate

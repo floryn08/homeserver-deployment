@@ -3,7 +3,6 @@ kind: Secret
 type: Opaque
 metadata:
   name: vault-configuration
-  namespace: argocd
 data:
   VAULT_ADDR: {{ .Values.argoVaultPlugin.vaultAddress | b64enc }}
   AVP_AUTH_TYPE: {{ .Values.argoVaultPlugin.avpAuthType | b64enc }}

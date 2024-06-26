@@ -1,8 +1,10 @@
 argo-cd:
-
+  namespaceOverride: core-services
   configs:
     cm:
       exec.enabled: true
+    params:
+      application.namespaces: "*"
 
   dex: 
     enabled: false

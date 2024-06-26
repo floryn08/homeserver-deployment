@@ -1,3 +1,4 @@
+vaultDataPath: CHANGE_ME
 vault:
   global:
     namespace: core-services
