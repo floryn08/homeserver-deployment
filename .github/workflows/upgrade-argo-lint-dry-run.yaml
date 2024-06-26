@@ -2,9 +2,9 @@ name: Upgrade ArgoCD Dry Run
 
 on:
   workflow_dispatch:
-  # pull_request:
-  #   paths:
-  #     - argo-cd/**
+  pull_request:
+    paths:
+      - argo-cd/**
 
 jobs:
   dry-run:
