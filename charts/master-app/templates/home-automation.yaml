@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.homeAutomation.namespace }}
-  namespace: {{ .Values.argocdNamespace }}
+  namespace: home-automation
 spec:
   destination:
     namespace: {{ .Values.homeAutomation.namespace }}

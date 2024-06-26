@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.gameServers.namespace }}
-  namespace: {{ .Values.argocdNamespace }}
+  namespace: game-servers
 spec:
   destination:
     namespace: {{ .Values.gameServers.namespace }}

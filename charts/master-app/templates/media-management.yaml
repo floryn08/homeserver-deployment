@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.mediaManagement.namespace }}
-  namespace: {{ .Values.argocdNamespace }}
+  namespace: media-management
 spec:
   destination:
     namespace: {{ .Values.mediaManagement.namespace }}

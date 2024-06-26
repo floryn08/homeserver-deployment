@@ -1,6 +1,6 @@
 repoUrl: https://github.com/floryn08/homeserver-deployment
-project: server
-argocdNamespace: argocd
+project: default
+argocdNamespace: home-automation
 targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: home-automation
