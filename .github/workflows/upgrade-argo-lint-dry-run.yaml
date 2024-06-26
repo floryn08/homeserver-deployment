@@ -33,4 +33,4 @@ jobs:
 
       - name: Upgrade release dry run
         run: |
-          helm upgrade --kube-insecure-skip-tls-verify --dry-run argo-cd ./charts/apps/core-services/argo-cd --namespace argocd --install --values ./charts/apps/core-services/argo-cd/values.yaml
+          helm upgrade --kube-insecure-skip-tls-verify --dry-run argo-cd ./charts/apps/core-services/argo-cd --namespace core-services --install --values ./charts/apps/core-services/argo-cd/values.yaml
