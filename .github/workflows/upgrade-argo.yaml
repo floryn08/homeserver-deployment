@@ -2,11 +2,11 @@ name: Upgrade ArgoCD
 
 on:
   workflow_dispatch: 
-  push: 
-    branches: 
-      - main
-    paths: 
-      - argo-cd/** 
+  # push: 
+  #   branches: 
+  #     - main
+  #   paths: 
+  #     - argo-cd/** 
 
 jobs:
   upgrade:
@@ -27,12 +27,12 @@ jobs:
 
       - name: Download dependencies
         run: |
-          helm dep update ./argo-cd
+          helm dep update ./charts/apps/core-services/argo-cd
 
       - name: Lint
         run: |
-          helm lint ./argo-cd
+          helm lint ./charts/apps/core-services/argo-cd
 
       - name: Upgrade release
         run: |
-          helm upgrade --kube-insecure-skip-tls-verify argo-cd ./argo-cd --namespace argocd --install --values ./argo-cd/values.yaml
+          helm upgrade --kube-insecure-skip-tls-verify argo-cd ./charts/apps/core-services/argo-cd --namespace argocd --install --values ./charts/apps/core-services/argo-cd/values.yaml
