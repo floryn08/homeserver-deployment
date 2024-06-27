@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.utilityServices.namespace }}
-  namespace: utility-services
+  namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
     namespace: {{ .Values.utilityServices.namespace }}
