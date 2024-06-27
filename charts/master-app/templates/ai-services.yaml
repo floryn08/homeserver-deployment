@@ -2,10 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.aiServices.namespace }}
-  namespace: ai-services
+  namespace: {{ .Values.aiServices.namespace }}
 spec:
   destination:
-    namespace: {{ .Values.aiServices.namespace }}
+    namespace: default
     server: {{ .Values.server }}
   source:
     path: {{ .Values.aiServices.path }}
