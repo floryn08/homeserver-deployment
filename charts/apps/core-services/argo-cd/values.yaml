@@ -3,7 +3,7 @@ argo-cd:
   configs:
     cm:
       exec.enabled: true
-      url: <path:kv/data/core-services/argocd#argocdUrl>
+      # url: <path:kv/data/core-services/argocd#argocdUrl>
       dex.config: |
         connectors:
         - config: 
