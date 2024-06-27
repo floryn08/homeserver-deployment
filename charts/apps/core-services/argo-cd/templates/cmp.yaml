@@ -25,7 +25,7 @@ data:
             helm repo add traefik https://traefik.github.io/charts
             helm repo add authentik https://charts.goauthentik.io
             helm repo add hashicorp https://helm.releases.hashicorp.com
-            helm repo add hashicorp https://argoproj.github.io/argo-helm
+            helm repo add argo-cd https://argoproj.github.io/argo-helm
             helm dependency build
       generate:
         command:
