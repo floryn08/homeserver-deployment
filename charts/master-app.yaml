@@ -3,12 +3,14 @@ kind: Application
 metadata:
   name: master-app
 spec:
-  source:
-    repoURL: 'https://github.com/floryn08/homeserver-deployment'
-    path: charts/master-app
-    targetRevision: HEAD
   destination:
+    namespace: core-services
     server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/master-app
+    repoURL: 'https://github.com/floryn08/homeserver-deployment'
+    targetRevision: HEAD
+  project: default
   syncPolicy:
     automated:
       prune: true
