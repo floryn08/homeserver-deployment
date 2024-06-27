@@ -1,6 +1,6 @@
 repoUrl: https://github.com/floryn08/homeserver-deployment
 project: default
-argocdNamespace: utility-services
+argocdNamespace: core-services
 targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: utility-services
