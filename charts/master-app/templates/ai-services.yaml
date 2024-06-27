@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.argocdNamespace }}
 spec:
   destination:
-    namespace: default
+    namespace: {{ .Values.aiServices.namespace }}
     server: {{ .Values.server }}
   source:
     path: {{ .Values.aiServices.path }}
