@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-  USERMAP_GID: >
+  PAPERLESS_SOCIALACCOUNT_PROVIDERS: |
     {
       "openid_connect": {
         "APPS": [
