@@ -7,7 +7,7 @@ argo-cd:
       dex.config: |
         connectors:
         - config: 
-            issuer: https://auth.<path:kv/data/domains#primaryDomain>/application/o/argocd
+            issuer: https://auth.<path:kv/data/domains#primaryDomain>/application/o/argocd/
             clientID: <path:kv/data/core-services/argocd#authentikClientId>
             clientSecret: $dex.authentik.clientSecret
             insecureEnableGroups: true
