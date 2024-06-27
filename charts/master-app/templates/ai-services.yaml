@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.aiServices.namespace }}
-  namespace: {{ .Values.argocdNamespace }}
+  namespace: {{ .Values.aiServices.namespace }}
 spec:
   destination:
     namespace: {{ .Values.aiServices.namespace }}
