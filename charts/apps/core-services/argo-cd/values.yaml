@@ -25,6 +25,56 @@ argo-cd:
       policy.csv: |
         g, ArgoCD Admins, role:admin
         g, ArgoCD Viewers, role:readonly
+
+    cmp:
+      create: true
+      plugins:
+        avp-helm:
+          discover:
+            find:
+              command:
+                - sh
+                - "-c"
+                - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+          generate:
+            command:
+              - bash
+              - "-c"
+              - |
+                helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
+                argocd-vault-plugin generate -s core-services:vault-configuration -
+
+    repositories:
+      valheim-server-discord-bot:
+        url: https://floryn08.github.io/valheim-server-discord-bot
+        name: valheim-server-discord-bot
+        type: helm
+
+      traefik:
+        url: https://traefik.github.io/charts
+        name: traefik
+        type: helm
+
+      authentik:
+        url: https://charts.goauthentik.io
+        name: authentik
+        type: helm
+
+      hashicorp:
+        url: https://helm.releases.hashicorp.com
+        name: hashicorp
+        type: helm
+
+      argo-cd:
+        url: https://argoproj.github.io/argo-helm
+        name: argo-cd
+        type: helm
+
+      stakater:
+        url: https://stakater.github.io/stakater-charts
+        name: stakater
+        type: helm
+
     secret:
       extra:
         dex.authentik.clientSecret: "<path:kv/data/core-services/argocd#authentikClientSecret>"
