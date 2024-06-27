@@ -36,6 +36,12 @@ argo-cd:
                 - sh
                 - "-c"
                 - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+          init:
+            command:
+              - bash
+              - "-c"
+              - |
+                helm dependency build
           generate:
             command:
               - bash
