@@ -6,9 +6,9 @@ This repository contains helm charts organized using the `App of Apps` strategy.
 1. install vault 
 
 ```
-helm dep update ./charts/apps/core-services/vault   
+helm dep update ./charts/apps/core-services/vault
 
-helm upgrade vault ./charts/apps/core-services/vault --install --namespace core-services --create-namespace
+helm upgrade vault ./charts/apps/core-services/vault --install --namespace core-services --create-namespace --set vaultDataPath="CHANGE_ME"
 ```
 
 2. install vault secrets operator
@@ -37,11 +37,11 @@ helm upgrade argo-cd ./charts/apps/core-services/argo-cd --install --namespace c
 - [x] find a way to replace the hostPath from vault pv.yaml
 - [x] expose kubernetes api some other way to bypass cloudflare challenge in action
 - [x] manage dependencies between argo-cd and vault
-- [ ] add refresh for vault secrets
-- [ ] install stacker configmaps/secret watcher to restart pods when those change
+- [x] add refresh for vault secrets
+- [x] install stacker configmaps/secret watcher to restart pods when those change
+- [x] better documentation
 - [ ] add prometheus/loki and grafana monitoring
-- [ ] better backup strategy?
-- [ ] better deployment strategy?
-- [ ] better documentation
 - [ ] use ansible to faster deploy all requirements on a machine?
 - [ ] use tokens from the TokenRequest API or manually created secret-based tokens instead of auto-generated secret-based tokens.
+- [ ] better backup strategy?
+- [ ] better deployment strategy?
