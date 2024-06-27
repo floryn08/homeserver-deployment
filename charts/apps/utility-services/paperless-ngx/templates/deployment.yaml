@@ -30,6 +30,8 @@ spec:
         envFrom:
         - secretRef:
             name: {{ .Release.Name }}
+        - configMap:
+            name: oidc-configmap
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}

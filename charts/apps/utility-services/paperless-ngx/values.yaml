@@ -22,3 +22,6 @@ volumes:
   hostPath: <path:kv/data/hostPath#paperlessNgx>/consume
   podPath: /usr/src/paperless/consume
   type: DirectoryOrCreate
+authentikClientId: <path:kv/data/utility-services/paperless-ngx#authentikClientId>
+authentikClientSecret: <path:kv/data/utility-services/paperless-ngx#authentikClientSecret>
+primaryDomain: <path:kv/data/domains#primaryDomain>
