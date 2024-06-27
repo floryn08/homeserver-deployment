@@ -3,11 +3,33 @@ argo-cd:
   configs:
     cm:
       exec.enabled: true
+      dex.config: |
+        connectors:
+        - config: 
+            issuer: <path:kv/data/domains#primaryDomain>/application/o/argocd
+            clientID: <path:kv/data/core-services/argocd#authentikClientId>
+            clientSecret: $dex.authentik.clientSecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
+
     params:
       application.namespaces: "*"
+    rbac:
+      policy.csv: |
+        g, ArgoCD Admins, role:admin
+        g, ArgoCD Viewers, role:readonly
+    secret:
+      extra:
+        dex.authentik.clientSecret: "<path:kv/data/core-services/argocd#authentikClientSecret>"
 
   dex: 
-    enabled: false
+    enabled: true
 
   server:
     service:
