@@ -1,5 +1,6 @@
 image: vaultwarden/server:1.30.5
 namespace: utility-services
+primaryDomain: <path:kv/data/domains#primaryDomain>
 ports:
 - name: http
   containerPort: 80

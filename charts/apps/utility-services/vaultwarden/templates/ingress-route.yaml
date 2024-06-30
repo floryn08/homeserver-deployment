@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`vault.thebatcave.uk`) && PathPrefix(`/`)
+      match: Host(`vault.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       services: 
         - kind: Service
           name: {{ .Release.Name }}-service
