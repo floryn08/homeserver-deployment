@@ -1,2 +1,5 @@
 grafana:
   namespaceOverride: core-services
+  service:
+    type: LoadBalancer
+    port: 8095
