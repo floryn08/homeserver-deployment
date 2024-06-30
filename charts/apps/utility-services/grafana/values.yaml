@@ -15,10 +15,10 @@ grafana:
         access: proxy
         isDefault: true
 
-  # grafana.ini:
-  #   auth:
-  #       signout_redirect_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/grafana/end-session/"
-  #       oauth_auto_login: true
+  grafana.ini:
+    auth:
+        signout_redirect_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/grafana/end-session/"
+        oauth_auto_login: true
   #   auth.generic_oauth:
   #       name: authentik
   #       enabled: true
