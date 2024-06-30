@@ -1,5 +1,5 @@
 grafana:
-  namespaceOverride: core-services
+  namespaceOverride: utility-services
   assertNoLeakedSecrets: false
 
   service:
