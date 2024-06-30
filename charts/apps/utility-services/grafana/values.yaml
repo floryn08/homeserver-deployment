@@ -17,9 +17,6 @@ grafana:
         isDefault: true
 
   grafana.ini:
-    server:
-      domain: <path:kv/data/utility-services/grafana#url>
-      root_url: http://<path:kv/data/utility-services/grafana#url>
     auth:
         signout_redirect_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/grafana/end-session/"
         oauth_auto_login: false
