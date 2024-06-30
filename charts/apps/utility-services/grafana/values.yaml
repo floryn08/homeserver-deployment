@@ -15,19 +15,19 @@ grafana:
         access: proxy
         isDefault: true
 
-  grafana.ini:
-    auth:
-        signout_redirect_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/grafana/end-session/"
-        oauth_auto_login: true
-    auth.generic_oauth:
-        name: authentik
-        enabled: true
-        client_id: "<path:kv/data/utility-services/grafana#clientId>"
-        client_secret: "<path:kv/data/utility-services/grafana#clientSecret>"
-        scopes: "openid profile email"
-        auth_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/authorize/"
-        token_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/token/"
-        api_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/userinfo/"
-        role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
+  # grafana.ini:
+  #   auth:
+  #       signout_redirect_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/grafana/end-session/"
+  #       oauth_auto_login: true
+  #   auth.generic_oauth:
+  #       name: authentik
+  #       enabled: true
+  #       client_id: "<path:kv/data/utility-services/grafana#clientId>"
+  #       client_secret: "<path:kv/data/utility-services/grafana#clientSecret>"
+  #       scopes: "openid profile email"
+  #       auth_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/authorize/"
+  #       token_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/token/"
+  #       api_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/userinfo/"
+  #       role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
 
 
