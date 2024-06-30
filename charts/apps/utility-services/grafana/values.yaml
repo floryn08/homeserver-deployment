@@ -3,7 +3,7 @@ grafana:
   service:
     type: LoadBalancer
     port: 8100
-  datasources: |
+  datasources: 
     datasources.yaml:
       apiVersion: 1
       datasources:
