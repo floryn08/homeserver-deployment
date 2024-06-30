@@ -40,7 +40,7 @@ helm upgrade argo-cd ./charts/apps/core-services/argo-cd --install --namespace c
 - [x] add refresh for vault secrets
 - [x] install stacker configmaps/secret watcher to restart pods when those change
 - [x] better documentation
-- [ ] add prometheus/loki and grafana monitoring
+- [x] add prometheus and grafana monitoring
 - [ ] use ansible to faster deploy all requirements on a machine?
 - [ ] use tokens from the TokenRequest API or manually created secret-based tokens instead of auto-generated secret-based tokens.
 - [ ] better backup strategy?
