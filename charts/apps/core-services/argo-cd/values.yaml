@@ -1,5 +1,7 @@
 argo-cd:
   namespaceOverride: core-services
+  global:
+    domain: <path:kv/data/core-services/argocd#argocdUrl>
   configs:
     cm:
       exec.enabled: true
