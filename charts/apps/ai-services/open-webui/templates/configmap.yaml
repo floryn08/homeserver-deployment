@@ -8,4 +8,4 @@ data:
   OPENID_PROVIDER_URL: {{ .Values.providerUrl }}
   OAUTH_PROVIDER_NAME: {{ .Values.providerName }}
   OAUTH_SCOPES: {{ .Values.scopes }}
-  OAUTH_MERGE_ACCOUNTS_BY_EMAIL: {{ .Values.oauthMergeAccountsByEmail }}
+  OAUTH_MERGE_ACCOUNTS_BY_EMAIL: {{ .Values.oauthMergeAccountsByEmail | quote }}
