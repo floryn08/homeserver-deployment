@@ -37,4 +37,4 @@ grafana:
 
   persistence:
     enabled: true
-
+    storageClassName: local
