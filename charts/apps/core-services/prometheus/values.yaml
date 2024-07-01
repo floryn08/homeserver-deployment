@@ -1,5 +1,12 @@
 prometheus:
   forceNamespace: core-services
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: postgres-exporter
+          static_configs:
+            - targets:
+              - prometheus-prometheus-postgres-exporter.core-services.svc
 
 prometheus-postgres-exporter:
   config:
