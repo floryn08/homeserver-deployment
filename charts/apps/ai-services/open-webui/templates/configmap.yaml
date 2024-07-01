@@ -4,4 +4,7 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  OLLAMA_BASE_URL: http://ollama-service.ai-services.svc:11434
+  OLLAMA_BASE_URL: {{ .Values.ollamaBaseUrl }}
+  OPENID_PROVIDER_URL: {{ .Values.providerUrl }}
+  OAUTH_PROVIDER_NAME: {{ .Values.providerName }}
+  OAUTH_SCOPES: {{ .Values.scopes }}
