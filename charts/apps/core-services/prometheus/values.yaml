@@ -1,2 +1,9 @@
 prometheus:
   forceNamespace: core-services
+
+prometheus-postgres-exporter:
+  config:
+    datasource:
+      host: <path:kv/data/core-services/postgres#host>
+      user: <path:kv/data/core-services/postgres#user>
+      password: <path:kv/data/core-services/postgres#password>
