@@ -14,6 +14,6 @@ volumes:
 
 ollamaBaseUrl: http://ollama-service.ai-services.svc:11434
 
-providerUrl: https://auth/<path:kv/data/domains#primaryDomain>/application/o/open-webui/.well-known/openid-configuration
+providerUrl: https://auth.<path:kv/data/domains#primaryDomain>/application/o/open-webui/.well-known/openid-configuration
 providerName: Authentik
 scopes: openid email profile
