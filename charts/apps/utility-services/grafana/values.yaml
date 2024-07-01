@@ -1,3 +1,4 @@
+grafanaDataPath: <path:kv/data/hostPath#appdata>/utility-services/grafana
 grafana:
   namespaceOverride: utility-services
   assertNoLeakedSecrets: false
@@ -34,4 +35,6 @@ grafana:
         api_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/userinfo/"
         role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
 
+  persistence:
+    enabled: true
 
