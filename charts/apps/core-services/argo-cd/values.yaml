@@ -1,11 +1,11 @@
 argo-cd:
   namespaceOverride: core-services
-  global:
-    domain: <path:kv/data/core-services/argocd#argocdUrl>
+  # global:
+  #   domain: <path:kv/data/core-services/argocd#argocdUrl>
   configs:
     cm:
       exec.enabled: true
-      oidc.tls.insecure.skip.verify: "true"
+      # oidc.tls.insecure.skip.verify: "true"
       # url: <path:kv/data/core-services/argocd#argocdUrl>
       dex.config: |
         connectors:
