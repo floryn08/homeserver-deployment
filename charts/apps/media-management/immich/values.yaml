@@ -12,7 +12,7 @@ immich:
     global:
       postgresql:
         auth:
-          existingSecret: immich
+          password: <path:kv/data/media-management/immich#postgres-password>
   redis:
     enabled: true
   server:
