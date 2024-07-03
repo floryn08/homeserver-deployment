@@ -7,10 +7,6 @@ immich:
     persistence:
       library:
         existingClaim: immich-data-pvc
-      externalLib:
-        enabled: true
-        type: hostPath
-        hostPath: <path:kv/data/hostPath#storageHdd>/GooglePhotosExport
   postgresql:
     enabled: true
     global:
@@ -27,3 +23,8 @@ immich:
           - host: immich.<path:kv/data/domains#primaryDomain>
             paths:
               - path: "/"
+    persistence:
+      externalLib:
+        enabled: true
+        type: hostPath
+        hostPath: <path:kv/data/hostPath#storageHdd>/GooglePhotosExport
