@@ -1,5 +1,7 @@
 immichDataPath: <path:kv/data/hostPath#storageHdd>/immich/library
+immichPostgresDataPath: <path:kv/data/hostPath#appdata>/media-management/immich/postgres
 namespace: media-management
+
 immich:
   image: 
     tag: v1.107.2
@@ -9,12 +11,10 @@ immich:
         existingClaim: immich-data-pvc
   postgresql:
     enabled: true
-    persistence:
-      data:
-        enabled: true
-        type: hostPath
-        hostPath: <path:kv/data/hostPath#appdata>/media-management/immich/postgres
-        mountPath: /bitnami/postgresql
+    primary:
+      persistence:
+        storageClass: manual
+        existingClaim: immich-postgres-data-pvc
     global:
       postgresql:
         auth:
