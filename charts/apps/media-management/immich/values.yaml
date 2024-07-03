@@ -9,6 +9,12 @@ immich:
         existingClaim: immich-data-pvc
   postgresql:
     enabled: true
+    persistence:
+      data:
+        enabled: true
+        type: hostPath
+        hostPath: <path:kv/data/hostPath#appdata>/media-management/immich/postgres
+        mountPath: /bitnami/postgresql
     global:
       postgresql:
         auth:
