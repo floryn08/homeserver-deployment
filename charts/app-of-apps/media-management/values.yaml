@@ -44,3 +44,6 @@ jellyseerr:
 
 wizarr:
   path: charts/apps/media-management/wizarr
+
+immich:
+  path: charts/apps/media-management/immich

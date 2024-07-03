@@ -1,0 +1,24 @@
+immichDataPath: <path:kv/data/hostPath#storageHdd>/immich/library
+immich:
+  image: 
+    tag: v1.107.2
+  immich:
+    persistence:
+      library:
+        existingClaim: immich-data-pvc
+  postgresql:
+    enabled: true
+    global:
+      postgresql:
+        auth:
+          existingSecret: immich
+  redis:
+    enabled: true
+  server:
+    ingress:
+      main:
+        enabled: true
+        hosts:
+          - host: immich.<path:kv/data/domains#primaryDomain>
+            paths:
+              - path: "/"
