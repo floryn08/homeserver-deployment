@@ -24,7 +24,7 @@ immich:
             paths:
               - path: "/"
     persistence:
-      externalLib:
+      external:
         enabled: true
         type: hostPath
         hostPath: <path:kv/data/hostPath#storageHdd>/GooglePhotosExport
