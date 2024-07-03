@@ -52,6 +52,7 @@ argo-cd:
                 helm repo add stakater https://stakater.github.io/stakater-charts
                 helm repo add grafana https://grafana.github.io/helm-charts
                 helm repo add prometheus https://prometheus-community.github.io/helm-charts
+                helm repo add immich https://immich-app.github.io/immich-charts
                 helm dependency build
           generate:
             command:
