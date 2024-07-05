@@ -22,6 +22,8 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap
