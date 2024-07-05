@@ -5,6 +5,3 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   TZ: Europe/Bucharest
-  PUID: "1000"
-  PGID: "1000"
-  UMASK: "002"
