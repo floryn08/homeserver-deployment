@@ -3,8 +3,7 @@ immichPostgresDataPath: <path:kv/data/hostPath#appdata>/media-management/immich/
 namespace: media-management
 
 immich:
-  image: 
-    tag: v1.107.2
+
   immich:
     persistence:
       library:
@@ -22,6 +21,9 @@ immich:
   redis:
     enabled: true
   server:
+    image:
+      repository: ghcr.io/immich-app/immich-server
+      tag: v1.107.2
     ingress:
       main:
         enabled: true
@@ -34,3 +36,8 @@ immich:
         enabled: true
         type: hostPath
         hostPath: <path:kv/data/hostPath#storageHdd>/GooglePhotosExport
+
+  machine-learning:
+    image:  
+      repository: ghcr.io/immich-app/immich-machine-learning
+      tag: v1.107.2
