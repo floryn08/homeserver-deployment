@@ -38,8 +38,8 @@ authentik:
         - auth.<path:kv/data/domains#primaryDomain>
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.tls: "false"
-        # traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
     containerPorts:
       http: 8094
       https: 8095

@@ -31,6 +31,10 @@ immich:
           - host: immich.<path:kv/data/domains#primaryDomain>
             paths:
               - path: "/"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.tls: "true"
+          traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
     persistence:
       external:
         enabled: true
