@@ -33,3 +33,6 @@ traefik:
     name: letsencrypt
     path: /letsencrypt
     storageClass: manual
+  ingressRoute:
+    dashboard:
+      enabled: true
