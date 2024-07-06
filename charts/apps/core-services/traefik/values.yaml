@@ -24,7 +24,7 @@ traefik:
         port: websecure
   certResolvers: 
     letsencrypt:
-      email: florin.vasilica95@gmail.com
+      email: <path:kv/data/core-services/traefik#email>
       dnsChallenge:
         provider: cloudflare
       storage: /letsencrypt/acme.json
