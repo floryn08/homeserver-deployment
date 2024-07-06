@@ -27,6 +27,7 @@ immich:
     ingress:
       main:
         enabled: true
+        ingressClassName: traefik
         hosts:
           - host: immich.<path:kv/data/domains#primaryDomain>
             paths:
