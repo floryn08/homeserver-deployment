@@ -44,3 +44,6 @@ codeServer:
 
 grafana:
   path: charts/apps/utility-services/grafana
+
+flaresolverr:
+  path: charts/apps/utility-services/flaresolverr
