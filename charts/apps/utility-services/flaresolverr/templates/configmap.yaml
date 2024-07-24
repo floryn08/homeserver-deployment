@@ -10,9 +10,9 @@ data:
   TZ: Europe/Bucharest
   LANG: en_US
   HEADLESS: 'true'
-  BROWSER_TIMEOUT: 40000
+  BROWSER_TIMEOUT: '40000'
   TEST_URL: https://www.google.com
-  PORT: 8191
-  HOST: 0.0.0.0
+  PORT: '8191'
+  HOST: '0.0.0.0'
   PROMETHEUS_ENABLED: 'true'
-  PROMETHEUS_PORT: 8192
+  PROMETHEUS_PORT: '8192'
