@@ -47,3 +47,6 @@ wizarr:
 
 immich:
   path: charts/apps/media-management/immich
+
+tilecardmaker:
+  path: charts/apps/media-management/tilecardmaker
