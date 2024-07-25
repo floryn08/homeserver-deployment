@@ -4,8 +4,8 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 data:
-  PUID: 1000
-  PGID: 1000
+  PUID: '1000'
+  PGID: '1000'
   TZ: Europe/Bucharest
   TCM_MISSING: /config/missing.yml
   TCM_RUNTIME: '22:00'
