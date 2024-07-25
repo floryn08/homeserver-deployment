@@ -8,5 +8,5 @@ data:
   PGID: 1000
   TZ: Europe/Bucharest
   TCM_MISSING: /config/missing.yml
-  TCM_RUNTIME: 22:00
+  TCM_RUNTIME: '22:00'
   TCM_FREQUENCY: 12h
