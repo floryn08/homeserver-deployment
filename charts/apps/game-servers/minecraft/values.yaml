@@ -1,4 +1,4 @@
-image: itzg/minecraft-server:2024.7.0
+image: itzg/minecraft-server:2024.7.2
 namespace: game-servers
 ports:
 - name: minecraft
