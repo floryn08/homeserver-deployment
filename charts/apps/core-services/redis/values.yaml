@@ -1,4 +1,4 @@
-image: redis:7.2.5-alpine
+image: redis:7.4.0-alpine
 namespace: core-services
 ports:
 - name: redis
