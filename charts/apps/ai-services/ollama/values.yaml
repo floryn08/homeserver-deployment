@@ -1,4 +1,4 @@
-image: ollama/ollama:0.3.2
+image: ollama/ollama:0.3.3
 namespace: ai-services
 ports:
 - name: ollama
