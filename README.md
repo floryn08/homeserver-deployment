@@ -28,4 +28,4 @@ helm upgrade argo-cd ./charts/apps/core-services/argo-cd --install --namespace c
 ```
 
 4. create argocd Application using the provided `master-app.yaml` as example
-5. 
+   
