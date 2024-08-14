@@ -1,13 +1,9 @@
-image: ghcr.io/alexjustesen/speedtest-tracker:v0.19.0
+image: lscr.io/linuxserver/speedtest-tracker:0.21.2
 namespace: utility-services
 ports:
 - name: http
   containerPort: 80
   externalPort: 8081
-  protocol: TCP
-- name: https
-  containerPort: 443
-  externalPort: 8443
   protocol: TCP
 volumes:
 - name: config
