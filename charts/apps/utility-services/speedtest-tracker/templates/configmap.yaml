@@ -4,16 +4,16 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 data:
-  DB_CONNECTION: "",
-  DB_DATABASE: "",
-  DB_HOST: "",
-  DB_PASSWORD: "",
-  DB_PORT: "",
-  DB_USERNAME: "",
-  PGID: "",
-  PUID: "",
-  TZ: "",
-  APP_KEY: "",
-  SPEEDTEST_SERVERS: "",
-  SPEEDTEST_SCHEDULE: "",
+  DB_CONNECTION: ""
+  DB_DATABASE: ""
+  DB_HOST: ""
+  DB_PASSWORD: ""
+  DB_PORT: ""
+  DB_USERNAME: ""
+  PGID: ""
+  PUID: ""
+  TZ: ""
+  APP_KEY: ""
+  SPEEDTEST_SERVERS: ""
+  SPEEDTEST_SCHEDULE: ""
   PRUNE_RESULTS_OLDER_THAN: ""
