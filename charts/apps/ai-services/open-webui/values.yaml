@@ -1,4 +1,4 @@
-image: ghcr.io/open-webui/open-webui:v0.3.12
+image: ghcr.io/open-webui/open-webui:v0.3.13
 namespace: ai-services
 
 ports:
