@@ -32,15 +32,6 @@ spec:
         envFrom:
         - secretRef:
             name: {{ .Release.Name }}
-        readinessProbe:
-          exec:
-            command:
-              - mc-monitor 
-              - status 
-              - --host 
-              - localhost 
-              - --port
-              - "25565"
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
