@@ -34,15 +34,13 @@ spec:
             name: {{ .Release.Name }}
         readinessProbe:
           exec:
-            command: [ "/usr/local/bin/mc-monitor", "status", "--host", "localhost" ]
-          initialDelaySeconds: 20
-          periodSeconds: 5
-          failureThreshold: 20
-        livenessProbe:
-          exec:
-            command: ["/usr/local/bin/mc-monitor", "status", "--host", "localhost"]
-          initialDelaySeconds: 120
-          periodSeconds: 60
+            command:
+              - mc-monitor 
+              - status 
+              - --host 
+              - localhost 
+              - --port
+              - "25565"
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
