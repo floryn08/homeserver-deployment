@@ -42,3 +42,8 @@ traefik:
   ingressRoute:
     dashboard:
       enabled: true
+  experimental:
+    plugins:
+      bouncer:
+        moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+        version: v1.3.3
