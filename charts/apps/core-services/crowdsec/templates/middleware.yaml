@@ -8,6 +8,6 @@ spec:
     bouncer:
       enabled: true
       crowdsecMode: stream
-      crowdsecLapiScheme: https
+      crowdsecLapiScheme: http
       crowdsecLapiHost: crowdsec-service.core-services:8080
       crowdsecLapiKey: <path:kv/data/core-services/crowdsec#BOUNCER_KEY_traefik>
