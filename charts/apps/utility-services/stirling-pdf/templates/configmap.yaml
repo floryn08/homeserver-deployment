@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  DOCKER_ENABLE_SECURITY: "false"
+  INSTALL_BOOK_AND_ADVANCED_HTML_OPS: "false"
+  LANGS: "ro_RO,en_GB,en_US,de_DE,fr_FR,es_ES,it_IT,tr_TR,el_GR,hu_HU"
+  METRICS_ENABLED: "true"

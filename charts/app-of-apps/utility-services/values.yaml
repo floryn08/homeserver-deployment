@@ -47,3 +47,6 @@ grafana:
 
 flaresolverr:
   path: charts/apps/utility-services/flaresolverr
+
+stirlingPdf:
+  path: charts/apps/utility-services/stirling-pdf
