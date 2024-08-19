@@ -42,6 +42,14 @@ traefik:
   ingressRoute:
     dashboard:
       enabled: true
+  logs:
+    general:
+      level: DEBUG
+    access:
+      enabled: true
+      fields:
+        headers: 
+          defaultmode: keep
   experimental:
     plugins:
       bouncer:
