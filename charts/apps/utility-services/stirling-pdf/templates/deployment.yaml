@@ -42,9 +42,9 @@ spec:
             - sh
             - -c
             - >-
-            curl -f http://localhost:8080/api/v1/info/status | 
-            grep -q 'UP' && curl -fL http://localhost:8080/ | 
-            grep -qv 'Please sign in'
+              curl -f http://localhost:8080/api/v1/info/status | 
+              grep -q 'UP' && curl -fL http://localhost:8080/ | 
+              grep -qv 'Please sign in'
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
