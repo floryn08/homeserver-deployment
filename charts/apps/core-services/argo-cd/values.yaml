@@ -53,6 +53,7 @@ argo-cd:
                 helm repo add grafana https://grafana.github.io/helm-charts
                 helm repo add prometheus https://prometheus-community.github.io/helm-charts
                 helm repo add immich https://immich-app.github.io/immich-charts
+                helm repo add crowdsec https://crowdsecurity.github.io/helm-charts
                 helm dependency build
           generate:
             command:

@@ -1,0 +1,28 @@
+crowdsec:
+  container_runtime: containerd
+  image:
+    repository: crowdsecurity/crowdsec
+    tag: v1.6.2
+  agent:
+    # Specify each pod whose logs you want to process
+    acquisition:
+      # The namespace where the pod is located
+      - namespace: core-services
+        # The pod name
+        podName: traefik-*
+        # as in crowdsec configuration, we need to specify the program name to find a matching parser
+        program: traefik
+    env:
+      - name: COLLECTIONS
+        value: "crowdsecurity/traefik"
+  lapi:
+    env:
+      # To enroll the Security Engine to the console
+      - name: ENROLL_KEY
+        value: "<path:kv/data/core-services/crowdsec#ENROLL_KEY>"
+      - name: ENROLL_INSTANCE_NAME
+        value: "homeserver"
+      - name: ENROLL_TAGS
+        value: "k8s linux test"
+      - name: BOUNCER_KEY_traefik
+        value: "<path:kv/data/core-services/crowdsec#BOUNCER_KEY_traefik>"
