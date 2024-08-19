@@ -9,6 +9,9 @@ spec:
   routes: 
     - kind: Rule
       match: Host(`jellyseerr.{{ .Values.domain }}`) && PathPrefix(`/`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: {{ .Release.Name }}-service
