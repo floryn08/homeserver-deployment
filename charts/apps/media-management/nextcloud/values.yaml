@@ -1,4 +1,4 @@
-image: linuxserver/nextcloud:29.0.4
+image: linuxserver/nextcloud:29.0.5
 namespace: media-management
 domain: <path:kv/data/domains#primaryDomain>
 ports:
