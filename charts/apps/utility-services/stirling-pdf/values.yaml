@@ -7,8 +7,8 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/stirling-pdf/config
-  podPath: /config
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/stirling-pdf/configs
+  podPath: /configs
 - name: tessdatadata
   hostPath: <path:kv/data/hostPath#appdata>/utility-services/stirling-pdf/trainingData
   podPath: /usr/share/tessdata

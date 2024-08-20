@@ -23,6 +23,6 @@ crowdsec:
       - name: ENROLL_INSTANCE_NAME
         value: "homeserver"
       - name: ENROLL_TAGS
-        value: "k8s linux test"
+        value: "k8s linux"
       - name: BOUNCER_KEY_traefik
         value: "<path:kv/data/core-services/crowdsec#BOUNCER_KEY_traefik>"
