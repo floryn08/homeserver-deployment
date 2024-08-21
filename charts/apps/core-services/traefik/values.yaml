@@ -1,6 +1,6 @@
 .TrustedIPs: &TrustedIPs
   - 127.0.0.1/32
-  - 10.42.0.0/16
+  - 10.0.0.0/8
 
 namespace: core-services
 primaryDomain: <path:kv/data/domains#primaryDomain>
