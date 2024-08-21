@@ -18,6 +18,9 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
+  service:
+    spec:
+      externalTrafficPolicy: Local
   ports:
     traefik:
       exposedPort: 8082
