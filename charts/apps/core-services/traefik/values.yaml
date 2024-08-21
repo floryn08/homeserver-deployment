@@ -1,3 +1,7 @@
+.TrustedIPs: &TrustedIPs
+  - 127.0.0.1/32
+  - 10.42.0.0/16
+
 namespace: core-services
 primaryDomain: <path:kv/data/domains#primaryDomain>
 letsencryptPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
@@ -22,6 +26,15 @@ traefik:
     web:
       redirectTo: 
         port: websecure
+      forwardedHeaders:
+        trustedIPs: *TrustedIPs
+      proxyProtocol:
+        trustedIPs: *TrustedIPs
+    websecure:
+      forwardedHeaders:
+        trustedIPs: *TrustedIPs
+      proxyProtocol:
+        trustedIPs: *TrustedIPs
   certResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
