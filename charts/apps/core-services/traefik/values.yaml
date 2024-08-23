@@ -17,9 +17,9 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
-  # service:
-  #   spec:
-  #     externalTrafficPolicy: Local
+  service:
+    spec:
+      externalTrafficPolicy: Local
   ports:
     traefik:
       exposedPort: 8082
@@ -28,15 +28,15 @@ traefik:
     web:
       redirectTo: 
         port: websecure
-      forwardedHeaders:
-        trustedIPs: *TrustedIPs
-      proxyProtocol:
-        trustedIPs: *TrustedIPs
-    websecure:
-      forwardedHeaders:
-        trustedIPs: *TrustedIPs
-      proxyProtocol:
-        trustedIPs: *TrustedIPs
+    #   forwardedHeaders:
+    #     trustedIPs: *TrustedIPs
+    #   proxyProtocol:
+    #     trustedIPs: *TrustedIPs
+    # websecure:
+    #   forwardedHeaders:
+    #     trustedIPs: *TrustedIPs
+    #   proxyProtocol:
+    #     trustedIPs: *TrustedIPs
   certResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
