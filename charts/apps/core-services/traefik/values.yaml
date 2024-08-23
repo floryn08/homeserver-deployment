@@ -28,6 +28,8 @@ traefik:
   certResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
+      httpChallenge:
+        entryPoint: "web"
       dnsChallenge:
         provider: cloudflare
       storage: /letsencrypt/acme.json
