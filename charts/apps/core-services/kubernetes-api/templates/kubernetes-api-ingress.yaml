@@ -9,6 +9,9 @@ spec:
   routes: 
     - kind: Rule
       match: Host(`kubernetes.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: kubernetes

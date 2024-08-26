@@ -9,6 +9,9 @@ spec:
   routes: 
     - kind: Rule
       match: Host(`nextcloud.{{ .Values.domain }}`) && PathPrefix(`/`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: {{ .Release.Name }}-loadbalancer

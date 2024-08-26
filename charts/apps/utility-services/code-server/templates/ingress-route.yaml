@@ -10,6 +10,8 @@ spec:
     - kind: Rule
       match: Host(`code.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       middlewares: 
+        - name: bouncer
+          namespace: core-services
         - name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
       priority: 10

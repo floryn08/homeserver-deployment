@@ -9,6 +9,9 @@ spec:
   routes: 
     - kind: Rule
       match: Host(`{{ .Values.primaryDomain }}`) && PathPrefix(`/jellyfin`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: {{ .Release.Name }}-loadbalancer
@@ -16,6 +19,9 @@ spec:
           port: http-port 
     - kind: Rule
       match: Host(`{{ .Values.secondaryDomain }}`) && PathPrefix(`/jellyfin`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: {{ .Release.Name }}-loadbalancer
