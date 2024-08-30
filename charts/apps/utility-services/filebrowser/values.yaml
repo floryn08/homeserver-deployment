@@ -1,5 +1,5 @@
 image: filebrowser/filebrowser:v2.30.0
-namespace: core-services
+namespace: utility-services
 ports:
 - name: fb
   containerPort: 80
@@ -7,7 +7,7 @@ ports:
   protocol: TCP
 volumes:
 - name: db
-  hostPath: <path:kv/data/hostPath#appdata>/core-services/filebrowser/database.db
+  hostPath: <path:kv/data/hostPath#appdata>/utility-services/filebrowser/database.db
   podPath: /database.db
   type: FileOrCreate
 
