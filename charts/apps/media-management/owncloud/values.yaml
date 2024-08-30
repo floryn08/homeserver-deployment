@@ -1,0 +1,16 @@
+image: owncloud/ocis-rolling:6.3.0
+namespace: media-management
+replicas: 1
+ports:
+- name: owncloud
+  containerPort: 9200
+  externalPort: 8098
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/owncloud/ocis
+  podPath: /etc/ocis
+- name: data
+  hostPath: <path:kv/data/hostPath#storageHdd>/owncloud
+  podPath: /var/lib/ocis
+

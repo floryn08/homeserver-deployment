@@ -36,9 +36,6 @@ prowlarr:
 jellystat:
   path: charts/apps/media-management/jellystat
 
-nextcloud:
-  path: charts/apps/media-management/nextcloud
-
 jellyseerr:
   path: charts/apps/media-management/jellyseerr
 
@@ -50,3 +47,6 @@ immich:
 
 tilecardmaker:
   path: charts/apps/media-management/tilecardmaker
+
+owncloud:
+  path: charts/apps/media-management/owncloud
