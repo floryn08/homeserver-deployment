@@ -13,6 +13,7 @@ data:
         - 'https://raw.githubusercontent.com/owncloud/awesome-ocis/'
         # In contrary to bash and docker the default is given after the | character
         - 'https://auth.{{ .Values.domain }}/'
+        - 'https://auth.{{ .Values.domain }}/application/o/owncloud/'
       default-src:
         - '''none'''
       font-src:
