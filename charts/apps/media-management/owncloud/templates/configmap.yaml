@@ -10,7 +10,7 @@ data:
   PROXY_OIDC_INSECURE: "true"
   OCIS_URL: https://owncloud.{{ .Values.domain }}
   PROXY_HTTP_ADDR: "0.0.0.0:9200"
-  OCIS_LOG_LEVEL: info
+  OCIS_LOG_LEVEL: debug
   OCIS_LOG_COLOR: "true"
   OCIS_LOG_PRETTY: "true"
   ROXY_ROLE_ASSIGNMENT_DRIVER: "oidc"
