@@ -25,7 +25,7 @@ spec:
           path: {{ $val.hostPath }}
           type: DirectoryOrCreate
       {{ end -}}
-      - name: csp.yaml
+      - name: csp-config
         configMap:
           name: csp-{{ .Release.Name }}
       containers:
@@ -47,7 +47,7 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
-        - name: csp.yaml
+        - name: csp-config
           mountPath: /etc/ocis/csp.yaml
           subPath: csp.yaml
         
