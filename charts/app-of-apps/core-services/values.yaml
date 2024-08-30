@@ -28,9 +28,6 @@ ddclient:
 pgadmin:
   path: charts/apps/core-services/pgadmin
 
-filebrowser:
-  path: charts/apps/core-services/filebrowser
-
 mqtt:
   path: charts/apps/core-services/mqtt
 
