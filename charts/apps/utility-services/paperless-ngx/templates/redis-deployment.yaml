@@ -22,9 +22,6 @@ spec:
       - name: redis-{{ .Release.Name }}
         image: {{ .Values.redis.image }}
         imagePullPolicy: IfNotPresent
-        envFrom:
-        - configMapRef:
-            name: redis-{{ .Release.Name }}-configmap
         ports:
         {{- range $key, $val := $.Values.redis.ports }}
         - containerPort: {{ $val.containerPort }}
