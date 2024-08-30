@@ -7,7 +7,7 @@ data:
   DEMO_USERS: "false"
   PROXY_TLS: "false"
   OCIS_INSECURE: "true"
-  OCIS_URL: https://owncloud.home.yourdomain.com
+  OCIS_URL: https://owncloud.{{ .Values.domain }}
   PROXY_HTTP_ADDR: "0.0.0.0:9200"
   OCIS_LOG_LEVEL: info
   OCIS_LOG_COLOR: "true"
