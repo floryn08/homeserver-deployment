@@ -1,0 +1,43 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: csp-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  csp.yaml: |
+    directives:
+      child-src:
+        - '''self'''
+      connect-src:
+        - '''self'''
+        - 'https://raw.githubusercontent.com/owncloud/awesome-ocis/'
+        # In contrary to bash and docker the default is given after the | character
+        - 'https://auth.{{ .Values.domain }}/'
+      default-src:
+        - '''none'''
+      font-src:
+        - '''self'''
+      frame-ancestors:
+        - '''none'''
+      frame-src:
+        - '''self'''
+        - 'blob:'
+        - 'https://embed.diagrams.net/'
+      img-src:
+        - '''self'''
+        - 'data:'
+        - 'blob:'
+        - 'https://raw.githubusercontent.com/owncloud/awesome-ocis/'
+      manifest-src:
+        - '''self'''
+      media-src:
+        - '''self'''
+      object-src:
+        - '''self'''
+        - 'blob:'
+      script-src:
+        - '''self'''
+        - '''unsafe-inline'''
+      style-src:
+        - '''self'''
+        - '''unsafe-inline'''
