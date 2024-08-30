@@ -9,8 +9,6 @@ authentik:
       port: 5432
       user: <path:kv/data/core-services/authentik#POSTGRES_USER>
       password: <path:kv/data/core-services/authentik#POSTGRES_PASSWORD>
-    # redis:
-    #   host: redis-loadbalancer.core-services.svc
 
     email:
       # -- SMTP Server emails are sent from, fully optional

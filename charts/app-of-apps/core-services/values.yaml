@@ -19,9 +19,6 @@ authentik:
 postgres:
   path: charts/apps/core-services/postgres
 
-redis:
-  path: charts/apps/core-services/redis
-
 ddclient:
   path: charts/apps/core-services/ddclient
 

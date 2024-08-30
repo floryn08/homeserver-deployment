@@ -1,9 +1,0 @@
-image: redis:7.4.0-alpine
-namespace: core-services
-ports:
-- name: redis
-  containerPort: 6379
-  externalPort: 6379
-  protocol: TCP
-volumes: []
-

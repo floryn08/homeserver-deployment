@@ -25,3 +25,11 @@ volumes:
 authentikClientId: <path:kv/data/utility-services/paperless-ngx#authentikClientId>
 authentikClientSecret: <path:kv/data/utility-services/paperless-ngx#authentikClientSecret>
 primaryDomain: <path:kv/data/domains#primaryDomain>
+
+redis:  
+  image: redis:7.4.0-alpine
+  ports:
+  - name: redis
+    containerPort: 6379
+    externalPort: 6379
+    protocol: TCP
