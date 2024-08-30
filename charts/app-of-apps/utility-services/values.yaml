@@ -52,4 +52,4 @@ stirlingPdf:
   path: charts/apps/utility-services/stirling-pdf
 
 filebrowser:
-  path: charts/apps/{{ .Values.namespace }}/filebrowser
+  path: charts/apps/utility-services/filebrowser
