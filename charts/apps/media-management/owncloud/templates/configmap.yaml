@@ -14,5 +14,5 @@ data:
   OCIS_LOG_PRETTY: "true"
   OCIS_OIDC_ISSUER: https://auth.{{ .Values.domain }}/application/o/owncloud/
   WEB_OIDC_CLIENT_ID: <path:kv/data/media-management/owncloud#WEB_OIDC_CLIENT_ID>
-  PROXY_OIDC_REWRITE_WELLKNOWN: true
+  PROXY_OIDC_REWRITE_WELLKNOWN: "true"
   PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD: none
