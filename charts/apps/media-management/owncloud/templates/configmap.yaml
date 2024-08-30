@@ -4,11 +4,11 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 data:
-  DEMO_USERS: false
-  PROXY_TLS: false
-  OCIS_INSECURE: true
+  DEMO_USERS: "false"
+  PROXY_TLS: "false"
+  OCIS_INSECURE: "true"
   OCIS_URL: https://owncloud.home.yourdomain.com
-  PROXY_HTTP_ADDR: 0.0.0.0:9200
+  PROXY_HTTP_ADDR: "0.0.0.0:9200"
   OCIS_LOG_LEVEL: info
-  OCIS_LOG_COLOR: true
-  OCIS_LOG_PRETTY: true
+  OCIS_LOG_COLOR: "true"
+  OCIS_LOG_PRETTY: "true"
