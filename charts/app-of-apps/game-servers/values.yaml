@@ -13,7 +13,6 @@ vault:
 syncPolicy:
   automated:
     prune: true
-    selfHeal: true
 
 valheim:
   path: charts/apps/game-servers/valheim

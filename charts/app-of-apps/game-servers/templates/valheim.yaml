@@ -19,7 +19,6 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
-      selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}
     syncOptions:
       - RespectIgnoreDifferences=true
   

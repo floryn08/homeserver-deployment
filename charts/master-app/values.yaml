@@ -7,7 +7,6 @@ server: https://kubernetes.default.svc
 syncPolicy:
   automated:
     prune: true
-    selfHeal: false
 
 aiServices:
   namespace: ai-services
@@ -23,8 +22,7 @@ gameServers:
   syncPolicy:
     automated:
       prune: false
-      selfHeal: false
-
+   
 homeAutomation:
   namespace: home-automation
   path: charts/app-of-apps/home-automation

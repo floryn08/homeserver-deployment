@@ -13,7 +13,6 @@ vault:
 syncPolicy:
   automated:
     prune: true
-    selfHeal: true
 
 ollama:
   path: charts/apps/ai-services/ollama

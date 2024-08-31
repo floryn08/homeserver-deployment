@@ -18,4 +18,3 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.gameServers.syncPolicy.automated.prune }}
-      selfHeal: {{ .Values.gameServers.syncPolicy.automated.selfHeal }}

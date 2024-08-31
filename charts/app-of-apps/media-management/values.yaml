@@ -13,7 +13,6 @@ vault:
 syncPolicy:
   automated:
     prune: true
-    selfHeal: true
 
 jellyfin:
   path: charts/apps/media-management/jellyfin

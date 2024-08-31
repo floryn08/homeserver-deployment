@@ -8,7 +8,6 @@ namespace: core-services
 syncPolicy:
   automated:
     prune: true
-    selfHeal: false
 
 traefik:
   path: charts/apps/core-services/traefik

@@ -13,7 +13,6 @@ vault:
 syncPolicy:
   automated:
     prune: true
-    selfHeal: true
 
 homeAssistant:
   path: charts/apps/home-automation/home-assistant

@@ -13,7 +13,6 @@ vault:
 syncPolicy:
   automated:
     prune: true
-    selfHeal: true
 
 speedtestTracker:
   path: charts/apps/utility-services/speedtest-tracker

@@ -20,7 +20,6 @@ spec:
       - RespectIgnoreDifferences=true
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
-      selfHeal: {{ .Values.syncPolicy.automated.selfHeal }}
   ignoreDifferences:
     - kind: PersistentVolume
       name: data-vault-pv
