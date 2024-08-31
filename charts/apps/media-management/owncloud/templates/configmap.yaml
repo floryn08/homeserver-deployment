@@ -11,7 +11,7 @@ data:
   OCIS_LOG_LEVEL: debug
   OCIS_LOG_COLOR: "true"
   OCIS_LOG_PRETTY: "true"
-  OCIS_ADMIN_USER_ID: 
+  OCIS_ADMIN_USER_ID: ""
   
   ROXY_ROLE_ASSIGNMENT_DRIVER: "oidc"
   OCIS_OIDC_ISSUER: https://auth.{{ .Values.domain }}/application/o/owncloud/
