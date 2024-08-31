@@ -12,8 +12,6 @@ data:
         - '''self'''
         - 'https://raw.githubusercontent.com/owncloud/awesome-ocis/'
         - 'https://auth.{{ .Values.domain }}/'
-        - 'https://auth.{{ .Values.domain }}/application/o/owncloud/'
-        - '*'
       default-src:
         - '''none'''
       font-src:
