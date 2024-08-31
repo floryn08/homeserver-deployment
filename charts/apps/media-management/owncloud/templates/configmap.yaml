@@ -16,6 +16,7 @@ data:
   ROXY_ROLE_ASSIGNMENT_DRIVER: "oidc"
   OCIS_OIDC_ISSUER: https://auth.{{ .Values.domain }}/application/o/owncloud/
   WEB_OIDC_CLIENT_ID: <path:kv/data/media-management/owncloud#WEB_OIDC_CLIENT_ID>
+  PROXY_CSP_CONFIG_FILE_LOCATION: /etc/ocis/csp.yaml
   PROXY_OIDC_REWRITE_WELLKNOWN: "true"
-  # PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD: none
+  PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD: none
   PROXY_USER_OIDC_CLAIM: "preferred_username"
