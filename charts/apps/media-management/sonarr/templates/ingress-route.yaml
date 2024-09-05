@@ -14,7 +14,7 @@ spec:
           namespace: core-services
       services: 
         - kind: Service
-          name: {{ .Release.Name }}-external
+          name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
           port: http 
   tls:
