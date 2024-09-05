@@ -44,8 +44,5 @@ wizarr:
 immich:
   path: charts/apps/media-management/immich
 
-tilecardmaker:
-  path: charts/apps/media-management/tilecardmaker
-
 owncloud:
   path: charts/apps/media-management/owncloud
