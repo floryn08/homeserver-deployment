@@ -14,8 +14,8 @@ spec:
           namespace: core-services
       services: 
         - kind: Service
-          name: {{ .Release.Name }}-service
+          name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          port: http-port
+          port: http
   tls:
     certResolver: letsencrypt
