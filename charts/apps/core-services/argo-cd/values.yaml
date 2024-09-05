@@ -1,7 +1,7 @@
 argo-cd:
   namespaceOverride: core-services
   global:
-    domain: <path:kv/data/domains#localDomain>
+    domain: argocd.<path:kv/data/domains#localDomain>
   configs:
     cm:
       exec.enabled: true
