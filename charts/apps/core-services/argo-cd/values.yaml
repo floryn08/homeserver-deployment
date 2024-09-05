@@ -1,7 +1,7 @@
 argo-cd:
   namespaceOverride: core-services
-  # global:
-  #   domain: <path:kv/data/core-services/argocd#argocdUrl>
+  global:
+    domain: <path:kv/data/domains#localDomain>
   configs:
     cm:
       exec.enabled: true
@@ -78,6 +78,12 @@ argo-cd:
 
     extraArgs:
       - --insecure
+
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
 
   repoServer:
     rbac:
