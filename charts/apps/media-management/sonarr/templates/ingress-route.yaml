@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   entryPoints:
-    - traefik
+    - websecure
   routes: 
     - kind: Rule
       match: Host(`sonarr.{{ .Values.localDomain }}`) && PathPrefix(`/`)
