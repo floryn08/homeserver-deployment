@@ -26,13 +26,16 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}
         ports:
-        - containerPort: 8989
-          name: {{ .Release.Name }}-port
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
         volumeMounts:
-        - mountPath: /config
-          name: config
-        - mountPath: /media
-          name: media
+        {{- range $index, $val := $.Values.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $val.name }}
+        {{ end -}}
         livenessProbe:
           exec:
             command:
@@ -43,11 +46,9 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
       volumes:
-      - name: config
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
         hostPath:
-          path: {{ .Values.sonarr.configPath }}
+          path: {{ $val.hostPath }}
           type: DirectoryOrCreate
-      - name: media
-        hostPath:
-          path: {{ .Values.sonarr.mediaPath }}
-          type: DirectoryOrCreate
+      {{ end -}}

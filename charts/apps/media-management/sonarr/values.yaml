@@ -1,5 +1,15 @@
 image: linuxserver/sonarr:4.0.9
-sonarr:
-  configPath: <path:kv/data/hostPath#appdata>/media-management/sonarr
-  mediaPath: <path:kv/data/hostPath#mediaHdd>
 namespace: media-management
+localDomain: <path:kv/data/domains#localDomain>
+ports:
+- name: http
+  containerPort: 8989
+  externalPort: 8989
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/sonarr
+  podPath: /config
+- name: media
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /media
