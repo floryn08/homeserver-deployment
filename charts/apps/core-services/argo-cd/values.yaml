@@ -1,12 +1,12 @@
 argo-cd:
   namespaceOverride: core-services
-  global:
-    domain: argocd.<path:kv/data/domains#localDomain>
+  # global:
+    # domain: argocd.<path:kv/data/domains#localDomain>
   configs:
     cm:
       exec.enabled: true
-      # oidc.tls.insecure.skip.verify: "true"
-      # url: <path:kv/data/core-services/argocd#argocdUrl>
+      oidc.tls.insecure.skip.verify: "true"
+      url: <path:kv/data/domains#localDomain>
       dex.config: |
         connectors:
         - config: 
@@ -81,6 +81,7 @@ argo-cd:
 
     ingress:
       enabled: true
+      hostname: argocd.<path:kv/data/domains#localDomain>
       ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
