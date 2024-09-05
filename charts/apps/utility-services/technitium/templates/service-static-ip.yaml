@@ -5,15 +5,15 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   type: ClusterIP
-  clusterIP: 10.43.0.31
+  clusterIP: 10.43.0.30
   ports:
     - name: dns-udp
       port: 53
-      targetPort: 5353
+      targetPort: 53
       protocol: UDP
     - name: dns-tcp
       port: 53
-      targetPort: 5353
+      targetPort: 53
       protocol: TCP
   selector:
     app.kubernetes.io/name: {{ .Release.Name }}
