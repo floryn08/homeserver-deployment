@@ -25,7 +25,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  {{- range $key, $val := $.Values.mc-routerPorts }}
+  {{- range $key, $val := $.Values.mcRouterPorts }}
   - port: {{ $val.externalPort }}
     targetPort: {{ $val.name }}
     name: {{ $val.name }}

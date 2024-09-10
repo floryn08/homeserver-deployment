@@ -28,10 +28,7 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
-        imagePullPolicy: IfNotPresent
-        envFrom:
-        - secretRef:
-            name: {{ .Release.Name }}
+        imagePullPolicy: IfNotPresent      
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
@@ -44,6 +41,10 @@ spec:
           name: {{ $val.name }}
           readOnly: {{ $val.readOnly }}
         {{ end -}}
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -68,12 +69,12 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}-mc-router
     spec:
       containers:
-      - image: {{ .Values.mc-routerImage }}
+      - image: {{ .Values.mcRouterImage }}
         name: mc-router
         # Add "--auto-scale-up" here for https://github.com/itzg/mc-router/#auto-scale-up
         args: ["--api-binding", ":8080", "--in-kube-cluster"]
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.mcRouterPorts }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
