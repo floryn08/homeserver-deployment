@@ -68,7 +68,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}-mc-router
     spec:
-      serviceAccountName: mc-router
+      serviceAccountName: {{ .Release.Name }}-mc-router
       containers:
       - image: {{ .Values.mcRouterImage }}
         name: {{ .Release.Name }}-mc-router
