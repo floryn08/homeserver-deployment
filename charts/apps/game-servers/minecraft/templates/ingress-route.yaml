@@ -17,5 +17,9 @@ spec:
           name: {{ .Release.Name }}-mc-router
           namespace: {{ .Values.namespace }} 
           port: web
+        - kind: Service
+          name: {{ .Release.Name }}-mc-router
+          namespace: {{ .Values.namespace }} 
+          port: minecraft
   tls:
     certResolver: letsencrypt
