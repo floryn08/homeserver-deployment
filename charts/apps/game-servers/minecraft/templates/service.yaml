@@ -32,4 +32,4 @@ spec:
     protocol: {{ $val.protocol }}
   {{ end -}}
   selector:
-    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Release.Name }}-mc-router
