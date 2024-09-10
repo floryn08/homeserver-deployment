@@ -1,12 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-service
+  name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    "mc-router.itzg.me/externalServerName": "minecraft.{{ .Values.domain }}"
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   {{- range $key, $val := $.Values.ports }}
+  - port: {{ $val.externalPort }}
+    targetPort: {{ $val.name }}
+    name: {{ $val.name }}
+    protocol: {{ $val.protocol }}
+  {{ end -}}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mc-router
+  namespace: {{ .Values.namespace }}
+spec:
+  type: ClusterIP
+  ports:
+  {{- range $key, $val := $.Values.mc-routerPorts }}
   - port: {{ $val.externalPort }}
     targetPort: {{ $val.name }}
     name: {{ $val.name }}

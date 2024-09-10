@@ -44,3 +44,37 @@ spec:
           name: {{ $val.name }}
           readOnly: {{ $val.readOnly }}
         {{ end -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mc-router
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}-mc-router
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      run: mc-router
+  replicas: 1
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}-mc-router
+    spec:
+      containers:
+      - image: {{ .Values.mc-routerImage }}
+        name: mc-router
+        # Add "--auto-scale-up" here for https://github.com/itzg/mc-router/#auto-scale-up
+        args: ["--api-binding", ":8080", "--in-kube-cluster"]
+        ports:
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
