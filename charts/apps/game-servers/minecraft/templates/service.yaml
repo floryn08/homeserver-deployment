@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
   annotations:
+    "mc-router.itzg.me/defaultServer": "true"
     "mc-router.itzg.me/externalServerName": "minecraft.{{ .Values.domain }}"
 spec:
   type: ClusterIP
