@@ -58,7 +58,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: {{ .Release.Name }}-mc-router
+      app.kubernetes.io/name: {{ .Release.Name }}-mc-router
   replicas: 1
   revisionHistoryLimit: 1
   strategy:
