@@ -35,6 +35,7 @@ traefik:
         provider: cloudflare
       storage: /letsencrypt/acme.json
     local:
+      storage: /letsencrypt/local.json
       dnsChallenge:
         provider: rfc2136
         resolvers:
