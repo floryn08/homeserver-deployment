@@ -11,8 +11,7 @@ spec:
       services: 
         - name: {{ .Release.Name }}-mc-router
           port: proxy
-  tls:
-    certResolver: letsencrypt
+  tls: false    
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
