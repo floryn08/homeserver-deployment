@@ -1,9 +1,9 @@
 email: <path:kv/data/common#EMAIL>
-nameserver: 10.43.0.30:53
+nameserver: "10.43.0.30:53"
 namespace: &namespace core-services
 
 cert-manager:
   crds:
     enabled: true
   clusterResourceNamespace: *namespace
-  namespace: *&namespace
+  namespace: *namespace
