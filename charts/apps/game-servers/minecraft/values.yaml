@@ -1,20 +1,9 @@
 image: itzg/minecraft-server:2024.7.2
-mcRouterImage: itzg/mc-router:1.22.0
-domain: <path:kv/data/domains#primaryDomain>
 namespace: game-servers
 ports:
 - name: minecraft
   containerPort: 25565
   externalPort: 25565
-  protocol: TCP
-mcRouterPorts:
-- name: proxy
-  containerPort: 25565
-  externalPort: 25565
-  protocol: TCP
-- name: web
-  containerPort: 8080
-  externalPort: 8080
   protocol: TCP
 volumes:
 - name: data
