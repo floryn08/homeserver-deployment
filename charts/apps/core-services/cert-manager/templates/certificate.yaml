@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: local-certificate-secret
   issuerRef: 
-    kind: Issuer
+    kind: ClusterIssuer
     name: local-issuer
   commonName: "*.local"
   dnsNames:
