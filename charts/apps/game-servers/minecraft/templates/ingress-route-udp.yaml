@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   entryPoints:
-    - websecure
+    - websecureUdp
   routes: 
     - services: 
       - name: {{ .Release.Name }}-mc-router
