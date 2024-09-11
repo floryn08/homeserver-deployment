@@ -26,12 +26,6 @@ traefik:
     web:
       redirectTo: 
         port: websecure
-    websecureUdp:
-      port: 8443
-      expose: 
-        default: true
-      exposedPort: 443
-      protocol: UDP
   certResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
