@@ -34,12 +34,28 @@ traefik:
       dnsChallenge:
         provider: cloudflare
       storage: /letsencrypt/acme.json
+    local:
+      dnsChallenge:
+        provider: rfc2136
+        resolvers:
+        - "10.43.0.30:53"
   env:
     - name: CF_DNS_API_TOKEN
       valueFrom:
         secretKeyRef:
           name: traefik
           key: CF_DNS_API_TOKEN
+    - name: RFC2136_NAMESERVER
+      value: "10.43.0.30:53"
+    - name: RFC2136_TSIG_KEY
+      value: tsig-secret
+    - name: RFC2136_TSIG_ALGORITHM
+      value: hmac-sha256.
+    - name: RFC2136_TSIG_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: traefik
+          key: RFC2136_TSIG_SECRET
   persistence:
     enabled: true
     name: letsencrypt
