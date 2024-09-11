@@ -1,3 +1,4 @@
+# https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
 namespace: core-services
 primaryDomain: <path:kv/data/domains#primaryDomain>
 letsencryptPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
@@ -25,6 +26,12 @@ traefik:
     web:
       redirectTo: 
         port: websecure
+    websecureUdp:
+      port: 8443
+      expose: 
+        default: true
+      exposedPort: 443
+      protocol: UDP
   certResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
