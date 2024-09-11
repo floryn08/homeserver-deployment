@@ -16,10 +16,6 @@ spec:
         - kind: Service
           name: {{ .Release.Name }}-mc-router
           namespace: {{ .Values.namespace }} 
-          port: web
-        - kind: Service
-          name: {{ .Release.Name }}-mc-router
-          namespace: {{ .Values.namespace }} 
           port: proxy
   tls:
     certResolver: letsencrypt
