@@ -8,9 +8,6 @@ spec:
     - websecure
   routes: 
     - match: HostSNI(`minecraft.{{ .Values.domain }}`)
-      middlewares: 
-        - name: bouncer
-          namespace: core-services
       services: 
         - name: {{ .Release.Name }}-mc-router
           port: proxy
