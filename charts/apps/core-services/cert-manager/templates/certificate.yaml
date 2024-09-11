@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: local-certificate
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: local-certificate-secret
+  issuerRef: 
+    kind: Issuer
+    name: local-issuer
+  commonName: "*.local"
+  dnsNames:
+    - "*.local" 
