@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: {{ .Values.argocdNamespace }}
+spec:
+  destination:
+    namespace: {{ .Values.namespace }}
+    server: {{ .Values.server }}
+  source:
+    path: {{ .Values.certManager.path }}
+    repoURL: {{ .Values.repoUrl }}
+    targetRevision: {{ .Values.targetRevision }}
+    plugin:
+      env:
+        - name: HELM_ARGS
+          value: -f values.yaml
+  project: {{ .Values.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.syncPolicy.automated.prune }}

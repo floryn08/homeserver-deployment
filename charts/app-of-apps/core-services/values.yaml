@@ -53,3 +53,6 @@ prometheus:
 
 crowdsec:
   path: charts/apps/core-services/crowdsec
+
+certManager:
+  path: charts/apps/core-services/cert-manager

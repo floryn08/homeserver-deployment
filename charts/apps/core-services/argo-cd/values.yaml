@@ -54,6 +54,7 @@ argo-cd:
                 helm repo add prometheus https://prometheus-community.github.io/helm-charts
                 helm repo add immich https://immich-app.github.io/immich-charts
                 helm repo add crowdsec https://crowdsecurity.github.io/helm-charts
+                helm repo add jetstack https://charts.jetstack.io
                 helm dependency build
           generate:
             command:

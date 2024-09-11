@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: local-issuer
+  namespace: {{ .Values.namespace }}
+spec:
+  acme:
+    email: {{ .Values.email }}
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: local-issuer-account-key
+    solvers:
+    - dns01:
+        rfc2136:
+          nameserver: {{ .Values.nameserver }}
+          tsigKeyName: tsig-secret
+          tsigAlgorithm: HMACSHA512
+          tsigSecretSecretRef:
+            name: tsig-secret
+            key: tsig-secret-key
