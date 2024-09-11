@@ -11,17 +11,3 @@ spec:
       services: 
         - name: {{ .Release.Name }}-mc-router
           port: proxy
-  tls: false    
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRouteUDP
-metadata:
-  name: {{ .Release.Name }}
-  namespace: {{ .Values.namespace }}
-spec:
-  entryPoints:
-    - websecureUdp
-  routes: 
-    - services: 
-      - name: {{ .Release.Name }}-mc-router
-        port: proxy
