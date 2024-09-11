@@ -11,3 +11,5 @@ spec:
       services: 
         - name: {{ .Release.Name }}-mc-router
           port: proxy
+  tls:
+    certResolver: letsencrypt
