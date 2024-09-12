@@ -54,10 +54,7 @@ traefik:
     - name: RFC2136_TSIG_ALGORITHM
       value: hmac-sha256.
     - name: RFC2136_TSIG_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: traefik
-          key: RFC2136_TSIG_SECRET
+      value: <path:kv/data/core-services/traefik#RFC2136_TSIG_SECRET>
   persistence:
     enabled: true
     name: letsencrypt
