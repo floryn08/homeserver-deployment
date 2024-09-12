@@ -8,6 +8,6 @@ spec:
   issuerRef: 
     kind: ClusterIssuer
     name: local-issuer
-  commonName: "*.local"
+  commonName: "*.dev"
   dnsNames:
-    - "*.local" 
+    - "*.dev" 
