@@ -8,6 +8,6 @@ spec:
   issuerRef: 
     kind: ClusterIssuer
     name: local-issuer
-  commonName: "*.local.ai"
+  commonName: "*.{{ .Values.localDomain }}"
   dnsNames:
-    - "*.local.ai" 
+    - "*.{{ .Values.localDomain }}" 

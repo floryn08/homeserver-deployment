@@ -1,6 +1,7 @@
 email: <path:kv/data/common#EMAIL>
 nameserver: "10.43.0.30:53"
 namespace: &namespace core-services
+localDomain: <path:kv/data/domains#localDomain>
 
 cert-manager:
   crds:
