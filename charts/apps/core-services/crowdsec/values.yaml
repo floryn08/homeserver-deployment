@@ -26,3 +26,8 @@ crowdsec:
         value: "k8s linux"
       - name: BOUNCER_KEY_traefik
         value: "<path:kv/data/core-services/crowdsec#BOUNCER_KEY_traefik>"
+    secrets:
+      csLapiSecret: "<path:kv/data/core-services/crowdsec#CS_LAPI_SECRET>"
+  secrets:
+    username: "<path:kv/data/core-services/crowdsec#USERNAME>"
+    password: "<path:kv/data/core-services/crowdsec#PASSWORD>"
