@@ -39,8 +39,6 @@ traefik:
       storage: /letsencrypt/local.json
       dnsChallenge:
         provider: rfc2136
-        resolvers:
-        - "10.43.0.30:53"
   env:
     - name: CF_DNS_API_TOKEN
       valueFrom:
