@@ -1,4 +1,4 @@
-image: owncloud/ocis-rolling:6.3.0
+image: owncloud/ocis-rolling:6.4.0
 domain: <path:kv/data/domains#primaryDomain>
 namespace: media-management
 replicas: 1
