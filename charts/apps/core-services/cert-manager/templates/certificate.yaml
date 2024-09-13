@@ -7,7 +7,7 @@ spec:
   secretName: local-certificate-secret
   issuerRef: 
     kind: ClusterIssuer
-    name: local-issuer
+    name: local-issuer-self-signed
   commonName: "*.{{ .Values.localDomain }}"
   dnsNames:
     - "*.{{ .Values.localDomain }}" 
