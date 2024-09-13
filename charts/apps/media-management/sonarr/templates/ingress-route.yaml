@@ -8,14 +8,11 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`sonarr.{{ .Values.localDomain }}`) && PathPrefix(`/`)
-      middlewares: 
-        - name: bouncer
-          namespace: core-services
+      match: Host(`sonarr.local.{{ .Values.localDomain }}`) && PathPrefix(`/`)
       services: 
         - kind: Service
           name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
           port: http 
   tls:
-    certResolver: local
+    certResolver: letsencrypt
