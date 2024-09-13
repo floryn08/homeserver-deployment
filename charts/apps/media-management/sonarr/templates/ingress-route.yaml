@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`sonarr.local.{{ .Values.localDomain }}`) && PathPrefix(`/`)
+      match: Host(`sonarr.local.{{ .Values.domain }}`) && PathPrefix(`/`)
       services: 
         - kind: Service
           name: {{ .Release.Name }}
