@@ -29,16 +29,18 @@ traefik:
   certResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
+      storage: /letsencrypt/acme.json
       httpChallenge:
         entryPoint: "web"
       dnsChallenge:
         provider: cloudflare
-      storage: /letsencrypt/acme.json
     local:
       email: <path:kv/data/core-services/traefik#email>
       storage: /letsencrypt/local.json
       dnsChallenge:
         provider: rfc2136
+        resolvers:
+        - "10.43.0.30:53"
   env:
     - name: CF_DNS_API_TOKEN
       valueFrom:
