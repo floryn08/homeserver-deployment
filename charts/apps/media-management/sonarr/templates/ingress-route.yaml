@@ -15,4 +15,4 @@ spec:
           namespace: {{ .Values.namespace }} 
           port: http 
   tls:
-    certResolver: letsencrypt
+    secretName: local-certificate-secret
