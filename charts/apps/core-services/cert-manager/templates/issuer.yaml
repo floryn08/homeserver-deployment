@@ -14,7 +14,7 @@ spec:
         rfc2136:
           nameserver: {{ .Values.nameserver }}
           tsigKeyName: tsig-secret
-          tsigAlgorithm: HMACSHA256
+          tsigAlgorithm: HmacSHA256
           tsigSecretSecretRef:
             name: tsig-secret
             key: tsig-secret-key
