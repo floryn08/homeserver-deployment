@@ -1,6 +1,6 @@
 image: linuxserver/sonarr:4.0.9
 namespace: media-management
-domain: <path:kv/data/domains#primaryDomain>
+domain: <path:kv/data/domains#localDomain>
 ports:
 - name: http
   containerPort: 8989
