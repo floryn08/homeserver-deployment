@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: local-certificate
+  name: sonarr-certificate
   namespace: {{ .Values.namespace }}
 spec:
-  secretName: local-certificate-secret
+  secretName: sonarr-certificate-secret
   issuerRef: 
     kind: ClusterIssuer
-    name: local-issuer-self-signed
+    name: ca-issuer
   commonName: "*.{{ .Values.domain }}"
   dnsNames:
     - "*.{{ .Values.domain }}" 

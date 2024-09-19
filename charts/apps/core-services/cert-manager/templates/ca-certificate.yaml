@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ca-certificate
+  namespace: {{ .Values.namespace }}
+spec:
+  isCA: true
+  commonName: ca-certificate
+  subject:
+    organizations:
+      - ACME Inc.
+    organizationalUnits:
+      - Widgets
+  secretName: ca-secret
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: self-signed-ca-issuer
+    kind: Issuer
+    group: cert-manager.io
