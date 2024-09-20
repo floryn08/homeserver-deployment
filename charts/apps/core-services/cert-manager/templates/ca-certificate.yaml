@@ -5,9 +5,11 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   isCA: true
+  subject:
+    organizations:
+      - cert-manager
   commonName: ca-certificate
   secretName: ca-secret
   issuerRef:
     name: self-signed-ca-issuer
     kind: Issuer
-    group: cert-manager.io

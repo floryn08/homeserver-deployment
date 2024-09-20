@@ -8,6 +8,6 @@ spec:
   issuerRef: 
     kind: ClusterIssuer
     name: ca-issuer
-  commonName: "*.{{ .Values.domain }}"
+  commonName: "argocd.{{ .Values.domain }}"
   dnsNames:
-    - "*.{{ .Values.domain }}" 
+    - "argocd.{{ .Values.domain }}" 
