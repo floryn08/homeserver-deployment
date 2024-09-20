@@ -69,6 +69,14 @@
       "matchStrings": ["version:\\s*(?<currentValue>v[\\d\\.]+)"],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "maxlerebourg/crowdsec-bouncer-traefik-plugin"
+    },
+    {
+      "customType": "regex",
+      "description": "Update argo vault plugin version",
+      "fileMatch": ["^charts/apps/core-services/argo-cd/values\\.yaml$"],
+      "matchStrings": ["env:\\s*\\n\\s*-\\s*name:\\s*AVP_VERSION\\n\\s*value:\\s*(?<currentValue>.*)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "argoproj-labs/argocd-vault-plugin"
     }
   ]
 }
