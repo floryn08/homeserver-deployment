@@ -7,7 +7,7 @@ service:
 ports:
 - name: http
   containerPort: 3000
-  externalPort: 8087
+  externalPort: 3000
   protocol: TCP
 volumes:
 - name: backup
