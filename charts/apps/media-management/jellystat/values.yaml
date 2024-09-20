@@ -1,8 +1,11 @@
 image: cyfershepard/jellystat:unstable
 namespace: media-management
 replicas: 1
+domain: <path:kv/data/domains#localDomain>
+service:
+  type: ClusterIP
 ports:
-- name: jellystat
+- name: http
   containerPort: 3000
   externalPort: 8087
   protocol: TCP

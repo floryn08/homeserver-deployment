@@ -26,17 +26,16 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}
         ports:
-        - containerPort: {{ .Values.containerPort }}
-          name: {{ .Release.Name }}-port
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
         volumeMounts:
-        - mountPath: /config
-          name: config
-        - mountPath: /movies
-          name: movies
-        - mountPath: /tv
-          name: tv
-        - mountPath: /anime
-          name: anime
+        {{- range $index, $val := $.Values.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $val.name }}
+        {{ end -}}
         livenessProbe:
           exec:
             command:
@@ -49,19 +48,9 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
       volumes:
-      - name: config
+      {{- range $index, $val := $.Values.volumes }}
+      - name: {{ $val.name }}
         hostPath:
-          path: {{ .Values.configPath }}
+          path: {{ $val.hostPath }}
           type: DirectoryOrCreate
-      - name: movies
-        hostPath:
-          path: {{ .Values.moviesPath }}
-          type: DirectoryOrCreate
-      - name: tv
-        hostPath:
-          path: {{ .Values.tvPath }}
-          type: DirectoryOrCreate
-      - name: anime
-        hostPath:
-          path: {{ .Values.animePath }}
-          type: DirectoryOrCreate
+      {{ end -}}

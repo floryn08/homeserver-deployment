@@ -1,6 +1,17 @@
 image: linuxserver/radarr:5.9.1
-externalPort: 7878
-containerPort: 7878
-configPath: <path:kv/data/hostPath#appdata>/media-management/radarr
-mediaPath: <path:kv/data/hostPath#mediaHdd>
 namespace: media-management
+domain: <path:kv/data/domains#localDomain>
+service:
+  type: ClusterIP
+ports:
+- name: http
+  containerPort: 7878
+  externalPort: 7878
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/radarr
+  podPath: /config
+- name: media
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /media
