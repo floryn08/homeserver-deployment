@@ -4,6 +4,7 @@ metadata:
   name: ca-certificate
   namespace: {{ .Values.namespace }}
 spec:
+  revisionHistoryLimit: 1 
   isCA: true
   subject:
     organizations:      
