@@ -9,8 +9,8 @@ spec:
     organizations:      
       - {{ .Values.localDomain }}
     organizationalUnits:
-      - cert-manager
-  commonName: {{ .Values.localDomain }}
+      - {{ .Values.namespace }}
+  commonName: cert-manager
   secretName: ca-secret
   issuerRef:
     name: self-signed-ca-issuer
