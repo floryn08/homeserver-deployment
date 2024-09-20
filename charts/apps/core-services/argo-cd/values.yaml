@@ -78,18 +78,12 @@ argo-cd:
   server:
     service:
       type: ClusterIP
-      # servicePortHttp: 8090
-      # servicePortHttps: 8092
 
     extraArgs:
       - --insecure
 
     ingress:
       enabled: false
-      # hostname: argocd.<path:kv/data/domains#localDomain>
-      ingressClassName: traefik
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
 
   repoServer:
     rbac:
