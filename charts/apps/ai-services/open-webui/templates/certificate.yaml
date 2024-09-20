@@ -11,3 +11,8 @@ spec:
   commonName: "ollama.{{ .Values.domain }}"
   dnsNames:
     - "ollama.{{ .Values.domain }}" 
+  subject:
+    organizations:      
+      - {{ .Values.localDomain }}
+    organizationalUnits:
+      - {{ .Values.namespace }}
