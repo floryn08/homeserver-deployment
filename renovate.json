@@ -68,7 +68,7 @@
       "fileMatch": ["^charts/apps/core-services/traefik/values\\.yaml$"],
       "matchStrings": ["version:\\s*(?<currentValue>v[\\d\\.]+)"],
       "datasourceTemplate": "github-tags",
-      "packageName ": "maxlerebourg/crowdsec-bouncer-traefik-plugin"
+      "depNameTemplate": "maxlerebourg/crowdsec-bouncer-traefik-plugin"
     }
   ]
 }
