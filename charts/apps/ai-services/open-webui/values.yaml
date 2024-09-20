@@ -4,7 +4,7 @@ domain: <path:kv/data/domains#localDomain>
 service:
   type: ClusterIP
 ports:
-- name: open-webui
+- name: http
   containerPort: 8080
   externalPort: 8088
   protocol: TCP
