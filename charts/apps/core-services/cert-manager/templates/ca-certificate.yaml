@@ -6,9 +6,11 @@ metadata:
 spec:
   isCA: true
   subject:
-    organizations:
+    organizations:      
+      - {{ .Values.localDomain }}
+    organizationalUnits:
       - cert-manager
-  commonName: ca-certificate
+  commonName: {{ .Values.localDomain }}
   secretName: ca-secret
   issuerRef:
     name: self-signed-ca-issuer
