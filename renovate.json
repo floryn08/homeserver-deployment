@@ -60,5 +60,14 @@
       "groupName": "Game Servers",
       "groupSlug": "game-servers"
     }
+  ],
+  "regexManagers": [
+    {
+      "description": "Update Traefik plugin version",
+      "fileMatch": ["^charts/apps/core-services/traefik/values\\.yaml$"],
+      "matchStrings": ["version:\\s*(?<currentValue>v[\\d\\.]+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
+    }
   ]
 }
