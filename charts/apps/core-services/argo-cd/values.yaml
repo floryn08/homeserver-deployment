@@ -74,9 +74,9 @@ argo-cd:
 
   server:
     service:
-      type: LoadBalancer
-      servicePortHttp: 8090
-      servicePortHttps: 8092
+      type: ClusterIP
+      # servicePortHttp: 8090
+      # servicePortHttps: 8092
 
     extraArgs:
       - --insecure
