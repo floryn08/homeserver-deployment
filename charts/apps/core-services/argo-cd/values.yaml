@@ -1,7 +1,8 @@
+# https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 argo-cd:
   namespaceOverride: core-services
-  # global:
-    # domain: argocd.<path:kv/data/domains#localDomain>
+  global:
+    domain: argocd.<path:kv/data/domains#localDomain>
   configs:
     cm:
       exec.enabled: true
@@ -82,7 +83,7 @@ argo-cd:
 
     ingress:
       enabled: true
-      hostname: argocd.<path:kv/data/domains#localDomain>
+      # hostname: argocd.<path:kv/data/domains#localDomain>
       ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
