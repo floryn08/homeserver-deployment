@@ -13,6 +13,6 @@ spec:
     - "argocd.{{ .Values.domain }}" 
   subject:
     organizations:      
-      - {{ .Values.localDomain }}
+      - {{ .Values.domain }}
     organizationalUnits:
       - {{ .Values.namespace }}
