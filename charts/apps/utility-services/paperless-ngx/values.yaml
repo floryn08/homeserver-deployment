@@ -1,5 +1,8 @@
 image: ghcr.io/paperless-ngx/paperless-ngx:2.12.1
 namespace: utility-services
+domain: <path:kv/data/domains#localDomain>
+service:
+  type: ClusterIP
 ports:
 - name: http
   containerPort: 8000
