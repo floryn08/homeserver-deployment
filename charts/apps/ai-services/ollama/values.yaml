@@ -1,5 +1,7 @@
 image: ollama/ollama:0.3.11
 namespace: ai-services
+service:
+  type: ClusterIP
 ports:
 - name: ollama
   containerPort: 11434

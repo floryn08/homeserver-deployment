@@ -37,7 +37,7 @@ spec:
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
-          name: {{ $val.name }}-port
+          name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
