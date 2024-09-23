@@ -1,6 +1,7 @@
+namespace: &namespace utility-services
 grafanaDataPath: <path:kv/data/hostPath#appdata>/utility-services/grafana
 grafana:
-  namespaceOverride: utility-services
+  namespaceOverride: *namespace
   assertNoLeakedSecrets: false
 
   service:
