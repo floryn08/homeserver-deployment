@@ -3,5 +3,5 @@ name: argo-cd
 version: 1.0.0
 dependencies:
 - name: argo-cd
-  version: 7.6.4
+  version: 7.6.5
   repository: https://argoproj.github.io/argo-helm
