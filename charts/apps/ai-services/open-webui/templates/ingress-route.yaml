@@ -9,10 +9,13 @@ spec:
   routes: 
     - kind: Rule
       match: Host(`ollama.{{ .Values.domain }}`) && PathPrefix(`/`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          port: http 
+          port: http
   tls:
-    secretName: {{ .Release.Name }}-certificate-secret
+    certResolver: letsencrypt
