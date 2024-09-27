@@ -1,4 +1,4 @@
-image: linuxserver/prowlarr:1.23.1
+image: linuxserver/prowlarr:1.24.3
 namespace: media-management
 domain: <path:kv/data/domains#localDomain>
 service:
