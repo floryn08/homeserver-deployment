@@ -9,7 +9,7 @@ spec:
   capacity:
     storage: 700Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
     path: {{ .Values.appdataVolumePath }}
     type: DirectoryOrCreate
