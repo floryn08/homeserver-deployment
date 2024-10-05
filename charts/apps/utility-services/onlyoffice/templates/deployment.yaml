@@ -19,9 +19,11 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
+      {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}
+          claimName: {{ $.Release.Name }}
+      {{ end -}}
       containers:
       - name: {{ .Release.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
