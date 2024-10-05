@@ -43,3 +43,6 @@ wizarr:
 
 immich:
   path: charts/apps/media-management/immich
+
+nextcloud:
+  path: charts/apps/media-management/nextcloud

@@ -1,0 +1,36 @@
+namespace: &namespace media-management
+
+nextcloud:
+  ingress:
+    enabled: true
+    className: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+  nextcloud:
+    host: <path:kv/data/domains#primaryDomain>
+    existingSecret:
+      enabled: true
+      secretName: nextcloud
+      usernameKey: username
+      passwordKey: password
+      smtpUsernameKey: smtpUsername
+      smtpPasswordKey: smtpPassword
+      smtpHostKey: smtpHost
+    mail: 
+      enabled: true
+    persistence:
+      subPath: media-management/nextcloud
+  persistence:
+    enabled: true
+    existingClaim: nextcloud
+  redis:
+    namespaceOverride: *namespace
+    architecture: standalone
+    master: 
+      revisionHistoryLimit: 1
+      persistence: 
+        enabled: false
+    auth:
+      enabled: false
