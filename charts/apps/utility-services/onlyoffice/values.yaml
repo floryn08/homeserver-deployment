@@ -64,8 +64,8 @@ rabbitmq:
     existingSecretPasswordKey: rabbitmqPassword
     existingErlangSecret: onlyoffice
     existingSecretErlangKey: erlangCookie
-    persistence:
-      enabled: false
+  persistence:
+    enabled: false
   service:
     ports:
       amqp: 5672
