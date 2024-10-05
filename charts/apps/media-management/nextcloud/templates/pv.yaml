@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: {{ .Values.appdataVolumePath }}/media-management/nextcloud
+    path: {{ .Values.appdataVolumePath }}/{{ .Values.namespace }}/{{ .Release.Name }}
     type: DirectoryOrCreate

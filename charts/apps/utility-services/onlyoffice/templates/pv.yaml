@@ -1,15 +1,15 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: appdata-pv
+  name: {{ .Release.Name }}
   labels:
-    type: appdata
+    release: {{ .Release.Name }}
 spec:
   storageClassName: manual
   capacity:
     storage: 700Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
-    path: {{ .Values.appdataVolumePath }}
+    path: {{ .Values.appdataVolumePath }}/{{ .Values.namespace }}/{{ .Release.Name }}
     type: DirectoryOrCreate
