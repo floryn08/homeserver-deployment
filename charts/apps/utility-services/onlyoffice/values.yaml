@@ -58,11 +58,7 @@ rabbitmq:
     existingPasswordSecret: onlyoffice
     existingSecretPasswordKey: rabbitmqPassword
     persistence:
-      enabled: true
-      storageClass: manual
-      selector: 
-        type: local
-      subPath: utility-services/onlyoffice/rabbitmq
+      enabled: false
   service:
     ports:
       amqp: 5672
