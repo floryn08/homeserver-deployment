@@ -59,6 +59,8 @@ argo-cd:
                 helm repo add immich https://immich-app.github.io/immich-charts
                 helm repo add crowdsec https://crowdsecurity.github.io/helm-charts
                 helm repo add jetstack https://charts.jetstack.io
+                helm repo add onlyoffice https://download.onlyoffice.com/charts/stable
+                helm repo add bitnami https://charts.bitnami.com/bitnami
                 helm dependency build
           generate:
             command:

@@ -1,0 +1,9 @@
+dependencies:
+- name: docs
+  repository: https://download.onlyoffice.com/charts/stable
+  version: 4.2.2
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 20.1.7
+digest: sha256:a157c2b526c06d0c4f834fc4bbf9588a97fd024c21f199109a9c1bb4851c5962
+generated: "2024-10-05T12:16:19.704539671+03:00"

@@ -1,0 +1,48 @@
+namespace: &namespace utility-services
+
+docs:
+  connections:
+    dbType: postgresql
+    dbHost: postgres-loadbalancer.core-services.svc
+    dbUser: <path:kv/data/utility-services/onlyoffice#dbUser>
+    dbPort: 5432
+    dbName: onlyoffice
+    dbExistingSecret: onlyoffice
+    dbSecretKeyName: dbPassword
+
+    redisHost: redis
+    redisPort: 6379
+    redisNoPass: true
+
+    amqpType: rabbitmq
+    amqpHost: rabbitmq
+    amqpPort: 5672
+    amqpUser: user
+    amqpSecretKeyName: rabbitmqPassword
+    amqpExistingSecret: onlyoffice
+
+  persistence:
+    existingClaim: onlyoffice-pvc
+  
+  namespaceOverride: *namespace
+
+redis:
+  namespaceOverride: *namespace
+  auth:
+    enabled: false
+
+rabbitmq:
+  namespaceOverride: *namespace
+  auth:
+    user: user
+    existingPasswordSecret: onlyoffice
+    existingSecretPasswordKey: rabbitmqPassword
+    persistence:
+      enabled: true
+      storageClass: manual
+      selector: 
+        type: local
+      subPath: utility-services/onlyoffice/rabbitmq
+  service:
+    ports:
+      amqp: 5672
