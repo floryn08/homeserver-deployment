@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: appdata-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 700Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{ .Values.appdataVolumePath }}
+    type: DirectoryOrCreate
