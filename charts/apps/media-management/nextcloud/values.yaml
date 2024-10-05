@@ -1,4 +1,5 @@
 namespace: &namespace media-management
+appdataVolumePath: <path:kv/data/hostPath#appdata>
 
 nextcloud:
   ingress:
@@ -20,8 +21,6 @@ nextcloud:
       smtpHostKey: smtpHost
     mail: 
       enabled: true
-    persistence:
-      subPath: media-management/nextcloud
   persistence:
     enabled: true
     existingClaim: nextcloud
