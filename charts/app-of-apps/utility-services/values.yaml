@@ -52,3 +52,6 @@ filebrowser:
 
 technitium:
   path: charts/apps/utility-services/technitium
+
+onlyoffice:
+  path: charts/apps/utility-services/onlyoffice
