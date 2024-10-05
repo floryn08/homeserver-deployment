@@ -8,11 +8,14 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`{{ .Release.Name }}.{{ .Values.domain }}`) && PathPrefix(`/`)
+      match: Host(`{{ .Release.Name }}.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
+      middlewares: 
+        - name: bouncer
+          namespace: core-services
       services: 
         - kind: Service
           name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          port: http 
+          port: http
   tls:
-    secretName: {{ .Release.Name }}-certificate
+    certResolver: letsencrypt
