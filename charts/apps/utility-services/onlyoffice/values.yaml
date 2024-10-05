@@ -2,7 +2,7 @@ namespace: &namespace utility-services
 
 docs:
   connections:
-    dbType: postgresql
+    dbType: postgres
     dbHost: postgres-loadbalancer.core-services.svc
     dbUser: <path:kv/data/utility-services/onlyoffice#dbUser>
     dbPort: 5432
