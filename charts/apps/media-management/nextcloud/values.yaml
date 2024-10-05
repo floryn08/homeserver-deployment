@@ -23,6 +23,7 @@ nextcloud:
     enabled: true
     existingClaim: *releaseName
   redis:
+    enabled: true
     namespaceOverride: *namespace
     architecture: standalone
     master: 
