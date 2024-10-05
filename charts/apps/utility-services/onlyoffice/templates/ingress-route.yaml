@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`{{ .Release.Name }}.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
+      match: Host(`{{ .Release.Name }}.{{ .Values.domain }}`) && PathPrefix(`/`)
       middlewares: 
         - name: bouncer
           namespace: core-services

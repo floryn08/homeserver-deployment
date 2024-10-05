@@ -4,7 +4,7 @@ image:
   tag: 8.1.3
 service:
   type: ClusterIP
-domain: <path:kv/data/domains#localDomain>
+domain: <path:kv/data/domains#primaryDomain>
 ports:
 - name: http
   containerPort: 80
