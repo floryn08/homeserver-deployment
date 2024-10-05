@@ -4,8 +4,8 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 data:
-  DB_TYPE: postgres
-  DB_HOST: {{ .Values.connections.dbType }}
+  DB_TYPE: {{ .Values.connections.dbType }}
+  DB_HOST: {{ .Values.connections.dbHost }}
   DB_PORT: {{ .Values.connections.dbPort | quote }}
   DB_NAME: {{ .Values.connections.dbName }}
   AMQP_URI: {{ .Values.connections.amqpHost }}
