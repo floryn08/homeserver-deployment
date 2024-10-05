@@ -30,9 +30,9 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
-          name: {{ .Release.Name }}
+            name: {{ .Release.Name }}
         - secretRef:
-          name: {{ .Release.Name }}
+            name: {{ .Release.Name }}
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
