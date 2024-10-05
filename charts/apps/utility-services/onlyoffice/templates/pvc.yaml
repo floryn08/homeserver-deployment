@@ -11,4 +11,4 @@ spec:
       storage: 10Gi
   selector:
     matchLabels:
-      type: appdata
+      release: {{ .Release.Name }}
