@@ -1,14 +1,16 @@
+releaseName: &releaseName nextcloud
 namespace: &namespace media-management
 appdataVolumePath: <path:kv/data/hostPath#appdata>
+primaryDomain: &primaryDomain <path:kv/data/domains#primaryDomain>
 
 nextcloud:
   ingress:
     enabled: false
   nextcloud:
-    host: <path:kv/data/domains#primaryDomain>
+    host: *primaryDomain
     existingSecret:
       enabled: true
-      secretName: nextcloud
+      secretName: *releaseName
       usernameKey: username
       passwordKey: password
       smtpUsernameKey: smtpUsername
@@ -18,7 +20,7 @@ nextcloud:
       enabled: true
   persistence:
     enabled: true
-    existingClaim: nextcloud
+    existingClaim: *releaseName
   redis:
     namespaceOverride: *namespace
     architecture: standalone
