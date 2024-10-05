@@ -12,23 +12,23 @@ ports:
   protocol: TCP
 volumes:
 - name: data
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/onlyoffice/data
+  subPath: utility-services/onlyoffice/data
   podPath: /var/www/onlyoffice/Data
   type: DirectoryOrCreate
 - name: log
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/onlyoffice/log
+  subPath: utility-services/onlyoffice/log
   podPath: /var/log/onlyoffice
   type: Directory
 - name: cache
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/onlyoffice/cache
+  subPath: utility-services/onlyoffice/cache
   podPath: /var/lib/onlyoffice/documentserver/App_Data/cache/files
   type: Directory
 - name: files
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/onlyoffice/files
+  subPath: utility-services/onlyoffice/files
   podPath: /var/www/onlyoffice/documentserver-example/public/files
   type: Directory
 - name: fonts
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/onlyoffice/fonts
+  subPath: utility-services/onlyoffice/fonts
   podPath: /usr/share/fonts
   type: Directory
 
