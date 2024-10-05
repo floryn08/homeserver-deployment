@@ -3,12 +3,7 @@ appdataVolumePath: <path:kv/data/hostPath#appdata>
 
 nextcloud:
   ingress:
-    enabled: true
-    className: traefik
-    annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
-      traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+    enabled: false
   nextcloud:
     host: <path:kv/data/domains#primaryDomain>
     existingSecret:
