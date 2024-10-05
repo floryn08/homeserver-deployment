@@ -1,12 +1,9 @@
 dependencies:
-- name: docs
-  repository: https://download.onlyoffice.com/charts/stable
-  version: 4.2.2
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 20.1.7
 - name: rabbitmq
   repository: https://charts.bitnami.com/bitnami
   version: 15.0.1
-digest: sha256:9eac4eabf00db5ef60b33eb7e51ee8f8dacba7708d474950294e27e875d75e7c
-generated: "2024-10-05T14:35:23.134945622+03:00"
+digest: sha256:7de8445f8d716228008e107fff780af091e9159cdc574bf1cef7b3f1ef8ebcaa
+generated: "2024-10-05T17:29:26.543808191+03:00"

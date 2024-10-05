@@ -2,9 +2,6 @@ apiVersion: v2
 name: onlyoffice
 version: 1.0.0
 dependencies:
-- name: docs
-  version: 4.2.2
-  repository: https://download.onlyoffice.com/charts/stable
 - name: redis
   version: 20.1.7
   repository: https://charts.bitnami.com/bitnami

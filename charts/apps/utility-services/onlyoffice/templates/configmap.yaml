@@ -1,0 +1,13 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  DB_TYPE: postgres
+  DB_HOST: {{ .Values.connections.dbType }}
+  DB_PORT: {{ .Values.connections.dbPort }}
+  DB_NAME: {{ .Values.connections.dbName }}
+  AMQP_URI: {{ .Values.connections.amqpHost }}
+  REDIS_SERVER_HOST: {{ .Values.connections.redisHost }}
+  REDIS_SERVER_PORT: {{ .Values.connections.redisPort }}
