@@ -7,7 +7,7 @@ nextcloud:
   ingress:
     enabled: false
   nextcloud:
-    host: *primaryDomain
+    host: nextcloud.<path:kv/data/domains#primaryDomain>
     existingSecret:
       enabled: true
       secretName: *releaseName
@@ -18,7 +18,7 @@ nextcloud:
       smtpHostKey: smtpHost
     mail: 
       enabled: true
-    trustedDomains: *primaryDomain
+    trustedDomains: nextcloud.<path:kv/data/domains#primaryDomain>
   persistence:
     enabled: true
     existingClaim: *releaseName
