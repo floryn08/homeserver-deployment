@@ -18,6 +18,7 @@ nextcloud:
       smtpHostKey: smtpHost
     mail: 
       enabled: true
+    trustedDomains: *primaryDomain
   persistence:
     enabled: true
     existingClaim: *releaseName
