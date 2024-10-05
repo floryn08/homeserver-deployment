@@ -26,7 +26,7 @@ spec:
       {{ end -}}
       containers:
       - name: {{ .Release.Name }}
-        image: {{ .Values.image }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
