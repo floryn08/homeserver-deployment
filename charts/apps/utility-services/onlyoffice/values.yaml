@@ -49,6 +49,8 @@ connections:
 redis:
   namespaceOverride: *namespace
   architecture: standalone
+  master: 
+    revisionHistoryLimit: 1
   auth:
     enabled: false
 
