@@ -3,4 +3,4 @@ kind: StorageClass
 metadata:
   name: manual
 provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate
