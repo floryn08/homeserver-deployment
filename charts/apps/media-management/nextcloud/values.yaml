@@ -6,6 +6,8 @@ appdataVolumePath: <path:kv/data/hostPath#appdata>
 primaryDomain: &primaryDomain <path:kv/data/domains#primaryDomain>
 
 nextcloud:
+  phpClientHttpsFix:
+    enabled: true
   ingress:
     enabled: false
   nextcloud:
