@@ -1,4 +1,4 @@
-image: ghcr.io/open-webui/open-webui:0.3.30
+image: ghcr.io/open-webui/open-webui:v0.3.31
 namespace: ai-services
 domain: <path:kv/data/domains#primaryDomain>
 service:
