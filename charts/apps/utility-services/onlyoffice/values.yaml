@@ -13,18 +13,23 @@ ports:
   protocol: TCP
 volumes:
 - name: data
+  subPath: data
   podPath: /var/www/onlyoffice/Data
   type: DirectoryOrCreate
 - name: log
+  subPath: log
   podPath: /var/log/onlyoffice
   type: Directory
 - name: cache
+  subPath: cache
   podPath: /var/lib/onlyoffice/documentserver/App_Data/cache/files
   type: Directory
 - name: files
+  subPath: files
   podPath: /var/www/onlyoffice/documentserver-example/public/files
   type: Directory
 - name: fonts
+  subPath: fonts
   podPath: /usr/share/fonts
   type: Directory
 

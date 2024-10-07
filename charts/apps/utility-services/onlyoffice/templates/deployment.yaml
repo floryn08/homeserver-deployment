@@ -41,4 +41,5 @@ spec:
         {{- range $index, $val := $.Values.volumes }}
         - mountPath: {{ $val.podPath }}
           name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
