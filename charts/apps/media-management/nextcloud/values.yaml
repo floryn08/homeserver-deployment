@@ -1,3 +1,5 @@
+#https://github.com/nextcloud/helm/blob/main/charts/nextcloud/values.yaml
+
 releaseName: &releaseName nextcloud
 namespace: &namespace media-management
 appdataVolumePath: <path:kv/data/hostPath#appdata>
@@ -18,7 +20,8 @@ nextcloud:
       smtpHostKey: smtpHost
     mail: 
       enabled: true
-    trustedDomains: nextcloud.<path:kv/data/domains#primaryDomain>
+    trustedDomains: 
+      - nextcloud.<path:kv/data/domains#primaryDomain>
   persistence:
     enabled: true
     existingClaim: *releaseName
