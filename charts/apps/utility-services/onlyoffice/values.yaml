@@ -5,6 +5,7 @@ image:
 service:
   type: ClusterIP
 domain: <path:kv/data/domains#primaryDomain>
+appdataVolumePath: <path:kv/data/hostPath#appdata>
 ports:
 - name: http
   containerPort: 80
