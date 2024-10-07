@@ -24,6 +24,12 @@ nextcloud:
       enabled: true
     trustedDomains: 
       - nextcloud.<path:kv/data/domains#primaryDomain>
+    extraEnv:
+    - name: TRUSTED_PROXIES
+      valueFrom:
+        secretKeyRef:
+          name: nextcloud
+          key: TRUSTED_PROXIES
   persistence:
     enabled: true
     existingClaim: *releaseName

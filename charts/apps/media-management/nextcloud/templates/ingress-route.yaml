@@ -12,6 +12,7 @@ spec:
       middlewares: 
         - name: bouncer
           namespace: core-services
+        - name: nextcloud-redirectregex
       services: 
         - kind: Service
           name: {{ .Release.Name }}
