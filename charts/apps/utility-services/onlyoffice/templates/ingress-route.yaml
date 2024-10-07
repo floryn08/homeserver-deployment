@@ -12,6 +12,7 @@ spec:
       middlewares: 
         - name: bouncer
           namespace: core-services
+        - name: sslheader
       services: 
         - kind: Service
           name: {{ .Release.Name }}
