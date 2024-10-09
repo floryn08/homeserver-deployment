@@ -12,9 +12,14 @@ crowdsec:
         podName: traefik-*
         # as in crowdsec configuration, we need to specify the program name to find a matching parser
         program: traefik
+      - namespace: core-services
+        # The pod name
+        podName: authentik-server*
+        # as in crowdsec configuration, we need to specify the program name to find a matching parser
+        program: authentik
     env:
       - name: COLLECTIONS
-        value: "crowdsecurity/traefik"
+        value: "crowdsecurity/traefik firix/authentik"
   lapi:
     env:
       # To enroll the Security Engine to the console
