@@ -1,4 +1,4 @@
-image: eclipse-mosquitto:2.0.19
+image: eclipse-mosquitto:2.0.20
 namespace: core-services
 ports:
 - name: mqtt
