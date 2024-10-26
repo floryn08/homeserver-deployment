@@ -1,4 +1,4 @@
-image: linuxserver/radarr:5.12.2
+image: linuxserver/radarr:5.13.1
 namespace: media-management
 domain: <path:kv/data/domains#localDomain>
 service:
