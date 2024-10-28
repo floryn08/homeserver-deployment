@@ -1,4 +1,4 @@
-image: linuxserver/jellyfin:10.9.11
+image: linuxserver/jellyfin:10.10.0
 namespace: media-management
 primaryDomain: <path:kv/data/domains#primaryDomain>
 secondaryDomain: <path:kv/data/domains#secondaryDomain>
