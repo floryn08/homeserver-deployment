@@ -31,11 +31,11 @@ nextcloud:
         secretKeyRef:
           name: nextcloud
           key: TRUSTED_PROXIES
-    securityContext: 
-      runAsUser: 33
-      runAsGroup: 33
-      runAsNonRoot: true
-      readOnlyRootFilesystem: false
+    # securityContext: 
+    #   runAsUser: 33
+    #   runAsGroup: 33
+    #   runAsNonRoot: true
+    #   readOnlyRootFilesystem: false
     # podSecurityContext: 
     #   runAsUser: 33
     #   runAsGroup: 33
