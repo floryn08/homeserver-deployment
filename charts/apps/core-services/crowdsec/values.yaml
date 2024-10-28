@@ -1,3 +1,5 @@
+# https://github.com/crowdsecurity/helm-charts/blob/main/charts/crowdsec/values.yaml
+
 crowdsec:
   container_runtime: containerd
   image:
