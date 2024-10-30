@@ -1,5 +1,5 @@
 namespace: game-servers
-image: mbround18/valheim:3.0.5
+image: mbround18/valheim:3.0.6
 ports:
 - name: 2456
   containerPort: 2456
