@@ -26,7 +26,7 @@ traefik:
     web:
       redirectTo: 
         port: websecure
-  certResolvers: 
+  certificatesResolvers: 
     letsencrypt:
       email: <path:kv/data/core-services/traefik#email>
       storage: /letsencrypt/acme.json
