@@ -28,12 +28,13 @@ traefik:
         port: websecure
   certificatesResolvers: 
     letsencrypt:
-      email: <path:kv/data/core-services/traefik#email>
-      storage: /letsencrypt/acme.json
-      httpChallenge:
-        entryPoint: "web"
-      dnsChallenge:
-        provider: cloudflare
+      acme:
+        email: <path:kv/data/core-services/traefik#email>
+        storage: /letsencrypt/acme.json
+        httpChallenge:
+          entryPoint: "web"
+        dnsChallenge:
+          provider: cloudflare
   env:
     - name: CF_DNS_API_TOKEN
       valueFrom:
