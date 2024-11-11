@@ -1,4 +1,4 @@
-image: vaultwarden/server:1.32.3
+image: vaultwarden/server:1.32.4
 namespace: utility-services
 primaryDomain: <path:kv/data/domains#primaryDomain>
 ports:
