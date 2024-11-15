@@ -38,6 +38,9 @@ immich:
           - host: immich.<path:kv/data/domains#primaryDomain>
             paths:
               - path: "/"
+          - host: <path:kv/data/domains#secondaryDomain>
+            paths:
+              - path: "/immich"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.tls: "true"
