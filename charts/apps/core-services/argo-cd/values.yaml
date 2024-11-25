@@ -8,6 +8,7 @@ argo-cd:
     domain: argocd.<path:kv/data/domains#localDomain>
   configs:
     cm:
+      accounts.readonly: apiKey
       exec.enabled: true
       # oidc.tls.insecure.skip.verify: "true"
       url: https://argocd.<path:kv/data/domains#localDomain>
@@ -32,6 +33,7 @@ argo-cd:
       policy.csv: |
         g, ArgoCD Admins, role:admin
         g, ArgoCD Viewers, role:readonly
+        g, readonly, role:readonly
 
     cmp:
       create: true
