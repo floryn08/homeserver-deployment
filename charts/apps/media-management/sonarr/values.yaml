@@ -1,4 +1,4 @@
-image: linuxserver/sonarr:4.0.10
+image: linuxserver/sonarr:4.0.11
 namespace: media-management
 domain: <path:kv/data/domains#localDomain>
 service:
