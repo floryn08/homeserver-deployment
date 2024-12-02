@@ -3,7 +3,7 @@ name: onlyoffice
 version: 1.0.0
 dependencies:
 - name: redis
-  version: 20.3.0
+  version: 20.4.0
   repository: https://charts.bitnami.com/bitnami
 - name: rabbitmq
   version: 15.1.0
