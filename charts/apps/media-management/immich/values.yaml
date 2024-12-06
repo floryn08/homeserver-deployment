@@ -16,6 +16,7 @@ immich:
         existingClaim: immich-postgres-data-pvc
       containerSecurityContext:
         readOnlyRootFilesystem: false
+      resourcesPreset: large
     global:
       postgresql:
         auth:
