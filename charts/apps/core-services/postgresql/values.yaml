@@ -1,8 +1,9 @@
-namespace: core-services
+namespace: &namespace core-services
 postgresqlDataPath: <path:kv/data/hostPath#appdata>/core-services/postgresql
 
 postgresql:
   enabled: true
+  namespaceOverride: *namespace
   primary:
     persistence:
       storageClass: manual
