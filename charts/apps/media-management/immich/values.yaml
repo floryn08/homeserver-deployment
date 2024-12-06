@@ -1,6 +1,8 @@
+# https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
 immichDataPath: <path:kv/data/hostPath#storageHdd>/immich/library
 immichPostgresDataPath: <path:kv/data/hostPath#appdata>/media-management/immich/postgres
 namespace: media-management
+localDomain: <path:kv/data/domains#localDomain>
 
 immich:
 
@@ -43,6 +45,20 @@ immich:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.tls: "true"
           traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+
+      local:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: immich.<path:kv/data/domains#localDomain>
+            paths:
+              - path: "/"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.tls: "true"
+        tls:
+          secretName: immich-certificate-secret
+
     persistence:
       external:
         enabled: true
