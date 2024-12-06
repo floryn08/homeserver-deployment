@@ -296,6 +296,6 @@ prometheus:
 prometheus-postgres-exporter:
   config:
     datasource:
-      host: <path:kv/data/core-services/postgres#host>
-      user: <path:kv/data/core-services/postgres#user>
-      password: <path:kv/data/core-services/postgres#password>
+      host: <path:kv/data/core-services/postgresql#host>
+      user: <path:kv/data/core-services/postgresql#user>
+      password: <path:kv/data/core-services/postgresql#password>

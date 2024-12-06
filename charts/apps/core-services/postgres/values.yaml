@@ -1,12 +1,18 @@
-image: postgres:17.2-alpine
 namespace: core-services
-postgresUser: user
-ports:
-- name: postgres
-  containerPort: 5432
-  externalPort: 5432
-  protocol: TCP
-volumes:
-- name: data
-  hostPath: <path:kv/data/hostPath#appdata>/core-services/postgres/data
-  podPath: /var/lib/postgresql/data
+postgresqlDataPath: <path:kv/data/hostPath#appdata>/core-services/postgresql
+
+postgresql:
+  enabled: true
+  primary:
+    persistence:
+      storageClass: manual
+      existingClaim: postgresql-pvc
+    containerSecurityContext:
+      readOnlyRootFilesystem: false
+    resourcesPreset: large
+  global:
+    postgresql:
+      auth:
+        user: <path:kv/data/core-services/postgresql#user>
+        password: <path:kv/data/core-services/postgresql#password>
+        postgresPassword: <path:kv/data/core-services/postgresql#password>
