@@ -16,8 +16,8 @@ traefik:
 authentik:
   path: charts/apps/core-services/authentik
 
-postgres:
-  path: charts/apps/core-services/postgres
+postgresql:
+  path: charts/apps/core-services/postgresql
 
 ddclient:
   path: charts/apps/core-services/ddclient
