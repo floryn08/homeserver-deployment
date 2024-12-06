@@ -13,6 +13,6 @@ postgresql:
   global:
     postgresql:
       auth:
-        user: <path:kv/data/core-services/postgresql#user>
+        username: <path:kv/data/core-services/postgresql#user>
         password: <path:kv/data/core-services/postgresql#password>
         postgresPassword: <path:kv/data/core-services/postgresql#password>
