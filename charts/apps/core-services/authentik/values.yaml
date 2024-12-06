@@ -5,7 +5,7 @@ authentik:
     secret_key: <path:kv/data/core-services/authentik#SECRET_KEY>
     postgresql:
       name: authentik
-      host: postgres-loadbalancer.core-services.svc
+      host: postgresql.core-services.svc
       port: 5432
       user: <path:kv/data/core-services/authentik#POSTGRES_USER>
       password: <path:kv/data/core-services/authentik#POSTGRES_PASSWORD>
