@@ -57,7 +57,7 @@ immich:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.tls: "true"
         tls:
-          secretName: immich-certificate-secret
+          - secretName: immich-certificate-secret
 
     persistence:
       external:
