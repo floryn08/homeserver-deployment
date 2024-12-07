@@ -1,4 +1,4 @@
-image: ollama/ollama:0.5.0
+image: ollama/ollama:0.5.1
 namespace: ai-services
 service:
   type: ClusterIP
