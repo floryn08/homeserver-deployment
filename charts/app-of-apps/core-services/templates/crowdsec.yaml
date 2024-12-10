@@ -21,3 +21,14 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
+  ignoreDifferences:
+    - group: ''
+      jsonPointers:
+        - /data/registrationToken
+      kind: Secret
+      name: crowdsec-lapi-secrets
+    - group: apps
+      jsonPointers:
+        - /spec/template/metadata/annotations/checksum~1lapi-secret
+      kind: Deployment
+      name: crowdsec-lapi
