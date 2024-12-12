@@ -1,4 +1,4 @@
-image: dpage/pgadmin4:8.13
+image: dpage/pgadmin4:8.14
 namespace: core-services
 ports:
 - name: pgadmin4
