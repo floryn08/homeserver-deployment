@@ -32,7 +32,7 @@ immich:
           failureThreshold: 360
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: v1.122.2
+      tag: v1.122.3
     ingress:
       main:
         enabled: true
@@ -68,4 +68,4 @@ immich:
   machine-learning:
     image:  
       repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v1.122.2
+      tag: v1.122.3
