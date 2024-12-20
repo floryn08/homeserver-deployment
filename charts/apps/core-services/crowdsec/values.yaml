@@ -35,6 +35,7 @@ crowdsec:
         value: "<path:kv/data/core-services/crowdsec#BOUNCER_KEY_traefik>"
     secrets:
       csLapiSecret: "<path:kv/data/core-services/crowdsec#CS_LAPI_SECRET>"
+      registrationToken: "<path:kv/data/core-services/crowdsec#registrationToken>"
   secrets:
     username: "<path:kv/data/core-services/crowdsec#USERNAME>"
     password: "<path:kv/data/core-services/crowdsec#PASSWORD>"
