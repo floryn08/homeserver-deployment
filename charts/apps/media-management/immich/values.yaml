@@ -5,6 +5,12 @@ namespace: media-management
 localDomain: <path:kv/data/domains#localDomain>
 
 immich:
+  env:
+    DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
+    DB_USERNAME: immich
+    DB_DATABASE_NAME: immich
+    # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
+    DB_PASSWORD: <path:kv/data/media-management/immich#postgres-password>
 
   immich:
     persistence:
