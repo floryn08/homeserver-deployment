@@ -10,19 +10,6 @@ immich:
     persistence:
       library:
         existingClaim: immich-data-pvc
-  postgresql:
-    enabled: true
-    primary:
-      persistence:
-        storageClass: manual
-        existingClaim: immich-postgres-data-pvc
-      containerSecurityContext:
-        readOnlyRootFilesystem: false
-      resourcesPreset: large
-    global:
-      postgresql:
-        auth:
-          password: <path:kv/data/media-management/immich#postgres-password>
   redis:
     enabled: true
   server:
@@ -69,3 +56,28 @@ immich:
     image:  
       repository: ghcr.io/immich-app/immich-machine-learning
       tag: v1.123.0
+
+postgresql:
+  image:
+    repository: tensorchord/pgvecto-rs
+    tag: pg14-v0.2.0
+  primary:
+    persistence:
+      storageClass: manual
+      existingClaim: immich-postgres-data-pvc
+    containerSecurityContext:
+      readOnlyRootFilesystem: false
+    resourcesPreset: large
+    initdb:
+      scripts:
+        create-extensions.sql: |
+          CREATE EXTENSION cube;
+          CREATE EXTENSION earthdistance;
+          CREATE EXTENSION vectors;
+  global:
+    postgresql:
+      auth:
+        username: immich
+        database: immich
+        password: <path:kv/data/media-management/immich#postgres-password>
+        postgresPassword: <path:kv/data/media-management/immich#postgres-password>
