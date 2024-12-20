@@ -6,7 +6,7 @@ metadata:
 spec:
   revisionHistoryLimit: 1 
   isCA: true
-  duration: <path:kv/core-services/cert-manager#ca-duration>
+  duration: <path:kv/data/core-services/cert-manager#ca-duration>
   subject:
     organizations:      
       - {{ .Values.localDomain }}
