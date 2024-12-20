@@ -75,6 +75,8 @@ postgresql:
           CREATE EXTENSION earthdistance;
           CREATE EXTENSION vectors;
   global:
+    security:
+      allowInsecureImages: true
     postgresql:
       auth:
         username: immich
