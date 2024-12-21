@@ -2,12 +2,20 @@ image: ghcr.io/schaka/janitorr:v1.6.9
 namespace: media-management
 domain: <path:kv/data/domains#localDomain>
 
-sonarrApiKey: <path:kv/data/media-management/sonarr#apiKey>
-radarrApiKey: <path:kv/data/media-management/radarr#apiKey>
-bazarrApiKey: <path:kv/data/media-management/bazarr#apiKey>
-jellyfinApiKey: <path:kv/data/media-management/jellyfin#apiKey>
-jellystatApiKey: <path:kv/data/media-management/jellystat#apiKey>
-jellyseerApiKey: <path:kv/data/media-management/jellyseerr#apiKey>
+sonarr:
+  apiKey: <path:kv/data/media-management/sonarr#apiKey>
+radarr:
+  apiKey: <path:kv/data/media-management/radarr#apiKey>
+bazarr:
+  apiKey: <path:kv/data/media-management/bazarr#apiKey>
+jellyfin:
+  apiKey: <path:kv/data/media-management/jellyfin#apiKey>
+  username: <path:kv/data/media-management/jellyfin#username>
+  password: <path:kv/data/media-management/jellyfin#password>
+jellystat:
+  apiKey: <path:kv/data/media-management/jellystat#apiKey>
+jellyseer:
+  apiKey: <path:kv/data/media-management/jellyseerr#apiKey>
 
 volumes:
 - name: media
