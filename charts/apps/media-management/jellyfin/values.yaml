@@ -20,21 +20,9 @@ volumes:
   hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
   podPath: /config
   type: DirectoryOrCreate
-- name: tv
-  hostPath: <path:kv/data/hostPath#mediaHdd>/tv
-  podPath: /data/tvshows
-  type: DirectoryOrCreate
-- name: movies
-  hostPath: <path:kv/data/hostPath#mediaHdd>/movies
-  podPath: /data/movies
-  type: DirectoryOrCreate
-- name: anime
-  hostPath: <path:kv/data/hostPath#mediaHdd>/anime
-  podPath: /data/anime
-  type: DirectoryOrCreate
-- name: music
-  hostPath: <path:kv/data/hostPath#mediaHdd>/music
-  podPath: /data/music
+- name: media
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /data
   type: DirectoryOrCreate
 - name: gpu
   hostPath: /dev/dri
