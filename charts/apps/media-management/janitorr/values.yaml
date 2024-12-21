@@ -28,5 +28,5 @@ volumes:
   hostPath: <path:kv/data/hostPath#mediaHdd>
   podPath: /data
 - name: logs
-  hostPath: <path:kv/data/hostPath#mediaHdd>
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/janitorr
   podPath: /logs
