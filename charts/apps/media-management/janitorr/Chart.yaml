@@ -1,0 +1,7 @@
+apiVersion: v2
+name: janitorr
+description: A Helm chart for janitorr
+
+type: application
+
+version: 0.1.0

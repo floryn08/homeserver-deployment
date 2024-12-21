@@ -46,3 +46,6 @@ immich:
 
 nextcloud:
   path: charts/apps/media-management/nextcloud
+
+janitorr:
+  path: charts/apps/media-management/janitorr

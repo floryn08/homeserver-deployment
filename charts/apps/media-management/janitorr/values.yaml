@@ -1,0 +1,18 @@
+image: ghcr.io/schaka/janitorr:v1.6.9
+namespace: media-management
+domain: <path:kv/data/domains#localDomain>
+
+sonarrApiKey: <path:kv/data/media-management/sonarr#apiKey>
+radarrApiKey: <path:kv/data/media-management/radarr#apiKey>
+bazarrApiKey: <path:kv/data/media-management/bazarr#apiKey>
+jellyfinApiKey: <path:kv/data/media-management/jellyfin#apiKey>
+jellystatApiKey: <path:kv/data/media-management/jellystat#apiKey>
+jellyseerApiKey: <path:kv/data/media-management/jellyseerr#apiKey>
+
+volumes:
+- name: media
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /data
+- name: logs
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /logs
