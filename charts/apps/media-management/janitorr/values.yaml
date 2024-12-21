@@ -16,7 +16,7 @@ jellyfin:
   url: http://jellyfin.media-management.svc:8096/jellyfin
   username: <path:kv/data/media-management/jellyfin#username>
   password: <path:kv/data/media-management/jellyfin#password>
-jellyseer:
+jellyseerr:
   apiKey: <path:kv/data/media-management/jellyseerr#apiKey>
   url: https://jellyseerr.<path:kv/data/domains#primaryDomain>
 jellystat:
