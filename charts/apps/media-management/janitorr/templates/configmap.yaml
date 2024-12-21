@@ -67,26 +67,26 @@ data:
     clients:
       sonarr:
         enabled: true
-        url: "http://sonarr.media-management.svc:8989"
+        url: {{ .Values.sonarr.url }}
         api-key: {{ .Values.sonarr.apiKey }}
         delete-empty-shows: true # Delete empty shows if deleting by season. Otherwise leaves Sonarr entries behind.
         determine-age-by: most_recent # Optional property, use 'most_recent' or 'oldest' - remove this line if Janitorr should determine by upgrades enabled for your profile
       radarr:
         enabled: true
-        url: "http://radarr.media-management.svc:7878"
+        url: {{ .Values.radarr.url }}
         api-key: {{ .Values.radarr.apiKey }}
         only-delete-files: true # NOT RECOMMENDED - When set to true, Janitorr will only delete your media files but keep the entries in Radarr
         determine-age-by: most_recent # Optional property, use 'most_recent' or 'oldest' - remove this line if Janitorr should determine by upgrades enabled for your profile
       bazarr:
         enabled: true # Only used if you want to copy over subtitle files managed by Bazarr
-        url: "http://bazarr.media-management.svc:6767"
+        url: {{ .Values.bazarr.url }}
         api-key: {{ .Values.bazarr.apiKey }}
 
       ## You can only choose one out of Jellyfin or Emby.
       ## User login is only needed if deletion is enabled.
       jellyfin:
         enabled: true
-        url: "http://jellyfin.media-management.svc:8096/jellyfin"
+        url: {{ .Values.jellyfin.url }}
         api-key: {{ .Values.jellyfin.apiKey }}
         username: {{ .Values.jellyfin.username }}
         password: {{ .Values.jellyfin.password }}
@@ -96,12 +96,12 @@ data:
 
       jellyseerr:
         enabled: true
-        url: "http://jellyseerr.media-management.svc:5055"
+        url: {{ .Values.jellyseerr.url }}
         api-key: {{ .Values.jellyseerr.apiKey }}
         match-server: false # Enable if you have several Radarr/Sonarr instances set up in Jellyseerr. Janitorr will match them by the host+port supplied in their respective config settings.
 
       jellystat:
         enabled: true
         whole-tv-show: false # Enabling this will make Jellystat consider TV shows as a whole if any episode of any season has been watched
-        url: "http://jellystat.media-management.svc:3000"
+        url: {{ .Values.jellystat.url }}
         api-key: {{ .Values.jellystat.apiKey }}

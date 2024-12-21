@@ -4,18 +4,24 @@ domain: <path:kv/data/domains#localDomain>
 
 sonarr:
   apiKey: <path:kv/data/media-management/sonarr#apiKey>
+  url: http://sonarr.media-management.svc:8989
 radarr:
   apiKey: <path:kv/data/media-management/radarr#apiKey>
+  url: http://radarr.media-management.svc:7878
 bazarr:
   apiKey: <path:kv/data/media-management/bazarr#apiKey>
+  url: http://bazarr.media-management.svc:6767
 jellyfin:
   apiKey: <path:kv/data/media-management/jellyfin#apiKey>
+  url: http://jellyfin.media-management.svc:8096/jellyfin
   username: <path:kv/data/media-management/jellyfin#username>
   password: <path:kv/data/media-management/jellyfin#password>
-jellystat:
-  apiKey: <path:kv/data/media-management/jellystat#apiKey>
 jellyseer:
   apiKey: <path:kv/data/media-management/jellyseerr#apiKey>
+  url: https://jellyseerr.<path:kv/data/domains#primaryDomain>
+jellystat:
+  apiKey: <path:kv/data/media-management/jellystat#apiKey>
+  url: http://jellystat.media-management.svc:3000
 
 volumes:
 - name: media
