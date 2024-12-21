@@ -32,9 +32,9 @@ spec:
         livenessProbe:
           exec:
             command:
-            - wget 
-            - -T5 -qO-
-            - http://localhost:8081/health | grep UP || exit 1
+            - sh
+            - -c
+            - wget -T 5 -q -O - http://localhost:8081/health | grep UP || exit 1
           failureThreshold: 5
           periodSeconds: 30
           timeoutSeconds: 5
