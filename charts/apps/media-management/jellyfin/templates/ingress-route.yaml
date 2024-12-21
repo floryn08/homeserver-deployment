@@ -14,9 +14,9 @@ spec:
           namespace: core-services
       services: 
         - kind: Service
-          name: {{ .Release.Name }}-loadbalancer
+          name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          port: http-port 
+          port: http 
     - kind: Rule
       match: Host(`{{ .Values.secondaryDomain }}`) && PathPrefix(`/jellyfin`)
       middlewares: 
@@ -24,8 +24,8 @@ spec:
           namespace: core-services
       services: 
         - kind: Service
-          name: {{ .Release.Name }}-loadbalancer
+          name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          port: http-port 
+          port: http 
   tls:
     certResolver: letsencrypt
