@@ -1,4 +1,4 @@
-image: frooodle/s-pdf:0.36.5-ultra-lite
+image: frooodle/s-pdf:0.37.1-ultra-lite
 namespace: utility-services
 ports:
 - name: http
