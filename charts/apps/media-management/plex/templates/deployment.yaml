@@ -34,6 +34,7 @@ spec:
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
+        {{ end -}}
         volumeMounts:
         {{- range $index, $val := $.Values.volumes }}
         - mountPath: {{ $val.podPath }}
