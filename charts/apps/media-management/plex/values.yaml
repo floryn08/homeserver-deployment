@@ -1,5 +1,10 @@
 image: linuxserver/plex:1.41.3
 namespace: media-management
+ports:
+- name: http
+  containerPort: 32400
+  externalPort: 32400
+  protocol: TCP
 volumes:
 - name: config
   hostPath: <path:kv/data/hostPath#appdata>/media-management/plex

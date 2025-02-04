@@ -29,6 +29,11 @@ spec:
             name: {{ .Release.Name }}
         - configMapRef:
             name: {{ .Release.Name }}
+        ports:
+        {{- range $key, $val := $.Values.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
         volumeMounts:
         {{- range $index, $val := $.Values.volumes }}
         - mountPath: {{ $val.podPath }}
