@@ -49,3 +49,6 @@ nextcloud:
 
 janitorr:
   path: charts/apps/media-management/janitorr
+
+plex:
+  path: charts/apps/media-management/plex
