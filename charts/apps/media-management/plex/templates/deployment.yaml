@@ -26,9 +26,9 @@ spec:
           privileged: true
         envFrom:
         - secretRef:
-          name: {{ .Release.Name }}
+            name: {{ .Release.Name }}
         - configMapRef:
-          name: {{ .Release.Name }}
+            name: {{ .Release.Name }}
         volumeMounts:
         {{- range $index, $val := $.Values.volumes }}
         - mountPath: {{ $val.podPath }}
