@@ -38,7 +38,7 @@ spec:
           exec:
             command:
             - curl
-            - --connect-timeout 15 --silent --show-error --fail
+            - -f
             - http://localhost:32400/identity
           failureThreshold: 5
           periodSeconds: 10
