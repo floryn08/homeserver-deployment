@@ -39,7 +39,7 @@ spec:
           exec:
             command:
             - wget
-            - -o
+            - -O
             - http://localhost:5004
           failureThreshold: 5
           periodSeconds: 10
