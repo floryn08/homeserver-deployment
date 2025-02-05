@@ -38,8 +38,8 @@ spec:
         livenessProbe:
           exec:
             command:
-            - curl
-            - -f
+            - wget
+            - -o
             - http://localhost:5004
           failureThreshold: 5
           periodSeconds: 10
