@@ -52,3 +52,6 @@ janitorr:
 
 plex:
   path: charts/apps/media-management/plex
+
+antennas:
+  path: charts/apps/media-management/antennas
