@@ -1,5 +1,6 @@
 image: linuxserver/plex:1.41.3
 namespace: media-management
+primaryDomain: <path:kv/data/domains#primaryDomain>
 ports:
 - name: http
   containerPort: 32400
