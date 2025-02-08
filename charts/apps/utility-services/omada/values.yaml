@@ -1,0 +1,16 @@
+image: mbentley/omada-controller:5.15.8.2
+namespace: utility-services
+ports:
+- name: http
+  containerPort: 8088
+  externalPort: 8088
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/omada/data
+  podPath: /opt/tplink/EAPController/data
+  type: DirectoryOrCreate
+- name: logs
+  hostPath: <path:kv/data/hostPath#appdata>/omada/logs
+  podPath: /opt/tplink/EAPController/logs
+  type: DirectoryOrCreate

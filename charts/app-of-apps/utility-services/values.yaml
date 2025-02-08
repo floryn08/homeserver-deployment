@@ -55,3 +55,6 @@ technitium:
 
 onlyoffice:
   path: charts/apps/utility-services/onlyoffice
+
+omada:
+  path: charts/apps/utility-services/omada
