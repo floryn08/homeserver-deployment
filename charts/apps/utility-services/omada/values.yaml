@@ -3,7 +3,7 @@ namespace: utility-services
 ports:
 - name: http
   containerPort: 8088
-  externalPort: 8088
+  externalPort: 8087
   protocol: TCP
 volumes:
 - name: data
