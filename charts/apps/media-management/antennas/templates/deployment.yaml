@@ -38,9 +38,10 @@ spec:
         livenessProbe:
           exec:
             command:
-            - wget
-            - -O
-            - http://localhost:5004
+            - sh
+            - -c
+            - >-
+              wget -O - http://localhost:5004
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
