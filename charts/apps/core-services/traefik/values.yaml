@@ -26,9 +26,9 @@ traefik:
     web:
       redirections: 
         entryPoint:
-        to: websecure
-        scheme: https
-        permanent: true
+          to: websecure
+          scheme: https
+          permanent: true
   certificatesResolvers: 
     letsencrypt:
       acme:
