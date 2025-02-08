@@ -18,8 +18,8 @@ data:
   PORT_DISCOVERY: 29810
   PORT_TRANSFER_V2: 29815
   PORT_RTTY: 29816
-  SHOW_SERVER_LOGS: true
-  SHOW_MONGODB_LOGS: false
+  SHOW_SERVER_LOGS: "true"
+  SHOW_MONGODB_LOGS: "false"
   SSL_CERT_NAME: tls.crt
   SSL_KEY_NAME: tls.key
   TZ: Europe/Bucharest
