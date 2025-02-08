@@ -24,8 +24,11 @@ traefik:
       expose:
         default: true
     web:
-      redirectTo: 
-        port: websecure
+      redirections: 
+        entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
   certificatesResolvers: 
     letsencrypt:
       acme:
