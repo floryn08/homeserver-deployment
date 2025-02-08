@@ -55,3 +55,6 @@ plex:
 
 antennas:
   path: charts/apps/media-management/antennas
+
+tautulli:
+  path: charts/apps/media-management/tautulli
