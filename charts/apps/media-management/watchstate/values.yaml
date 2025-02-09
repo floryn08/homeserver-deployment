@@ -2,8 +2,8 @@ image: ghcr.io/arabcoders/watchstate:master-20250208-ff036da
 namespace: media-management
 domain: <path:kv/data/domains#localDomain>
 securityContext:
-  user: 1000
-  group: 1000
+  user: 0
+  group: 0
 service:
   type: ClusterIP
 ports:
