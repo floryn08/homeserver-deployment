@@ -58,3 +58,6 @@ antennas:
 
 tautulli:
   path: charts/apps/media-management/tautulli
+
+watchstate:
+  path: charts/apps/media-management/watchstate

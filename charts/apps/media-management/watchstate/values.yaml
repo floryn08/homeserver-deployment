@@ -1,0 +1,17 @@
+image: ghcr.io/arabcoders/watchstate:master-20250208-ff036da
+namespace: media-management
+domain: <path:kv/data/domains#localDomain>
+securityContext:
+  user: 1000
+  group: 1000
+service:
+  type: ClusterIP
+ports:
+- name: http
+  containerPort: 8080
+  externalPort: 8080
+  protocol: TCP
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/watchstate
+  podPath: /config
