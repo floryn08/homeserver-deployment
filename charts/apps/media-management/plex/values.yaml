@@ -1,4 +1,4 @@
-image: linuxserver/plex:1.41.3
+image: linuxserver/plex:1.41.4
 namespace: media-management
 primaryDomain: <path:kv/data/domains#primaryDomain>
 ports:
