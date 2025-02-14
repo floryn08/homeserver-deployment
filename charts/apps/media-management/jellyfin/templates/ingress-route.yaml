@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`{{ .Values.primaryDomain }}`) && PathPrefix(`/jellyfin`)
+      match: Host(`{{ .Release.Name }}.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       middlewares: 
         - name: bouncer
           namespace: core-services
@@ -18,7 +18,7 @@ spec:
           namespace: {{ .Values.namespace }} 
           port: http 
     - kind: Rule
-      match: Host(`{{ .Values.secondaryDomain }}`) && PathPrefix(`/jellyfin`)
+      match: Host(`{{ .Release.Name }}.{{ .Values.secondaryDomain }}`) && PathPrefix(`/`)
       middlewares: 
         - name: bouncer
           namespace: core-services
@@ -40,7 +40,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`{{ .Values.localDomain }}`) && PathPrefix(`/jellyfin`)
+      match: Host(`{{ .Release.Name }}.{{ .Values.localDomain }}`) && PathPrefix(`/`)
       services: 
         - kind: Service
           name: {{ .Release.Name }}
