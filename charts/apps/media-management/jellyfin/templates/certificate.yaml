@@ -9,11 +9,11 @@ spec:
   issuerRef: 
     kind: ClusterIssuer
     name: ca-issuer
-  commonName: "{{ .Release.Name }}.{{ .Values.domain }}"
+  commonName: "{{ .Release.Name }}.{{ .Values.localDomain }}"
   dnsNames:
-    - "{{ .Release.Name }}.{{ .Values.domain }}" 
+    - "{{ .Release.Name }}.{{ .Values.localDomain }}" 
   subject:
     organizations:      
-      - {{ .Values.domain }}
+      - {{ .Values.localDomain }}
     organizationalUnits:
       - {{ .Values.namespace }}
