@@ -33,7 +33,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}

@@ -2,19 +2,23 @@ image: linuxserver/jellyfin:10.10.5
 namespace: media-management
 primaryDomain: <path:kv/data/domains#primaryDomain>
 secondaryDomain: <path:kv/data/domains#secondaryDomain>
-ports:
-- name: http
-  containerPort: 8096
-  externalPort: 8096
-  protocol: TCP
-- name: https
-  containerPort: 8920
-  externalPort: 8920
-  protocol: TCP
-- name: media
-  containerPort: 7359
-  externalPort: 7359
-  protocol: UDP
+localDomain: <path:kv/data/domains#localDomain>
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8096
+    externalPort: 8096
+    protocol: TCP
+  - name: https
+    containerPort: 8920
+    externalPort: 8920
+    protocol: TCP
+  - name: media
+    containerPort: 7359
+    externalPort: 7359
+    protocol: UDP
+
 volumes:
 - name: config
   hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin

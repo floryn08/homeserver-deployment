@@ -1,11 +1,14 @@
 image: linuxserver/plex:1.41.4
 namespace: media-management
 primaryDomain: <path:kv/data/domains#primaryDomain>
-ports:
-- name: http
-  containerPort: 32400
-  externalPort: 32400
-  protocol: TCP
+localDomain: <path:kv/data/domains#localDomain>
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 32400
+    externalPort: 32400
+    protocol: TCP
 volumes:
 - name: config
   hostPath: <path:kv/data/hostPath#appdata>/media-management/plex

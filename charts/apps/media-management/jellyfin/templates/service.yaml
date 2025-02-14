@@ -4,9 +4,9 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }}
   ports:
-  {{- range $key, $val := $.Values.ports }}
+  {{- range $key, $val := $.Values.service.ports }}
   - port: {{ $val.externalPort }}
     targetPort: {{ $val.name }}
     name: {{ $val.name }}
