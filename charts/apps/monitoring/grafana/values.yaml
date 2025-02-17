@@ -92,6 +92,8 @@ loki:
     replicas: 0
 
 alloy:
+  controller:
+    type: Deployment
   configReloader:
     enabled: false
   alloy:
@@ -110,7 +112,7 @@ alloy:
               __path__  = "/var/log/syslog",
               job       = "node/syslog",
               node_name = sys.env("HOSTNAME"),
-              cluster   = server,
+              cluster   = "server",
           }]
         }
 
