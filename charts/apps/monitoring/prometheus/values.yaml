@@ -1,6 +1,6 @@
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml
 prometheus:
-  forceNamespace: core-services
+  forceNamespace: monitoring
   alertmanager:
     enabled: false
   prometheus-pushgateway:
