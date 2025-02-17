@@ -34,3 +34,7 @@ mediaManagement:
 utilityServices:
   namespace: utility-services
   path: charts/app-of-apps/utility-services
+
+monitoring:
+  namespace: monitoring
+  path: charts/app-of-apps/monitoring

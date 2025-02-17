@@ -1,5 +1,5 @@
-namespace: &namespace utility-services
-grafanaDataPath: <path:kv/data/hostPath#appdata>/utility-services/grafana
+namespace: &namespace monitoring
+grafanaDataPath: <path:kv/data/hostPath#appdata>/monitoring/grafana
 grafana:
   namespaceOverride: *namespace
   assertNoLeakedSecrets: false
@@ -14,22 +14,22 @@ grafana:
       datasources:
       - name: Prometheus
         type: prometheus
-        url: http://prometheus-server.core-services.svc
+        url: http://prometheus-server.monitoring.svc
         access: proxy
         isDefault: true
 
   grafana.ini:
     server:
-      domain: <path:kv/data/utility-services/grafana#url>
-      root_url: http://<path:kv/data/utility-services/grafana#url>
+      domain: <path:kv/data/monitoring/grafana#url>
+      root_url: http://<path:kv/data/monitoring/grafana#url>
     auth:
         signout_redirect_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/grafana/end-session/"
         oauth_auto_login: false
     auth.generic_oauth:
         name: authentik
         enabled: true
-        client_id: "<path:kv/data/utility-services/grafana#clientId>"
-        client_secret: "<path:kv/data/utility-services/grafana#clientSecret>"
+        client_id: "<path:kv/data/monitoring/grafana#clientId>"
+        client_secret: "<path:kv/data/monitoring/grafana#clientSecret>"
         scopes: "openid profile email"
         auth_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/authorize/"
         token_url: "https://auth.<path:kv/data/domains#primaryDomain>/application/o/token/"

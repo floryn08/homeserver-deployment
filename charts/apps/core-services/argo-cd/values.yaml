@@ -63,6 +63,7 @@ argo-cd:
                 helm repo add jetstack https://charts.jetstack.io
                 helm repo add bitnami https://charts.bitnami.com/bitnami
                 helm repo add nextcloud https://nextcloud.github.io/helm/
+                helm repo add opentelemetry https://open-telemetry.github.io/opentelemetry-helm-charts
                 helm dependency build
           generate:
             command:
