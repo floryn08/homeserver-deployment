@@ -93,7 +93,7 @@ loki:
 
 alloy:
   controller:
-    type: Deployment
+    type: deployment
   configReloader:
     enabled: false
   alloy:
