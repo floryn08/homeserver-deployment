@@ -19,4 +19,4 @@ spec:
   project: {{ .Values.project }}
   syncPolicy:
     automated:
-      prune: {{ .Values.monitoring.syncPolicy.automated.prune }}
+      prune: {{ .Values.syncPolicy.automated.prune }}
