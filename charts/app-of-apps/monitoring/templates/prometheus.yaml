@@ -19,5 +19,7 @@ spec:
           value: -f values.yaml
   project: {{ .Values.project }}
   syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
