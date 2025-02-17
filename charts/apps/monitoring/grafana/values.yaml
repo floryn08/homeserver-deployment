@@ -90,3 +90,43 @@ loki:
     replicas: 0
   bloomGateway:
     replicas: 0
+
+alloy:
+  configReloader:
+    enabled: false
+  alloy:
+    configMap:
+      create: true
+      content: |
+        logging {
+          level  = "info"
+          format = "logfmt"
+        }
+
+        discovery.kubernetes "pods" {
+          role = "pod"
+        }
+
+        discovery.kubernetes "nodes" {
+          role = "node"
+        }
+
+        discovery.kubernetes "services" {
+          role = "service"
+        }
+
+        discovery.kubernetes "endpoints" {
+          role = "endpoints"
+        }
+
+        discovery.kubernetes "endpointslices" {
+          role = "endpointslice"
+        }
+
+        discovery.kubernetes "ingresses" {
+          role = "ingress"
+        }
+
+        loki.write "receiver" {
+          endpoint = "http://grafana-loki-gateway.monitoring.svc/loki/api/v1/push"
+        }
