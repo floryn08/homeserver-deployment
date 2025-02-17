@@ -46,18 +46,6 @@ grafana:
     passwordKey: admin-password
 
 loki:
-  enabled: true
-  isDefault: true
-  readinessProbe:
-    httpGet:
-      path: /ready
-      port: http-metrics
-    initialDelaySeconds: 45
-  livenessProbe:
-    httpGet:
-      path: /ready
-      port: http-metrics
-    initialDelaySeconds: 45
-  datasource:
-    jsonData: "{}"
-    uid: ""
+  loki:
+    storage:
+      type: filesystem
