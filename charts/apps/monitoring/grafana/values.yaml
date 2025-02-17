@@ -48,6 +48,7 @@ grafana:
 loki:
   deploymentMode: SingleBinary
   loki:
+    auth_enabled: false
     commonConfig:
       replication_factor: 1 
     useTestSchema: true
