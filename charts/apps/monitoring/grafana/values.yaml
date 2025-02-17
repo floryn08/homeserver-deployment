@@ -110,7 +110,7 @@ alloy:
               __path__  = "/var/log/syslog",
               job       = "node/syslog",
               node_name = sys.env("HOSTNAME"),
-              cluster   = cluster,
+              cluster   = default,
           }]
         }
 
@@ -197,7 +197,7 @@ alloy:
         loki.process "pod_logs" {
           stage.static_labels {
               values = {
-                cluster = "cluster",
+                cluster = "default",
               }
           }
 
@@ -221,7 +221,7 @@ alloy:
 
           stage.static_labels {
             values = {
-              cluster = "cluster",
+              cluster = "default",
             }
           }
 
