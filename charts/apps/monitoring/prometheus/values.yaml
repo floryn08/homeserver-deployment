@@ -1,6 +1,11 @@
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml
 prometheus:
   forceNamespace: core-services
+  alertmanager:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+  
 
 prometheus-postgres-exporter:
   config:
