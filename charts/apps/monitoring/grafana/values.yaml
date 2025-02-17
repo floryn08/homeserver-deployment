@@ -127,6 +127,8 @@ alloy:
           role = "ingress"
         }
 
-        loki.write "receiver" {
-          endpoint = "http://grafana-loki-gateway.monitoring.svc/loki/api/v1/push"
+        loki.write "grafana_loki" {
+          endpoint {
+          url = "http://grafana-loki-gateway.monitoring.svc/loki/api/v1/push"
+          }
         }
