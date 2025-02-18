@@ -49,9 +49,6 @@ argoCd:
 reloader:
   path: charts/apps/core-services/reloader
 
-prometheus:
-  path: charts/apps/core-services/prometheus
-
 crowdsec:
   path: charts/apps/core-services/crowdsec
 
