@@ -1,0 +1,3 @@
+# https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#deployment-via-helm
+nvidia-device-plugin:
+  namespaceOverride: core-services

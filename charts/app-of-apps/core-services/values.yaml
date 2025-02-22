@@ -54,3 +54,6 @@ crowdsec:
 
 certManager:
   path: charts/apps/core-services/cert-manager
+
+nvidiaDevicePlugin:
+  path: charts/apps/core-services/nvidia-device-plugin
