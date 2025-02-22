@@ -6,7 +6,8 @@ nvidia-device-plugin:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms: 
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-              - "server"
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - "server"
