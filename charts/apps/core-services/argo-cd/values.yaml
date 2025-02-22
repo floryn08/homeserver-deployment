@@ -64,6 +64,7 @@ argo-cd:
                 helm repo add bitnami https://charts.bitnami.com/bitnami
                 helm repo add nextcloud https://nextcloud.github.io/helm/
                 helm repo add opentelemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+                helm repo add nvidia https://nvidia.github.io/k8s-device-plugin
                 helm dependency build
           generate:
             command:
