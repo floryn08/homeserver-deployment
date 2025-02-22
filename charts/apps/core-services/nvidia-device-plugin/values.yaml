@@ -2,3 +2,7 @@
 nvidia-device-plugin:
   namespaceOverride: core-services
   runtimeClassName: nvidia
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms: []
