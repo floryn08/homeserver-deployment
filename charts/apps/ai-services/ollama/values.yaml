@@ -11,4 +11,7 @@ volumes:
 - name: config
   hostPath: <path:kv/data/hostPath#appdata>/ai-services/ollama
   podPath: /root/.ollama
+- name: gpu
+  hostPath: /dev/nvidia0
+  podPath: /dev/nvidia0
 
