@@ -59,6 +59,11 @@
       "matchFileNames": ["charts/apps/game-servers/**"],
       "groupName": "Game Servers",
       "groupSlug": "game-servers"
+    },
+    {
+      "matchFileNames": ["charts/apps/monitoring/**"],
+      "groupName": "Monitoring",
+      "groupSlug": "monitoring"
     }
   ],
   "customManagers": [
