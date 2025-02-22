@@ -1,0 +1,15 @@
+# https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#deployment-via-helm
+nvidia-gpu-operator:
+  driver:
+    enabled: false
+  toolkit:
+    enabled: false
+    # env:
+    # - name: CONTAINERD_CONFIG
+    #   value: /etc/containerd/config.toml
+    # - name: CONTAINERD_SOCKET
+    #   value: /run/containerd/containerd.sock
+    # - name: CONTAINERD_RUNTIME_CLASS
+    #   value: nvidia
+    # - name: CONTAINERD_SET_AS_DEFAULT
+    #   value: true

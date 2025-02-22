@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nvidia-device-plugin
+  name: nvidia-gpu-operator
   namespace: {{ .Values.argocdNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,7 @@ spec:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.nvidiaDevicePlugin.path }}
+    path: {{ .Values.nvidiaGpuOperator.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     plugin:
