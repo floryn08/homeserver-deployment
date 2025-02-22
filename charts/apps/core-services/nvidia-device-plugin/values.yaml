@@ -5,4 +5,4 @@ nvidia-device-plugin:
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms: []
+        nodeSelectorTerms: {}
