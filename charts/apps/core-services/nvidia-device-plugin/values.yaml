@@ -5,4 +5,8 @@ nvidia-device-plugin:
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms: {}
+        nodeSelectorTerms: 
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - "server"
