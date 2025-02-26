@@ -59,4 +59,5 @@ nvidiaGpuOperator:
   path: charts/apps/core-services/nvidia-gpu-operator
 
 longhorn:
+  enabled: false
   path: charts/apps/core-services/longhorn
