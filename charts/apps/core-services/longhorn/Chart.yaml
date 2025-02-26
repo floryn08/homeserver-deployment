@@ -1,0 +1,8 @@
+apiVersion: v2
+name: longhorn
+description: A Helm chart for Kubernetes
+version: 0.1.0
+dependencies:
+- name: longhorn
+  version: 1.7.3
+  repository: https://charts.longhorn.io

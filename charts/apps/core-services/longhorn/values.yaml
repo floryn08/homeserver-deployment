@@ -1,0 +1,10 @@
+longhorn:
+  namespaceOverride: core-services
+  ingress:
+    enabled: true
+    host: longhorn.<path:kv/data/domains#primaryDomain>
+    ingressClassName: traefik
+    annotations: 
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    tls: true
+    tlsSecret: longhorn-certificate-secret

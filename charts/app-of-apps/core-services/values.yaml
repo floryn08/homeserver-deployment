@@ -57,3 +57,6 @@ certManager:
 
 nvidiaGpuOperator:
   path: charts/apps/core-services/nvidia-gpu-operator
+
+longhorn:
+  path: charts/apps/core-services/longhorn
