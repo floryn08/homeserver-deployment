@@ -1,8 +1,10 @@
+domain: <path:kv/data/domains#localDomain>
+namespace: core-services
 longhorn:
   namespaceOverride: core-services
   ingress:
     enabled: true
-    host: longhorn.<path:kv/data/domains#primaryDomain>
+    host: longhorn.<path:kv/data/domains#localDomain>
     ingressClassName: traefik
     annotations: 
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
