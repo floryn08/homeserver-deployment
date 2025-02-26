@@ -65,6 +65,7 @@ argo-cd:
                 helm repo add nextcloud https://nextcloud.github.io/helm/
                 helm repo add opentelemetry https://open-telemetry.github.io/opentelemetry-helm-charts
                 helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
+                helm repo add longhorn https://charts.longhorn.io
                 helm dependency build
           generate:
             command:
