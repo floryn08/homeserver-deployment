@@ -6,6 +6,11 @@ ports:
   externalPort: 8080
   protocol: TCP
 volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/home-automation/zigbee2mqtt/data
+  podPath: /app/data
+  type: DirectoryOrCreate
+  readOnly: false
 - name: udev
   hostPath: /run/udev
   podPath: /run/udev
