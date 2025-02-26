@@ -1,0 +1,12 @@
+image: koenkk/zigbee2mqtt:2.1.1
+namespace: home-automation
+ports:
+- name: web
+  containerPort: 8080
+  externalPort: 8080
+  protocol: TCP
+volumes:
+- name: data
+  hostPath: <path:kv/data/hostPath#appdata>/home-automation/zigbee2mqtt/data
+  podPath: /app/data
+  type: DirectoryOrCreate
