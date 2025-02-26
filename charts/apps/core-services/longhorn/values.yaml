@@ -1,5 +1,5 @@
 longhorn:
-  # namespaceOverride: core-services
+  namespaceOverride: core-services
   ingress:
     enabled: true
     host: longhorn.<path:kv/data/domains#primaryDomain>
@@ -8,3 +8,5 @@ longhorn:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     tls: true
     tlsSecret: longhorn-certificate-secret
+  preUpgradeChecker:
+    jobEnabled: false
