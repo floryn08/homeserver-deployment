@@ -10,3 +10,9 @@ volumes:
   hostPath: <path:kv/data/hostPath#appdata>/home-automation/zigbee2mqtt/data
   podPath: /app/data
   type: DirectoryOrCreate
+  readOnly: false
+- name: udev
+  hostPath: /run/udev
+  podPath: /run/udev
+  type: Directory
+  readOnly: true
