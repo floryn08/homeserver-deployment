@@ -1,5 +1,5 @@
 longhorn:
-  namespaceOverride: core-services
+  # namespaceOverride: core-services
   ingress:
     enabled: true
     host: longhorn.<path:kv/data/domains#primaryDomain>
