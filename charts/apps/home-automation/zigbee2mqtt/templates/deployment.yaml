@@ -28,7 +28,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
-            name: {{ .Release.Name }}
+            name: {{ .Release.Name }}-env
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}
@@ -36,6 +36,8 @@ spec:
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
+        - name: configuration
+          mountPath: /app/data
         {{- range $index, $val := $.Values.volumes }}
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
@@ -47,11 +49,14 @@ spec:
             - sh
             - -c
             - >-
-              curl -f http://localhost:8080
+              wget -O - http://localhost:8080
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
       volumes:
+      - name: configuration
+        configMap: 
+          name: {{ .Release.Name }}
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
         hostPath:
