@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/speedtest-tracker:1.2.3
+image: lscr.io/linuxserver/speedtest-tracker:1.2.5
 namespace: utility-services
 ports:
 - name: http
