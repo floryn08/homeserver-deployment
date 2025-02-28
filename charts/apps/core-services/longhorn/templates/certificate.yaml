@@ -9,9 +9,9 @@ spec:
   issuerRef: 
     kind: ClusterIssuer
     name: ca-issuer
-  commonName: "argocd.{{ .Values.domain }}"
+  commonName: "{{ .Release.Name }}.{{ .Values.domain }}"
   dnsNames:
-    - "argocd.{{ .Values.domain }}" 
+    - "{{ .Release.Name }}.{{ .Values.domain }}" 
   subject:
     organizations:      
       - {{ .Values.domain }}
