@@ -1,4 +1,4 @@
-apiVersion: longhorn.io/v1beta1
+apiVersion: longhorn.io/v1beta2
 kind: Volume
 metadata:
   name: {{ .Release.Name }}
@@ -7,5 +7,3 @@ spec:
   size: {{ tpl "\"{{ .Values.persistence.longhorn.size }}\"" . }}
   numberOfReplicas: {{ .Values.persistence.longhorn.replicas }}
   frontend: {{ .Values.persistence.longhorn.frontend }}
-  accessMode: rwo
-  dataEngine: v1
