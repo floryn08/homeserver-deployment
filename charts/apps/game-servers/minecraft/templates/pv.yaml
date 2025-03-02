@@ -10,6 +10,6 @@ spec:
   storageClassName: longhorn
   persistentVolumeReclaimPolicy: Retain
   csi:
-    driver: io.rancher.longhorn
+    driver: driver.longhorn.io
     fsType: ext4
     volumeHandle: {{ .Values.persistence.longhorn.name }}
