@@ -4,5 +4,5 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 spec:
-  size: {{ tpl "\"{{ .Values.persistence.volume.size }}\"" . }}
-  numberOfReplicas: {{ .Values.persistence.volume.replicas }}
+  size: {{ tpl "\"{{ .Values.persistence.longhorn.size }}\"" . }}
+  numberOfReplicas: {{ .Values.persistence.longhorn.replicas }}

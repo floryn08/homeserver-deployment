@@ -8,5 +8,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.persistence.volume.size }}
+      storage: {{ .Values.persistence.longhorn.size }}
   storageClassName: longhorn

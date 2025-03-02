@@ -5,14 +5,18 @@ ports:
   containerPort: 25565
   externalPort: 25565
   protocol: TCP
-volumes:
-- claimName: minecraft
-  mountPath: /data
-- claimName: minecraft
-  mountPath: /mods
+
 
 persistence:
-  volume:
+  longhorn:
     name: minecraft
     size: "5368709120"
     replicas: 2
+  volumes:
+    - name: minecraft
+      claimName: minecraft
+  volumeMounts:
+    - name: minecraft
+      mountPath: /data
+    - name: minecraft
+      mountPath: /mods
