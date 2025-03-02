@@ -15,5 +15,5 @@ persistence:
   volume:
     name: minecraft
     claimName: minecraft
-    size: "5368709120"
+    size: 5368709120
     replicas: 2
