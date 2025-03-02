@@ -12,6 +12,7 @@ persistence:
     name: minecraft
     size: "5368709120"
     replicas: 2
+    frontend: blockdev
   volumes:
     - name: minecraft
       claimName: minecraft
