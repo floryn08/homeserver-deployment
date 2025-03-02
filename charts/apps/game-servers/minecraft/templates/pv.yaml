@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.volume.size }}
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: io.rancher.longhorn
+    fsType: ext4
+    volumeHandle: {{ .Values.persistence.volume.name }}

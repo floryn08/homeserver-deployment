@@ -6,23 +6,14 @@ ports:
   externalPort: 25565
   protocol: TCP
 volumes:
-- name: data
-  hostPath: <path:kv/data/hostPath#appdata>/game-servers/minecraft
-  podPath: /data
-  type: DirectoryOrCreate
-  readOnly: false
-- name: localtime
-  hostPath: /etc/localtime
-  podPath: /etc/localtime
-  type: File
-  readOnly: true
-- name: timezone
-  hostPath: /etc/timezone
-  podPath: /etc/timezone
-  type: File
-  readOnly: true
-- name: mods
-  hostPath: <path:kv/data/hostPath#appdata>/game-servers/minecraft/mods
-  podPath: /mods
-  type: DirectoryOrCreate
-  readOnly: false
+- name: minecraft
+  mountPath: /data
+- name: minecraft
+  mountPath: /mods
+
+persistence:
+  volume:
+    name: minecraft
+    claimName: minecraft
+    size: 5Gi
+    replicas: 2

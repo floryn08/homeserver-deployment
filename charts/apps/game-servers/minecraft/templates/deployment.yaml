@@ -21,9 +21,8 @@ spec:
       volumes:
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: {{ $val.type }}
+        persistentVolumeClaim:
+          claimName: {{ $val.claimName }}
       {{ end -}}
       containers:
       - name: {{ .Release.Name }}
@@ -37,9 +36,8 @@ spec:
         {{ end -}}
         volumeMounts:
         {{- range $index, $val := $.Values.volumes }}
-        - mountPath: {{ $val.podPath }}
+        - mountPath: {{ $val.mountPath }}
           name: {{ $val.name }}
-          readOnly: {{ $val.readOnly }}
         {{ end -}}
         envFrom:
         - secretRef:

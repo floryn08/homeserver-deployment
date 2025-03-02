@@ -1,0 +1,8 @@
+apiVersion: longhorn.io/v1beta1
+kind: Volume
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  size: {{ .Values.persistence.volume.size }}
+  numberOfReplicas: {{ .Values.persistence.volume.replicas }}
