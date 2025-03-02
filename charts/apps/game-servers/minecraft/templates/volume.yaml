@@ -3,6 +3,8 @@ kind: Volume
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
+  labels:
+    longhornvolume: {{ .Release.Name }}
 spec:
   size: {{ .Values.persistence.volume.size }}
   numberOfReplicas: {{ .Values.persistence.volume.replicas }}
