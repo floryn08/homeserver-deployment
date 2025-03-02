@@ -6,14 +6,13 @@ ports:
   externalPort: 25565
   protocol: TCP
 volumes:
-- name: minecraft
+- claimName: minecraft
   mountPath: /data
-- name: minecraft
+- claimName: minecraft
   mountPath: /mods
 
 persistence:
   volume:
     name: minecraft
-    claimName: minecraft
     size: "5368709120"
     replicas: 2
