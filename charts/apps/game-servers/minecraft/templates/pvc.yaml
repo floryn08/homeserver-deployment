@@ -3,10 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
-  annotations:
-    longhorn.io/volume-name: "{{ .Release.Name }}" 
-    longhorn.io/numberOfReplicas: "1"  # Set replica count for this volume only
-    longhorn.io/diskSelector: "ssd"  # Assign to disks with this tag
 spec:
   accessModes:
     - ReadWriteOnce
@@ -14,3 +10,4 @@ spec:
     requests:
       storage: {{ .Values.persistence.longhorn.size }}
   storageClassName: longhorn
+  volumeName: {{ .Release.Name }}
