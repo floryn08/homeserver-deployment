@@ -19,5 +19,5 @@ persistence:
   volumeMounts:
     - name: minecraft
       mountPath: /data
-    - name: minecraft
-      mountPath: /mods
+    # - name: minecraft
+    #   mountPath: /mods
