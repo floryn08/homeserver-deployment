@@ -3,6 +3,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    longhorn.io/volume-name: "{{ .Release.Name }}" 
+    longhorn.io/numberOfReplicas: "2"  # Set replica count for this volume only
+    longhorn.io/diskSelector: "fast-disks"  # Assign to disks with this tag
+    longhorn.io/nodeSelector: "worker-nodes"  # Assign to specific nodes
 spec:
   accessModes:
     - ReadWriteOnce
