@@ -1,11 +1,11 @@
 image: itzg/minecraft-server:2025.2.1
 namespace: game-servers
+
 ports:
 - name: minecraft
   containerPort: 25565
   externalPort: 25565
   protocol: TCP
-
 
 persistence:
   longhorn:
@@ -19,5 +19,3 @@ persistence:
   volumeMounts:
     - name: minecraft
       mountPath: /data
-    # - name: minecraft
-    #   mountPath: /mods

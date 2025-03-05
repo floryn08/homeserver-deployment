@@ -19,3 +19,6 @@ ollama:
 
 openWebui:
   path: charts/apps/ai-services/open-webui
+
+comfyui:
+  path: charts/apps/ai-services/comfyui

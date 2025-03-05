@@ -1,0 +1,22 @@
+image: ghcr.io/ai-dock/comfyui:v2-cuda-12.1.1-base-22.04-v0.2.2
+namespace: &namespace ai-services
+domain: <path:kv/data/domains#localDomain>
+
+service:
+  type: ClusterIP
+ports:
+- name: comfyui
+  containerPort: 8188
+  externalPort: 8188
+  protocol: TCP
+
+persistence:
+  longhorn:
+    volumeName: *namespace
+    size: "5368709120"
+  volumes:
+    - name: comfyui
+      claimName: comfyui
+  volumeMounts:
+    - name: comfyui
+      mountPath: /workspace
