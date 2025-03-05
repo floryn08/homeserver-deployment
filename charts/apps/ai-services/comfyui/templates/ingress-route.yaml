@@ -13,6 +13,6 @@ spec:
         - kind: Service
           name: {{ .Release.Name }}
           namespace: {{ .Values.namespace }} 
-          port: http 
+          port: comfyui 
   tls:
     secretName: {{ .Release.Name }}-certificate-secret
