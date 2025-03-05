@@ -43,9 +43,12 @@ spec:
         livenessProbe:
           exec:
             command:
-            - curl 
-            - -fSs 
-            - http://localhost:5380
+            - dig 
+            - +short 
+            - +norecurse 
+            - +retry=0 
+            - @127.0.0.1 
+            - cloudflare.com
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
