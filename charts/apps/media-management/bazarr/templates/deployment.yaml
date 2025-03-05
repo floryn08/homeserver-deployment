@@ -36,17 +36,17 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
-        livenessProbe:
-          exec:
-            command:
-            - curl
-            - -f
-            - http://localhost:6767/api/system/health
-            - --header
-            - X-API-KEY:{{ .Values.apiKey }}
-          failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #     - curl
+        #     - -f
+        #     - http://localhost:6767/api/system/health
+        #     - --header
+        #     - X-API-KEY:{{ .Values.apiKey }}
+        #   failureThreshold: 5
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
       volumes:
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
