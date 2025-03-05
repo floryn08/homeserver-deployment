@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.longhorn.size }}
-  storageClassName: longhorn-ssd-1r-snap
+  volumeName: {{ .Release.Name }}
