@@ -5,7 +5,7 @@ domain: <path:kv/data/domains#localDomain>
 service:
   type: ClusterIP
 ports:
-- name: comfyui
+- name: http
   containerPort: 8188
   externalPort: 8188
   protocol: TCP
