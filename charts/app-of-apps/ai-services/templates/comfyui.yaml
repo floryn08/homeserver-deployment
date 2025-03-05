@@ -1,3 +1,4 @@
+{{- if .Values.comfyui.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -21,3 +22,5 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
+
+{{- end}}

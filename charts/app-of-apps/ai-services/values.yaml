@@ -21,4 +21,5 @@ openWebui:
   path: charts/apps/ai-services/open-webui
 
 comfyui:
+  enabled: false
   path: charts/apps/ai-services/comfyui
