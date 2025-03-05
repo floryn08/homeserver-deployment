@@ -40,13 +40,13 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
         {{ end -}}
-        livenessProbe:
-          exec:
-            command:
-            - dig +short +norecurse +retry=0 @127.0.0.1 cloudflare.com
-          failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #     - dig +short +norecurse +retry=0 @127.0.0.1 cloudflare.com
+        #   failureThreshold: 5
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
       volumes:
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
