@@ -8,6 +8,7 @@ data:
   WORKSPACE: /workspace
   # CIVITAI_TOKEN: ${CIVITAI_TOKEN:-}
   # HF_TOKEN: ${HF_TOKEN:-}
+  COMFYUI_URL: {{ .Release.Name }}.{{ .Values.domain }}
   COMFYUI_PORT_HOST: "8188"
   CF_QUICK_TUNNELS: "false"
   WEB_ENABLE_AUTH: "false"
