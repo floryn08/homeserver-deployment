@@ -9,6 +9,10 @@ ports:
   containerPort: 8188
   externalPort: 8188
   protocol: TCP
+- name: caddy
+  containerPort: 1111
+  externalPort: 1111
+  protocol: TCP
 
 persistence:
   longhorn:
