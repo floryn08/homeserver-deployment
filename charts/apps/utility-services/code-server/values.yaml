@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/code-server:4.97.2
+image: lscr.io/linuxserver/code-server:4.98.2
 namespace: utility-services
 primaryDomain: <path:kv/data/domains#primaryDomain>
 ports:
