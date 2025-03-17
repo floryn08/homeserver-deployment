@@ -31,7 +31,7 @@ spec:
         image: {{ .Values.image }}
         resources:
           limits: 
-            memory: {{ Values.resources.limits.memory }}
+            memory: {{ .Values.resources.limits.memory }}
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:

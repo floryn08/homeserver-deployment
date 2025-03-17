@@ -30,7 +30,7 @@ spec:
         image: {{ .Values.image }}
         resources:
           limits: 
-            memory: {{ Values.resources.limits.memory }}
+            memory: {{ .Values.resources.limits.memory }}
         imagePullPolicy: Always
         envFrom:
         - secretRef:
