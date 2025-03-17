@@ -20,11 +20,10 @@ spec:
     spec:
       runtimeClassName: nvidia
       volumes:
-      {{- range $index, $val := $.Values.volumes }}
+      {{- range $index, $val := $.Values.persistence.volumes }}
       - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
+        persistentVolumeClaim:
+          claimName: {{ $val.claimName }}
       {{ end -}}
       containers:
       - name: {{ .Release.Name }}
@@ -43,7 +42,7 @@ spec:
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
-        - mountPath: {{ $val.podPath }}
+        {{- range $index, $val := $.Values.persistence.volumeMounts }}
+        - mountPath: {{ $val.mountPath }}
           name: {{ $val.name }}
         {{ end -}}

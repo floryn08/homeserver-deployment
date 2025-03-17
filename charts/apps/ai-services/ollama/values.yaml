@@ -18,3 +18,16 @@ volumes:
 - name: config
   hostPath: <path:kv/data/hostPath#appdata>/ai-services/ollama
   podPath: /root/.ollama
+
+persistence:
+  longhorn:
+    name: minecraft
+    size: "5368709120"
+    replicas: 2
+    frontend: blockdev
+  volumes:
+    - name: minecraft
+      claimName: minecraft
+  volumeMounts:
+    - name: minecraft
+      mountPath: /data
