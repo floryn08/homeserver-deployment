@@ -29,6 +29,9 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
+        resources:
+          limits: 
+            memory: {{ Values.resources.limits.memory }}
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
