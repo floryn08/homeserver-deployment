@@ -21,13 +21,13 @@ volumes:
 
 persistence:
   longhorn:
-    name: minecraft
-    size: "5368709120"
+    name: ollama
+    size: "53687091200"
     replicas: 2
     frontend: blockdev
   volumes:
-    - name: minecraft
-      claimName: minecraft
+    - name: ollama
+      claimName: ollama
   volumeMounts:
-    - name: minecraft
-      mountPath: /data
+    - name: ollama
+      mountPath: /root/.ollama
