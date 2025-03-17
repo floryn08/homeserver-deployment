@@ -2,13 +2,20 @@ image: cyfershepard/jellystat:unstable
 namespace: media-management
 replicas: 1
 domain: <path:kv/data/domains#localDomain>
+
+resources:
+  limits:
+    memory: 500Mi
+
 service:
   type: ClusterIP
+
 ports:
 - name: http
   containerPort: 3000
   externalPort: 3000
   protocol: TCP
+  
 volumes:
 - name: backup
   hostPath: <path:kv/data/hostPath#appdata>/media-management/jellystat/backup
