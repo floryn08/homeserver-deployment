@@ -9,12 +9,12 @@ prometheus:
   prometheus-pushgateway:
     enabled: false
   server: 
-    baseURL: prometheus.<path:kv/data/domains#primaryDomain>
+    baseURL: prometheus.<path:kv/data/domains#localDomain>
     ingress: 
       enabled: true
     ingressClassName: traefik
     hosts:
-      - host: prometheus.<path:kv/data/domains#primaryDomain>            
+      - host: prometheus.<path:kv/data/domains#localDomain>            
     annotations: 
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     tls:
