@@ -15,7 +15,7 @@ syncPolicy:
     prune: true
 
 grafana:
-  enabled: true
+  enabled: false
   path: charts/apps/monitoring/grafana
 
 opentelemetry:
