@@ -9,8 +9,8 @@ prometheus:
     enabled: false
   prometheus-pushgateway:
     enabled: false
-  server: 
-    baseURL: *host
+  # server: 
+  #   baseURL: *host
 
 prometheus-postgres-exporter:
   config:
