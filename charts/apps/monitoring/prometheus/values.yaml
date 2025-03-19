@@ -1,5 +1,6 @@
 namespace: &namespace monitoring
 domain: <path:kv/data/domains#localDomain>
+host: &host prometheus.<path:kv/data/domains#localDomain>
 
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml
 prometheus:
@@ -9,12 +10,12 @@ prometheus:
   prometheus-pushgateway:
     enabled: false
   server: 
-    baseURL: prometheus.<path:kv/data/domains#localDomain>
+    baseURL: *host
     ingress: 
       enabled: true
       ingressClassName: traefik
       hosts:
-        - prometheus.<path:kv/data/domains#localDomain>            
+        - *host           
       annotations: 
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       tls:
