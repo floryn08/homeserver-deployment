@@ -11,15 +11,6 @@ prometheus:
     enabled: false
   server: 
     baseURL: *host
-    ingress: 
-      enabled: true
-      ingressClassName: traefik
-      hosts:
-        - *host           
-      annotations: 
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      tls:
-        - secretName: prometheus-certificate-secret
 
 prometheus-postgres-exporter:
   config:
