@@ -1,11 +1,24 @@
+namespace: &namespace monitoring
+domain: <path:kv/data/domains#localDomain>
+
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml
 prometheus:
-  forceNamespace: monitoring
+  forceNamespace: *namespace
   alertmanager:
     enabled: false
   prometheus-pushgateway:
     enabled: false
-  
+  server: 
+    baseURL: prometheus.<path:kv/data/domains#primaryDomain>
+    ingress: 
+      enabled: true
+    ingressClassName: traefik
+    hosts:
+      - host: prometheus.<path:kv/data/domains#primaryDomain>            
+    annotations: 
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    tls:
+      - secretName: prometheus-certificate-secret
 
 prometheus-postgres-exporter:
   config:
