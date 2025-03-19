@@ -12,13 +12,13 @@ prometheus:
     baseURL: prometheus.<path:kv/data/domains#localDomain>
     ingress: 
       enabled: true
-    ingressClassName: traefik
-    hosts:
-      - host: prometheus.<path:kv/data/domains#localDomain>            
-    annotations: 
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    tls:
-      - secretName: prometheus-certificate-secret
+      ingressClassName: traefik
+      hosts:
+        - prometheus.<path:kv/data/domains#localDomain>            
+      annotations: 
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      tls:
+        - secretName: prometheus-certificate-secret
 
 prometheus-postgres-exporter:
   config:
