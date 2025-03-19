@@ -1,3 +1,4 @@
+{{- if .Values.prometheus.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -23,3 +24,4 @@ spec:
     - ServerSideApply=true
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
+{{- end -}}

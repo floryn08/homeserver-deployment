@@ -15,10 +15,13 @@ syncPolicy:
     prune: true
 
 grafana:
+  enabled: true
   path: charts/apps/monitoring/grafana
 
 opentelemetry:
+  enabled: false
   path: charts/apps/monitoring/opentelemetry
 
 prometheus:
+  enabled: true
   path: charts/apps/monitoring/prometheus

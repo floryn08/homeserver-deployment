@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ .Release.Name }}        
     spec:
       volumes:
       {{- range $index, $val := $.Values.volumes }}
