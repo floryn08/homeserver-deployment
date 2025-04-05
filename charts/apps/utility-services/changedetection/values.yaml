@@ -1,4 +1,4 @@
-image: ghcr.io/dgtlmoon/changedetection.io:0.49.9
+image: ghcr.io/dgtlmoon/changedetection.io:0.49.12
 namespace: utility-services
 chromeImage: browserless/chrome:latest
 ports:
