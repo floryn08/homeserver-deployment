@@ -1,4 +1,4 @@
-image: ghcr.io/schaka/janitorr:v1.6.11
+image: ghcr.io/schaka/janitorr:v1.6.12
 namespace: media-management
 domain: <path:kv/data/domains#localDomain>
 
