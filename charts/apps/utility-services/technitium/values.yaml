@@ -1,4 +1,4 @@
-image: technitium/dns-server:13.4.3
+image: technitium/dns-server:13.5.0
 namespace: utility-services
 primaryDomain: <path:kv/data/domains#primaryDomain>
 ports:
