@@ -1,7 +1,7 @@
 namespace: &namespace utility-services
 image:
   repository: onlyoffice/documentserver
-  tag: 8.3.2
+  tag: 8.3.3
 service:
   type: ClusterIP
 domain: <path:kv/data/domains#primaryDomain>
