@@ -32,7 +32,7 @@ spec:
   selector:
     app: whoami
 ---
-# traefik ingress route
+# public traefik ingress route
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -51,4 +51,44 @@ spec:
           port: 80
   tls:
     certResolver: letsencrypt
+---
+# local traefik ingress route
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-ingress-local
+  namespace: {{ .Values.namespace }}
+spec:
+  entryPoints:
+    - websecure
+  routes: 
+    - kind: Rule
+      match: Host(`whoami.{{ .Values.localDomain }}`) && PathPrefix(`/`)
+      services: 
+        - kind: Service
+          name: whoami
+          namespace: {{ .Values.namespace }} 
+          port: 80 
+  tls:
+    secretName: whoami-certificate-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: whoami-certificate
+  namespace: {{ .Values.namespace }}
+spec:
+  revisionHistoryLimit: 1
+  secretName: whoami-certificate-secret
+  issuerRef: 
+    kind: ClusterIssuer
+    name: ca-issuer
+  commonName: "whoami.{{ .Values.localDomain }}"
+  dnsNames:
+    - "whoami.{{ .Values.localDomain }}" 
+  subject:
+    organizations:      
+      - {{ .Values.localDomain }}
+    organizationalUnits:
+      - {{ .Values.namespace }}
 {{- end }}
