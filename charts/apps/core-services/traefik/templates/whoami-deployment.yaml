@@ -1,4 +1,4 @@
-{{ - if .Values.whoami.enabled - }}
+{{- if .Values.whoami.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -52,4 +52,4 @@ spec:
             number: 80
   tls:
     certResolver: letsencrypt
-{{ - end }}
+{{- end }}
