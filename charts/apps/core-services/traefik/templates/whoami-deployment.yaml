@@ -48,8 +48,7 @@ spec:
         - kind: Service
           name: whoami
           namespace: {{ .Values.namespace }} 
-          port:
-            number: 80
+          port: 80
   tls:
     certResolver: letsencrypt
 {{- end }}
