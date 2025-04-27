@@ -43,7 +43,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`whoami.{{ .Values.domain }}`) && PathPrefix(`/`)
+      match: Host(`whoami.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       services:
         - kind: Service
           name: whoami
