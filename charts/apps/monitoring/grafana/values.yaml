@@ -1,8 +1,13 @@
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+
 namespace: &namespace monitoring
 grafanaDataPath: <path:kv/data/hostPath#appdata>/monitoring/grafana
 grafana:
   namespaceOverride: *namespace
   assertNoLeakedSecrets: false
+
+  initChownData:
+    enabled: false
 
   service:
     type: LoadBalancer
