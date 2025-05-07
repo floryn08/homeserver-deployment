@@ -3,5 +3,5 @@ name: nextcloud
 version: 1.0.0
 dependencies:
   - name: nextcloud
-    version: 6.6.9
+    version: 6.6.10
     repository: https://nextcloud.github.io/helm
