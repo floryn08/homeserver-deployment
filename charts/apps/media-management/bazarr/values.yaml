@@ -1,4 +1,4 @@
-image: linuxserver/bazarr:1.5.1
+image: linuxserver/bazarr:1.5.2
 namespace: media-management
 apiKey: <path:kv/data/media-management/bazarr#apiKey>
 domain: <path:kv/data/domains#localDomain>
