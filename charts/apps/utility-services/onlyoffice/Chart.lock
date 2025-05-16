@@ -1,9 +1,9 @@
 dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 21.0.2
+  version: 21.1.3
 - name: rabbitmq
   repository: https://charts.bitnami.com/bitnami
   version: 16.0.2
-digest: sha256:8dfc68a4878bcae23106acd35b8f73d790e02bae08b56b63412102dda26ee088
-generated: "2025-05-08T15:15:09.747226268Z"
+digest: sha256:34631e3d45f945465c4a11360936c78bad716f909a90bd68d40e57621405de80
+generated: "2025-05-16T18:39:11.356378179Z"
