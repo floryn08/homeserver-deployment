@@ -1,3 +1,4 @@
+{{- if .Values.certificate.enabled }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -17,3 +18,21 @@ spec:
   issuerRef:
     name: self-signed-ca-issuer
     kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ca-issuer
+  namespace: {{ .Values.namespace }}
+spec:
+  ca:
+    secretName: ca-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: self-signed-ca-issuer
+  namespace: {{ .Values.namespace }}
+spec:
+  selfSigned: {}
+{{- end }}

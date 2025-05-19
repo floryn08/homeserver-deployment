@@ -1,3 +1,4 @@
+{{- if .Values.certificate.enabled }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -17,3 +18,5 @@ spec:
       - {{ .Values.domain }}
     organizationalUnits:
       - {{ .Values.namespace }}
+
+{{- end }}

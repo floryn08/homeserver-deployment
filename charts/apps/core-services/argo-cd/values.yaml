@@ -1,6 +1,10 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 namespace: &namespace core-services
 domain: &domain <path:kv/data/domains#localDomain>
+certificate:
+  enabled: true
+ingressRoute:
+  enabled: true
 
 argo-cd:
   namespaceOverride: *namespace
