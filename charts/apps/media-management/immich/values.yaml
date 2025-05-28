@@ -25,7 +25,7 @@ immich:
           failureThreshold: 360
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: v1.133.1
+      tag: v1.134.0
     ingress:
       main:
         enabled: true
@@ -61,7 +61,7 @@ immich:
   machine-learning:
     image:  
       repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v1.133.0
+      tag: v1.134.0
 
 # https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
 postgresql:
