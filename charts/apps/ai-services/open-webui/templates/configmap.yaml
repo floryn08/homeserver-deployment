@@ -9,3 +9,4 @@ data:
   OAUTH_PROVIDER_NAME: {{ .Values.providerName }}
   OAUTH_SCOPES: {{ .Values.scopes }}
   OAUTH_MERGE_ACCOUNTS_BY_EMAIL: {{ .Values.oauthMergeAccountsByEmail | quote }}
+  OPENID_REDIRECT_URI: {{ .Values.redirectUri }}

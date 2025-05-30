@@ -20,3 +20,4 @@ providerUrl: https://auth.<path:kv/data/domains#primaryDomain>/application/o/ope
 providerName: Authentik
 scopes: openid email profile
 oauthMergeAccountsByEmail: true
+redirectUri: https://ollama.<path:kv/data/domains#primaryDomain>/oauth/oidc/callback
