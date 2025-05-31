@@ -43,7 +43,7 @@ connections:
   redisPort: 6379
 
   amqpType: rabbitmq
-  amqpHost: amqp://user:<path:kv/data/utility-services/onlyoffice#rabbitmqPassword>@onlyoffice-rabbitmq?frameMax=0
+  amqpHost: amqp://user:<path:kv/data/utility-services/onlyoffice#rabbitmqPassword>@onlyoffice-rabbitmq/?frameMax=0
   amqpPort: 5672
   amqpUser: user
 
