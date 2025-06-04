@@ -1,0 +1,20 @@
+{{- $domain := include "secretValue" (dict "namespace" .Release.Namespace "secretName" .Release.Name "key" "homeDomain") }}
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ .Release.Name }}-ingress
+  namespace: {{ .Values.namespace }}
+spec:
+  entryPoints:
+    - websecure
+  routes: 
+    - kind: Rule
+      match: Host(`{{ .Release.Name }}.{{ $domain }}`) && PathPrefix(`/`)
+      services: 
+        - kind: Service
+          name: {{ .Release.Name }}
+          namespace: {{ .Values.namespace }} 
+          port: http 
+  tls:
+    secretName: {{ .Release.Name }}-certificate-secret

@@ -1,3 +1,5 @@
+{{- $appdata := include "secretValue" (dict "namespace" .Release.Namespace "secretName" .Release.Name "key" "appdata") }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -52,6 +54,6 @@ spec:
       {{- range $index, $val := $.Values.volumes }}
       - name: {{ $val.name }}
         hostPath:
-          path: {{ $val.hostPath }}
+          path: {{ $appdata }}/{{ $val.hostPath }}
           type: DirectoryOrCreate
       {{ end -}}

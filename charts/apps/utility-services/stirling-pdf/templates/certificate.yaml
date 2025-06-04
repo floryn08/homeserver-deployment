@@ -1,0 +1,21 @@
+{{- $domain := include "secretValue" (dict "namespace" .Release.Namespace "secretName" .Release.Name "key" "homeDomain") }}
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-certificate
+  namespace: {{ .Values.namespace }}
+spec:
+  revisionHistoryLimit: 1
+  secretName: {{ .Release.Name }}-certificate-secret
+  issuerRef: 
+    kind: ClusterIssuer
+    name: ca-issuer
+  commonName: "{{ .Release.Name }}.{{ $domain }}"
+  dnsNames:
+    - "{{ .Release.Name }}.{{ $domain }}" 
+  subject:
+    organizations:      
+      - {{ $domain }}
+    organizationalUnits:
+      - {{ .Values.namespace }}
