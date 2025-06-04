@@ -1,4 +1,4 @@
-{{- $domain := include "secretValue" (dict "namespace" .Release.Namespace "secretName" .Release.Name "key" "homeDomain") }}
+{{- $domain := include "secretValue" (dict "namespace" .Values.secrets.domain.secretNamespace "secretName" .Values.secrets.domain.secretName "key" .Values.secrets.domain.key) }}
 
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute

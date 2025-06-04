@@ -1,4 +1,4 @@
-{{- $appdata := include "secretValue" (dict "namespace" .Release.Namespace "secretName" .Release.Name "key" "appdata") }}
+{{- $appdata := include "secretValue" (dict "namespace" .Values.secrets.appdata.secretNamespace "secretName" .Values.secrets.appdata.secretName "key" .Values.secrets.appdata.key) }}
 
 apiVersion: apps/v1
 kind: Deployment

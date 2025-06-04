@@ -3,8 +3,12 @@ namespace: utility-services
 secrets:
   domain:
     key: homeDomain
+    secretName: core-services-domains
+    secretNamespace: core-services
   appdata:
     key: appdata
+    secretName: core-services-appdata
+    secretNamespace: core-services
 ports:
 - name: http
   containerPort: 8080
