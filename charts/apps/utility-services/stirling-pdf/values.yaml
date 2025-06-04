@@ -1,14 +1,14 @@
 image: frooodle/s-pdf:0.46.2-ultra-lite
-namespace: utility-services
+namespace: &namespace utility-services
 secrets:
   domain:
     key: homeDomain
-    secretName: core-services-domains
-    secretNamespace: core-services
+    secretName: utility-services-domains
+    secretNamespace: *namespace
   appdata:
     key: appdata
-    secretName: core-services-appdata
-    secretNamespace: core-services
+    secretName: utility-services-appdata
+    secretNamespace: *namespace
 ports:
 - name: http
   containerPort: 8080
