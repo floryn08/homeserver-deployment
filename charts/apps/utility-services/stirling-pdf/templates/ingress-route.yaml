@@ -1,4 +1,9 @@
-{{- $domain := include "secretValue" (dict "namespace" .Values.secrets.domain.secretNamespace "secretName" .Values.secrets.domain.secretName "key" .Values.secrets.domain.key) }}
+{{- if .Values.ingress.hostFromSecret.enabled }}
+  {{- $s := lookup "v1" "Secret" .Values.ingress.hostFromSecret.namespace .Values.ingress.hostFromSecret.name | default dict }}
+  {{- $hasData := hasKey $s "data" }}
+  {{- if and $hasData (hasKey $s.data .Values.ingress.hostFromSecret.key) }}
+    {{- $hostB64 := index $s.data .Values.ingress.hostFromSecret.key }}
+    {{- $host := $hostB64 | b64dec }}
 
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
@@ -10,7 +15,7 @@ spec:
     - websecure
   routes: 
     - kind: Rule
-      match: Host(`{{ .Release.Name }}.{{ $domain }}`) && PathPrefix(`/`)
+      match: Host(`{{ .Release.Name }}.{{ $host }}`) && PathPrefix(`/`)
       services: 
         - kind: Service
           name: {{ .Release.Name }}
@@ -18,3 +23,8 @@ spec:
           port: http 
   tls:
     secretName: {{ .Release.Name }}-certificate-secret
+
+  {{- else }}
+    {{- fail (printf "Secret '%s' in namespace '%s' is missing or does not contain key '%s'" .Values.ingress.hostFromSecret.name .Values.ingress.hostFromSecret.namespace .Values.ingress.hostFromSecret.key) }}
+  {{- end }}
+{{- end }}

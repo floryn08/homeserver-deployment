@@ -1,19 +1,26 @@
 image: frooodle/s-pdf:0.46.2-ultra-lite
 namespace: &namespace utility-services
-secrets:
-  domain:
+
+ingress:
+  hostFromSecret:
+    enabled: true
+    name: utility-services-domains
+    namespace: *namespace
     key: homeDomain
-    secretName: utility-services-domains
-    secretNamespace: *namespace
-  appdata:
+
+storage:
+  hostPathFromSecret:
+    enabled: true
+    name: utility-services-appdata
+    namespace: *namespace
     key: appdata
-    secretName: utility-services-appdata
-    secretNamespace: *namespace
+
 ports:
 - name: http
   containerPort: 8080
   externalPort: 8097
   protocol: TCP
+  
 volumes:
 - name: config
   hostPath: utility-services/stirling-pdf/configs

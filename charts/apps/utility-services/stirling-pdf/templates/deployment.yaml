@@ -1,4 +1,9 @@
-{{- $appdata := include "secretValue" (dict "namespace" .Values.secrets.appdata.secretNamespace "secretName" .Values.secrets.appdata.secretName "key" .Values.secrets.appdata.key) }}
+{{- if .Values.storage.hostPathFromSecret.enabled }}
+  {{- $s := lookup "v1" "Secret" .Values.storage.hostPathFromSecret.namespace .Values.storage.hostPathFromSecret.name | default dict }}
+  {{- $hasData := hasKey $s "data" }}
+  {{- if and $hasData (hasKey $s.data .Values.storage.hostPathFromSecret.key) }}
+    {{- $hostPathB64 := index $s.data .Values.storage.hostPathFromSecret.key }}
+    {{- $hostPath := $hostPathB64 | b64dec }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -21,39 +26,44 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       containers:
-      - name: {{ .Release.Name }}
-        image: {{ .Values.image }}
-        imagePullPolicy: IfNotPresent
-        envFrom:
-        - configMapRef:
-            name: {{ .Release.Name }}
-        ports:
-        {{- range $key, $val := $.Values.ports }}
-        - containerPort: {{ $val.containerPort }}
-          name: {{ $val.name }}
-          protocol: {{ $val.protocol }}
-        {{ end -}}
-        volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
-        - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
-        {{ end -}}
-        livenessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - >-
-              curl -f http://localhost:8080/api/v1/info/status | 
-              grep -q 'UP' && curl -fL http://localhost:8080/ | 
-              grep -qv 'Please sign in'
-          failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
+        - name: {{ .Release.Name }}
+          image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}
+          ports:
+            {{- range $key, $val := $.Values.ports }}
+            - containerPort: {{ $val.containerPort }}
+              name: {{ $val.name }}
+              protocol: {{ $val.protocol }}
+            {{- end }}
+          volumeMounts:
+            {{- range $index, $val := $.Values.volumes }}
+            - mountPath: {{ $val.podPath }}
+              name: {{ $val.name }}
+            {{- end }}
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >-
+                  curl -f http://localhost:8080/api/v1/info/status |
+                  grep -q 'UP' && curl -fL http://localhost:8080/ |
+                  grep -qv 'Please sign in'
+            failureThreshold: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
       volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $appdata }}/{{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
+        {{- range $index, $val := $.Values.volumes }}
+        - name: {{ $val.name }}
+          hostPath:
+            path: {{ $hostPath }}/{{ $val.hostPath }}
+            type: DirectoryOrCreate
+        {{- end }}
+
+  {{- else }}
+    {{- fail (printf "Secret '%s' in namespace '%s' is missing or does not contain key '%s'" .Values.storage.hostPathFromSecret.name .Values.storage.hostPathFromSecret.namespace .Values.storage.hostPathFromSecret.key) }}
+  {{- end }}
+{{- end }}
