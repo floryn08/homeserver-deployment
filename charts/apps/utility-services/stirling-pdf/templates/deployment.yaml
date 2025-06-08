@@ -1,9 +1,15 @@
 {{- if .Values.storage.hostPathFromSecret.enabled }}
   {{- $s := lookup "v1" "Secret" .Values.storage.hostPathFromSecret.namespace .Values.storage.hostPathFromSecret.name | default dict }}
   {{- $hasData := hasKey $s "data" }}
+  {{- $hostPathB64 := "" }}
+  {{- $hostPath := "" }}
   {{- if and $hasData (hasKey $s.data .Values.storage.hostPathFromSecret.key) }}
-    {{- $hostPathB64 := index $s.data .Values.storage.hostPathFromSecret.key }}
-    {{- $hostPath := $hostPathB64 | b64dec }}
+    {{- $hostPathB64 = index $s.data .Values.storage.hostPathFromSecret.key }}
+    {{- $hostPath = $hostPathB64 | b64dec }}
+  {{- else }}
+    {{- /* fallback for ArgoCD / local rendering */ -}}
+    {{- $hostPath = "/tmp" }}
+  {{- end }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -62,8 +68,4 @@ spec:
             path: {{ $hostPath }}/{{ $val.hostPath }}
             type: DirectoryOrCreate
         {{- end }}
-
-  {{- else }}
-    {{- fail (printf "Secret '%s' in namespace '%s' is missing or does not contain key '%s'" .Values.storage.hostPathFromSecret.name .Values.storage.hostPathFromSecret.namespace .Values.storage.hostPathFromSecret.key) }}
-  {{- end }}
 {{- end }}
