@@ -1,4 +1,4 @@
-image: ghcr.io/paperless-ngx/paperless-ngx:2.16.2
+image: ghcr.io/paperless-ngx/paperless-ngx:2.16.3
 namespace: utility-services
 domain: <path:kv/data/domains#localDomain>
 service:
