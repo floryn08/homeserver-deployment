@@ -1,4 +1,4 @@
-image: ghcr.io/flaresolverr/flaresolverr:v3.3.24
+image: ghcr.io/flaresolverr/flaresolverr:v3.3.25
 namespace: utility-services
 ports:
 - name: http
