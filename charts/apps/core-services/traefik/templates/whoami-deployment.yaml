@@ -44,6 +44,11 @@ spec:
   routes:
     - kind: Rule
       match: Host(`whoami.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
+      middlewares: 
+        - name: cloudflare
+          namespace: core-services
+        - name: bouncer
+          namespace: core-services
       services:
         - kind: Service
           name: whoami
