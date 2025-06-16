@@ -10,8 +10,6 @@ spec:
     - kind: Rule
       match: Host(`code.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       middlewares: 
-        - name: cloudflare
-          namespace: core-services
         - name: bouncer
           namespace: core-services
         - name: {{ .Release.Name }}

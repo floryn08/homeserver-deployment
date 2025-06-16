@@ -96,6 +96,3 @@ traefik:
       bouncer:
         moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
         version: v1.4.2
-      cloudflare:
-        moduleName: github.com/agence-gaya/traefik-plugin-cloudflare
-        version: v1.2.0

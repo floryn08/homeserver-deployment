@@ -10,20 +10,6 @@ spec:
     - kind: Rule
       match: Host(`{{ .Release.Name }}.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       middlewares: 
-        - name: cloudflare
-          namespace: core-services
-        - name: bouncer
-          namespace: core-services
-      services: 
-        - kind: Service
-          name: {{ .Release.Name }}
-          namespace: {{ .Values.namespace }} 
-          port: http 
-    - kind: Rule
-      match: Host(`{{ .Release.Name }}.{{ .Values.secondaryDomain }}`) && PathPrefix(`/`)
-      middlewares:
-        - name: cloudflare
-          namespace: core-services 
         - name: bouncer
           namespace: core-services
       services: 

@@ -10,8 +10,6 @@ spec:
     - kind: Rule
       match: Host(`kubernetes.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
       middlewares: 
-        - name: cloudflare
-          namespace: core-services
         - name: bouncer
           namespace: core-services
       services: 
