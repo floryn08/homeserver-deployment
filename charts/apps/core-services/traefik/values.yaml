@@ -60,7 +60,7 @@ traefik:
       enabled: true
       fields:
         headers: 
-          defaultmode: keep
+          defaultmode: drop
   experimental:
     plugins:
       bouncer:
