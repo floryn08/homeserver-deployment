@@ -8,5 +8,5 @@ spec:
     cloudflare:
         trustedCIDRs: []
         overwriteRequestHeader: true
-        appendXForwardedFor: true
+        # appendXForwardedFor: true
         debug: true
