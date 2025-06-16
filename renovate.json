@@ -69,11 +69,23 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update Traefik plugin version",
+      "description": "Update Traefik CrowdSec plugin version",
       "fileMatch": ["^charts/apps/core-services/traefik/values\\.yaml$"],
-      "matchStrings": ["version:\\s*(?<currentValue>v[\\d\\.]+)"],
+      "matchStrings": [
+        "bouncer:\\s*\\n\\s*moduleName:.*\\n\\s*version:\\s*(?<currentValue>v[\\d\\.]+)"
+      ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "maxlerebourg/crowdsec-bouncer-traefik-plugin"
+    },
+    {
+      "customType": "regex",
+      "description": "Update Traefik Cloudflare plugin version",
+      "fileMatch": ["^charts/apps/core-services/traefik/values\\.yaml$"],
+      "matchStrings": [
+        "cloudflare:\\s*\\n\\s*moduleName:.*\\n\\s*version:\\s*(?<currentValue>v[\\d\\.]+)"
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "agence-gaya/traefik-plugin-cloudflare"
     },
     {
       "customType": "regex",

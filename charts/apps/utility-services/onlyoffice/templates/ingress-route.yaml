@@ -10,6 +10,8 @@ spec:
     - kind: Rule
       match: Host(`{{ .Release.Name }}.{{ .Values.domain }}`) && PathPrefix(`/`)
       middlewares: 
+        - name: cloudflare
+          namespace: core-services
         - name: bouncer
           namespace: core-services
         - name: sslheader
