@@ -79,16 +79,6 @@
     },
     {
       "customType": "regex",
-      "description": "Update Traefik Cloudflare plugin version",
-      "fileMatch": ["^charts/apps/core-services/traefik/values\\.yaml$"],
-      "matchStrings": [
-        "cloudflare:\\s*\\n\\s*moduleName:.*\\n\\s*version:\\s*(?<currentValue>v[\\d\\.]+)"
-      ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "agence-gaya/traefik-plugin-cloudflare"
-    },
-    {
-      "customType": "regex",
       "description": "Update argo vault plugin version",
       "fileMatch": ["^charts/apps/core-services/argo-cd/values\\.yaml$"],
       "matchStrings": ["env:\\s*\\n\\s*-\\s*name:\\s*AVP_VERSION\\n\\s*value:\\s*(?<currentValue>.*)"],
