@@ -9,3 +9,4 @@ spec:
         trustedCIDRs: []
         overwriteRequestHeader: true
         appendXForwardedFor: true
+        debug: true
