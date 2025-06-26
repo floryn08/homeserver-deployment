@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/qbittorrent:5.1.0
+image: lscr.io/linuxserver/qbittorrent:5.1.1
 namespace: media-management
 ports:
 - name: webui
