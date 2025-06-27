@@ -1,16 +1,3 @@
-{{- if .Values.storage.hostPathFromSecret.enabled }}
-  {{- $s := lookup "v1" "Secret" .Values.storage.hostPathFromSecret.namespace .Values.storage.hostPathFromSecret.name | default dict }}
-  {{- $hasData := hasKey $s "data" }}
-  {{- $hostPathB64 := "" }}
-  {{- $hostPath := "" }}
-  {{- if and $hasData (hasKey $s.data .Values.storage.hostPathFromSecret.key) }}
-    {{- $hostPathB64 = index $s.data .Values.storage.hostPathFromSecret.key }}
-    {{- $hostPath = $hostPathB64 | b64dec }}
-  {{- else }}
-    {{- /* fallback for ArgoCD / local rendering */ -}}
-    {{- $hostPath = "/tmp" }}
-  {{- end }}
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -1,16 +1,3 @@
-{{- if .Values.ingress.hostFromSecret.enabled }}
-  {{- $s := lookup "v1" "Secret" .Values.ingress.hostFromSecret.namespace .Values.ingress.hostFromSecret.name | default dict }}
-  {{- $hasData := hasKey $s "data" }}
-  {{- $hostB64 := "" }}
-  {{- $host := "" }}
-  {{- if and $hasData (hasKey $s.data .Values.ingress.hostFromSecret.key) }}
-    {{- $hostB64 = index $s.data .Values.ingress.hostFromSecret.key }}
-    {{- $host = $hostB64 | b64dec }}
-  {{- else }}
-    {{- /* fallback for ArgoCD / local rendering */ -}}
-    {{- $host = "example.com" }}
-  {{- end }}
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
