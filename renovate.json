@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "schedule": ["every day at 03:00"],
+  "schedule": ["before 3am every day"],
   "assignees": ["floryn08"],
   "reviewers": ["floryn08"],
   "packageRules": [
