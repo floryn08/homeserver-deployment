@@ -1,13 +1,6 @@
 image: frooodle/s-pdf:0.46.2-ultra-lite
 namespace: &namespace utility-services
 
-ingress:
-  hostFromSecret:
-    enabled: true
-    name: utility-services-domains
-    namespace: *namespace
-    key: homeDomain
-
 storage:
   hostPathFromSecret:
     enabled: true
