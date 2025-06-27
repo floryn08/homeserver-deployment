@@ -52,6 +52,6 @@ spec:
       #   {{- range $index, $val := $.Values.volumes }}
       #   - name: {{ $val.name }}
       #     hostPath:
-      #       path: {{ $hostPath }}/{{ $val.hostPath }}
+      #       path: {{ $val.hostPath }}
       #       type: DirectoryOrCreate
       #   {{- end }}
