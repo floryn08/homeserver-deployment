@@ -3,7 +3,7 @@ name: prometheus
 version: 1.0.0
 dependencies:
 - name: prometheus
-  version: 27.20.0
+  version: 27.22.0
   repository: https://prometheus-community.github.io/helm-charts
 - name: prometheus-postgres-exporter
   version: 6.10.2
