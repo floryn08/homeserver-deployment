@@ -3,7 +3,12 @@ kind: IngressRequest
 metadata:
   name: {{ .Release.Name }}
 spec:
+  vaultPath: kv/data/domains
   domainKey: homeDomain
   serviceName: {{ .Release.Name }}
-  servicePort: 8080
+  servicePort: http
   subdomain: pdf
+  entrypoints:
+    - websecure
+  tls:
+    secretName: {{ .Release.Name }}-certificate-secret
