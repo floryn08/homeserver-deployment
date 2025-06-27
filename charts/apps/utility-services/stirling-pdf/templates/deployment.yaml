@@ -55,4 +55,3 @@ spec:
             path: {{ $hostPath }}/{{ $val.hostPath }}
             type: DirectoryOrCreate
         {{- end }}
-{{- end }}

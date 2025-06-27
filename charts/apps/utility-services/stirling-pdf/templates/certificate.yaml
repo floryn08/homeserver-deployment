@@ -17,4 +17,3 @@ spec:
       - {{ $host }}
     organizationalUnits:
       - {{ .Values.namespace }}
-{{- end }}
