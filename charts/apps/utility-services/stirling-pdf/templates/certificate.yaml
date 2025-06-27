@@ -1,19 +1,19 @@
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: {{ .Release.Name }}-certificate
-  namespace: {{ .Values.namespace }}
-spec:
-  revisionHistoryLimit: 1
-  secretName: {{ .Release.Name }}-certificate-secret
-  issuerRef:
-    kind: ClusterIssuer
-    name: ca-issuer
-  commonName: "{{ .Release.Name }}.{{ $host }}"
-  dnsNames:
-    - "{{ .Release.Name }}.{{ $host }}"
-  subject:
-    organizations:
-      - {{ $host }}
-    organizationalUnits:
-      - {{ .Values.namespace }}
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: {{ .Release.Name }}-certificate
+#   namespace: {{ .Values.namespace }}
+# spec:
+#   revisionHistoryLimit: 1
+#   secretName: {{ .Release.Name }}-certificate-secret
+#   issuerRef:
+#     kind: ClusterIssuer
+#     name: ca-issuer
+#   commonName: "{{ .Release.Name }}.{{ $host }}"
+#   dnsNames:
+#     - "{{ .Release.Name }}.{{ $host }}"
+#   subject:
+#     organizations:
+#       - {{ $host }}
+#     organizationalUnits:
+#       - {{ .Values.namespace }}
