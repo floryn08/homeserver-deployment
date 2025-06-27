@@ -9,11 +9,11 @@
 #   issuerRef:
 #     kind: ClusterIssuer
 #     name: ca-issuer
-#   commonName: "{{ .Release.Name }}.{{ host }}"
+#   commonName: "{{ .Release.Name }}"
 #   dnsNames:
-#     - "{{ .Release.Name }}.{{ host }}"
+#     - "{{ .Release.Name }}"
 #   subject:
 #     organizations:
-#       - {{ host }}
+#       - host
 #     organizationalUnits:
 #       - {{ .Values.namespace }}
