@@ -127,7 +127,7 @@ argo-cd:
 
       - name: avp-helm
         command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.14.14
+        image: quay.io/argoproj/argocd:v2.14.15
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
