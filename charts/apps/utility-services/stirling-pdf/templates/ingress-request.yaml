@@ -1,0 +1,9 @@
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  domainKey: homeDomain
+  serviceName: {{ .Release.Name }}
+  servicePort: 8080
+  subdomain: pdf
