@@ -1,4 +1,4 @@
-image: itzg/minecraft-server:2025.6.1
+image: itzg/minecraft-server:2025.6.2
 namespace: game-servers
 
 ports:
