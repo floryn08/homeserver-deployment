@@ -1,4 +1,4 @@
-image: mbentley/omada-controller:5.15.24.17
+image: mbentley/omada-controller:5.15.24.18
 namespace: utility-services
 ports:
 - name: http
