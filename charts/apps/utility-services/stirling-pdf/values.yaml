@@ -1,6 +1,14 @@
 image: frooodle/s-pdf:0.46.2-ultra-lite
 namespace: &namespace utility-services
 
+host:
+  subdomain: pdf
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
 storage:
   hostPathFromSecret:
     enabled: true
