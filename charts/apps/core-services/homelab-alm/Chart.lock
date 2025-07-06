@@ -1,6 +1,6 @@
 dependencies:
 - name: homelab-alm
   repository: https://floryn08.github.io/homelab-alm
-  version: 1.2.1
-digest: sha256:95eee34a54895f8097dfbd10f6a01ed9d0dbf750e7388a28e37715de380d22cf
-generated: "2025-07-06T13:31:33.826300103+03:00"
+  version: 1.2.2
+digest: sha256:b6e0c3480caef0332a8f045e5f3155082cd07f891db28765f149ed2f6231e7f2
+generated: "2025-07-06T13:36:43.221315569+03:00"
