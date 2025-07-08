@@ -30,7 +30,7 @@ authentikClientSecret: <path:kv/data/utility-services/paperless-ngx#authentikCli
 primaryDomain: <path:kv/data/domains#primaryDomain>
 
 redis:  
-  image: redis:8.0.2-alpine
+  image: redis:8.0.3-alpine
   ports:
   - name: redis
     containerPort: 6379
