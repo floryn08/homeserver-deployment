@@ -4,14 +4,34 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }}
   externalTrafficPolicy: Local
   ports:
-  {{- range $key, $val := $.Values.ports }}
+  {{- range $key, $val := $.Values.service.ports }}
   - port: {{ $val.externalPort }}
     targetPort: {{ $val.name }}
     name: {{ $val.name }}
     protocol: {{ $val.protocol }}
   {{ end -}}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-static-ip
+  namespace: {{ .Values.namespace }}
+spec:
+  type: ClusterIP
+  clusterIP: 10.43.0.30
+  ports:
+    - name: dns-udp
+      port: 53
+      targetPort: 53
+      protocol: UDP
+    - name: dns-tcp
+      port: 53
+      targetPort: 53
+      protocol: TCP
   selector:
     app.kubernetes.io/name: {{ .Release.Name }}

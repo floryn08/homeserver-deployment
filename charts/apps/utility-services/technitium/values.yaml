@@ -1,20 +1,26 @@
 image: technitium/dns-server:13.6.0
 namespace: utility-services
-primaryDomain: <path:kv/data/domains#primaryDomain>
-ports:
-- name: http
-  containerPort: 5380
-  externalPort: 5380
-  protocol: TCP
-- name: tcp
-  containerPort: 53
-  externalPort: 53
-  protocol: TCP
-- name: udp
-  containerPort: 53
-  externalPort: 53
-  protocol: UDP
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/technitium/config
-  podPath: /etc/dns
+
+storage:
+  appdataBasePath: /srv/appdata
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /etc/dns
+    type: DirectoryOrCreate
+
+service:
+  type: LoadBalancer
+  ports:
+  - name: http
+    containerPort: 5380
+    externalPort: 5380
+    protocol: TCP
+  - name: tcp
+    containerPort: 53
+    externalPort: 53
+    protocol: TCP
+  - name: udp
+    containerPort: 53
+    externalPort: 53
+    protocol: UDP
