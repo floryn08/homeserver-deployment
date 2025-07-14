@@ -12,3 +12,6 @@ spec:
     - websecure
   tls:
     certResolver: letsencrypt
+  middlewares:
+  - name: bouncer
+    namespace: core-services
