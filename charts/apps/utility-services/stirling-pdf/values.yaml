@@ -10,22 +10,34 @@ secrets:
     path: kv/data/domains
 
 storage:
-  hostPathFromSecret:
-    enabled: true
-    name: utility-services-appdata
-    namespace: *namespace
-    key: appdata
+  appdataBasePath: /srv/appdata
+  volumes:
+  - name: configs
+    subPath: configs
+    podPath: /configs
+    type: DirectoryOrCreate
+  - name: tessdata
+    subPath: tessdata
+    podPath: /usr/share/tessdata
+    type: DirectoryOrCreate
+  - name: customFiles
+    subPath: customFiles
+    podPath: /customFiles
+    type: DirectoryOrCreate
+  - name: pipeline
+    subPath: pipeline
+    podPath: /pipeline
+    type: DirectoryOrCreate
+  - name: logs
+    subPath: logs
+    podPath: /logs
+    type: DirectoryOrCreate
 
-ports:
-- name: http
-  containerPort: 8080
-  externalPort: 8097
-  protocol: TCP
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8080
+    externalPort: 8097
+    protocol: TCP
   
-volumes:
-- name: config
-  hostPath: utility-services/stirling-pdf/configs
-  podPath: /configs
-- name: tessdatadata
-  hostPath: utility-services/stirling-pdf/trainingData
-  podPath: /usr/share/tessdata
