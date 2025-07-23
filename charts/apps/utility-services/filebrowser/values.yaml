@@ -1,4 +1,4 @@
-image: filebrowser/filebrowser:v2.40.1
+image: filebrowser/filebrowser:v2.41.0
 namespace: utility-services
 ports:
 - name: fb
