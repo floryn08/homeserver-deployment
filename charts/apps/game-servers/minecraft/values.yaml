@@ -7,15 +7,10 @@ ports:
   externalPort: 25565
   protocol: TCP
 
-persistence:
-  longhorn:
-    name: minecraft
-    size: "5368709120"
-    replicas: 2
-    frontend: blockdev
+storage:
+  appdataBasePath: /srv/appdata
   volumes:
-    - name: minecraft
-      claimName: minecraft
-  volumeMounts:
-    - name: minecraft
-      mountPath: /data
+  - name: minecraft
+    subPath: minecraft
+    podPath: /data
+    type: DirectoryOrCreate

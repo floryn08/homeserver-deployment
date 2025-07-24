@@ -19,11 +19,9 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
-      {{- range $index, $val := $.Values.persistence.volumes }}
-      - name: {{ $val.name }}
+      - name: {{ .Release.Name }}
         persistentVolumeClaim:
-          claimName: {{ $val.claimName }}
-      {{ end -}}
+          claimName: {{ .Release.Name }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -35,9 +33,10 @@ spec:
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.persistence.volumeMounts }}
-        - mountPath: {{ $val.mountPath }}
-          name: {{ $val.name }}
+        {{- range $index, $val := $.Values.storage.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
         envFrom:
         - secretRef:
