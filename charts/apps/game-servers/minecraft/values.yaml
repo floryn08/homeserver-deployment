@@ -10,7 +10,7 @@ ports:
 storage:
   appdataBasePath: /srv/appdata
   volumes:
-  - name: minecraft
-    subPath: minecraft
+  - name: data
+    subPath: data
     podPath: /data
     type: DirectoryOrCreate
