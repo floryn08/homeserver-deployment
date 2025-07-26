@@ -18,9 +18,8 @@ storage:
 
 # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
 immich:
-  env: 
-    REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-    IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+  env: []
+
   immich:
     persistence:
       library:
@@ -29,6 +28,8 @@ immich:
     enabled: true
   server:
     env:
+      REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
+      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
       DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
       DB_USERNAME: immich
       DB_DATABASE_NAME: immich
