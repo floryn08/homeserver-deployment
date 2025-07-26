@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: {{ .Values.immichDataPath }}
+    path: {{ .Values.storage.immichDataPath }}
     type: DirectoryOrCreate

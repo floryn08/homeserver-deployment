@@ -1,16 +1,32 @@
-# https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
-immichDataPath: <path:kv/data/hostPath#storageHdd>/immich/library
-immichPostgresDataPath: <path:kv/data/hostPath#appdata>/media-management/immich/postgres
 namespace: media-management
-localDomain: <path:kv/data/domains#localDomain>
 
+host:
+  subdomain: immich
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata
+  immichDataPath: /mnt/hdd2/immich/library
+  immichPostgresDataPath: /srv/appddata/media-management/immich/postgres
+
+# https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
 immich:
   env:
     DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
     DB_USERNAME: immich
     DB_DATABASE_NAME: immich
-    # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
-    DB_PASSWORD: <path:kv/data/media-management/immich#postgres-password>
+
+  # for DB_PASSWORD
+  envFrom:
+    secretRef:
+      name: immich
 
   immich:
     persistence:
@@ -26,37 +42,12 @@ immich:
     image:
       repository: ghcr.io/immich-app/immich-server
       tag: v1.136.0
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - host: immich.<path:kv/data/domains#primaryDomain>
-            paths:
-              - path: "/"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls: "true"
-          traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
-
-      local:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - host: immich.<path:kv/data/domains#localDomain>
-            paths:
-              - path: "/"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls: "true"
-        tls:
-          - secretName: immich-certificate-secret
-
+    
     persistence:
       external:
         enabled: true
         type: hostPath
-        hostPath: <path:kv/data/hostPath#storageHdd>/GooglePhotosExport
+        hostPath: /mnt/hdd2/GooglePhotosExport
 
   machine-learning:
     image:  
@@ -83,5 +74,7 @@ postgresql:
       auth:
         username: immich
         database: immich
-        password: <path:kv/data/media-management/immich#postgres-password>
-        postgresPassword: <path:kv/data/media-management/immich#postgres-password>
+        existingSecret: immich
+        secretKeys:
+          adminPasswordKey: postgres-password
+          userPasswordKey: postgres-user-password
