@@ -18,6 +18,9 @@ storage:
 
 # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
 immich:
+  env: 
+    REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
+    IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
   immich:
     persistence:
       library:
