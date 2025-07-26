@@ -14,7 +14,7 @@ secrets:
 storage:
   appdataBasePath: /srv/appdata
   immichDataPath: /mnt/hdd2/immich/library
-  immichPostgresDataPath: /srv/appddata/media-management/immich/postgres
+  immichPostgresDataPath: /srv/appdata/media-management/immich/postgres
 
 # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
 immich:
