@@ -25,8 +25,8 @@ immich:
 
   # for DB_PASSWORD
   envFrom:
-    secretRef:
-      name: immich
+    - secretRef:
+        name: immich
 
   immich:
     persistence:
