@@ -68,7 +68,7 @@ postgresql:
   image:
     registry: ghcr.io
     repository: immich-app/postgres
-    tag: 14-vectorchord0.3.0-pgvectors0.2.0
+    tag: 16-vectorchord0.3.0-pgvectors0.2.0
   primary:
     persistence:
       storageClass: manual
@@ -76,12 +76,6 @@ postgresql:
     containerSecurityContext:
       readOnlyRootFilesystem: false
     resourcesPreset: large
-    initdb:
-      scripts:
-        create-extensions.sql: |
-          CREATE EXTENSION cube;
-          CREATE EXTENSION earthdistance;
-          CREATE EXTENSION vectors;
   global:
     security:
       allowInsecureImages: true
