@@ -19,12 +19,12 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: {{ $val.type }}
-      {{ end -}}
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: {{ .Release.Name }}-udev
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-udev
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -39,14 +39,17 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
+        {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
           readOnly: {{ $val.readOnly }}
         {{ end -}}
+        - mountPath: /run/udev
+          name: udev
+          readOnly: true

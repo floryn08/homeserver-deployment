@@ -1,18 +1,28 @@
 image: ghcr.io/analogj/scrutiny:v0.8.1-omnibus
 namespace: utility-services
-ports:
-- name: http
-  containerPort: 8080
-  externalPort: 8083
-  protocol: TCP
-volumes:
-- name: data
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/scrutiny/config
-  podPath: /opt/scrutiny/config
-  type: DirectoryOrCreate
-  readOnly: false
-- name: media
-  hostPath: /run/udev
-  podPath: /run/udev
-  type: Directory
-  readOnly: true
+
+host:
+  subdomain: scrutiny
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /opt/scrutiny/config
+    type: DirectoryOrCreate
+    readOnly: false
+    
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8080
+    externalPort: 8083
+    protocol: TCP
+  

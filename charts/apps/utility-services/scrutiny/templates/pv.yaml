@@ -1,0 +1,31 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    release: {{ .Release.Name }}
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 700Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{ .Values.storage.appdataBasePath }}/{{ .Values.namespace }}/{{ .Release.Name }}
+    type: DirectoryOrCreate
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-udev
+  labels:
+    release: {{ .Release.Name }}-udev
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 700Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /run/udev
+    type: Directory
