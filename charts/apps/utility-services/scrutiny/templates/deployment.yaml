@@ -19,10 +19,10 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
-      - name: {{ .Release.Name }}
+      - name: config
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}
-      - name: {{ .Release.Name }}-udev
+      - name: udev
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-udev
       containers:
