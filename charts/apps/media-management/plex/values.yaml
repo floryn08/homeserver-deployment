@@ -1,4 +1,4 @@
-image: linuxserver/plex:1.41.9
+image: linuxserver/plex:1.42.1
 namespace: media-management
 primaryDomain: <path:kv/data/domains#primaryDomain>
 localDomain: <path:kv/data/domains#localDomain>
