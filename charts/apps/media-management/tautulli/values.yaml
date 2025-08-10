@@ -1,4 +1,4 @@
-image: linuxserver/tautulli:2.15.2
+image: linuxserver/tautulli:2.15.3
 namespace: media-management
 replicas: 1
 domain: <path:kv/data/domains#localDomain>
