@@ -8,7 +8,6 @@ data:
   DB_HOST: {{ .Values.connections.dbHost }}
   DB_PORT: {{ .Values.connections.dbPort | quote }}
   DB_NAME: {{ .Values.connections.dbName }}
-  AMQP_URI: {{ .Values.connections.amqpHost | quote}}
   REDIS_SERVER_HOST: {{ .Values.connections.redisHost }}
   REDIS_SERVER_PORT: {{ .Values.connections.redisPort | quote }}
   USE_UNAUTHORIZED_STORAGE: "true"

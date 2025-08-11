@@ -4,8 +4,13 @@ image:
   tag: 9.0.3
 service:
   type: ClusterIP
-domain: <path:kv/data/domains#primaryDomain>
-appdataVolumePath: <path:kv/data/hostPath#appdata>
+
+appdataVolumePath: /srv/appdata/utility-services/onlyoffice
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
 ports:
 - name: http
   containerPort: 80
@@ -39,11 +44,10 @@ connections:
   dbPort: 5432
   dbName: onlyoffice
 
-  redisHost: onlyoffice-redis
+  redisHost: onlyoffice-redis-master
   redisPort: 6379
 
   amqpType: rabbitmq
-  amqpHost: amqp://user:<path:kv/data/utility-services/onlyoffice#rabbitmqPassword>@onlyoffice-rabbitmq/?frameMax=0
   amqpPort: 5672
   amqpUser: user
 
