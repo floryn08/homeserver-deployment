@@ -9,5 +9,5 @@ data:
   PAPERLESS_OCR_LANGUAGES: ron
   PAPERLESS_REDIS: redis://paperless-ngx-redis.utility-services.svc
   PAPERLESS_TIME_ZONE: Europe/Bucharest
-  USERMAP_GID: 1000
-  USERMAP_UID: 1000
+  USERMAP_GID: '1000'
+  USERMAP_UID: '1000'
