@@ -1,38 +1,55 @@
 image: ghcr.io/paperless-ngx/paperless-ngx:2.17.1
-namespace: utility-services
+namespace: &namespace utility-services
 domain: <path:kv/data/domains#localDomain>
+
+redis:
+  namespaceOverride: *namespace
+  architecture: standalone
+  master: 
+    revisionHistoryLimit: 1
+    persistence: 
+      enabled: false
+  auth:
+    enabled: false
+    usePasswordFiles: false
+
+host:
+  subdomain: scrutiny
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /mnt/hdd/documents/paperless-ngx
+  volumes:
+  - name: data
+    subPath: data
+    podPath: /usr/src/paperless/data
+    type: DirectoryOrCreate
+    readOnly: false
+  - name: media
+    subPath: media
+    podPath: /usr/src/paperless/media
+    type: DirectoryOrCreate
+    readOnly: false
+  - name: export
+    subPath: export
+    podPath: /usr/src/paperless/export
+    type: DirectoryOrCreate
+    readOnly: false
+  - name: consume
+    subPath: consume
+    podPath: /usr/src/paperless/consume
+    type: DirectoryOrCreate
+    readOnly: false
+
 service:
   type: ClusterIP
-ports:
-- name: http
-  containerPort: 8000
-  externalPort: 8085
-  protocol: TCP
-volumes:
-- name: data
-  hostPath: <path:kv/data/hostPath#paperlessNgx>/data
-  podPath: /usr/src/paperless/data
-  type: DirectoryOrCreate
-- name: media
-  hostPath: <path:kv/data/hostPath#paperlessNgx>/media
-  podPath: /usr/src/paperless/media
-  type: DirectoryOrCreate
-- name: export
-  hostPath: <path:kv/data/hostPath#paperlessNgx>/export
-  podPath: /usr/src/paperless/export
-  type: DirectoryOrCreate
-- name: consume
-  hostPath: <path:kv/data/hostPath#paperlessNgx>/consume
-  podPath: /usr/src/paperless/consume
-  type: DirectoryOrCreate
-authentikClientId: <path:kv/data/utility-services/paperless-ngx#authentikClientId>
-authentikClientSecret: <path:kv/data/utility-services/paperless-ngx#authentikClientSecret>
-primaryDomain: <path:kv/data/domains#primaryDomain>
-
-redis:  
-  image: redis:8.0.3-alpine
   ports:
-  - name: redis
-    containerPort: 6379
-    externalPort: 6379
+  - name: http
+    containerPort: 8000
+    externalPort: 8085
     protocol: TCP
+  
