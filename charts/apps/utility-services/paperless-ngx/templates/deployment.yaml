@@ -20,8 +20,9 @@ spec:
     spec:
       volumes:
       {{- range $index, $val := $.Values.storage.volumes }}
-        persistentVolumeClaim:
-          claimName: {{ $val.name }}
+        - name: {{ $val.name }}
+          persistentVolumeClaim:
+            claimName: {{ $.Release.Name }}
       {{ end -}}
       containers:
       - name: {{ .Release.Name }}
