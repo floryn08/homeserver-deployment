@@ -14,7 +14,7 @@ redis:
     usePasswordFiles: false
 
 host:
-  subdomain: scrutiny
+  subdomain: paperless-ngx
 
 secrets:
   domain:
