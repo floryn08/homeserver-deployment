@@ -16,3 +16,4 @@ spec:
   - name: bouncer
     namespace: core-services
   - name: sslheader
+    namespace: utility-services
