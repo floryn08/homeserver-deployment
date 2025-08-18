@@ -44,9 +44,6 @@ flaresolverr:
 stirlingPdf:
   path: charts/apps/utility-services/stirling-pdf
 
-filebrowser:
-  path: charts/apps/utility-services/filebrowser
-
 technitium:
   path: charts/apps/utility-services/technitium
 
