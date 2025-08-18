@@ -36,6 +36,6 @@ utilityServices:
   path: charts/app-of-apps/utility-services
 
 monitoring:
-  enabled: true
+  enabled: false
   namespace: monitoring
   path: charts/app-of-apps/monitoring
