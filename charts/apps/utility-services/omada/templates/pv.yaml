@@ -11,5 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: {{ .Values.storage.appdataBasePath }}/{{ .Values.namespace }}/{{ .Release.Name }}
+    path: {{ .Values.storage.appdataBasePath }}
     type: DirectoryOrCreate
