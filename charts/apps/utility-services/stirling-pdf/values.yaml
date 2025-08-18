@@ -1,4 +1,4 @@
-image: frooodle/s-pdf:1.0.2-ultra-lite
+image: frooodle/s-pdf:1.2.0-ultra-lite
 namespace: &namespace utility-services
 
 host:
