@@ -8,7 +8,7 @@ service:
 appdataVolumePath: /srv/appdata/utility-services/onlyoffice
 secrets:
   domain:
-    key: homeDomain
+    key: primaryDomain
     path: kv/data/domains
 
 ports:

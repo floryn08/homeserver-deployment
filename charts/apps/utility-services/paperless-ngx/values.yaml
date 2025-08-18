@@ -1,6 +1,5 @@
 image: ghcr.io/paperless-ngx/paperless-ngx:2.17.1
 namespace: &namespace utility-services
-domain: <path:kv/data/domains#localDomain>
 
 redis:
   namespaceOverride: *namespace
