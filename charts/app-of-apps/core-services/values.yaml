@@ -28,10 +28,6 @@ pgadmin:
 mqtt:
   path: charts/apps/core-services/mqtt
 
-duplicacy:
-  enabled: false
-  path: charts/apps/core-services/duplicacy
-
 vault:
   path: charts/apps/core-services/vault
   url: http://vault.core-services.svc:8200
