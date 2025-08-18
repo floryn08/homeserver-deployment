@@ -1,13 +1,28 @@
-image: ghcr.io/wizarrrr/wizarr:4.2.0
+image: ghcr.io/wizarrrr/wizarr:2025.8.3
 namespace: media-management
-domain: <path:kv/data/domains#primaryDomain>
-ports:
-- name: wizarr
-  containerPort: 5690
-  externalPort: 5690
-  protocol: TCP
-volumes:
-- name: data
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/wizarr/database
-  podPath: /data/database
 
+host:
+  subdomain: wizarr
+
+secrets:
+  domain:
+    key: primaryDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/wizarr
+  volumes:
+  - name: data
+    subPath: data
+    podPath: /data
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 5690
+    externalPort: 5690
+    protocol: TCP
+  
