@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  {{- range $key, $val := $.Values.service.ports }}
+  - port: {{ $val.externalPort }}
+    targetPort: {{ $val.name }}
+    name: {{ $val.name }}
+    protocol: {{ $val.protocol }}
+  {{ end -}}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-chrome-service
+  namespace: {{ .Values.namespace }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    name: chrome
+    protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}-chrome
