@@ -19,30 +19,34 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: code
         hostPath:
-          path: {{ $val.hostPath }}
+          path: /code
           type: DirectoryOrCreate
-      {{ end -}}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
-        - secretRef:
+        - configMapRef:
             name: {{ .Release.Name }}
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
-          name: {{ $val.name }}-port
-          protocol: {{ $val.protocol }}
-        {{ end -}}
-        volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
-        - mountPath: {{ $val.podPath }}
           name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{- end }}
+        volumeMounts:
+        {{- range $index, $val := $.Values.storage.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
+        - mountPath: /code
+          name: code
         livenessProbe:
           httpGet:
             path: /healthz

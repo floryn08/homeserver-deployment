@@ -1,15 +1,27 @@
 image: lscr.io/linuxserver/code-server:4.103.1
 namespace: utility-services
-primaryDomain: <path:kv/data/domains#primaryDomain>
-ports:
-- name: http
-  containerPort: 8443
-  externalPort: 8091
-  protocol: TCP
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/utility-services/code-server/config
-  podPath: /config
-- name: code
-  hostPath: <path:kv/data/hostPath#codeServerFolder>
-  podPath: /config/workspace
+
+host:
+  subdomain: code
+
+secrets:
+  domain:
+    key: primaryDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/utility-services/code-server
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8443
+    externalPort: 8443
+    protocol: TCP
+  
