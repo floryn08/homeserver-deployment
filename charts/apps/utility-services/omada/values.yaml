@@ -25,7 +25,7 @@ service:
   type: LoadBalancer
   ports:
   - name: http
-    containerPort: 8088
+    containerPort: 80
     externalPort: 8087
     protocol: TCP
   
