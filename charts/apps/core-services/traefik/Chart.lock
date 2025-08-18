@@ -1,6 +1,6 @@
 dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
-  version: 35.4.0
-digest: sha256:fd8bfed1b73efa1b4b1da84956aadf34897344a04b73851e3f7e9913422857cf
-generated: "2025-06-12T20:52:30.679046089Z"
+  version: 37.0.0
+digest: sha256:4e51c813f7ca6bc6fb3d7f7fd158b5c3a6d2a82ab4e9b54af1bde3c20f23ad36
+generated: "2025-08-18T10:43:38.407997307+03:00"
