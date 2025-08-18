@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   TZ: 'Europe/Bucharest'
-  HOMEPAGE_ALLOWED_HOSTS: homepage.{{ .Values.domain }}
+  HOMEPAGE_ALLOWED_HOSTS: '*'
