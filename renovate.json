@@ -1,63 +1,96 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "schedule": ["* 0-2 * * *"],
+  "extends": [
+    "config:recommended"
+  ],
+  "schedule": [
+    "* 0-2 * * *"
+  ],
   "updateNotScheduled": false,
-  "assignees": ["floryn08"],
-  "reviewers": ["floryn08"],
+  "assignees": [
+    "floryn08"
+  ],
+  "reviewers": [
+    "floryn08"
+  ],
   "packageRules": [
     {
-      "packagePatterns": ["^linuxserver\\/", "^hotio\\/"],
-      "versionScheme": "regex:^(?<compatibility>.*(\\d+\\.)?)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+      "versioning": "regex:^(?<compatibility>.*(\\d+\\.)?)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
+      "matchPackageNames": [
+        "/^linuxserver\\//",
+        "/^hotio\\//"
+      ]
     },
     {
-      "packagePatterns": ["^.+/linuxserver\\/prowlarr"],
-      "allowedVersions": "/^(\\d{1,3}\\.)(\\d*\\.)*\\d{1,3}$/"
+      "allowedVersions": "/^(\\d{1,3}\\.)(\\d*\\.)*\\d{1,3}$/",
+      "matchPackageNames": [
+        "/^.+/linuxserver\\/prowlarr/"
+      ]
     },
     {
-      "packagePatterns": ["^.+/linuxserver\\/qbittorrent"],
-      "allowedVersions": "/^\\d\\.\\d+\\.\\d+$/"
+      "allowedVersions": "/^\\d\\.\\d+\\.\\d+$/",
+      "matchPackageNames": [
+        "/^.+/linuxserver\\/qbittorrent/"
+      ]
     },
     {
-      "packagePatterns": ["^mcuadros\\/ofelia"],
-      "allowedVersions": "/^(\\?\\!3)(\\d*\\.)*\\d{1,3}$/"
+      "allowedVersions": "/^(\\?\\!3)(\\d*\\.)*\\d{1,3}$/",
+      "matchPackageNames": [
+        "/^mcuadros\\/ofelia/"
+      ]
     },
     {
-      "packagePatterns": ["^.+/linuxserver\\/tvheadend"],
-      "versionScheme": "regex:^arm64v8-(?<compatibility>)?.*-ls(?<minor>\\d+)?$"
+      "versioning": "regex:^arm64v8-(?<compatibility>)?.*-ls(?<minor>\\d+)?$",
+      "matchPackageNames": [
+        "/^.+/linuxserver\\/tvheadend/"
+      ]
     },
     {
-      "matchFileNames": ["charts/apps/core-services/**"],
+      "matchFileNames": [
+        "charts/apps/core-services/**"
+      ],
       "groupName": "Core services",
       "groupSlug": "core-services"
     },
     {
-      "matchFileNames": ["charts/apps/home-automation/**"],
+      "matchFileNames": [
+        "charts/apps/home-automation/**"
+      ],
       "groupName": "Home automation",
       "groupSlug": "home-automation"
     },
     {
-      "matchFileNames": ["charts/apps/media-management/**"],
+      "matchFileNames": [
+        "charts/apps/media-management/**"
+      ],
       "groupName": "Media management",
       "groupSlug": "media-management"
     },
     {
-      "matchFileNames": ["charts/apps/utility-services/**"],
+      "matchFileNames": [
+        "charts/apps/utility-services/**"
+      ],
       "groupName": "Utility services",
       "groupSlug": "utility-services"
     },
     {
-      "matchFileNames": ["charts/apps/ai-services/**"],
+      "matchFileNames": [
+        "charts/apps/ai-services/**"
+      ],
       "groupName": "AI Services",
       "groupSlug": "ai-services"
     },
     {
-      "matchFileNames": ["charts/apps/game-servers/**"],
+      "matchFileNames": [
+        "charts/apps/game-servers/**"
+      ],
       "groupName": "Game Servers",
       "groupSlug": "game-servers"
     },
     {
-      "matchFileNames": ["charts/apps/monitoring/**"],
+      "matchFileNames": [
+        "charts/apps/monitoring/**"
+      ],
       "groupName": "Monitoring",
       "groupSlug": "monitoring"
     }
@@ -66,7 +99,9 @@
     {
       "customType": "regex",
       "description": "Update Traefik CrowdSec plugin version",
-      "fileMatch": ["^charts/apps/core-services/traefik/values\\.yaml$"],
+      "managerFilePatterns": [
+        "/^charts/apps/core-services/traefik/values\\.yaml$/"
+      ],
       "matchStrings": [
         "bouncer:\\s*\\n\\s*moduleName:.*\\n\\s*version:\\s*(?<currentValue>v[\\d\\.]+)"
       ],
@@ -76,7 +111,9 @@
     {
       "customType": "regex",
       "description": "Update argo vault plugin version",
-      "fileMatch": ["^charts/apps/core-services/argo-cd/values\\.yaml$"],
+      "managerFilePatterns": [
+        "/^charts/apps/core-services/argo-cd/values\\.yaml$/"
+      ],
       "matchStrings": [
         "env:\\s*\\n\\s*-\\s*name:\\s*AVP_VERSION\\n\\s*value:\\s*(?<currentValue>.*)"
       ],
