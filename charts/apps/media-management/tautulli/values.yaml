@@ -1,16 +1,28 @@
 image: linuxserver/tautulli:2.15.3
 namespace: media-management
 replicas: 1
-domain: <path:kv/data/domains#localDomain>
+
+host:
+  subdomain: tautulli
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/tautulli
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
 service:
   type: ClusterIP
-ports:
-- name: http
-  containerPort: 8181
-  externalPort: 8181
-  protocol: TCP
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/tautulli/config
-  podPath: /config
-
+  ports:
+  - name: http
+    containerPort: 8181
+    externalPort: 8181
+    protocol: TCP
