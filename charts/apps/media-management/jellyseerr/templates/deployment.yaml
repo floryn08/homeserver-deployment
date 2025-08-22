@@ -18,6 +18,10 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -26,15 +30,16 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
+        {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
         livenessProbe:
           exec:
@@ -48,10 +53,3 @@ spec:
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
