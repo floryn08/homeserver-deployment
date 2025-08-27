@@ -1,17 +1,27 @@
 image: linuxserver/radarr:5.26.2
 namespace: media-management
-domain: <path:kv/data/domains#localDomain>
+
+host:
+  subdomain: radarr
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/radarr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
 service:
   type: ClusterIP
-ports:
-- name: http
-  containerPort: 7878
-  externalPort: 7878
-  protocol: TCP
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/radarr
-  podPath: /config
-- name: media
-  hostPath: <path:kv/data/hostPath#mediaHdd>
-  podPath: /media
+  ports:
+  - name: http
+    containerPort: 7878
+    externalPort: 7878
+    protocol: TCP

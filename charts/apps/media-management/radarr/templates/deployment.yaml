@@ -18,24 +18,36 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: media
+        hostPath:
+          path: /mnt/hdd
+          type: Directory
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         envFrom:
-        - secretRef:
+        - configMapRef:
             name: {{ .Release.Name }}
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
+        {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
+        - mountPath: /media
+          name: media
+          readOnly: false
         livenessProbe:
           exec:
             command:
@@ -44,11 +56,3 @@ spec:
             - http://localhost:7878/ping
           failureThreshold: 5
           periodSeconds: 10
-          timeoutSeconds: 5
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
