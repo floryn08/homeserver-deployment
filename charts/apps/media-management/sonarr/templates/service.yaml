@@ -6,7 +6,7 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  {{- range $key, $val := $.Values.ports }}
+  {{- range $key, $val := $.Values.service.ports }}
   - port: {{ $val.externalPort }}
     targetPort: {{ $val.name }}
     name: {{ $val.name }}
