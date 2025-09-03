@@ -1,16 +1,6 @@
 image: linuxserver/plex:1.42.1
 namespace: media-management
 
-volumes:
-
-- name: media
-  hostPath: <path:kv/data/hostPath#mediaHdd>
-  podPath: /data
-  type: DirectoryOrCreate
-
-
-
-
 host:
   subdomain: plex
 
