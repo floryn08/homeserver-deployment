@@ -1,9 +1,0 @@
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: sslheader
-  namespace: {{ .Values.namespace }}
-spec:
-  headers:
-    customRequestHeaders:
-      X-Forwarded-Proto: "https"
