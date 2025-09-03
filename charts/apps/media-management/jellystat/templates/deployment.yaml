@@ -42,8 +42,8 @@ spec:
               name: {{ .Release.Name }}
               key: POSTGRES_USER
         envFrom:
-          configMapRef:
-            name: {{ .Release.Name }}            
+          - configMapRef:
+              name: {{ .Release.Name }}            
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
