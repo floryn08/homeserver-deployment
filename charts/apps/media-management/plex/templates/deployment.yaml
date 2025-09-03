@@ -56,7 +56,7 @@ spec:
         - mountPath: /dev/dri
           name: dri
           readOnly: true
-        - mountPath: /media
+        - mountPath: /data
           name: media
           readOnly: false
         livenessProbe:
