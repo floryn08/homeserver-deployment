@@ -1,0 +1,32 @@
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  vaultPath: {{ .Values.secrets.primaryDomain.path }}
+  domainKey: {{ .Values.secrets.primaryDomain.key }}
+  serviceName: {{ .Release.Name }}
+  servicePort: http
+  subdomain: {{ .Values.host.subdomain }}
+  middlewares: 
+    - name: bouncer
+      namespace: core-services
+  entrypoints:
+    - websecure
+  tls:
+    certResolver: letsencrypt
+---
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}-local
+spec:
+  vaultPath: {{ .Values.secrets.homeDomain.path }}
+  domainKey: {{ .Values.secrets.homeDomain.key }}
+  serviceName: {{ .Release.Name }}
+  servicePort: http
+  subdomain: {{ .Values.host.subdomain }}
+  entrypoints:
+    - websecure
+  tls:
+    secretName: {{ .Release.Name }}-certificate-secret

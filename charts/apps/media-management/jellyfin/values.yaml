@@ -1,12 +1,35 @@
 image: linuxserver/jellyfin:10.10.7
 namespace: media-management
-primaryDomain: <path:kv/data/domains#primaryDomain>
-secondaryDomain: <path:kv/data/domains#secondaryDomain>
-localDomain: <path:kv/data/domains#localDomain>
 
 resources:
   limits:
     memory: 1.5Gi
+
+volumes:
+- name: config
+  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
+  podPath: /config
+  type: DirectoryOrCreate
+
+host:
+  subdomain: jellyfin
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/jellyfin
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
 
 service:
   type: ClusterIP
@@ -23,18 +46,3 @@ service:
     containerPort: 7359
     externalPort: 7359
     protocol: UDP
-
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/jellyfin
-  podPath: /config
-  type: DirectoryOrCreate
-- name: media
-  hostPath: <path:kv/data/hostPath#mediaHdd>
-  podPath: /data
-  type: DirectoryOrCreate
-- name: gpu
-  hostPath: /dev/dri
-  podPath: /dev/dri
-  type: Directory
-

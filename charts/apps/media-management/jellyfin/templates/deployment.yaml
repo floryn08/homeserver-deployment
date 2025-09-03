@@ -18,6 +18,18 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: dri
+        hostPath:
+          path: /dev/dri
+          type: Directory
+      - name: media
+        hostPath:
+          path: /mnt/hdd
+          type: Directory
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -25,13 +37,10 @@ spec:
         securityContext:
           privileged: true
         resources:
-          # requests: 
-          #     gpu.intel.com/i915: "1" 
           limits: 
             memory: {{ .Values.resources.limits.memory }}
-              # gpu.intel.com/i915: "1" 
         envFrom:
-        - secretRef:
+        - configMapRef:
             name: {{ .Release.Name }}
         ports:
         {{- range $key, $val := $.Values.service.ports }}
@@ -40,10 +49,17 @@ spec:
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
+        {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
+        - mountPath: /dev/dri
+          name: dri
+          readOnly: true
+        - mountPath: /data
+          name: media
+          readOnly: false
         livenessProbe:
           exec:
             command:
@@ -53,10 +69,3 @@ spec:
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: {{ $val.type }}
-      {{ end -}}
