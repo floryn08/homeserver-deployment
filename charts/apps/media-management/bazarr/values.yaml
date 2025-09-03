@@ -1,17 +1,5 @@
 image: linuxserver/bazarr:1.5.2
 namespace: media-management
-apiKey: <path:kv/data/media-management/bazarr#apiKey>
-
-volumes:
-- name: movies
-  hostPath: <path:kv/data/hostPath#mediaHdd>/movies
-  podPath: /movies
-- name: tv
-  hostPath: <path:kv/data/hostPath#mediaHdd>/tv
-  podPath: /tv
-- name: anime
-  hostPath: <path:kv/data/hostPath#mediaHdd>/anime
-  podPath: /anime
 
 host:
   subdomain: bazarr
