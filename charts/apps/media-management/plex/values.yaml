@@ -1,7 +1,36 @@
 image: linuxserver/plex:1.42.1
 namespace: media-management
-primaryDomain: <path:kv/data/domains#primaryDomain>
-localDomain: <path:kv/data/domains#localDomain>
+
+volumes:
+
+- name: media
+  hostPath: <path:kv/data/hostPath#mediaHdd>
+  podPath: /data
+  type: DirectoryOrCreate
+
+
+
+
+host:
+  subdomain: plex
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/plex
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
 service:
   type: ClusterIP
   ports:
@@ -9,17 +38,3 @@ service:
     containerPort: 32400
     externalPort: 32400
     protocol: TCP
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/plex
-  podPath: /config
-  type: DirectoryOrCreate
-- name: media
-  hostPath: <path:kv/data/hostPath#mediaHdd>
-  podPath: /data
-  type: DirectoryOrCreate
-- name: gpu
-  hostPath: /dev/dri
-  podPath: /dev/dri
-  type: Directory
-
