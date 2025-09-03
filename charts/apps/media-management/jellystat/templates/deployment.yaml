@@ -18,13 +18,6 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}        
     spec:
-      volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -32,18 +25,29 @@ spec:
           limits: 
             memory: {{ .Values.resources.limits.memory }}
         imagePullPolicy: Always
+        env:
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: JWT_SECRET
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: POSTGRES_USER
         envFrom:
-        - secretRef:
-            name: {{ .Release.Name }}
+          configMapRef:
+            name: {{ .Release.Name }}            
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
-        {{ end -}}
-        volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
-        - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
         {{ end -}}
         
