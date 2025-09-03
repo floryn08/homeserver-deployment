@@ -1,14 +1,6 @@
 image: lscr.io/linuxserver/qbittorrent:5.1.2
 namespace: media-management
 
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/qbittorrent
-  podPath: /config
-- name: media
-  hostPath: <path:kv/data/hostPath#mediaHdd>
-  podPath: /media
-
 host:
   subdomain: qbittorrent
 
