@@ -1,18 +1,8 @@
 image: linuxserver/bazarr:1.5.2
 namespace: media-management
 apiKey: <path:kv/data/media-management/bazarr#apiKey>
-domain: <path:kv/data/domains#localDomain>
-service:
-  type: ClusterIP
-ports:
-- name: http
-  containerPort: 6767
-  externalPort: 6767
-  protocol: TCP
+
 volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/media-management/bazarr
-  podPath: /config
 - name: movies
   hostPath: <path:kv/data/hostPath#mediaHdd>/movies
   podPath: /movies
@@ -22,3 +12,28 @@ volumes:
 - name: anime
   hostPath: <path:kv/data/hostPath#mediaHdd>/anime
   podPath: /anime
+
+host:
+  subdomain: bazarr
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/bazarr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 6767
+    externalPort: 6767
+    protocol: TCP
