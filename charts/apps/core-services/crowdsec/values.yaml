@@ -6,10 +6,6 @@ crowdsec:
     repository: crowdsecurity/crowdsec
     tag: v1.7.0
   agent:
-    persistentVolume:
-    # -- Persistent volume for config folder. Stores local config (parsers, scenarios etc.)
-      config:
-        enabled: true
     # Specify each pod whose logs you want to process
     acquisition:
       # The namespace where the pod is located
@@ -26,6 +22,8 @@ crowdsec:
     env:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik firix/authentik"
+      - name: CROWDSEC_BYPASS_DB_VOLUME_CHECK 
+        value: "TRUE"
   lapi:
     env:
       # To enroll the Security Engine to the console
