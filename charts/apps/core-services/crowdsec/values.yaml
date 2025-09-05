@@ -4,7 +4,7 @@ crowdsec:
   container_runtime: containerd
   image:
     repository: crowdsecurity/crowdsec
-    tag: v1.6.11
+    tag: v1.7.0
   agent:
     # Specify each pod whose logs you want to process
     acquisition:
