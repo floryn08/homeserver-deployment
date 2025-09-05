@@ -1,4 +1,4 @@
-image: linuxserver/radarr:5.26.2
+image: linuxserver/radarr:5.27.5
 namespace: media-management
 
 host:
