@@ -1,4 +1,4 @@
-image: koenkk/zigbee2mqtt:2.6.1
+image: koenkk/zigbee2mqtt:2.6.2
 namespace: home-automation
 ports:
 - name: web
