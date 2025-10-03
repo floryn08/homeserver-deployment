@@ -7,7 +7,7 @@ ports:
   protocol: TCP
 volumes:
 - name: config
-  hostPath: <path:kv/data/hostPath#appdata>/home-automation/homeassistant
+  hostPath: /srv/appdata/home-automation/homeassistant
   podPath: /config
   type: DirectoryOrCreate
 

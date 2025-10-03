@@ -33,7 +33,7 @@ spec:
               - NET_RAW
               - NET_BROADCAST
         envFrom:
-        - secretRef:
+        - configMapRef:
             name: {{ .Release.Name }}
         ports:
         {{- range $key, $val := $.Values.ports }}
