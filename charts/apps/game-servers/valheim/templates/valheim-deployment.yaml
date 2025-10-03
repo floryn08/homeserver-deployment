@@ -32,6 +32,8 @@ spec:
         envFrom:
         - secretRef:
             name: {{ .Release.Name }}
+        - configMapRef:
+            name: {{ .Release.Name }}
         livenessProbe:
           exec:
             command:

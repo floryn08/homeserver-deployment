@@ -19,15 +19,15 @@ ports:
   protocol: UDP
 volumes:
 - name: saves
-  hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/saves
+  hostPath: /srv/appdata/game-servers/valheim/saves
   podPath: /home/steam/.config/unity3d/IronGate/Valheim
   type: DirectoryOrCreate
 - name: server
-  hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/server
+  hostPath: /srv/appdata/game-servers/valheim/server
   podPath: /home/steam/valheim
   type: DirectoryOrCreate
 - name: backups
-  hostPath: <path:kv/data/hostPath#appdata>/game-servers/valheim/backups
+  hostPath: /srv/appdata/game-servers/valheim/backups
   podPath: /home/steam/backups
   type: DirectoryOrCreate
 
