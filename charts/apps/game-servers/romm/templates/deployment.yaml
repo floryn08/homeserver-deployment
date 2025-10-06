@@ -90,7 +90,7 @@ spec:
             command:
             - curl
             - -f
-            - http://localhost:32400/identity
+            - http://localhost:8080
           failureThreshold: 5
           periodSeconds: 10
           timeoutSeconds: 5
