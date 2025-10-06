@@ -61,7 +61,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ .Release.Name }}
-                key: DB_USRETROACHIEVEMENTS_API_KEYER 
+                key: RETROACHIEVEMENTS_API_KEY 
           - name: STEAMGRIDDB_API_KEY
             valueFrom:
               secretKeyRef:
