@@ -9,6 +9,5 @@ data:
   DB_USER: romm
   DB_PORT: "5432"
   ROMM_DB_DRIVER: postgresql
-  REDIS_HOST: redis://romm-redis-master.game-servers.svc
   HASHEOUS_API_ENABLED: "true"
   ROMM_PORT: "8080"

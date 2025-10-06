@@ -38,14 +38,3 @@ service:
     containerPort: 8080
     externalPort: 8080
     protocol: TCP
-
-redis:
-  namespaceOverride: *namespace
-  architecture: standalone
-  master: 
-    revisionHistoryLimit: 1
-    persistence: 
-      enabled: false
-  auth:
-    enabled: false
-    usePasswordFiles: false
