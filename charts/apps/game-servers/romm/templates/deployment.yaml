@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: dri
+        hostPath:
+          path: /dev/dri
+          type: Directory
+      - name: media
+        hostPath:
+          path: /mnt/hdd
+          type: Directory
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        env:
+          - name: ROMM_AUTH_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: ROMM_AUTH_SECRET_KEY 
+          - name: DB_PASSWD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: DB_PASSWD 
+          - name: SCREENSCRAPER_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SCREENSCRAPER_USER 
+          - name: SCREENSCRAPER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SCREENSCRAPER_PASSWORD 
+          - name: RETROACHIEVEMENTS_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: DB_USRETROACHIEVEMENTS_API_KEYER 
+          - name: STEAMGRIDDB_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: STEAMGRIDDB_API_KEY 
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}
+        ports:
+        {{- range $key, $val := $.Values.service.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        {{- range $index, $val := $.Values.storage.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
+        {{ end -}}
+        - mountPath: /dev/dri
+          name: dri
+          readOnly: true
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost:32400/identity
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5

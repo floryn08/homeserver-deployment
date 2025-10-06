@@ -1,0 +1,13 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  DB_HOST: postgresql.core-services.svc
+  DB_NAME: romm
+  DB_USER: romm
+  DB_PORT: "5432"
+  ROMM_DB_DRIVER: postgresql
+  REDIS_HOST: redis://romm-redis-master.game-servers.svc
+  HASHEOUS_API_ENABLED: true

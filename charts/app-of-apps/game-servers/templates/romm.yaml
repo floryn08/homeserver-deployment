@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: esphome
+  name: romm
   namespace: {{ .Values.argocdNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,7 @@ spec:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.esphome.path }}
+    path: {{ .Values.romm.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     plugin:
@@ -21,3 +21,11 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
+    syncOptions:
+      - RespectIgnoreDifferences=true
+  
+  ignoreDifferences:
+    - group: "apps"
+      kind: "Deployment"
+      jsonPointers:
+      - /spec/replicas

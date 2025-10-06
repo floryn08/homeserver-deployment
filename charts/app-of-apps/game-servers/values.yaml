@@ -19,3 +19,6 @@ valheim:
 
 minecraft:
   path: charts/apps/game-servers/minecraft
+
+romm:
+  path: charts/apps/game-servers/romm
