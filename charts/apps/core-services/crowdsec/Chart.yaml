@@ -3,5 +3,5 @@ name: crowdsec
 version: 1.0.0
 dependencies:
 - name: crowdsec
-  version: 0.20.0
+  version: 0.20.1
   repository: https://crowdsecurity.github.io/helm-charts
