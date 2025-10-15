@@ -1,4 +1,4 @@
-image: ollama/ollama:0.12.3
+image: ollama/ollama:0.12.5
 namespace: ai-services
 
 resources:
