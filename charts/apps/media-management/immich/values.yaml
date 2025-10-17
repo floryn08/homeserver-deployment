@@ -18,44 +18,55 @@ storage:
 
 # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
 immich:
-  env: []
 
   immich:
     persistence:
       library:
-        existingClaim: immich-data-pvc
-  redis:
-    enabled: true
-  server:
-    env:
-      REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
-      DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
-      DB_USERNAME: immich
-      DB_DATABASE_NAME: immich
+        existingClaim: "immich-data-pvc"
 
-    # for DB_PASSWORD
-    envFrom:
-      - secretRef:
-          name: immich
-    probes:
-      startup:
-        spec:
-          failureThreshold: 360
-    image:
-      repository: ghcr.io/immich-app/immich-server
-      tag: v2.0.1
-    
+  valkey:
+    enabled: true
+
+  server:
     persistence:
       external:
         enabled: true
         type: hostPath
         hostPath: /mnt/hdd2/GooglePhotosExport
 
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: v2.0.1
+            env:
+              REDIS_HOSTNAME: '{{ printf "%s-valkey-master" .Release.Name }}'
+              IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+              DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
+              DB_USERNAME: immich
+              DB_DATABASE_NAME: immich
+
+            # for DB_PASSWORD
+            envFrom:
+              - secretRef:
+                  name: immich
+            probes:
+              startup:
+                spec:
+                  failureThreshold: 360
+    
+
+
   machine-learning:
-    image:  
-      repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v2.0.1
+    controllers:
+      main:
+        containers:
+          main:
+            image:  
+              repository: ghcr.io/immich-app/immich-machine-learning
+              tag: v2.0.1
 
 # https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
 postgresql:
