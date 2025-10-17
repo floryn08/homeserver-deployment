@@ -70,9 +70,9 @@ data:
     export B2_ACCOUNT_KEY="$B2_ACCOUNT_KEY"
     export B2_BUCKET_NAME="$B2_BUCKET_NAME"
 
-    echo "$RESTIC_PASSWORD" > /secrets/restic-password-file
-    chmod 600 /secrets/restic-password-file
-    export RESTIC_PASSWORD_FILE=/secrets/restic-password-file
+    echo "$RESTIC_PASSWORD" > /home/restic-password-file
+    chmod 600 /home/restic-password-file
+    export RESTIC_PASSWORD_FILE=/home/restic-password-file
 
     LOCAL_REPO="/backups/minecraft"
     B2_REPO="b2:$B2_BUCKET_NAME:/minecraft"
