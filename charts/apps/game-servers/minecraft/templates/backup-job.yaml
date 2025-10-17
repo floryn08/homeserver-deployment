@@ -74,14 +74,6 @@ data:
     # Run backup
     restic -r "$LOCAL_REPO" backup /data
 
-    # Initialize local repo if it doesn't exist
-    restic -r "$B2_REPO" snapshots || restic -r "$B2_REPO" init
-
-    # Run backup
-    restic -r "$B2_REPO" backup /data
-
     # Forget old snapshots
     restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
     
-    # Forget old snapshots
-    restic -r "$B2_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
