@@ -71,7 +71,7 @@ data:
     export B2_BUCKET_NAME="$B2_BUCKET_NAME"
 
     LOCAL_REPO="/backups/minecraft"
-    B2_REPO="b2:$B2_BUCKET_NAME:/minecraft-backups"
+    B2_REPO="b2:$B2_BUCKET_NAME:/minecraft"
 
     # Initialize local repo if it doesn't exist
     restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
