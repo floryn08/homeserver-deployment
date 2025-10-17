@@ -1,0 +1,81 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-backup-job
+  namespace: {{ .Values.namespace }}
+spec:
+  schedule: "0 2 * * *"  # every night at 2AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: restic-backup
+              image: restic/restic:latest
+              command: ["/bin/sh", "/scripts/backup.sh"]
+              env:
+                - name: RESTIC_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: RESTIC_PASSWORD
+                - name: B2_ACCOUNT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: B2_ACCOUNT_ID
+                - name: B2_ACCOUNT_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: B2_ACCOUNT_KEY
+              volumeMounts:
+                - name: data-to-backup
+                  mountPath: /data
+                - name: local-backup
+                  mountPath: /backups
+                - name: backup-script
+                  mountPath: /scripts
+          restartPolicy: OnFailure
+          volumes:
+            - name: data-to-backup
+              hostPath:
+                path: {{ .Values.storage.appdataBasePath }}/{{ .Values.namespace }}/{{ .Release.Name }}
+            - name: local-backup
+              hostPath:
+                path: /mnt/hdd2/backups/restic  # adjust to your local backup storage
+            - name: backup-script
+              configMap:
+                name: backup-scripts
+                defaultMode: 0775
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backup-script
+  namespace: {{ .Values.namespace }}
+data:
+  backup.sh: |
+    #!/bin/sh
+    set -eux
+
+    export RESTIC_PASSWORD="$RESTIC_PASSWORD"
+    export B2_ACCOUNT_ID="$B2_ACCOUNT_ID"
+    export B2_ACCOUNT_KEY="$B2_ACCOUNT_KEY"
+    export B2_BUCKET_NAME="$B2_BUCKET_NAME"
+
+    LOCAL_REPO="/backups/restic"
+    B2_REPO="b2:$B2_BUCKET_NAME:/minecraft-backups"
+
+    # Initialize local repo if it doesn't exist
+    restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
+
+    # Run backup
+    restic -r "$LOCAL_REPO" backup /data
+
+    # Sync to B2 (deduplicated copy)
+    restic -r "$LOCAL_REPO" copy --target "$B2_REPO"
+
+    # Forget old snapshots
+    restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
