@@ -19,21 +19,21 @@ spec:
                     secretKeyRef:
                       name: {{ .Release.Name }}
                       key: RESTIC_PASSWORD
-                - name: B2_ACCOUNT_ID
+                - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: B2_ACCOUNT_ID
-                - name: B2_ACCOUNT_KEY
+                      key: AWS_ACCESS_KEY_ID
+                - name: AWS_SECRET_ACCESS_KEY
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: B2_ACCOUNT_KEY
-                - name: B2_BUCKET_NAME
+                      key: AWS_SECRET_ACCESS_KEY
+                - name: B2_BUCKET_PATH
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: B2_BUCKET_NAME
+                      key: B2_BUCKET_PATH
               volumeMounts:
                 - name: data-to-backup
                   mountPath: /data
