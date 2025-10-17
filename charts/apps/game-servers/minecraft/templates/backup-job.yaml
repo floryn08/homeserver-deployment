@@ -75,7 +75,7 @@ data:
     export RESTIC_PASSWORD_FILE=/home/restic-password-file
 
     LOCAL_REPO="/backups/minecraft"
-    B2_REPO="b2:$B2_BUCKET_NAME:/minecraft"
+    B2_REPO="s3:$B2_BUCKET_NAME"
 
     # Initialize local repo if it doesn't exist
     restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
