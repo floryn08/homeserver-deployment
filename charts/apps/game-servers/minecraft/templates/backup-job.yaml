@@ -80,7 +80,7 @@ data:
     restic -r "$LOCAL_REPO" backup /data
 
     # Sync to B2 (deduplicated copy)
-    restic -r "$LOCAL_REPO" copy --target "$B2_REPO"
+    restic -r "$B2_REPO" copy --from-repo "$LOCAL_REPO"
 
     # Forget old snapshots
     restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
