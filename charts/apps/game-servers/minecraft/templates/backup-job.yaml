@@ -70,7 +70,7 @@ data:
     export B2_ACCOUNT_KEY="$B2_ACCOUNT_KEY"
     export B2_BUCKET_NAME="$B2_BUCKET_NAME"
 
-    LOCAL_REPO="/backups/restic"
+    LOCAL_REPO="/backups/minecraft"
     B2_REPO="b2:$B2_BUCKET_NAME:/minecraft-backups"
 
     # Initialize local repo if it doesn't exist
