@@ -29,6 +29,11 @@ spec:
                     secretKeyRef:
                       name: {{ .Release.Name }}
                       key: B2_ACCOUNT_KEY
+                - name: B2_BUCKET_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: B2_BUCKET_NAME
               volumeMounts:
                 - name: data-to-backup
                   mountPath: /data
