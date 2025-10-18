@@ -18,19 +18,19 @@ spec:
                   #!/bin/sh
                   set -eux
 
-                  LOCAL_REPO="/backups/minecraft"
+                  LOCAL_REPO="/backups/{{ .Release.Name }}"
 
                   # Initialize local repo if it doesn't exist
                   restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
 
                   # Run backup
-                  restic -r "$LOCAL_REPO" backup /data --host minecraft-backup
+                  restic -r "$LOCAL_REPO" backup /data --host {{ .Release.Name }}-backup
 
                   # Forget old snapshots
                   restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
                   
                   # create a file to signal completion
-                  touch /backups/minecraft/.restic-done
+                  touch /backups/{{ .Release.Name }}/.restic-done
               env:
                 - name: RESTIC_PASSWORD
                   valueFrom:
@@ -69,9 +69,9 @@ spec:
                 - |
                   #!/bin/sh
                   set -eux
-                  LOCAL_REPO="/backups/minecraft"
+                  LOCAL_REPO="/backups/{{ .Release.Name }}"
                   B2_BUCKET="$B2_BUCKET"
-                  B2_PATH="minecraft"
+                  B2_PATH="{{ .Release.Name }}"
 
                   # wait for restic to finish
                   while [ ! -f "$LOCAL_REPO/.restic-done" ]; do
