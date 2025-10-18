@@ -10,15 +10,40 @@ spec:
       template:
         spec:
           containers:
-            - name: restic-backup
+            - name: restic
               image: restic/restic:latest
-              command: ["/bin/sh", "/scripts/backup.sh"]
+              command: ["/bin/sh", "-c"]
+              args: 
+                - |
+                  #!/bin/sh
+                  set -eux
+
+                  LOCAL_REPO="/backups/minecraft"
+                  B2_REPO="s3:$B2_BUCKET_PATH"
+
+                  # Initialize local repo if it doesn't exist
+                  restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
+
+                  # Run backup
+                  restic -r "$LOCAL_REPO" backup /data
+
+                  # Forget old snapshots
+                  restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
               env:
                 - name: RESTIC_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: RESTIC_PASSWORD
+                      key: RESTIC_PASSWORD                
+              volumeMounts:
+                - name: data-to-backup
+                  mountPath: /data
+                - name: local-backup
+                  mountPath: /backups
+
+            - name: rclone
+              image: rclone/rclone:latest
+              env:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:
                     secretKeyRef:
@@ -35,12 +60,32 @@ spec:
                       name: {{ .Release.Name }}
                       key: B2_BUCKET_PATH
               volumeMounts:
-                - name: data-to-backup
-                  mountPath: /data
-                - name: local-backup
-                  mountPath: /backups
-                - name: backup-script
-                  mountPath: /scripts
+                - name: backup-data
+                  mountPath: /backups/minecraft
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  #!/bin/sh
+                  set -eux
+                  LOCAL_REPO="/backups/minecraft"
+                  B2_BUCKET="$B2_BUCKET"
+                  B2_PATH="minecraft"
+
+                  # wait for restic to finish
+                  while [ ! -f "$LOCAL_REPO/.restic-done" ]; do
+                    sleep 5
+                  done
+
+                  # configure rclone dynamically
+                  RCLONE_CONFIG_B2REMOTE_TYPE=b2
+                  RCLONE_CONFIG_B2REMOTE_ACCOUNT=$B2_ACCOUNT_ID
+                  RCLONE_CONFIG_B2REMOTE_KEY=$B2_ACCOUNT_KEY
+
+                  # sync to B2
+                  rclone sync "$LOCAL_REPO" "b2remote:${B2_BUCKET}/${B2_PATH}" --fast-list --transfers=4 --checkers=8
+
+                  # remove completion signal for next run
+                  rm "$LOCAL_REPO/.restic-done"
           restartPolicy: OnFailure
           volumes:
             - name: data-to-backup
@@ -49,31 +94,3 @@ spec:
             - name: local-backup
               hostPath:
                 path: /mnt/hdd2/backups/restic  # adjust to your local backup storage
-            - name: backup-script
-              configMap:
-                name: {{ .Release.Name }}-backup-script
-                defaultMode: 0775
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-backup-script
-  namespace: {{ .Values.namespace }}
-data:
-  backup.sh: |
-    #!/bin/sh
-    set -eux
-
-    LOCAL_REPO="/backups/minecraft"
-    B2_REPO="s3:$B2_BUCKET_PATH"
-
-    # Initialize local repo if it doesn't exist
-    restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
-
-    # Run backup
-    restic -r "$LOCAL_REPO" backup /data
-
-    # Forget old snapshots
-    restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
-    
