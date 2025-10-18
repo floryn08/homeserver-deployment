@@ -44,21 +44,21 @@ spec:
             - name: rclone
               image: rclone/rclone:latest
               env:
-                - name: AWS_ACCESS_KEY_ID
+                - name: B2_ACCOUNT_ID
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: AWS_ACCESS_KEY_ID
-                - name: AWS_SECRET_ACCESS_KEY
+                      key: B2_ACCOUNT_ID
+                - name: B2_ACCOUNT_KEY
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: AWS_SECRET_ACCESS_KEY
-                - name: B2_BUCKET_PATH
+                      key: B2_ACCOUNT_KEY
+                - name: B2_BUCKET
                   valueFrom:
                     secretKeyRef:
                       name: {{ .Release.Name }}
-                      key: B2_BUCKET_PATH
+                      key: B2_BUCKET
               volumeMounts:
                 - name: local-backup
                   mountPath: /backups/minecraft
