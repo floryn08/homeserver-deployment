@@ -1,0 +1,98 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-backup-job
+  namespace: {{ .Values.namespace }}
+spec:
+  schedule: "0 2 * * *"  # every night at 2AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: restic
+              image: restic/restic:latest
+              command: ["/bin/sh", "-c"]
+              args: 
+                - |
+                  #!/bin/sh
+                  set -eux
+
+                  LOCAL_REPO="/backups/{{ .Release.Name }}"
+
+                  # Initialize local repo if it doesn't exist
+                  restic -r "$LOCAL_REPO" snapshots || restic -r "$LOCAL_REPO" init
+
+                  # Run backup
+                  restic -r "$LOCAL_REPO" backup /data --host {{ .Release.Name }}-backup
+
+                  # Forget old snapshots
+                  restic -r "$LOCAL_REPO" forget --keep-daily 7 --keep-weekly 4 --keep-monthly 3 --prune
+                  
+                  # create a file to signal completion
+                  touch /backups/{{ .Release.Name }}/.restic-done
+              env:
+                - name: RESTIC_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: RESTIC_PASSWORD                
+              volumeMounts:
+                - name: data-to-backup
+                  mountPath: /data
+                - name: local-backup
+                  mountPath: /backups
+
+            - name: rclone
+              image: rclone/rclone:latest
+              env:
+                - name: B2_ACCOUNT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: B2_ACCOUNT_ID
+                - name: B2_ACCOUNT_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: B2_ACCOUNT_KEY
+                - name: B2_BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}
+                      key: B2_BUCKET
+              volumeMounts:
+                - name: local-backup
+                  mountPath: /backups
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  #!/bin/sh
+                  set -eux
+                  LOCAL_REPO="/backups/{{ .Release.Name }}"
+                  B2_BUCKET="$B2_BUCKET"
+                  B2_PATH="{{ .Release.Name }}"
+
+                  # wait for restic to finish
+                  while [ ! -f "$LOCAL_REPO/.restic-done" ]; do
+                    sleep 5
+                  done
+
+                  # configure rclone dynamically
+                  export RCLONE_CONFIG_B2REMOTE_TYPE=b2
+                  export RCLONE_CONFIG_B2REMOTE_ACCOUNT=$B2_ACCOUNT_ID
+                  export RCLONE_CONFIG_B2REMOTE_KEY=$B2_ACCOUNT_KEY
+
+                  # sync to B2
+                  rclone sync "$LOCAL_REPO" "b2remote:${B2_BUCKET}/${B2_PATH}" --fast-list --transfers=4 --checkers=8 -v -P
+
+                  # remove completion signal for next run
+                  rm "$LOCAL_REPO/.restic-done"
+          restartPolicy: OnFailure
+          volumes:
+            - name: data-to-backup
+              hostPath:
+                path: {{ .Values.storage.appdataBasePath }}/{{ .Values.namespace }}/{{ .Release.Name }}
+            - name: local-backup
+              hostPath:
+                path: /mnt/hdd2/backups/restic  # adjust to your local backup storage
