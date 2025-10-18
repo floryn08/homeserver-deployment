@@ -35,7 +35,7 @@ spec:
                 - name: RESTIC_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: {{ .Release.Name }}
+                      name: {{ .Release.Name }}-backup-job
                       key: RESTIC_PASSWORD                
               volumeMounts:
                 - name: data-to-backup
@@ -49,17 +49,17 @@ spec:
                 - name: B2_ACCOUNT_ID
                   valueFrom:
                     secretKeyRef:
-                      name: {{ .Release.Name }}
+                      name: {{ .Release.Name }}-backup-job
                       key: B2_ACCOUNT_ID
                 - name: B2_ACCOUNT_KEY
                   valueFrom:
                     secretKeyRef:
-                      name: {{ .Release.Name }}
+                      name: {{ .Release.Name }}-backup-job
                       key: B2_ACCOUNT_KEY
                 - name: B2_BUCKET
                   valueFrom:
                     secretKeyRef:
-                      name: {{ .Release.Name }}
+                      name: {{ .Release.Name }}-backup-job
                       key: B2_BUCKET
               volumeMounts:
                 - name: local-backup
