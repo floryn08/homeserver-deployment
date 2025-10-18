@@ -60,7 +60,7 @@ spec:
                       name: {{ .Release.Name }}
                       key: B2_BUCKET_PATH
               volumeMounts:
-                - name: backup-data
+                - name: local-backup
                   mountPath: /backups/minecraft
               command: ["/bin/sh", "-c"]
               args:
