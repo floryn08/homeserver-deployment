@@ -6,5 +6,5 @@ metadata:
 data:
   DB_TYPE: postgres
   DB_HOST: postgresql.core-services.svc
-  DB_PORT: 5432
+  DB_PORT: "5432"
   DB_NAME: wiki
