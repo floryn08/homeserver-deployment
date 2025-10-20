@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/code-server:4.104.3
+image: lscr.io/linuxserver/code-server:4.105.0
 namespace: utility-services
 
 host:
