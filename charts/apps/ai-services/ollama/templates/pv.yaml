@@ -1,14 +1,15 @@
-apiVersion: v1
 kind: PersistentVolume
+apiVersion: v1
 metadata:
   name: {{ .Release.Name }}
+  labels:
+    release: {{ .Release.Name }}
 spec:
+  storageClassName: manual
   capacity:
-    storage: {{ .Values.persistence.longhorn.size }}
+    storage: 700Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
-  persistentVolumeReclaimPolicy: Retain
-  csi:
-    driver: driver.longhorn.io
-    volumeHandle: {{ .Values.persistence.longhorn.name }}
+  hostPath:
+    path: {{ .Values.storage.appdataBasePath }}
+    type: DirectoryOrCreate
