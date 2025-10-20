@@ -25,14 +25,14 @@ spec:
         env:
           - name: DB_USER
             valueFrom:
-            secretKeyRef:
-              name: {{ .Release.Name }}
-              key: DB_USER
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: DB_USER
           - name: DB_PASS
             valueFrom:
-            secretKeyRef:
-              name: {{ .Release.Name }}
-              key: DB_PASS
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: DB_PASS
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
