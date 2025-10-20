@@ -42,12 +42,12 @@ spec:
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{- end }}
-        # livenessProbe:
-        #   exec:
-        #     command:
-        #     - curl 
-        #     - -fSs 
-        #     - http://localhost/api/healthcheck
-        #   failureThreshold: 5
-        #   periodSeconds: 10
-        #   timeoutSeconds: 5
+        livenessProbe:
+          exec:
+            command:
+            - curl 
+            - -fSs 
+            - http://localhost:3000
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
