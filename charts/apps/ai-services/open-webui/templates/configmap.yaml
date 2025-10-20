@@ -1,12 +1,10 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 data:
-  OLLAMA_BASE_URL: {{ .Values.ollamaBaseUrl }}
-  OPENID_PROVIDER_URL: {{ .Values.providerUrl }}
-  OAUTH_PROVIDER_NAME: {{ .Values.providerName }}
-  OAUTH_SCOPES: {{ .Values.scopes }}
-  OAUTH_MERGE_ACCOUNTS_BY_EMAIL: {{ .Values.oauthMergeAccountsByEmail | quote }}
-  WEBUI_URL: {{ .Values.webuiUrl }}
+  OLLAMA_BASE_URL: http://ollama.ai-services.svc:11434
+  OAUTH_PROVIDER_NAME: Authentik
+  OAUTH_SCOPES: openid email profile
+  OAUTH_MERGE_ACCOUNTS_BY_EMAIL: "true"

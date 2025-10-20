@@ -1,23 +1,27 @@
 image: ghcr.io/open-webui/open-webui:0.6.34
 namespace: ai-services
-domain: <path:kv/data/domains#primaryDomain>
+
+host:
+  subdomain: ollama
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/ai-services/ollama-webui
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /app/backend/data
+    type: DirectoryOrCreate
+    readOnly: false
+
 service:
   type: ClusterIP
-ports:
-- name: http
-  containerPort: 8080
-  externalPort: 8088
-  protocol: TCP
-
-volumes:
-- name: config
-  hostPath: <path:kv/data/hostPath#appdata>/ai-services/ollama-webui
-  podPath: /app/backend/data
-
-ollamaBaseUrl: http://ollama.ai-services.svc:11434
-
-providerUrl: https://auth.<path:kv/data/domains#primaryDomain>/application/o/open-webui/.well-known/openid-configuration
-providerName: Authentik
-scopes: openid email profile
-oauthMergeAccountsByEmail: true
-webuiUrl: https://ollama.<path:kv/data/domains#primaryDomain>
+  ports:
+  - name: http
+    containerPort: 8080
+    externalPort: 8088
+    protocol: TCP

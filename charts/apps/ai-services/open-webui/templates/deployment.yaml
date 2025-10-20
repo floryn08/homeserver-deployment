@@ -19,29 +19,46 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
-      {{- range $index, $val := $.Values.volumes }}
-      - name: {{ $val.name }}
-        hostPath:
-          path: {{ $val.hostPath }}
-          type: DirectoryOrCreate
-      {{ end -}}
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: {{ .Release.Name }}-configmap
-        - secretRef:
             name: {{ .Release.Name }}
+        env:
+          - name: OPENID_PROVIDER_URL
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OPENID_PROVIDER_URL
+          - name: WEBUI_URL
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: WEBUI_URL
+          - name: OAUTH_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OAUTH_CLIENT_ID
+          - name: OAUTH_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OAUTH_CLIENT_SECRET
         ports:
-        {{- range $key, $val := $.Values.ports }}
+        {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{ end -}}
         volumeMounts:
-        {{- range $index, $val := $.Values.volumes }}
+        {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
         {{ end -}}
