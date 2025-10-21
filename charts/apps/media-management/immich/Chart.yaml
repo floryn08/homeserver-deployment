@@ -3,7 +3,7 @@ name: immich
 version: 1.0.0
 dependencies:
   - name: immich
-    version: 0.10.0
+    version: 0.10.1
     repository: https://immich-app.github.io/immich-charts
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
