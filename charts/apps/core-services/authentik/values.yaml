@@ -50,13 +50,4 @@ authentik:
     enabled: false
 
   redis:
-    enabled: true
-    namespaceOverride: *namespace
-    architecture: standalone
-    master: 
-      revisionHistoryLimit: 1
-      persistence: 
-        enabled: false
-    auth:
-      enabled: false
-      usePasswordFiles: false
+    enabled: false
