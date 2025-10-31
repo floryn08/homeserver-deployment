@@ -1,4 +1,4 @@
-namespace: core-services
+namespace: &namespace core-services
 authentik:
   authentik:
     log_level: trace
@@ -51,3 +51,12 @@ authentik:
 
   redis:
     enabled: true
+    namespaceOverride: *namespace
+    architecture: standalone
+    master: 
+      revisionHistoryLimit: 1
+      persistence: 
+        enabled: false
+    auth:
+      enabled: false
+      usePasswordFiles: false
