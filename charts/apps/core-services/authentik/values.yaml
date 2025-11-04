@@ -21,7 +21,7 @@ authentik:
       - name: AUTHENTIK_POSTGRESQL__HOST
         value: postgresql.core-services.svc
       - name: AUTHENTIK_POSTGRESQL__PORT
-        value: 5432
+        value: "5432"
       - name: AUTHENTIK_POSTGRESQL__NAME
         value: authentik
       - name: AUTHENTIK_POSTGRESQL__USER
@@ -57,13 +57,13 @@ authentik:
             name: authentik-vault
             key: AUTHENTIK_EMAIL__FROM
       - name: AUTHENTIK_EMAIL__PORT
-        value: 587
+        value: "587"
       - name: AUTHENTIK_EMAIL__USE_TLS
-        value: false
+        value: "false"
       - name: AUTHENTIK_EMAIL__USE_SSL
-        value: false
+        value: "false"
       - name: AUTHENTIK_EMAIL__TIMEOUT
-        value: 30
+        value: "30"
 
   authentik:
     log_level: trace
