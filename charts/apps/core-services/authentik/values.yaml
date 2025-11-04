@@ -1,7 +1,7 @@
 namespace: core-services
 
 host:
-  subdomain: authentik
+  subdomain: auth
 
 secrets:
   domain:
