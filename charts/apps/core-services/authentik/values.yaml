@@ -14,7 +14,7 @@ authentik:
       - name: AUTHENTIK_SECRET_KEY
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_SECRET_KEY
 
       # postgres config
@@ -27,34 +27,34 @@ authentik:
       - name: AUTHENTIK_POSTGRESQL__USER
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_POSTGRESQL__USER
       - name: AUTHENTIK_POSTGRESQL__PASSWORD
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_POSTGRESQL__PASSWORD
 
       # email config
       - name: AUTHENTIK_EMAIL__HOST
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_EMAIL__HOST
       - name: AUTHENTIK_EMAIL__USERNAME
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_EMAIL__USERNAME
       - name: AUTHENTIK_EMAIL__PASSWORD
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_EMAIL__PASSWORD
       - name: AUTHENTIK_EMAIL__FROM
         valueFrom:
           secretKeyRef:
-            name: authentik
+            name: authentik-vault
             key: AUTHENTIK_EMAIL__FROM
       - name: AUTHENTIK_EMAIL__PORT
         value: 587
