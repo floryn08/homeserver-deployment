@@ -1,43 +1,74 @@
-namespace: &namespace core-services
+namespace: core-services
+
+host:
+  subdomain: authentik
+
+secrets:
+  domain:
+    key: primaryDomain
+    path: kv/data/domains
+
 authentik:
+  global:
+    env:
+      - name: AUTHENTIK_SECRET_KEY
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_SECRET_KEY
+
+      # postgres config
+      - name: AUTHENTIK_POSTGRESQL__HOST
+        value: postgresql.core-services.svc
+      - name: AUTHENTIK_POSTGRESQL__PORT
+        value: 5432
+      - name: AUTHENTIK_POSTGRESQL__NAME
+        value: authentik
+      - name: AUTHENTIK_POSTGRESQL__USER
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_POSTGRESQL__USER
+      - name: AUTHENTIK_POSTGRESQL__PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_POSTGRESQL__PASSWORD
+
+      # email config
+      - name: AUTHENTIK_EMAIL__HOST
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_EMAIL__HOST
+      - name: AUTHENTIK_EMAIL__USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_EMAIL__USERNAME
+      - name: AUTHENTIK_EMAIL__PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_EMAIL__PASSWORD
+      - name: AUTHENTIK_EMAIL__FROM
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: AUTHENTIK_EMAIL__FROM
+      - name: AUTHENTIK_EMAIL__PORT
+        value: 587
+      - name: AUTHENTIK_EMAIL__USE_TLS
+        value: false
+      - name: AUTHENTIK_EMAIL__USE_SSL
+        value: false
+      - name: AUTHENTIK_EMAIL__TIMEOUT
+        value: 30
+
   authentik:
     log_level: trace
-    secret_key: <path:kv/data/core-services/authentik#SECRET_KEY>
-    postgresql:
-      name: authentik
-      host: postgresql.core-services.svc
-      port: 5432
-      user: <path:kv/data/core-services/authentik#POSTGRES_USER>
-      password: <path:kv/data/core-services/authentik#POSTGRES_PASSWORD>
 
-    email:
-      # -- SMTP Server emails are sent from, fully optional
-      host: <path:kv/data/core-services/authentik#SMTP_HOST>
-      port: 587
-      # -- SMTP credentials. When left empty, no authentication will be done.
-      username: <path:kv/data/core-services/authentik#SMTP_USER>
-      # -- SMTP credentials. When left empty, no authentication will be done.
-      password: <path:kv/data/core-services/authentik#SMTP_PASSWORD>
-      # -- Enable either use_tls or use_ssl. They can't be enabled at the same time.
-      use_tls: false
-      # -- Enable either use_tls or use_ssl. They can't be enabled at the same time.
-      use_ssl: false
-      # -- Connection timeout in seconds
-      timeout: 30
-      # -- Email 'from' address can either be in the format "foo@bar.baz" or "authentik <foo@bar.baz>"
-      from: <path:kv/data/core-services/authentik#SMTP_USER>
-
-  server:
-    ingress:
-      enabled: true
-      https: false
-      ingressClassName: traefik
-      hosts:
-        - auth.<path:kv/data/domains#primaryDomain>
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.tls: "true"
-        traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+  server:    
     containerPorts:
       http: 8094
       https: 8095

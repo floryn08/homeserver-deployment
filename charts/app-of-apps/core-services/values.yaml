@@ -55,10 +55,6 @@ certManager:
 nvidiaGpuOperator:
   path: charts/apps/core-services/nvidia-gpu-operator
 
-longhorn:
-  enabled: true
-  path: charts/apps/core-services/longhorn
-
 homelabAlm:
   enabled: true
   path: charts/apps/core-services/homelab-alm
