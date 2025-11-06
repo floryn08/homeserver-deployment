@@ -20,13 +20,13 @@ argo-cd:
       accounts.readonly: apiKey
       exec.enabled: true
       # oidc.tls.insecure.skip.verify: "true"
-      url: $argocd-vault:argocd.url
+      url: $argo-cd-vault:argocd.url
       dex.config: |
         connectors:
         - config: 
-            issuer: $argocd-vault:dex.authentik.issuer
-            clientID: $argocd-vault:dex.authentik.clientId
-            clientSecret: $argocd-vault:dex.authentik.clientSecret
+            issuer: $argo-cd-vault:dex.authentik.issuer
+            clientID: $argo-cd-vault:dex.authentik.clientId
+            clientSecret: $argo-cd-vault:dex.authentik.clientSecret
             insecureEnableGroups: true
             scopes:
               - openid
