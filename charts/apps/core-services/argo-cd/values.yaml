@@ -16,25 +16,25 @@ argo-cd:
 
   # https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
   configs:
-    # cm:
-    #   accounts.readonly: apiKey
-    #   exec.enabled: true
-    #   # oidc.tls.insecure.skip.verify: "true"
-    #   url: $argo-cd-vault:argocd.url
-    #   dex.config: |
-    #     connectors:
-    #     - config: 
-    #         issuer: $argo-cd-vault:dex.authentik.issuer
-    #         clientID: $argo-cd-vault:dex.authentik.clientId
-    #         clientSecret: $argo-cd-vault:dex.authentik.clientSecret
-    #         insecureEnableGroups: true
-    #         scopes:
-    #           - openid
-    #           - profile
-    #           - email
-    #       name: authentik
-    #       type: oidc
-    #       id: authentik
+    cm:
+      accounts.readonly: apiKey
+      exec.enabled: true
+      # oidc.tls.insecure.skip.verify: "true"
+      # url: $argo-cd-vault:argocd.url
+      dex.config: |
+        connectors:
+        - config: 
+            issuer: $argo-cd-vault:dex.authentik.issuer
+            clientID: $argo-cd-vault:dex.authentik.clientId
+            clientSecret: $argo-cd-vault:dex.authentik.clientSecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
 
     params:
       application.namespaces: "*"
