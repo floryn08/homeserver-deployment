@@ -6,7 +6,7 @@ spec:
   vaultPath: {{ .Values.secrets.domain.path }}
   domainKey: {{ .Values.secrets.domain.key }}
   serviceName: argo-cd-argocd-server
-  servicePort: 80
+  servicePort: "80"
   subdomain: {{ .Values.host.subdomain }}
   entrypoints:
     - websecure
