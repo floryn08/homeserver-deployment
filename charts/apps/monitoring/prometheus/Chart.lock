@@ -1,12 +1,12 @@
 dependencies:
 - name: prometheus
   repository: https://prometheus-community.github.io/helm-charts
-  version: 27.42.1
+  version: 27.44.0
 - name: prometheus-postgres-exporter
   repository: https://prometheus-community.github.io/helm-charts
   version: 7.3.0
 - name: prometheus-operator-crds
   repository: https://prometheus-community.github.io/helm-charts
   version: 24.0.1
-digest: sha256:af927d13cb5f6fe0db903029fa1b514968fa5abada4dc7bf9d5c5287c4c33d14
-generated: "2025-10-31T20:14:44.057099806Z"
+digest: sha256:339b2c4d0dc47092ab1fe1ab4aa42a8f4a7c12d1dbcbf5d3b65aea90c6a74dda
+generated: "2025-11-05T01:56:08.94609905Z"
