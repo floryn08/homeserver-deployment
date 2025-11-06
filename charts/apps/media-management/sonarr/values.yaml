@@ -1,4 +1,4 @@
-image: linuxserver/sonarr:4.0.15
+image: linuxserver/sonarr:4.0.16
 namespace: media-management
 
 host:
