@@ -1,27 +1,32 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 namespace: &namespace core-services
-domain: &domain <path:kv/data/domains#localDomain>
-certificate:
-  enabled: true
-ingressRoute:
-  enabled: true
+
+host:
+  subdomain: argocd
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
 
 argo-cd:
   namespaceOverride: *namespace
-  global:
-    domain: argocd.<path:kv/data/domains#localDomain>
+  # global:
+  #   domain: argocd.$domains:homeDomain
+
+  # https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
   configs:
     cm:
       accounts.readonly: apiKey
       exec.enabled: true
       # oidc.tls.insecure.skip.verify: "true"
-      url: https://argocd.<path:kv/data/domains#localDomain>
+      url: $argocd-vault:argocd.url
       dex.config: |
         connectors:
         - config: 
-            issuer: https://auth.<path:kv/data/domains#primaryDomain>/application/o/argocd/
-            clientID: <path:kv/data/core-services/argocd#authentikClientId>
-            clientSecret: $dex.authentik.clientSecret
+            issuer: $argocd-vault:dex.authentik.issuer
+            clientID: $argocd-vault:dex.authentik.clientId
+            clientSecret: $argocd-vault:dex.authentik.clientSecret
             insecureEnableGroups: true
             scopes:
               - openid
@@ -69,7 +74,6 @@ argo-cd:
                 helm repo add bitnami https://charts.bitnami.com/bitnami
                 helm repo add nextcloud https://nextcloud.github.io/helm/
                 helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
-                helm repo add longhorn https://charts.longhorn.io
                 helm dependency build
           generate:
             command:
@@ -78,10 +82,6 @@ argo-cd:
               - |
                 helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
                 argocd-vault-plugin generate -s core-services:vault-configuration -
-
-    secret:
-      extra:
-        dex.authentik.clientSecret: "<path:kv/data/core-services/argocd#authentikClientSecret>"
 
   dex: 
     enabled: true
