@@ -20,7 +20,7 @@ argo-cd:
       accounts.readonly: apiKey
       exec.enabled: true
       # oidc.tls.insecure.skip.verify: "true"
-      # url: $argo-cd-vault:argocd.url
+      url: https://argocd.home
       dex.config: |
         connectors:
         - config: 
