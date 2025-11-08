@@ -14,3 +14,21 @@ spec:
   {{ end -}}
   selector:
     app.kubernetes.io/name: {{ .Release.Name }}
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-local
+  namespace: {{ .Values.namespace }}
+spec:
+  type: LoadBalancer
+  ports:
+  {{- range $key, $val := $.Values.service.ports }}
+  - port: {{ $val.externalPort }}
+    targetPort: {{ $val.name }}
+    name: {{ $val.name }}
+    protocol: {{ $val.protocol }}
+  {{ end -}}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}
