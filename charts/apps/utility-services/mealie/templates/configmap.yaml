@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  ALLOW_SIGNUP: "false"
+  PUID: "1000"
+  PGID: "1000"
+  TZ: Europe/Bucharest

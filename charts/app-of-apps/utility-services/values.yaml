@@ -55,3 +55,6 @@ omada:
 
 wikijs:
   path: charts/apps/utility-services/wikijs
+
+mealie:
+  path: charts/apps/utility-services/mealie
