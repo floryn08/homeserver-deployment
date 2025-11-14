@@ -1,4 +1,4 @@
-image: ghcr.io/dgtlmoon/changedetection.io:0.50.42
+image: ghcr.io/dgtlmoon/changedetection.io:0.50.43
 namespace: utility-services
 chromeImage: browserless/chrome:latest
 
