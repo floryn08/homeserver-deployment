@@ -1,4 +1,4 @@
-image: mbentley/omada-controller:5.15.24.19
+image: mbentley/omada-controller:6.0.0.24
 namespace: utility-services
 
 host:
