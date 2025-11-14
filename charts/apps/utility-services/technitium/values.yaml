@@ -1,4 +1,4 @@
-image: technitium/dns-server:13.6.0
+image: technitium/dns-server:14.0.1
 namespace: utility-services
 
 storage:
