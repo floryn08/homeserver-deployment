@@ -9,8 +9,16 @@ data:
   PGID: "1000"
   TZ: Europe/Bucharest
   ALLOW_PASSWORD_LOGIN: "false"
+
   OIDC_AUTH_ENABLED: "true"
   OIDC_PROVIDER_NAME: authentik
   OIDC_SIGNUP_ENABLED: "true"
   OIDC_AUTO_REDIRECT: "true"
   OIDC_REMEMBER_ME: "true"
+
+  OPENAI_BASE_URL: http://ollama.ai-services.svc:11434/v1
+  OPENAI_API_KEY: test # not needed for ollama
+  OPENAI_MODEL: gemma3:12b
+  OPENAI_WORKERS: "2"
+  OPENAI_SEND_DATABASE_DATA: "true"
+  OPENAI_REQUEST_TIMEOUT: "10"
