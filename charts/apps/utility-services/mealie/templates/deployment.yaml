@@ -35,6 +35,32 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}
                 key: BASE_URL
+          - name: OIDC_USER_GROUP
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_USER_GROUP
+          - name: OIDC_ADMIN_GROUP
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_ADMIN_GROUP
+          - name: OIDC_CONFIGURATION_URL
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_CONFIGURATION_URL
+          - name: OIDC_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_CLIENT_ID
+          - name: OIDC_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_CLIENT_SECRET
+
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}

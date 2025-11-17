@@ -8,3 +8,8 @@ data:
   PUID: "1000"
   PGID: "1000"
   TZ: Europe/Bucharest
+  OIDC_AUTH_ENABLED: "true"
+  OIDC_PROVIDER_NAME: authentik
+  OIDC_SIGNUP_ENABLED: "true"
+  OIDC_AUTO_REDIRECT: "true"
+  OIDC_REMEMBER_ME: "true"
