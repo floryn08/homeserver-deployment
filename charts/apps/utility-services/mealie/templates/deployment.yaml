@@ -60,6 +60,41 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}
                 key: OIDC_CLIENT_SECRET
+          - name: SMTP_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_HOST
+          - name: SMTP_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_PORT
+          - name: SMTP_FROM_NAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_FROM_NAME
+          - name: SMTP_AUTH_STRATEGY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_AUTH_STRATEGY
+          - name: SMTP_FROM_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_FROM_EMAIL
+          - name: SMTP_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_USER
+          - name: SMTP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: SMTP_PASSWORD
 
         ports:
         {{- range $key, $val := $.Values.service.ports }}
