@@ -1,7 +1,8 @@
-email: <path:kv/data/common#EMAIL>
+email: certificates@localhost
 nameserver: "10.43.0.30:53"
 namespace: &namespace core-services
-localDomain: <path:kv/data/domains#localDomain>
+caDuration: 43829h # 5 years
+
 certificate:
   enabled: true
 

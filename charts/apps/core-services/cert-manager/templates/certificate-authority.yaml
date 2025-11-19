@@ -7,10 +7,8 @@ metadata:
 spec:
   revisionHistoryLimit: 1 
   isCA: true
-  duration: <path:kv/data/core-services/cert-manager#ca-duration>
+  duration: {{ .Values.caDuration }}
   subject:
-    organizations:      
-      - {{ .Values.localDomain }}
     organizationalUnits:
       - {{ .Values.namespace }}
   commonName: cert-manager
