@@ -3,6 +3,6 @@ namespace: core-services
 ports: []
 volumes:
 - name: config
-  hostPath: <path:kv/data/hostPath#appdata>/core-services/ddclient
+  hostPath: /srv/appdata/core-services/ddclient
   podPath: /config
 
