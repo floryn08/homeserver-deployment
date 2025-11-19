@@ -1,22 +1,19 @@
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
 metadata:
-  name: kubernetes-api-ingress
-  namespace: {{ .Values.namespace }} 
+  name: {{ .Release.Name }}
 spec:
-  entryPoints:
+  vaultPath: {{ .Values.secrets.domain.path }}
+  domainKey: {{ .Values.secrets.domain.key }}
+  serviceName: kubernetes
+  serviceNamespace: default
+  servicePort: 443
+  subdomain: {{ .Values.host.subdomain }}
+  entrypoints:
     - websecure
-  routes: 
-    - kind: Rule
-      match: Host(`kubernetes.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
-      middlewares: 
-        - name: bouncer
-          namespace: core-services
-      services: 
-        - kind: Service
-          name: kubernetes
-          namespace: default
-          port: 443
-          serversTransport: kubernetes-api-transport
+  middlewares:
+    - name: bouncer
+      namespace: core-services
+  serversTransport: kubernetes-api-transport
   tls:
     certResolver: letsencrypt
