@@ -44,45 +44,6 @@ argo-cd:
         g, ArgoCD Viewers, role:readonly
         g, readonly, role:readonly
 
-    cmp:
-      create: true
-      plugins:
-        avp-helm:
-          discover:
-            find:
-              command:
-                - sh
-                - "-c"
-                - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-          init:
-            command:
-              - bash
-              - "-c"
-              - |
-                helm repo add valheim-server-discord-bot https://floryn08.github.io/valheim-server-discord-bot
-                helm repo add homelab-alm https://floryn08.github.io/homelab-alm
-                helm repo add traefik https://traefik.github.io/charts
-                helm repo add authentik https://charts.goauthentik.io
-                helm repo add hashicorp https://helm.releases.hashicorp.com
-                helm repo add argo-cd https://argoproj.github.io/argo-helm
-                helm repo add stakater https://stakater.github.io/stakater-charts
-                helm repo add grafana https://grafana.github.io/helm-charts
-                helm repo add prometheus https://prometheus-community.github.io/helm-charts
-                helm repo add immich https://immich-app.github.io/immich-charts
-                helm repo add crowdsec https://crowdsecurity.github.io/helm-charts
-                helm repo add jetstack https://charts.jetstack.io
-                helm repo add bitnami https://charts.bitnami.com/bitnami
-                helm repo add nextcloud https://nextcloud.github.io/helm/
-                helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
-                helm dependency build
-          generate:
-            command:
-              - bash
-              - "-c"
-              - |
-                helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-                argocd-vault-plugin generate -s core-services:vault-configuration -
-
   dex: 
     enabled: true
 
@@ -96,69 +57,5 @@ argo-cd:
     ingress:
       enabled: false
 
-  repoServer:
-    rbac:
-      - verbs:
-          - get
-          - list
-          - watch
-        apiGroups:
-          - ''
-        resources:
-          - secrets
-          - configmaps
-    initContainers:
-      - name: download-tools
-        image: registry.access.redhat.com/ubi8
-        env:
-          - name: AVP_VERSION
-            value: 1.18.1
-        command: [sh, -c]
-        args:
-          - >-
-            curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 -o argocd-vault-plugin &&
-            chmod +x argocd-vault-plugin &&
-            mv argocd-vault-plugin /custom-tools/
-        volumeMounts:
-          - mountPath: /custom-tools
-            name: custom-tools
-    
-    extraContainers:
 
-      - name: avp-helm
-        command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.14.21
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 999
-        volumeMounts:
-          - mountPath: /var/run/argocd
-            name: var-files
-          - mountPath: /home/argocd/cmp-server/plugins
-            name: plugins
-          - mountPath: /tmp
-            name: tmp
-
-          # Register plugins into sidecar
-          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: avp-helm.yaml
-            name: argocd-cmp-cm
-
-          # Important: Mount tools into $PATH
-          - name: custom-tools
-            subPath: argocd-vault-plugin
-            mountPath: /usr/local/bin/argocd-vault-plugin
-      
-    volumes:
-      - name: argocd-cmp-cm
-        configMap:
-          name: argocd-cmp-cm
-      - name: custom-tools
-        emptyDir: {}
-
-argoVaultPlugin:
-  vaultAddress: http://vault.core-services.svc:8200
-  avpAuthType: k8s
-  avpType: vault
-  avpK8SRole: argocd
   

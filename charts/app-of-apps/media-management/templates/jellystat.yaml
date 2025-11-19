@@ -13,10 +13,9 @@ spec:
     path: {{ .Values.jellystat.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
-    plugin:
-      env:
-        - name: HELM_ARGS
-          value: -f values.yaml
+    helm:
+      valueFiles:
+        - values.yaml
   project: {{ .Values.project }}
   syncPolicy:
     automated:
