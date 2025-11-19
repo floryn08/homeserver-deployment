@@ -1,14 +1,32 @@
 # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
 namespace: core-services
-primaryDomain: <path:kv/data/domains#primaryDomain>
-localDomain: <path:kv/data/domains#localDomain>
-letsencryptPath: <path:kv/data/hostPath#appdata>/core-services/letsencrypt
+
+# Configuration values for templates
+letsencryptPath: /srv/appdata/core-services/letsencrypt
+
 whoami:
-  enabled: true
+  enabled: false
+  host:
+    subdomain: whoami
+  secrets:
+    primaryDomain:
+      key: primaryDomain
+      path: kv/data/domains
+    localDomain:
+      key: localDomain
+      path: kv/data/domains
 traefik:
   namespaceOverride: core-services
   deployment: 
     revisionHistoryLimit: 1
+    podAnnotations:
+      vault.hashicorp.com/agent-inject: "true"
+      vault.hashicorp.com/role: "core-services"
+      vault.hashicorp.com/agent-inject-secret-crowdsec-bouncer-key: "kv/data/core-services/crowdsec"
+      vault.hashicorp.com/agent-inject-template-crowdsec-bouncer-key: |
+        {{- with secret "kv/data/core-services/crowdsec" -}}
+        {{ .Data.data.BOUNCER_KEY_traefik }}
+        {{- end -}}
   podSecurityContext:
     runAsGroup: 1000
     runAsUser: 1000
@@ -65,13 +83,17 @@ traefik:
   certificatesResolvers: 
     letsencrypt:
       acme:
-        email: <path:kv/data/core-services/traefik#email>
         storage: /letsencrypt/acme.json
         httpChallenge:
           entryPoint: "web"
         dnsChallenge:
           provider: cloudflare
   env:
+    - name: TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL
+      valueFrom:
+        secretKeyRef:
+          name: traefik
+          key: ACME_EMAIL
     - name: CF_DNS_API_TOKEN
       valueFrom:
         secretKeyRef:

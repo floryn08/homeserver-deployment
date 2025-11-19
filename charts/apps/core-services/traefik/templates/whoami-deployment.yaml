@@ -27,71 +27,53 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 80
   selector:
     app: whoami
 ---
-# public traefik ingress route
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
 metadata:
-  name: whoami-ingress
-  namespace: {{ .Values.namespace }}
+  name: whoami
 spec:
-  entryPoints:
+  vaultPath: {{ .Values.whoami.secrets.primaryDomain.path }}
+  domainKey: {{ .Values.whoami.secrets.primaryDomain.key }}
+  serviceName: whoami
+  servicePort: http
+  subdomain: {{ .Values.whoami.host.subdomain }}
+  entrypoints:
     - websecure
-  routes:
-    - kind: Rule
-      match: Host(`whoami.{{ .Values.primaryDomain }}`) && PathPrefix(`/`)
-      middlewares: 
-        - name: bouncer
-          namespace: core-services
-      services:
-        - kind: Service
-          name: whoami
-          namespace: {{ .Values.namespace }} 
-          port: 80
+  middlewares:
+    - name: bouncer
+      namespace: core-services
   tls:
     certResolver: letsencrypt
 ---
-# local traefik ingress route
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: networking.alm.homelab/v1
+kind: CertificateRequest
 metadata:
-  name: whoami-ingress-local
+  name: whoami-local-certificaterequest
   namespace: {{ .Values.namespace }}
 spec:
-  entryPoints:
+  domainKey: {{ .Values.whoami.secrets.localDomain.key }}
+  secretName: whoami-certificate-secret
+  subdomain: {{ .Values.whoami.host.subdomain }}
+  vaultPath: {{ .Values.whoami.secrets.localDomain.path }}
+---
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: whoami-local
+spec:
+  vaultPath: {{ .Values.whoami.secrets.localDomain.path }}
+  domainKey: {{ .Values.whoami.secrets.localDomain.key }}
+  serviceName: whoami
+  servicePort: http
+  subdomain: {{ .Values.whoami.host.subdomain }}
+  entrypoints:
     - websecure
-  routes: 
-    - kind: Rule
-      match: Host(`whoami.{{ .Values.localDomain }}`) && PathPrefix(`/`)
-      services: 
-        - kind: Service
-          name: whoami
-          namespace: {{ .Values.namespace }} 
-          port: 80 
   tls:
     secretName: whoami-certificate-secret
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: whoami-certificate
-  namespace: {{ .Values.namespace }}
-spec:
-  revisionHistoryLimit: 1
-  secretName: whoami-certificate-secret
-  issuerRef: 
-    kind: ClusterIssuer
-    name: ca-issuer
-  commonName: "whoami.{{ .Values.localDomain }}"
-  dnsNames:
-    - "whoami.{{ .Values.localDomain }}" 
-  subject:
-    organizations:      
-      - {{ .Values.localDomain }}
-    organizationalUnits:
-      - {{ .Values.namespace }}
 {{- end }}
