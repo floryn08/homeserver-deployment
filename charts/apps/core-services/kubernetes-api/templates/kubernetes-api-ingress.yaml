@@ -7,7 +7,7 @@ spec:
   domainKey: {{ .Values.secrets.domain.key }}
   serviceName: kubernetes
   serviceNamespace: default
-  servicePort: 443
+  servicePort: "443"
   subdomain: {{ .Values.host.subdomain }}
   entrypoints:
     - websecure
