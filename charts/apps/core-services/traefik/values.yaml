@@ -24,9 +24,9 @@ traefik:
       vault.hashicorp.com/role: "core-services"
       vault.hashicorp.com/agent-inject-secret-crowdsec-bouncer-key: "kv/data/core-services/crowdsec"
       vault.hashicorp.com/agent-inject-template-crowdsec-bouncer-key: |
-        {{- with secret "kv/data/core-services/crowdsec" -}}
-        {{ .Data.data.BOUNCER_KEY_traefik }}
-        {{- end -}}
+        {{ `{{- with secret "kv/data/core-services/crowdsec" -}}` }}
+        {{ `{{ .Data.data.BOUNCER_KEY_traefik }}` }}
+        {{ `{{- end -}}` }}
   podSecurityContext:
     runAsGroup: 1000
     runAsUser: 1000
