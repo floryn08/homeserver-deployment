@@ -28,19 +28,41 @@ crowdsec:
     env:
       # To enroll the Security Engine to the console
       - name: ENROLL_KEY
-        value: "<path:kv/data/core-services/crowdsec#ENROLL_KEY>"
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec
+            key: ENROLL_KEY
       - name: ENROLL_INSTANCE_NAME
         value: "homeserver"
       - name: ENROLL_TAGS
         value: "k8s linux"
       - name: BOUNCER_KEY_traefik
-        value: "<path:kv/data/core-services/crowdsec#BOUNCER_KEY_traefik>"
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec
+            key: BOUNCER_KEY_traefik
     secrets:
-      csLapiSecret: "<path:kv/data/core-services/crowdsec#CS_LAPI_SECRET>"
-      registrationToken: "<path:kv/data/core-services/crowdsec#registrationToken>"
+      csLapiSecret:
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec
+            key: CS_LAPI_SECRET
+      registrationToken:
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec
+            key: registrationToken
   secrets:
-    username: "<path:kv/data/core-services/crowdsec#USERNAME>"
-    password: "<path:kv/data/core-services/crowdsec#PASSWORD>"
+    username:
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec
+          key: USERNAME
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec
+          key: PASSWORD
   config: 
     config.yaml.local: |
       api:
