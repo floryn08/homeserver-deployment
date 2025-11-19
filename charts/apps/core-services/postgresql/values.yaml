@@ -1,5 +1,5 @@
 namespace: &namespace core-services
-postgresqlDataPath: <path:kv/data/hostPath#appdata>/core-services/postgresql
+postgresqlDataPath: /srv/appdata/core-services/postgresql
 
 postgresql:
   enabled: true
@@ -14,6 +14,8 @@ postgresql:
   global:
     postgresql:
       auth:
-        username: <path:kv/data/core-services/postgresql#user>
-        password: <path:kv/data/core-services/postgresql#password>
-        postgresPassword: <path:kv/data/core-services/postgresql#password>
+        username: postgres
+        existingSecret: postgresql
+        secretKeys:
+          adminPasswordKey: password
+          userPasswordKey: password
