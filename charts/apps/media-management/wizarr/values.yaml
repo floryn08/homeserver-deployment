@@ -1,4 +1,4 @@
-image: ghcr.io/wizarrrr/wizarr:v2025.11.2
+image: ghcr.io/wizarrrr/wizarr:v2025.11.3
 namespace: media-management
 
 host:
