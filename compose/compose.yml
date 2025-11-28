@@ -1,0 +1,104 @@
+services:
+  # Core Services
+  mqtt:
+    image: eclipse-mosquitto:2.0.22
+    container_name: mqtt
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+    ports:
+      - "1883:1883"  # MQTT
+      - "9001:9001"  # WebSocket
+    volumes:
+      - /srv/appdata/mqtt/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - /srv/appdata/mqtt/data:/mosquitto/data
+      - /srv/appdata/mqtt/log:/mosquitto/log
+    networks:
+      - homeserver
+
+  # Home Automation Services
+  home-assistant:
+    image: ghcr.io/home-assistant/home-assistant:2025.11.3
+    container_name: home-assistant
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+    ports:
+      - "8123:8123"
+    volumes:
+      - /srv/appdata/home-assistant:/config
+    networks:
+      - homeserver
+    privileged: true
+
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt:2.6.3
+    container_name: zigbee2mqtt
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Bucharest
+    ports:
+      - "8080:8080"
+    volumes:
+      - /srv/appdata/zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    networks:
+      - homeserver
+    depends_on:
+      - mqtt
+
+  # Utility Services
+  technitium:
+    image: technitium/dns-server:14.2.0
+    container_name: technitium
+    restart: unless-stopped
+    environment:
+      - DNS_SERVER_DOMAIN=dns-server
+    ports:
+      - "5380:5380"  # HTTP
+      - "53:53/tcp"  # DNS TCP
+      - "53:53/udp"  # DNS UDP
+    volumes:
+      - /srv/appdata/technitium:/etc/dns
+    networks:
+      - homeserver
+
+  omada:
+    image: mbentley/omada-controller:6.0.0.24
+    container_name: omada
+    restart: unless-stopped
+    environment:
+      - PUID=508
+      - PGID=508
+      - MANAGE_HTTP_PORT=8088
+      - MANAGE_HTTPS_PORT=8043
+      - PORTAL_HTTP_PORT=8088
+      - PORTAL_HTTPS_PORT=8843
+      - PORT_APP_DISCOVERY=27001
+      - PORT_ADOPT_V1=29812
+      - PORT_UPGRADE_V1=29813
+      - PORT_MANAGER_V1=29811
+      - PORT_MANAGER_V2=29814
+      - PORT_DISCOVERY=29810
+      - PORT_TRANSFER_V2=29815
+      - PORT_RTTY=29816
+      - SHOW_SERVER_LOGS=true
+      - SHOW_MONGODB_LOGS=false
+      - SSL_CERT_NAME=tls.crt
+      - SSL_KEY_NAME=tls.key
+      - TZ=Europe/Bucharest
+    ports:
+      - "8088:8088"  # HTTP
+    volumes:
+      - /srv/appdata/omada/data:/opt/tplink/EAPController/data
+      - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
+    networks:
+      - homeserver
+
+networks:
+  homeserver:
+    driver: bridge
