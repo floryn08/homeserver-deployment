@@ -99,8 +99,6 @@ services:
     volumes:
       - /srv/appdata/omada/data:/opt/tplink/EAPController/data
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
-    networks:
-      - homeserver
 
 networks:
   homeserver:
