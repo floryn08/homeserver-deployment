@@ -1,5 +1,4 @@
 services:
-  # Core Services
   mqtt:
     image: eclipse-mosquitto:2.0.22
     container_name: mqtt
@@ -9,8 +8,8 @@ services:
       - PGID=1000
       - TZ=Europe/Bucharest
     ports:
-      - "1883:1883"  # MQTT
-      - "9001:9001"  # WebSocket
+      - "1883:1883" # MQTT
+      - "9001:9001" # WebSocket
     volumes:
       - /srv/appdata/mqtt/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - /srv/appdata/mqtt/data:/mosquitto/data
@@ -18,7 +17,6 @@ services:
     networks:
       - homeserver
 
-  # Home Automation Services
   home-assistant:
     image: ghcr.io/home-assistant/home-assistant:2025.11.3
     container_name: home-assistant
@@ -51,7 +49,6 @@ services:
     depends_on:
       - mqtt
 
-  # Utility Services
   technitium:
     image: technitium/dns-server:14.2.0
     container_name: technitium
@@ -59,9 +56,9 @@ services:
     environment:
       - DNS_SERVER_DOMAIN=dns-server
     ports:
-      - "5380:5380"  # HTTP
-      - "53:53/tcp"  # DNS TCP
-      - "53:53/udp"  # DNS UDP
+      - "5380:5380" # HTTP
+      - "53:53/tcp" # DNS TCP
+      - "53:53/udp" # DNS UDP
     volumes:
       - /srv/appdata/technitium:/etc/dns
     networks:
@@ -71,6 +68,12 @@ services:
     image: mbentley/omada-controller:6.0.0.24
     container_name: omada
     restart: unless-stopped
+    network_mode: host
+    ulimits:
+      nofile:
+        soft: 4096
+        hard: 8192
+    stop_grace_period: 60s
     environment:
       - PUID=508
       - PGID=508
@@ -92,7 +95,7 @@ services:
       - SSL_KEY_NAME=tls.key
       - TZ=Europe/Bucharest
     ports:
-      - "8088:8088"  # HTTP
+      - "8088:8088" # HTTP
     volumes:
       - /srv/appdata/omada/data:/opt/tplink/EAPController/data
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
