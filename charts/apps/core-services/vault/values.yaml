@@ -1,4 +1,4 @@
-vaultDataPath: CHANGE_ME
+vaultDataPath: /srv/appdata/core-services/vault/data
 vault:
   global:
     namespace: core-services
