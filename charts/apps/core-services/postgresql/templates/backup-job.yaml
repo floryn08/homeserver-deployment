@@ -19,7 +19,7 @@ spec:
                   set -eux
 
                   # Run pg_dump to backup all databases
-                  PGPASSWORD="$POSTGRES_PASSWORD" pg_dumpall -h postgresql-postgresql -U postgres -f /postgres-dumps/postgresql-backup.sql
+                  PGPASSWORD="$POSTGRES_PASSWORD" pg_dumpall -h postgresql.core-services.svc -U postgres -f /postgres-dumps/postgresql-backup.sql
 
                   # Signal completion
                   touch /postgres-dumps/.pg-dump-done
