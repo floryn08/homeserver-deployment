@@ -34,7 +34,7 @@ services:
     privileged: true
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.6.3
+    image: koenkk/zigbee2mqtt:2.7.0
     container_name: zigbee2mqtt
     restart: unless-stopped
     environment:
