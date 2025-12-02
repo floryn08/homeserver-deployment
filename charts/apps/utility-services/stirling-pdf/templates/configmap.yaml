@@ -10,6 +10,7 @@ data:
   METRICS_ENABLED: "true"
   
   # OAuth2 SSO Configuration
+  DISABLE_ADDITIONAL_FEATURES: false
   SECURITY_ENABLELOGIN: "true"
   SECURITY_LOGINMETHOD: "oauth2"
   SECURITY_OAUTH2_ENABLED: "true"
