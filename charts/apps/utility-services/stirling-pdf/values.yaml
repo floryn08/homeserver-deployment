@@ -9,7 +9,7 @@ secrets:
     path: kv/data/domains
 
 
-stirling-pdf:
+stirling-pdf-chart:
 
   image: 
     tag: 2.0.2-ultra-lite
