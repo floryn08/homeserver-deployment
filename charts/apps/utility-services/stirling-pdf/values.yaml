@@ -20,7 +20,8 @@ stirling-pdf-chart:
     enabled: false
 
   persistence:
-    enabled: false
+    enabled: true
+    existingClaim: stirling-pdf
 
   envs:
     - name: LANGS
