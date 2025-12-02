@@ -23,8 +23,6 @@ stirling-pdf-chart:
     enabled: false
 
   envs:
-    - name: DOCKER_ENABLE_SECURITY
-      value: "true"
     - name: LANGS
       value: "ro_RO,en_GB,en_US,de_DE,fr_FR,es_ES,it_IT,tr_TR,el_GR,hu_HU"
     - name: METRICS_ENABLED
@@ -33,32 +31,32 @@ stirling-pdf-chart:
       value: "false"
     - name: SECURITY_ENABLELOGIN
       value: "true"
-    - name: SECURITY_LOGINMETHOD
-      value: "oauth2"
-    - name: SECURITY_OAUTH2_ENABLED
-      value: "true"
-    - name: SECURITY_OAUTH2_AUTOCREATEUSER
-      value: "true"
-    - name: SECURITY_OAUTH2_BLOCKREGISTRATION
-      value: "false"
-    - name: SECURITY_OAUTH2_USEASUSERNAME
-      value: "email"
-    - name: SECURITY_OAUTH2_SCOPES
-      value: "openid,profile,email"
-    - name: SECURITY_OAUTH2_PROVIDER
-      value: "authentik"
-    - name: SECURITY_OAUTH2_ISSUER
-      valueFrom:
-        secretKeyRef:
-          name: stirling-pdf-oauth2
-          key: SECURITY_OAUTH2_ISSUER
-    - name: SECURITY_OAUTH2_CLIENTID
-      valueFrom:
-        secretKeyRef:
-          name: stirling-pdf-oauth2
-          key: SECURITY_OAUTH2_CLIENTID
-    - name: SECURITY_OAUTH2_CLIENTSECRET
-      valueFrom:
-        secretKeyRef:
-          name: stirling-pdf-oauth2
-          key: SECURITY_OAUTH2_CLIENTSECRET
+    # - name: SECURITY_LOGINMETHOD
+    #   value: "oauth2"
+    # - name: SECURITY_OAUTH2_ENABLED
+    #   value: "true"
+    # - name: SECURITY_OAUTH2_AUTOCREATEUSER
+    #   value: "true"
+    # - name: SECURITY_OAUTH2_BLOCKREGISTRATION
+    #   value: "false"
+    # - name: SECURITY_OAUTH2_USEASUSERNAME
+    #   value: "email"
+    # - name: SECURITY_OAUTH2_SCOPES
+    #   value: "openid,profile,email"
+    # - name: SECURITY_OAUTH2_PROVIDER
+    #   value: "authentik"
+    # - name: SECURITY_OAUTH2_ISSUER
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: stirling-pdf-oauth2
+    #       key: SECURITY_OAUTH2_ISSUER
+    # - name: SECURITY_OAUTH2_CLIENTID
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: stirling-pdf-oauth2
+    #       key: SECURITY_OAUTH2_CLIENTID
+    # - name: SECURITY_OAUTH2_CLIENTSECRET
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: stirling-pdf-oauth2
+    #       key: SECURITY_OAUTH2_CLIENTSECRET
