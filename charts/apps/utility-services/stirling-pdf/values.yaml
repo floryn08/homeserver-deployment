@@ -8,6 +8,29 @@ secrets:
     key: primaryDomain
     path: kv/data/domains
 
+storage:
+  appdataBasePath: /srv/appdata
+  volumes:
+  - name: configs
+    subPath: configs
+    podPath: /configs
+    type: DirectoryOrCreate
+  - name: tessdata
+    subPath: tessdata
+    podPath: /usr/share/tessdata
+    type: DirectoryOrCreate
+  - name: customFiles
+    subPath: customFiles
+    podPath: /customFiles
+    type: DirectoryOrCreate
+  - name: pipeline
+    subPath: pipeline
+    podPath: /pipeline
+    type: DirectoryOrCreate
+  - name: logs
+    subPath: logs
+    podPath: /logs
+    type: DirectoryOrCreate
 
 stirling-pdf-chart:
 
