@@ -34,17 +34,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-oauth2
-                  key: issuer
+                  key: SECURITY_OAUTH2_ISSUER
             - name: SECURITY_OAUTH2_CLIENTID
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-oauth2
-                  key: clientId
+                  key: SECURITY_OAUTH2_CLIENTID
             - name: SECURITY_OAUTH2_CLIENTSECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-oauth2
-                  key: clientSecret
+                  key: SECURITY_OAUTH2_CLIENTSECRET
           ports:
             {{- range $key, $val := $.Values.service.ports }}
             - containerPort: {{ $val.containerPort }}
