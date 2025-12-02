@@ -29,8 +29,22 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}
-            - secretRef:
-                name: {{ .Release.Name }}-oauth2
+          env:
+            - name: SECURITY_OAUTH2_ISSUER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-oauth2
+                  key: issuer
+            - name: SECURITY_OAUTH2_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-oauth2
+                  key: clientId
+            - name: SECURITY_OAUTH2_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-oauth2
+                  key: clientSecret
           ports:
             {{- range $key, $val := $.Values.service.ports }}
             - containerPort: {{ $val.containerPort }}
