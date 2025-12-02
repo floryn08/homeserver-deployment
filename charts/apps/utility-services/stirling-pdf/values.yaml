@@ -23,6 +23,8 @@ stirling-pdf-chart:
     enabled: false
 
   envs:
+    - name: DOCKER_ENABLE_SECURITY
+      value: "true"
     - name: LANGS
       value: "ro_RO,en_GB,en_US,de_DE,fr_FR,es_ES,it_IT,tr_TR,el_GR,hu_HU"
     - name: METRICS_ENABLED
