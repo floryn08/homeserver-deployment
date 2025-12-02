@@ -10,27 +10,6 @@ secrets:
 
 storage:
   appdataBasePath: /srv/appdata
-  volumes:
-  - name: configs
-    subPath: configs
-    podPath: /configs
-    type: DirectoryOrCreate
-  - name: tessdata
-    subPath: tessdata
-    podPath: /usr/share/tessdata
-    type: DirectoryOrCreate
-  - name: customFiles
-    subPath: customFiles
-    podPath: /customFiles
-    type: DirectoryOrCreate
-  - name: pipeline
-    subPath: pipeline
-    podPath: /pipeline
-    type: DirectoryOrCreate
-  - name: logs
-    subPath: logs
-    podPath: /logs
-    type: DirectoryOrCreate
 
 stirling-pdf-chart:
 
@@ -45,6 +24,21 @@ stirling-pdf-chart:
   persistence:
     enabled: true
     existingClaim: stirling-pdf
+
+  deployment:
+    extraVolumeMounts:
+      - name: storage-volume
+        mountPath: /configs
+        subPath: configs
+      - name: storage-volume
+        mountPath: /usr/share/tessdata
+        subPath: tessdata
+      - name: storage-volume
+        mountPath: /pipeline
+        subPath: pipeline
+      - name: storage-volume
+        mountPath: /logs
+        subPath: logs
 
   envs:
     - name: LANGS
