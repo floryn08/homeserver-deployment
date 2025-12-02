@@ -100,6 +100,20 @@ services:
       - /srv/appdata/omada/data:/opt/tplink/EAPController/data
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
+  esphome:
+    image: ghcr.io/esphome/esphome:2025.11.0
+    container_name: esphome
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Europe/Bucharest
+    ports:
+      - "6052:6052"
+    volumes:
+      - /srv/appdata/esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    privileged: true
+
 networks:
   homeserver:
     driver: bridge
