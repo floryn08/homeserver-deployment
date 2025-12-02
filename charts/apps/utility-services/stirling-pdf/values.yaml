@@ -32,7 +32,7 @@ stirling-pdf-chart:
     - name: SECURITY_ENABLELOGIN
       value: "true"
     - name: SECURITY_LOGINMETHOD
-      value: "oauth2"
+      value: "all"
     - name: SECURITY_OAUTH2_ENABLED
       value: "true"
     - name: SECURITY_OAUTH2_AUTOCREATEUSER
