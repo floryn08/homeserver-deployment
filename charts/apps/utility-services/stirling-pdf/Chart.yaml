@@ -6,3 +6,7 @@ type: application
 
 version: 0.1.0
 
+dependencies:
+  - name: stirling-pdf
+    version: 2.2.0
+    repository: https://docs.stirlingpdf.com/Stirling-PDF-chart
