@@ -5,7 +5,7 @@ metadata:
 spec:
   vaultPath: {{ .Values.secrets.domain.path }}
   domainKey: {{ .Values.secrets.domain.key }}
-  serviceName: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}-{{ .Release.Name }}-chart
   servicePort: http
   subdomain: {{ .Values.host.subdomain }}
   entrypoints:
