@@ -101,7 +101,7 @@ services:
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
   esphome:
-    image: ghcr.io/esphome/esphome:2025.11.0
+    image: ghcr.io/esphome/esphome:2025.11.4
     container_name: esphome
     restart: unless-stopped
     network_mode: host
