@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/speedtest-tracker:1.11.1
+image: lscr.io/linuxserver/speedtest-tracker:1.12.2
 namespace: utility-services
 
 host:
