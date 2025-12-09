@@ -8,5 +8,5 @@ version: 0.1.0
 
 dependencies:
   - name: gpu-operator
-    version: v25.10.0
+    version: v25.10.1
     repository: https://helm.ngc.nvidia.com/nvidia
