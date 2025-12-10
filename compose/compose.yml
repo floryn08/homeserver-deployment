@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2025.11.3
+    image: ghcr.io/home-assistant/home-assistant:2025.12.2
     container_name: home-assistant
     restart: unless-stopped
     environment:
@@ -34,7 +34,7 @@ services:
     privileged: true
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.7.0
+    image: koenkk/zigbee2mqtt:2.7.1
     container_name: zigbee2mqtt
     restart: unless-stopped
     environment:
@@ -65,7 +65,7 @@ services:
       - homeserver
 
   omada:
-    image: mbentley/omada-controller:6.0.0.24
+    image: mbentley/omada-controller:6.0.0.25
     container_name: omada
     restart: unless-stopped
     network_mode: host
@@ -101,7 +101,7 @@ services:
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
   esphome:
-    image: ghcr.io/esphome/esphome:2025.11.0
+    image: ghcr.io/esphome/esphome:2025.11.5
     container_name: esphome
     restart: unless-stopped
     network_mode: host
