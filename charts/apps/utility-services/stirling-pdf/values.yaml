@@ -1,3 +1,4 @@
+# https://github.com/Stirling-Tools/Stirling-PDF-chart/blob/main/charts/stirling-pdf/values.yaml
 namespace: &namespace utility-services
 
 host:
@@ -24,6 +25,13 @@ stirling-pdf-chart:
   persistence:
     enabled: true
     existingClaim: stirling-pdf
+  
+  probes:
+    liveness:
+      enabled: false
+      
+    readiness:
+      enabled: false
 
   deployment:
     extraVolumeMounts:
