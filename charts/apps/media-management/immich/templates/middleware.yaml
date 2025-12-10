@@ -9,4 +9,3 @@ spec:
     memRequestBodyBytes: {{ .Values.middleware.buffering.memRequestBodyBytes }}
     maxResponseBodyBytes: {{ .Values.middleware.buffering.maxResponseBodyBytes }}
     memResponseBodyBytes: {{ .Values.middleware.buffering.memResponseBodyBytes }}
-    retryExpression: {{ .Values.middleware.buffering.retryExpression }}
