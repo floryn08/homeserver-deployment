@@ -1,0 +1,12 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ .Release.Name }}-buffering
+  namespace: {{ .Values.namespace }}
+spec:
+  buffering:
+    maxRequestBodyBytes: {{ .Values.middleware.buffering.maxRequestBodyBytes }}
+    memRequestBodyBytes: {{ .Values.middleware.buffering.memRequestBodyBytes }}
+    maxResponseBodyBytes: {{ .Values.middleware.buffering.maxResponseBodyBytes }}
+    memResponseBodyBytes: {{ .Values.middleware.buffering.memResponseBodyBytes }}
+    retryExpression: {{ .Values.middleware.buffering.retryExpression }}

@@ -11,6 +11,14 @@ secrets:
     key: homeDomain
     path: kv/data/domains
 
+middleware:
+  buffering:
+    maxRequestBodyBytes: 0
+    memRequestBodyBytes: 2147483648
+    maxResponseBodyBytes: 0
+    memResponseBodyBytes: 2147483648
+    retryExpression: "isNetworkError()"
+
 storage:
   appdataBasePath: /srv/appdata
   immichDataPath: /mnt/hdd2/immich/library

@@ -79,6 +79,11 @@ traefik:
     websecure:
       forwardedHeaders:
         trustedIPs: *trustedIps
+      transport:
+        respondingTimeouts:
+          readTimeout: 300s
+          writeTimeout: 300s
+          idleTimeout: 300s
 
   certificatesResolvers: 
     letsencrypt:
