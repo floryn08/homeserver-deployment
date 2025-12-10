@@ -93,6 +93,13 @@
       ],
       "groupName": "Monitoring",
       "groupSlug": "monitoring"
+    },
+    {
+      "matchFileNames": [
+        "compose/**"
+      ],
+      "groupName": "Docker Compose services",
+      "groupSlug": "compose-services"
     }
   ],
   "customManagers": [

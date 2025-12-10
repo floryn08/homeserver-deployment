@@ -4,7 +4,6 @@ argocdNamespace: core-services
 targetRevision: HEAD
 server: https://kubernetes.default.svc
 namespace: core-services
-appdataVolumePath: <path:kv/data/hostPath#appdata>
 
 syncPolicy:
   automated:
