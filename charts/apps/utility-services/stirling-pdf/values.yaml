@@ -15,7 +15,7 @@ storage:
 stirling-pdf-chart:
 
   image: 
-    tag: 2.1.1
+    tag: 2.1.3
     repository: stirlingtools/stirling-pdf
     registry: docker.stirlingpdf.com
 
