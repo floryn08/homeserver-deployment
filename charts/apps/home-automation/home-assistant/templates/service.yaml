@@ -4,18 +4,20 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 spec:
+  type: ClusterIP
   ports:
   - name: http
     port: 8123
     targetPort: 8123
     protocol: TCP
-  clusterIP: None
 ---
 apiVersion: v1
 kind: Endpoints
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
 subsets:
 - addresses:
   - ip: {{ .Values.external.ip }}
