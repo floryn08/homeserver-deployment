@@ -50,9 +50,6 @@ technitium:
 onlyoffice:
   path: charts/apps/utility-services/onlyoffice
 
-omada:
-  path: charts/apps/utility-services/omada
-
 wikijs:
   path: charts/apps/utility-services/wikijs
 
