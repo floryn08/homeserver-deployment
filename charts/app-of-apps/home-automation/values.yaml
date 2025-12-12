@@ -16,9 +16,3 @@ syncPolicy:
 
 homeAssistant:
   path: charts/apps/home-automation/home-assistant
-
-esphome:
-  path: charts/apps/home-automation/esphome
-
-zigbee2mqtt:
-  path: charts/apps/home-automation/zigbee2mqtt
