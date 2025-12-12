@@ -1,13 +1,19 @@
-image: ghcr.io/home-assistant/home-assistant:2025.12.2
 namespace: home-automation
-ports:
-- name: http
-  containerPort: 8123
-  externalPort: 8123
-  protocol: TCP
-volumes:
-- name: config
-  hostPath: /srv/appdata/home-automation/homeassistant
-  podPath: /config
-  type: DirectoryOrCreate
+
+# External Home Assistant running on mini PC
+external:
+  # IP address of the mini PC running Home Assistant
+  ip: "192.168.0.15"  # UPDATE THIS to your mini PC's IP
+  port: 8123
+
+host:
+  subdomain: homeassistant
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
 
