@@ -1,4 +1,4 @@
-apiVersion: cert.alm.homelab/v1
+apiVersion: networking.alm.homelab/v1
 kind: CertificateRequest
 metadata:
   name: {{ .Release.Name }}
