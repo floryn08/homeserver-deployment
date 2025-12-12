@@ -24,9 +24,6 @@ ddclient:
 pgadmin:
   path: charts/apps/core-services/pgadmin
 
-mqtt:
-  path: charts/apps/core-services/mqtt
-
 vault:
   path: charts/apps/core-services/vault
   url: http://vault.core-services.svc:8200
