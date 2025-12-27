@@ -47,7 +47,7 @@ immich:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v2.3.1
+              tag: v2.4.1
             env:
               REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
               IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
@@ -73,7 +73,7 @@ immich:
           main:
             image:  
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v2.3.1
+              tag: v2.4.1
 
 # https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
 postgresql:
