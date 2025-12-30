@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2025.12.3
+    image: ghcr.io/home-assistant/home-assistant:2025.12.5
     container_name: home-assistant
     restart: unless-stopped
     environment:
@@ -50,7 +50,7 @@ services:
       - mqtt
 
   technitium:
-    image: technitium/dns-server:14.2.0
+    image: technitium/dns-server:14.3.0
     container_name: technitium
     restart: unless-stopped
     environment:
@@ -101,7 +101,7 @@ services:
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
   esphome:
-    image: ghcr.io/esphome/esphome:2025.11.5
+    image: ghcr.io/esphome/esphome:2025.12.2
     container_name: esphome
     restart: unless-stopped
     network_mode: host
