@@ -14,6 +14,9 @@ syncPolicy:
   automated:
     prune: true
 
+agregarr:
+  path: charts/apps/media-management/agregarr
+
 jellyfin:
   path: charts/apps/media-management/jellyfin
 
