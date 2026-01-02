@@ -1,0 +1,26 @@
+image: ghcr.io/autobrr/netronome:latest
+namespace: utility-services
+
+host:
+  subdomain: netronome
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8080
+    externalPort: 8080
+    protocol: TCP
