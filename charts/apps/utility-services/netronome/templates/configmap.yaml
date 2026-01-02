@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  NETRONOME__HOST: "0.0.0.0"
+  NETRONOME__PORT: "7575"
