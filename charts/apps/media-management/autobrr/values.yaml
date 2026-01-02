@@ -1,0 +1,38 @@
+image: ghcr.io/autobrr/autobrr:v1.71.0
+namespace: media-management
+
+resources:
+  limits:
+    memory: 512Mi
+
+host:
+  subdomain: autobrr
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/autobrr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 7474
+    externalPort: 7474
+    protocol: TCP
+
+env:
+  TZ: Europe/Bucharest
+  AUTOBRR__HOST: 0.0.0.0
+  AUTOBRR__PORT: "7474"
+  AUTOBRR__LOG_LEVEL: INFO
+  AUTOBRR__CHECK_FOR_UPDATES: "true"

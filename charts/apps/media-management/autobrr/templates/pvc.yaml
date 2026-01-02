@@ -1,0 +1,16 @@
+{{- range .Values.storage.volumes }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $.Release.Name }}-{{ .name }}-pvc
+  namespace: {{ $.Values.namespace }}
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: {{ $.Release.Name }}-{{ .name }}-pv
+{{- end }}

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  revisionHistoryLimit: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-config
+        ports:
+        {{- range .Values.service.ports }}
+        - name: {{ .name }}
+          containerPort: {{ .containerPort }}
+          protocol: {{ .protocol }}
+        {{- end }}
+        volumeMounts:
+        {{- range .Values.storage.volumes }}
+        - name: {{ .name }}
+          mountPath: {{ .podPath }}
+          readOnly: {{ .readOnly }}
+        {{- end }}
+        {{- if .Values.resources }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        {{- end }}
+      volumes:
+      {{- range .Values.storage.volumes }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ $.Release.Name }}-{{ .name }}-pvc
+      {{- end }}

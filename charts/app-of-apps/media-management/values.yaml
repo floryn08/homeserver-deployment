@@ -17,6 +17,9 @@ syncPolicy:
 agregarr:
   path: charts/apps/media-management/agregarr
 
+autobrr:
+  path: charts/apps/media-management/autobrr
+
 jellyfin:
   path: charts/apps/media-management/jellyfin
 

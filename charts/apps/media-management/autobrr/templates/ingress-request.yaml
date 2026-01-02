@@ -1,0 +1,14 @@
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}-local
+spec:
+  vaultPath: {{ .Values.secrets.homeDomain.path }}
+  domainKey: {{ .Values.secrets.homeDomain.key }}
+  serviceName: {{ .Release.Name }}
+  servicePort: http
+  subdomain: {{ .Values.host.subdomain }}
+  entrypoints:
+    - websecure
+  tls:
+    secretName: {{ .Release.Name }}-certificate-secret
