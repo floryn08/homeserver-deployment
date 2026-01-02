@@ -1,0 +1,11 @@
+apiVersion: homelab-alm.com/v1alpha1
+kind: CertificateRequest
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+spec:
+  subdomain: {{ .Values.host.subdomain }}
+  vaultSecretPath: {{ .Values.secrets.homeDomain.path }}
+  vaultSecretKey: {{ .Values.secrets.homeDomain.key }}

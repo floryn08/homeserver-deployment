@@ -1,0 +1,37 @@
+image: ghcr.io/autobrr/qui:v1.11.0
+namespace: media-management
+
+resources:
+  limits:
+    memory: 512Mi
+
+host:
+  subdomain: qui
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/qui
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 7476
+    externalPort: 7476
+    protocol: TCP
+
+env:
+  TZ: Europe/Bucharest
+  QUI__HOST: 0.0.0.0
+  QUI__PORT: "7476"
+  QUI__LOG_LEVEL: INFO

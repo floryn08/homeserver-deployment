@@ -35,6 +35,9 @@ bazarr:
 qbittorrent:
   path: charts/apps/media-management/qbittorrent
 
+qui:
+  path: charts/apps/media-management/qui
+
 prowlarr:
   path: charts/apps/media-management/prowlarr
 
