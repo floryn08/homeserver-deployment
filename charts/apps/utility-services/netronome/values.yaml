@@ -12,9 +12,9 @@ secrets:
 storage:
   appdataBasePath: /srv/appdata
   volumes:
-  - name: config
-    subPath: config
-    podPath: /config
+  - name: data
+    subPath: data
+    podPath: /data
     type: DirectoryOrCreate
 
 service:
