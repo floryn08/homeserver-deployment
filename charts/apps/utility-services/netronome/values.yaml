@@ -21,6 +21,6 @@ service:
   type: ClusterIP
   ports:
   - name: http
-    containerPort: 8080
-    externalPort: 8080
+    containerPort: 7575
+    externalPort: 7575
     protocol: TCP
