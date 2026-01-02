@@ -17,9 +17,6 @@ syncPolicy:
 netronome:
   path: charts/apps/utility-services/netronome
 
-speedtestTracker:
-  path: charts/apps/utility-services/speedtest-tracker
-
 vaultwarden:
   path: charts/apps/utility-services/vaultwarden
 

@@ -26,9 +26,6 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
-        envFrom:
-        - secretRef:
-            name: {{ .Release.Name }}
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
