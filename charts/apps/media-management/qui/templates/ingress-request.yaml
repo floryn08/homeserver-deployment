@@ -1,17 +1,14 @@
-apiVersion: homelab-alm.com/v1alpha1
+apiVersion: networking.alm.homelab/v1
 kind: IngressRequest
 metadata:
-  name: {{ .Release.Name }}
-  namespace: {{ .Values.namespace }}
-  labels:
-    app.kubernetes.io/name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-local
 spec:
-  subdomain: {{ .Values.host.subdomain }}
+  vaultPath: {{ .Values.secrets.homeDomain.path }}
+  domainKey: {{ .Values.secrets.homeDomain.key }}
   serviceName: {{ .Release.Name }}
-  servicePort: {{ (index .Values.service.ports 0).externalPort }}
+  servicePort: http
+  subdomain: {{ .Values.host.subdomain }}
   entrypoints:
     - websecure
-  certResolver: letsencrypt
-  vaultSecretPath: {{ .Values.secrets.homeDomain.path }}
-  vaultSecretKey: {{ .Values.secrets.homeDomain.key }}
-  domainType: home
+  tls:
+    secretName: {{ .Release.Name }}-certificate-secret
