@@ -29,8 +29,6 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
-        - secretRef:
-            name: {{ .Release.Name }}
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
