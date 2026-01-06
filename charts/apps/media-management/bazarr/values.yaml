@@ -1,4 +1,4 @@
-image: linuxserver/bazarr:1.5.3
+image: linuxserver/bazarr:1.5.4
 namespace: media-management
 
 host:
