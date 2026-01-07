@@ -21,7 +21,7 @@ secrets:
     path: kv/data/domains
 
 storage:
-  appdataBasePath: /mnt/hdd/documents/paperless-ngx
+  appdataBasePath: /mnt/hdd12tb/documents/paperless-ngx
   volumes:
   - name: data
     subPath: data
