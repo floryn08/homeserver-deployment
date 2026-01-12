@@ -1,0 +1,31 @@
+image: lingarr/lingarr:1.0.3
+namespace: media-management
+
+resources:
+  limits:
+    memory: 512Mi
+
+host:
+  subdomain: lingarr
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/lingarr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /app/config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 9876
+    externalPort: 9876
+    protocol: TCP

@@ -64,3 +64,6 @@ tautulli:
 
 watchstate:
   path: charts/apps/media-management/watchstate
+
+lingarr:
+  path: charts/apps/media-management/lingarr
