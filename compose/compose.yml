@@ -114,6 +114,23 @@ services:
       - /etc/localtime:/etc/localtime:ro
     privileged: true
 
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:v0.8.1-omnibus
+    container_name: scrutiny
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Bucharest
+    ports:
+      - "8083:8080"
+    volumes:
+      - /srv/appdata/scrutiny/config:/opt/scrutiny/config
+      - /run/udev:/run/udev:ro
+    networks:
+      - homeserver
+    privileged: true
+    cap_add:
+      - SYS_RAWIO
+
 networks:
   homeserver:
     driver: bridge
