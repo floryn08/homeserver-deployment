@@ -1,4 +1,4 @@
-image: itzg/minecraft-server:2026.1.1
+image: itzg/minecraft-server:2026.1.2
 namespace: game-servers
 
 ports:
