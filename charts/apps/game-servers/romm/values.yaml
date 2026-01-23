@@ -30,6 +30,11 @@ storage:
     podPath: /romm/config
     type: DirectoryOrCreate
     readOnly: false
+  - name: resources
+    subPath: resources
+    podPath: /romm/resources
+    type: DirectoryOrCreate
+    readOnly: false
 
 service:
   type: ClusterIP
