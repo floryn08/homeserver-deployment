@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2026.1.2
+    image: ghcr.io/home-assistant/home-assistant:2026.1.3
     container_name: home-assistant
     restart: unless-stopped
     environment:
@@ -65,7 +65,7 @@ services:
       - homeserver
 
   omada:
-    image: mbentley/omada-controller:6.0.0.25
+    image: mbentley/omada-controller:6.1.0.19
     container_name: omada
     restart: unless-stopped
     network_mode: host
