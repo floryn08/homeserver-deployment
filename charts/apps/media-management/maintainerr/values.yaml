@@ -6,7 +6,7 @@ host:
 
 secrets:
   domain:
-    key: localDomain
+    key: homeDomain
     path: kv/data/domains
 
 storage:
