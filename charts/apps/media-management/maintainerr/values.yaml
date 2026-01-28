@@ -1,0 +1,34 @@
+image: ghcr.io/maintainerr/maintainerr:v2.26.1
+namespace: media-management
+
+host:
+  subdomain: maintainerr
+
+secrets:
+  domain:
+    key: localDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/maintainerr
+  volumes:
+  - name: data
+    subPath: data
+    podPath: /opt/data
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 6246
+    externalPort: 6246
+    protocol: TCP
+
+env:
+  TZ: Europe/Bucharest
+
+securityContext:
+  runAsUser: 1000
+  runAsGroup: 1000

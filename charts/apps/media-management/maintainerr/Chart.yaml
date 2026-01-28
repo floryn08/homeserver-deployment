@@ -1,0 +1,7 @@
+apiVersion: v2
+name: maintainerr
+description: A Helm chart for Maintainerr - Media maintenance tool for Plex
+
+type: application
+
+version: 0.1.0

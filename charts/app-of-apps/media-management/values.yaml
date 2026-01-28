@@ -67,3 +67,6 @@ watchstate:
 
 lingarr:
   path: charts/apps/media-management/lingarr
+
+maintainerr:
+  path: charts/apps/media-management/maintainerr
