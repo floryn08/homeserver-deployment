@@ -21,9 +21,9 @@ storage:
 service:
   type: ClusterIP
   ports:
-  - name: https
-    containerPort: 3001
-    externalPort: 3001
+  - name: http
+    containerPort: 3000
+    externalPort: 3000
     protocol: TCP
 
 env:

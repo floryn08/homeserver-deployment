@@ -60,8 +60,8 @@ spec:
         livenessProbe:
           httpGet:
             path: /
-            port: https
-            scheme: HTTPS
+            port: http
+            scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
@@ -69,8 +69,8 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: https
-            scheme: HTTPS
+            port: http
+            scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 5
