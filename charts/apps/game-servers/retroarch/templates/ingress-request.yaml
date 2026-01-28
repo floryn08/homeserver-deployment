@@ -3,15 +3,12 @@ kind: IngressRequest
 metadata:
   name: {{ .Release.Name }}
 spec:
-  vaultPath: {{ .Values.secrets.primaryDomain.path }}
-  domainKey: {{ .Values.secrets.primaryDomain.key }}
+  vaultPath: {{ .Values.secrets.domain.path }}
+  domainKey: {{ .Values.secrets.domain.key }}
   serviceName: {{ .Release.Name }}
   servicePort: http
   subdomain: {{ .Values.host.subdomain }}
-  middlewares:
-    - name: bouncer
-      namespace: core-services
   entrypoints:
     - websecure
   tls:
-    certResolver: letsencrypt
+    secretName: {{ .Release.Name }}-certificate-secret
