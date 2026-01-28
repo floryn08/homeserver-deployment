@@ -1,3 +1,4 @@
+# https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
 namespace: &namespace core-services
 postgresqlDataPath: /srv/appdata/core-services/postgresql
 

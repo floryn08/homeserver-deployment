@@ -7,7 +7,7 @@ data:
   PAPERLESS_ACCOUNT_DEFAULT_HTTP_PROTOCOL: http
   PAPERLESS_OCR_LANGUAGE: ron
   PAPERLESS_OCR_LANGUAGES: ron
-  PAPERLESS_REDIS: redis://paperless-ngx-redis-master.utility-services.svc
+  PAPERLESS_REDIS: redis://paperless-ngx-valkey-master.utility-services.svc
   PAPERLESS_TIME_ZONE: Europe/Bucharest
   USERMAP_GID: '1000'
   USERMAP_UID: '1000'

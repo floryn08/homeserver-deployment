@@ -1,16 +1,11 @@
 image: ghcr.io/paperless-ngx/paperless-ngx:2.20.5
 namespace: &namespace utility-services
 
-redis:
-  namespaceOverride: *namespace
-  architecture: standalone
-  master: 
-    revisionHistoryLimit: 1
-    persistence: 
-      enabled: false
+valkey:
+  dataStorage:
+    enabled: false
   auth:
     enabled: false
-    usePasswordFiles: false
 
 host:
   subdomain: paperless-ngx
