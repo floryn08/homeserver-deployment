@@ -22,3 +22,6 @@ minecraft:
 
 romm:
   path: charts/apps/game-servers/romm
+
+retroarch:
+  path: charts/apps/game-servers/retroarch

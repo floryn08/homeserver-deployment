@@ -1,0 +1,37 @@
+image: lscr.io/linuxserver/retroarch:1.22.2
+namespace: game-servers
+
+host:
+  subdomain: retroarch
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/game-servers/retroarch
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: https
+    containerPort: 3001
+    externalPort: 3001
+    protocol: TCP
+
+env:
+  TZ: Europe/Bucharest
+  # Set page title
+  TITLE: RetroArch
+  # Reasonable resolution to save GPU memory (increase if needed)
+  MAX_RES: "1920x1080"
+
+# Container requires 1GB shared memory for proper operation
+shmSize: 1Gi
