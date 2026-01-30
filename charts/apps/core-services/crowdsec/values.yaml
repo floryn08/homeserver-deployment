@@ -23,7 +23,7 @@ crowdsec:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik firix/authentik crowdsecurity/plex"
       - name: CROWDSEC_BYPASS_DB_VOLUME_CHECK 
-        value: "TRUE"
+        value: "true"
   lapi:
     env:
       # To enroll the Security Engine to the console
