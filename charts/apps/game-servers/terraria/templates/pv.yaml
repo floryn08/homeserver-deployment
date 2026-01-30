@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    release: {{ .Release.Name }}
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{ .Values.storage.pvHostPath }}
+    type: DirectoryOrCreate

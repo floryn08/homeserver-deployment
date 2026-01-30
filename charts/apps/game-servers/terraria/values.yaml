@@ -1,0 +1,31 @@
+image: ryshe/terraria:vanilla-1.4.5.2
+namespace: game-servers
+
+service:
+  type: LoadBalancer
+
+ports:
+- name: terraria
+  containerPort: 7777
+  externalPort: 7777
+  protocol: TCP
+
+storage:
+  pvHostPath: /srv/appdata/game-servers/terraria
+  volumes:
+  - name: worlds
+    subPath: worlds
+    podPath: /root/.local/share/Terraria/Worlds
+    type: DirectoryOrCreate
+  - name: plugins
+    subPath: plugins
+    podPath: /plugins
+    type: DirectoryOrCreate
+  - name: logs
+    subPath: logs
+    podPath: /terraria-server/logs
+    type: DirectoryOrCreate
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate

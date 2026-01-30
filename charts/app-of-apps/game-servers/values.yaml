@@ -25,3 +25,5 @@ romm:
 
 retroarch:
   path: charts/apps/game-servers/retroarch
+terraria:
+  path: charts/apps/game-servers/terraria

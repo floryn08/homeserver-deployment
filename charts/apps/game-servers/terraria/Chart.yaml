@@ -1,0 +1,7 @@
+apiVersion: v2
+name: terraria
+description: A Helm chart for Terraria Server
+
+type: application
+
+version: 0.1.0
