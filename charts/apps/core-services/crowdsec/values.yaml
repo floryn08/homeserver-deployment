@@ -21,7 +21,7 @@ crowdsec:
         program: authentik
     env:
       - name: COLLECTIONS
-        value: "crowdsecurity/traefik firix/authentik"
+        value: "crowdsecurity/traefik firix/authentik crowdsecurity/plex"
       - name: CROWDSEC_BYPASS_DB_VOLUME_CHECK 
         value: "TRUE"
   lapi:
