@@ -20,3 +20,11 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
+    syncOptions:
+      - RespectIgnoreDifferences=true
+  
+  ignoreDifferences:
+    - group: "apps"
+      kind: "Deployment"
+      jsonPointers:
+      - /spec/replicas
