@@ -11,3 +11,5 @@ data:
   ROMM_DB_DRIVER: postgresql
   HASHEOUS_API_ENABLED: "true"
   ROMM_PORT: "8080"
+  OIDC_ENABLED: "true"
+  OIDC_PROVIDER: "authentik"

@@ -67,6 +67,26 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}
                 key: STEAMGRIDDB_API_KEY 
+          - name: OIDC_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_CLIENT_ID
+          - name: OIDC_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_CLIENT_SECRET
+          - name: OIDC_REDIRECT_URI
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_REDIRECT_URI
+          - name: OIDC_SERVER_APPLICATION_URL
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OIDC_SERVER_APPLICATION_URL
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
