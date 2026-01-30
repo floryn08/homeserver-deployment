@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  WORLD_FILENAME: ""
+  WORLD_FILENAME: "The_Wary_Soup_of_Worries.wld"
   CONFIGPATH: "/config"
   CONFIG_FILENAME: "serverconfig.txt"
   LOGPATH: "/terraria-server/logs"
