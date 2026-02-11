@@ -101,7 +101,7 @@ services:
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
   esphome:
-    image: ghcr.io/esphome/esphome:2026.1.4
+    image: ghcr.io/esphome/esphome:2026.1.5
     container_name: esphome
     restart: unless-stopped
     network_mode: host
@@ -115,7 +115,7 @@ services:
     privileged: true
 
   scrutiny:
-    image: ghcr.io/analogj/scrutiny:v0.8.2-omnibus
+    image: ghcr.io/analogj/scrutiny:v0.8.6-omnibus
     container_name: scrutiny
     restart: unless-stopped
     environment:
