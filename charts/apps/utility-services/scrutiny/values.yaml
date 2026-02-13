@@ -1,4 +1,4 @@
-image: ghcr.io/analogj/scrutiny:v0.8.2-omnibus
+image: ghcr.io/analogj/scrutiny:v0.8.6-omnibus
 namespace: utility-services
 
 host:
