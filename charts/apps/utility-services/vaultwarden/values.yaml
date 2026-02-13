@@ -1,4 +1,4 @@
-image: vaultwarden/server:1.35.2
+image: vaultwarden/server:1.35.3
 namespace: utility-services
 
 host:
