@@ -1,4 +1,4 @@
-image: ghcr.io/autobrr/autobrr:v1.72.1
+image: ghcr.io/autobrr/autobrr:v1.73.0
 namespace: media-management
 
 resources:
