@@ -14,17 +14,12 @@ grafana:
   assertNoLeakedSecrets: false
 
   initChownData:
-    enabled: true
-    securityContext:
-      runAsNonRoot: false
-      runAsUser: 0
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        add:
-          - CHOWN
-        drop:
-          - ALL
+    enabled: false
+
+  securityContext:
+    runAsUser: 472
+    runAsGroup: 472
+    fsGroup: 472
 
   replicas: 1
   revisionHistoryLimit: 1
