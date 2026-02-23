@@ -20,3 +20,5 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
+    syncOptions:
+      - ServerSideApply=true
