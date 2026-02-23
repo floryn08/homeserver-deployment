@@ -1,0 +1,202 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-game-servers
+  namespace: {{ .Values.namespace }}
+  labels:
+    grafana_dashboard: "1"
+data:
+  game-servers.json: |
+    {
+      "annotations": {"list": []},
+      "description": "Per-pod CPU, Memory, Network and Status for the game-servers namespace",
+      "editable": true,
+      "graphTooltip": 1,
+      "links": [],
+      "panels": [
+        {
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},
+          "id": 1,
+          "repeat": "pod",
+          "repeatDirection": "v",
+          "title": "$pod",
+          "type": "row"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
+              "unit": "short",
+              "min": 0
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 0, "y": 1},
+          "id": 2,
+          "options": {
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
+          "targets": [
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"game-servers\",pod=~\"$pod\",container!=\"POD\",container!=\"\"}[2m]))",
+              "legendFormat": "cpu",
+              "refId": "A"
+            }
+          ],
+          "title": "CPU Usage",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
+              "unit": "bytes",
+              "min": 0
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 6, "y": 1},
+          "id": 3,
+          "options": {
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
+          "targets": [
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum(container_memory_working_set_bytes{namespace=\"game-servers\",pod=~\"$pod\",container!=\"POD\",container!=\"\"})",
+              "legendFormat": "memory",
+              "refId": "A"
+            }
+          ],
+          "title": "Memory Usage",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "custom": {"lineWidth": 2, "fillOpacity": 5, "spanNulls": false},
+              "unit": "Bps",
+              "min": 0
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 12, "y": 1},
+          "id": 4,
+          "options": {
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
+          "targets": [
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"game-servers\",pod=~\"$pod\"}[2m]))",
+              "legendFormat": "rx",
+              "refId": "A"
+            },
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"game-servers\",pod=~\"$pod\"}[2m]))",
+              "legendFormat": "tx",
+              "refId": "B"
+            }
+          ],
+          "title": "Network",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "mappings": [
+                {
+                  "options": {
+                    "0": {"color": "red", "index": 0, "text": "Not Ready"},
+                    "1": {"color": "green", "index": 1, "text": "Ready"}
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {"color": "red", "value": null},
+                  {"color": "green", "value": 1}
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 18, "y": 1},
+          "id": 5,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
+          "targets": [
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "kube_pod_status_ready{namespace=\"game-servers\",pod=~\"$pod\",condition=\"true\"}",
+              "legendFormat": "status",
+              "refId": "A"
+            }
+          ],
+          "title": "Status",
+          "type": "stat"
+        }
+      ],
+      "schemaVersion": 38,
+      "tags": ["game-servers", "kubernetes"],
+      "templating": {
+        "list": [
+          {
+            "current": {},
+            "hide": 0,
+            "includeAll": false,
+            "multi": false,
+            "name": "datasource",
+            "options": [],
+            "query": "prometheus",
+            "refresh": 1,
+            "type": "datasource"
+          },
+          {
+            "current": {},
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "definition": "label_values(kube_pod_info{namespace=\"game-servers\"}, pod)",
+            "hide": 0,
+            "includeAll": true,
+            "multi": true,
+            "name": "pod",
+            "options": [],
+            "query": {
+              "query": "label_values(kube_pod_info{namespace=\"game-servers\"}, pod)",
+              "refId": "StandardVariableQuery"
+            },
+            "refresh": 2,
+            "sort": 1,
+            "type": "query"
+          }
+        ]
+      },
+      "time": {"from": "now-1h", "to": "now"},
+      "timepicker": {},
+      "timezone": "browser",
+      "title": "Game Servers",
+      "uid": "game-servers",
+      "version": 1
+    }
