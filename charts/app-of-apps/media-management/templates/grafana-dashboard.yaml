@@ -43,7 +43,7 @@ data:
           "targets": [
             {
               "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"media-management\",pod_name=~\"$pod\",container_name!=\"POD\"}[2m]))",
+              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"media-management\",pod=~\"$pod\",container!=\"POD\",container!=\"\"}[2m]))",
               "legendFormat": "cpu",
               "refId": "A"
             }
@@ -71,7 +71,7 @@ data:
           "targets": [
             {
               "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "sum(container_memory_working_set_bytes{namespace=\"media-management\",pod_name=~\"$pod\",container_name!=\"POD\"})",
+              "expr": "sum(container_memory_working_set_bytes{namespace=\"media-management\",pod=~\"$pod\",container!=\"POD\",container!=\"\"})",
               "legendFormat": "memory",
               "refId": "A"
             }
@@ -198,5 +198,5 @@ data:
       "timezone": "browser",
       "title": "Media Management",
       "uid": "media-management",
-      "version": 1
+      "version": 2
     }
