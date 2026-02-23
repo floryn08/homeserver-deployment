@@ -26,6 +26,10 @@ spec:
         hostPath:
           path: /mnt/hdd
           type: Directory
+      - name: hdd12tb
+        hostPath:
+          path: /mnt/hdd12tb
+          type: Directory
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
