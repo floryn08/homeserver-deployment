@@ -17,3 +17,7 @@ syncPolicy:
 victoriaMetrics:
   enabled: true
   path: charts/apps/monitoring/victoria-metrics
+
+grafana:
+  enabled: true
+  path: charts/apps/monitoring/grafana

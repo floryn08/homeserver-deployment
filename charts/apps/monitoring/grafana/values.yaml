@@ -1,0 +1,92 @@
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+namespace: &namespace monitoring
+
+host:
+  subdomain: grafana
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+grafana:
+  namespaceOverride: *namespace
+  assertNoLeakedSecrets: false
+
+  initChownData:
+    enabled: false
+
+  replicas: 1
+  revisionHistoryLimit: 1
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      memory: 128Mi
+
+  service:
+    type: ClusterIP
+    port: 3000
+
+  ingress:
+    enabled: false
+
+  persistence:
+    enabled: true
+    storageClassName: manual
+    existingClaim: grafana
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: VictoriaMetrics
+        type: prometheus
+        url: http://victoria-metrics-server.monitoring.svc:8428
+        access: proxy
+        isDefault: true
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: default
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+  dashboards:
+    default:
+      # Kubernetes pod resources - https://grafana.com/grafana/dashboards/6781
+      kubernetes-pod-resources:
+        gnetId: 6781
+        revision: 1
+        datasource: VictoriaMetrics
+      # Node Exporter Full - https://grafana.com/grafana/dashboards/1860
+      node-exporter-full:
+        gnetId: 1860
+        revision: 37
+        datasource: VictoriaMetrics
+      # Kubernetes cluster monitoring - https://grafana.com/grafana/dashboards/315
+      kubernetes-cluster:
+        gnetId: 315
+        revision: 3
+        datasource: VictoriaMetrics
+
+  grafana.ini:
+    analytics:
+      reporting_enabled: false
+      check_for_updates: false
+    server:
+      root_url: "%(protocol)s://%(domain)s"
+    users:
+      auto_assign_org_role: Viewer
+
+  admin:
+    existingSecret: ""

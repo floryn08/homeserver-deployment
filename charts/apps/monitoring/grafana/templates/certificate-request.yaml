@@ -1,0 +1,10 @@
+apiVersion: networking.alm.homelab/v1
+kind: CertificateRequest
+metadata:
+  name: {{ .Release.Name }}-certificaterequest
+  namespace: {{ .Release.Namespace }}
+spec:
+  domainKey: {{ .Values.secrets.domain.key }}
+  secretName: {{ .Release.Name }}-certificate-secret
+  subdomain: {{ .Values.host.subdomain }}
+  vaultPath: {{ .Values.secrets.domain.path }}
