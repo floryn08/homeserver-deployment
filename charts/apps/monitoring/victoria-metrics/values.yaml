@@ -67,6 +67,11 @@ victoria-metrics-single:
             target_label: node
           - source_labels: [__meta_kubernetes_node_name]
             target_label: instance
+          metric_relabel_configs:
+          - source_labels: [pod]
+            target_label: pod_name
+          - source_labels: [container]
+            target_label: container_name
 
         - job_name: node-exporter
           kubernetes_sd_configs:
