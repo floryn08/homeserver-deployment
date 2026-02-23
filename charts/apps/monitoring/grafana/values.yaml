@@ -30,6 +30,14 @@ grafana:
     type: ClusterIP
     port: 3000
 
+  readinessProbe:
+    httpGet:
+      path: /api/health
+      port: 3000
+    initialDelaySeconds: 30
+    timeoutSeconds: 10
+    failureThreshold: 5
+
   ingress:
     enabled: false
 
