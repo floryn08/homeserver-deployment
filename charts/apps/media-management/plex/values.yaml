@@ -1,4 +1,4 @@
-image: linuxserver/plex:1.43.0
+image: linuxserver/plex:1.43.0.10492-121068a07
 namespace: media-management
 
 host:
