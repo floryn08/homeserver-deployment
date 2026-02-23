@@ -101,9 +101,6 @@ grafana:
     users:
       auto_assign_org_role: Viewer
 
-  admin:
-    existingSecret: ""
-
   sidecar:
     dashboards:
       enabled: true
