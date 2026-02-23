@@ -14,7 +14,7 @@ grafana:
   assertNoLeakedSecrets: false
 
   initChownData:
-    enabled: false
+    enabled: true
 
   replicas: 1
   revisionHistoryLimit: 1
