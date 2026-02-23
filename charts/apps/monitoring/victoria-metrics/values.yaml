@@ -23,6 +23,9 @@ victoria-metrics-single:
 
     retentionPeriod: "2" # months
 
+    extraArgs:
+      maxLabelsPerTimeseries: "120"
+
     persistentVolume:
       enabled: true
       storageClass: manual
@@ -50,6 +53,15 @@ victoria-metrics-single:
             regex: __meta_kubernetes_node_label_(.+)
           - source_labels: [__meta_kubernetes_node_name]
             target_label: node
+          metric_relabel_configs:
+          - regex: "feature_node_kubernetes_io_.+"
+            action: labeldrop
+          - regex: "beta_kubernetes_io_.+"
+            action: labeldrop
+          - regex: "nvidia_com_.+"
+            action: labeldrop
+          - regex: "node_kubernetes_io_.+"
+            action: labeldrop
 
         - job_name: kubernetes-cadvisor
           scheme: https
@@ -67,6 +79,15 @@ victoria-metrics-single:
             target_label: node
           - source_labels: [__meta_kubernetes_node_name]
             target_label: instance
+          metric_relabel_configs:
+          - regex: "feature_node_kubernetes_io_.+"
+            action: labeldrop
+          - regex: "beta_kubernetes_io_.+"
+            action: labeldrop
+          - regex: "nvidia_com_.+"
+            action: labeldrop
+          - regex: "node_kubernetes_io_.+"
+            action: labeldrop
 
         - job_name: node-exporter
           kubernetes_sd_configs:
