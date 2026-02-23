@@ -76,20 +76,20 @@ grafana:
 
   dashboards:
     default:
-      # Kubernetes pod resources - https://grafana.com/grafana/dashboards/6781
-      kubernetes-pod-resources:
-        gnetId: 6781
-        revision: 1
-        datasource: VictoriaMetrics
       # Node Exporter Full - https://grafana.com/grafana/dashboards/1860
       node-exporter-full:
         gnetId: 1860
         revision: 37
         datasource: VictoriaMetrics
-      # Kubernetes cluster monitoring - https://grafana.com/grafana/dashboards/315
-      kubernetes-cluster:
-        gnetId: 315
-        revision: 3
+      # kube-state-metrics v2 - https://grafana.com/grafana/dashboards/13332
+      kube-state-metrics:
+        gnetId: 13332
+        revision: 12
+        datasource: VictoriaMetrics
+      # Kubernetes all-in-one - https://grafana.com/grafana/dashboards/14205
+      kubernetes-all-in-one:
+        gnetId: 14205
+        revision: 1
         datasource: VictoriaMetrics
 
   grafana.ini:

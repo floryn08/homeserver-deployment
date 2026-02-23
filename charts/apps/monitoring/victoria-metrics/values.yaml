@@ -48,6 +48,8 @@ victoria-metrics-single:
           relabel_configs:
           - action: labelmap
             regex: __meta_kubernetes_node_label_(.+)
+          - source_labels: [__meta_kubernetes_node_name]
+            target_label: node
 
         - job_name: kubernetes-cadvisor
           scheme: https
@@ -61,6 +63,28 @@ victoria-metrics-single:
           relabel_configs:
           - action: labelmap
             regex: __meta_kubernetes_node_label_(.+)
+          - source_labels: [__meta_kubernetes_node_name]
+            target_label: node
+          - source_labels: [__meta_kubernetes_node_name]
+            target_label: instance
+
+        - job_name: node-exporter
+          kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names: [monitoring]
+          relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: node-exporter
+          - source_labels: [__meta_kubernetes_endpoint_node_name]
+            target_label: node
+          - source_labels: [__meta_kubernetes_endpoint_node_name]
+            target_label: instance
+
+        - job_name: kube-state-metrics
+          static_configs:
+          - targets: ["kube-state-metrics.monitoring.svc:8080"]
 
         - job_name: kubernetes-pods
           kubernetes_sd_configs:
@@ -89,3 +113,13 @@ victoria-metrics-single:
 
   service:
     type: ClusterIP
+
+prometheus-node-exporter:
+  namespaceOverride: monitoring
+  fullnameOverride: node-exporter
+  service:
+    type: ClusterIP
+
+kube-state-metrics:
+  namespaceOverride: monitoring
+  fullnameOverride: kube-state-metrics
