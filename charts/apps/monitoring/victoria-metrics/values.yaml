@@ -19,7 +19,7 @@ victoria-metrics-single:
         cpu: 100m
         memory: 256Mi
       limits:
-        memory: 512Mi
+        memory: 1Gi
 
     retentionPeriod: "2" # months
 

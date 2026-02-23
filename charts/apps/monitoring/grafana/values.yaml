@@ -110,3 +110,4 @@ grafana:
       searchNamespace: ALL
       label: grafana_dashboard
       labelValue: "1"
+      skipReload: true
