@@ -1,4 +1,4 @@
-image: ghcr.io/seerr-team/seerr:3.0.1
+image: ghcr.io/seerr-team/seerr:v3.0.1
 namespace: media-management
 
 host:
