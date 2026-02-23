@@ -47,6 +47,9 @@ jellystat:
 jellyseerr:
   path: charts/apps/media-management/jellyseerr
 
+seerr:
+  path: charts/apps/media-management/seerr
+
 wizarr:
   path: charts/apps/media-management/wizarr
 

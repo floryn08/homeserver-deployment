@@ -1,0 +1,27 @@
+image: ghcr.io/seerr-team/seerr:3.0.1
+namespace: media-management
+
+host:
+  subdomain: seerr
+
+secrets:
+  domain:
+    key: primaryDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/seerr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /app/config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 5055
+    externalPort: 5055
+    protocol: TCP
