@@ -14,10 +14,6 @@ syncPolicy:
   automated:
     prune: true
 
-grafana:
+victoriaMetrics:
   enabled: true
-  path: charts/apps/monitoring/grafana
-
-prometheus:
-  enabled: true
-  path: charts/apps/monitoring/prometheus
+  path: charts/apps/monitoring/victoria-metrics

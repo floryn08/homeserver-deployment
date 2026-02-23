@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    release: {{ .Release.Name }}
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 700Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /srv/appdata/monitoring/victoria-metrics
+    type: DirectoryOrCreate

@@ -1,8 +1,8 @@
-{{- if .Values.prometheus.enabled -}}
+{{- if .Values.victoriaMetrics.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: victoria-metrics
   namespace: {{ .Values.argocdNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,7 +11,7 @@ spec:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.prometheus.path }}
+    path: {{ .Values.victoriaMetrics.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:
@@ -19,8 +19,6 @@ spec:
         - values.yaml
   project: {{ .Values.project }}
   syncPolicy:
-    syncOptions:
-    - ServerSideApply=true
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
 {{- end -}}

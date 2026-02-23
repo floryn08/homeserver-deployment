@@ -1,0 +1,14 @@
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  vaultPath: {{ .Values.secrets.domain.path }}
+  domainKey: {{ .Values.secrets.domain.key }}
+  serviceName: victoria-metrics-server
+  servicePort: http
+  subdomain: {{ .Values.host.subdomain }}
+  entrypoints:
+    - websecure
+  tls:
+    secretName: {{ .Release.Name }}-certificate-secret
