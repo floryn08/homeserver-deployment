@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: jellyseerr-to-seerr-redirect
+  namespace: {{ .Values.namespace }}
+spec:
+  redirectRegex:
+    regex: "^https://jellyseerr\\.(.+)"
+    replacement: "https://seerr.${1}"
+    permanent: true
+---
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: jellyseerr-redirect
+spec:
+  vaultPath: {{ .Values.secrets.domain.path }}
+  domainKey: {{ .Values.secrets.domain.key }}
+  serviceName: {{ .Release.Name }}
+  servicePort: http
+  subdomain: jellyseerr
+  entrypoints:
+    - websecure
+  tls:
+    certResolver: letsencrypt
+  middlewares:
+  - name: jellyseerr-to-seerr-redirect
+    namespace: {{ .Values.namespace }}
