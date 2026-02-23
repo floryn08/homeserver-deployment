@@ -15,6 +15,16 @@ grafana:
 
   initChownData:
     enabled: true
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 0
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        add:
+          - CHOWN
+        drop:
+          - ALL
 
   replicas: 1
   revisionHistoryLimit: 1
