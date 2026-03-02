@@ -33,7 +33,7 @@ spec:
           - -c
           - |
             mkdir -p /home/node/.openclaw/agents/main/agent
-            echo '{"ollama":{"apiKey":"ollama"}}' > /home/node/.openclaw/agents/main/agent/auth-profiles.json
+            printf '{"version":1,"profiles":{"ollama:default":{"type":"api_key","provider":"ollama","key":"ollama-local"}}}' > /home/node/.openclaw/agents/main/agent/auth-profiles.json
             chown -R 1000:1000 /home/node/.openclaw
         securityContext:
           runAsUser: 0
@@ -63,6 +63,8 @@ spec:
                 key: OPENCLAW_GATEWAY_TOKEN
           - name: HOME
             value: /home/node
+          - name: OLLAMA_API_KEY
+            value: ollama-local
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
