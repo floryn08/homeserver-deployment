@@ -42,6 +42,7 @@ data:
         "auth": {
           "token": "${OPENCLAW_GATEWAY_TOKEN}"
         },
+        "trustedProxies": ["10.42.0.0/16"],
         "controlUi": {
           "allowedOrigins": [
             "http://localhost:18789",
