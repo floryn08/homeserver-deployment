@@ -4,5 +4,4 @@ metadata:
   name: {{ .Release.Name }}-env
   namespace: {{ .Values.namespace }}
 data:
-  OLLAMA_HOST: {{ .Values.ollama.host | quote }}
   OPENCLAW_CONFIG_PATH: /etc/openclaw/openclaw.json
