@@ -22,9 +22,6 @@ spec:
       - name: {{ .Release.Name }}-state
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}
-      - name: {{ .Release.Name }}-config
-        configMap:
-          name: {{ .Release.Name }}-config
       initContainers:
       - name: fix-permissions
         image: busybox
@@ -33,7 +30,6 @@ spec:
           - -c
           - |
             mkdir -p /home/node/.openclaw/agents/main/agent
-            cp /etc/openclaw-template/openclaw.json /home/node/.openclaw/openclaw.json
             printf '{"version":1,"profiles":{"ollama:default":{"type":"api_key","provider":"ollama","key":"ollama-local"}}}' > /home/node/.openclaw/agents/main/agent/auth-profiles.json
             chown -R 1000:1000 /home/node/.openclaw
         securityContext:
@@ -41,9 +37,6 @@ spec:
         volumeMounts:
         - name: {{ .Release.Name }}-state
           mountPath: /home/node/.openclaw
-        - name: {{ .Release.Name }}-config
-          mountPath: /etc/openclaw-template
-          readOnly: true
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -56,9 +49,6 @@ spec:
           - lan
           - --port
           - "18789"
-        envFrom:
-        - configMapRef:
-            name: {{ .Release.Name }}-env
         env:
           - name: OPENCLAW_GATEWAY_TOKEN
             valueFrom:
