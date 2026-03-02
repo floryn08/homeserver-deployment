@@ -61,6 +61,11 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}
                 key: OPENCLAW_GATEWAY_TOKEN
+          - name: WHATSAPP_ALLOW_FROM
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: WHATSAPP_ALLOW_FROM
           - name: HOME
             value: /home/node
           - name: OLLAMA_API_KEY
