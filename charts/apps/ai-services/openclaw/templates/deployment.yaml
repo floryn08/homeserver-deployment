@@ -29,8 +29,6 @@ spec:
           - sh
           - -c
           - |
-            mkdir -p /home/node/.openclaw/agents/main/agent
-            printf '{"version":1,"profiles":{"ollama:default":{"type":"api_key","provider":"ollama","key":"ollama-local"}}}' > /home/node/.openclaw/agents/main/agent/auth-profiles.json
             chown -R 1000:1000 /home/node/.openclaw
         securityContext:
           runAsUser: 0
