@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-env
   namespace: {{ .Values.namespace }}
 data:
-  OPENCLAW_CONFIG_PATH: /etc/openclaw/openclaw.json
+  OPENCLAW_CONFIG_PATH: /home/node/.openclaw/openclaw.json

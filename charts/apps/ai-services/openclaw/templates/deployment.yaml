@@ -33,6 +33,7 @@ spec:
           - -c
           - |
             mkdir -p /home/node/.openclaw/agents/main/agent
+            cp /etc/openclaw-template/openclaw.json /home/node/.openclaw/openclaw.json
             printf '{"version":1,"profiles":{"ollama:default":{"type":"api_key","provider":"ollama","key":"ollama-local"}}}' > /home/node/.openclaw/agents/main/agent/auth-profiles.json
             chown -R 1000:1000 /home/node/.openclaw
         securityContext:
@@ -40,7 +41,9 @@ spec:
         volumeMounts:
         - name: {{ .Release.Name }}-state
           mountPath: /home/node/.openclaw
-      containers:
+        - name: {{ .Release.Name }}-config
+          mountPath: /etc/openclaw-template
+          readOnly: true
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: Always
@@ -79,9 +82,6 @@ spec:
         volumeMounts:
         - name: {{ .Release.Name }}-state
           mountPath: /home/node/.openclaw
-        - name: {{ .Release.Name }}-config
-          mountPath: /etc/openclaw
-          readOnly: true
         livenessProbe:
           exec:
             command:
