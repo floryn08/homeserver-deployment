@@ -25,6 +25,15 @@ spec:
       - name: {{ .Release.Name }}-config
         configMap:
           name: {{ .Release.Name }}-config
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /home/node/.openclaw"]
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: {{ .Release.Name }}-state
+          mountPath: /home/node/.openclaw
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
