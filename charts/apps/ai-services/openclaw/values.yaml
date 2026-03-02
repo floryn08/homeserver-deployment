@@ -1,0 +1,31 @@
+image: ghcr.io/openclaw/openclaw:2026.3.1
+namespace: ai-services
+
+host:
+  subdomain: openclaw
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/ai-services/openclaw
+  volumes:
+  - name: state
+    subPath: state
+    podPath: /home/node/.openclaw
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 18789
+    externalPort: 18789
+    protocol: TCP
+
+ollama:
+  host: http://ollama.ai-services.svc:11434
+  model: ollama/qwen2.5

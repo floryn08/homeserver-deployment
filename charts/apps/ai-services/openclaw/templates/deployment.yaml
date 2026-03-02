@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}-state
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: {{ .Release.Name }}-config
+        configMap:
+          name: {{ .Release.Name }}-config
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: Always
+        command:
+          - node
+          - dist/index.js
+          - gateway
+          - --bind
+          - lan
+          - --port
+          - "18789"
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-env
+        env:
+          - name: OPENCLAW_GATEWAY_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: OPENCLAW_GATEWAY_TOKEN
+          - name: HOME
+            value: /home/node
+        ports:
+        {{- range $key, $val := $.Values.service.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        - name: {{ .Release.Name }}-state
+          mountPath: /home/node/.openclaw
+        - name: {{ .Release.Name }}-config
+          mountPath: /etc/openclaw
+          readOnly: true
+        livenessProbe:
+          exec:
+            command:
+              - node
+              - -e
+              - "fetch('http://127.0.0.1:18789/healthz').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 5

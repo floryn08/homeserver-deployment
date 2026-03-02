@@ -2,7 +2,7 @@ image: ollama/ollama:0.17.0
 namespace: ai-services
 
 storage:
-  appdataBasePath: /mnt/hdd2/ollama-models
+  appdataBasePath: /mnt/nvme/ollama
   volumes:
   - name: config
     subPath: config
