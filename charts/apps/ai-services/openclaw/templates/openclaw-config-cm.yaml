@@ -23,6 +23,7 @@ data:
           "ollama": {
             "baseUrl": {{ printf "%s/v1" .Values.ollama.host | quote }},
             "api": "openai-completions",
+            "key": "ollama",
             "models": [
               {
                 "id": {{ .Values.ollama.model | trimPrefix "ollama/" | quote }},
