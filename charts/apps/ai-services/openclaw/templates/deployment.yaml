@@ -28,7 +28,15 @@ spec:
       initContainers:
       - name: fix-permissions
         image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /home/node/.openclaw"]
+        command:
+          - sh
+          - -c
+          - |
+            mkdir -p /home/node/.openclaw/agents/main/agent
+            if [ ! -f /home/node/.openclaw/agents/main/agent/auth-profiles.json ]; then
+              echo '{"ollama":{"key":"ollama"}}' > /home/node/.openclaw/agents/main/agent/auth-profiles.json
+            fi
+            chown -R 1000:1000 /home/node/.openclaw
         securityContext:
           runAsUser: 0
         volumeMounts:
