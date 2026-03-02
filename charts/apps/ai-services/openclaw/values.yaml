@@ -3,6 +3,7 @@ namespace: ai-services
 
 host:
   subdomain: openclaw
+  url: https://openclaw.home
 
 secrets:
   homeDomain:
