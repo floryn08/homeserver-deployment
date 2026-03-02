@@ -29,4 +29,4 @@ service:
 
 ollama:
   host: http://ollama.ai-services.svc:11434
-  model: ollama/qwen2.5
+  model: ollama/qwen3:8b
