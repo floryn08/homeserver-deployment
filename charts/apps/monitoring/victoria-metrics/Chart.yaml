@@ -3,7 +3,7 @@ name: victoria-metrics
 version: 1.0.0
 dependencies:
 - name: victoria-metrics-single
-  version: 0.31.0
+  version: 0.32.0
   repository: https://victoriametrics.github.io/helm-charts
 - name: prometheus-node-exporter
   version: 4.52.0
