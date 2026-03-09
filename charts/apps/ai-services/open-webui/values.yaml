@@ -1,4 +1,4 @@
-image: ghcr.io/open-webui/open-webui:v0.8.8
+image: ghcr.io/open-webui/open-webui:v0.8.10
 namespace: ai-services
 
 host:
