@@ -47,6 +47,7 @@ spec:
           - lan
           - --port
           - "18789"
+          - --allow-unconfigured
         env:
           - name: OPENCLAW_GATEWAY_TOKEN
             valueFrom:

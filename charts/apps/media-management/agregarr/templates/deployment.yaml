@@ -22,10 +22,6 @@ spec:
       - name: {{ .Release.Name }}
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}
-      - name: media
-        hostPath:
-          path: /mnt/hdd
-          type: Directory
       - name: hdd12tb
         hostPath:
           path: /mnt/hdd12tb
@@ -49,9 +45,6 @@ spec:
           name: {{ $.Release.Name }}
           subPath: {{ $val.subPath }}
         {{ end -}}
-        - mountPath: /media
-          name: media
-          readOnly: true
         - mountPath: /hdd12tb
           name: hdd12tb
           readOnly: true

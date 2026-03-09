@@ -26,10 +26,6 @@ spec:
         hostPath:
           path: /dev/dri
           type: Directory
-      - name: media
-        hostPath:
-          path: /mnt/hdd
-          type: Directory
       - name: hdd12tb
         hostPath:
           path: /mnt/hdd12tb
@@ -61,9 +57,6 @@ spec:
         - mountPath: /dev/dri
           name: dri
           readOnly: true
-        - mountPath: /data
-          name: media
-          readOnly: false
         - mountPath: /hdd12tb
           name: hdd12tb
           readOnly: false
