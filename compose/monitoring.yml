@@ -8,6 +8,7 @@ services:
     command:
       - -promscrape.config=/etc/vmagent/config.yml
       - -remoteWrite.url=https://metrics.${HOME_DOMAIN}/api/v1/write
+      - -remoteWrite.tlsInsecureSkipVerify=true
     volumes:
       - /srv/appdata/vmagent/config.yml:/etc/vmagent/config.yml:ro
       - /srv/appdata/vmagent/data:/vmagentdata
