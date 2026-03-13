@@ -13,7 +13,7 @@ services:
       - /srv/appdata/vmagent:/vmagentdata
     networks:
       - monitoring
-      - homeserver
+      - essentials_homeserver
     dns:
       - technitium
     depends_on:
