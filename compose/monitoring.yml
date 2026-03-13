@@ -15,7 +15,7 @@ services:
       - monitoring
       - essentials_homeserver
     dns:
-      - technitium
+      - 172.17.0.1
     depends_on:
       - cadvisor
       - node-exporter
