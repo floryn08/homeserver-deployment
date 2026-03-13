@@ -96,6 +96,6 @@ services:
 networks:
   monitoring:
     driver: bridge
-  homeserver:
+  essentials_homeserver:
     external: true
     name: homeserver
