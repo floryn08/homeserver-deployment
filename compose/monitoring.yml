@@ -98,4 +98,4 @@ networks:
     driver: bridge
   essentials_homeserver:
     external: true
-    name: homeserver
+    name: essentials_homeserver 
