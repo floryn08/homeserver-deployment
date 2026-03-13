@@ -1,0 +1,101 @@
+services:
+  vmagent:
+    image: victoriametrics/vmagent:v1.109.1
+    container_name: vmagent
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Bucharest
+    command:
+      - -promscrape.config=/etc/vmagent/config.yml
+      - -remoteWrite.url=https://metrics.${HOME_DOMAIN}/api/v1/write
+    volumes:
+      - ./vmagent-config.yml:/etc/vmagent/config.yml:ro
+      - /srv/appdata/vmagent:/vmagentdata
+    networks:
+      - monitoring
+      - homeserver
+    dns:
+      - technitium
+    depends_on:
+      - cadvisor
+      - node-exporter
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.51.0
+    container_name: cadvisor
+    restart: unless-stopped
+    privileged: true
+    devices:
+      - /dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    networks:
+      - monitoring
+
+  node-exporter:
+    image: prom/node-exporter:v1.9.0
+    container_name: node-exporter
+    restart: unless-stopped
+    command:
+      - --path.rootfs=/host
+    pid: host
+    volumes:
+      - /:/host:ro,rslave
+    networks:
+      - monitoring
+
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:v0.8.6-omnibus
+    container_name: scrutiny
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Bucharest
+    ports:
+      - "8083:8080"
+    volumes:
+      - /srv/appdata/scrutiny/config:/opt/scrutiny/config
+      - /run/udev:/run/udev:ro
+    networks:
+      - monitoring
+    privileged: true
+    cap_add:
+      - SYS_RAWIO
+
+  iperf3:
+    image: mlabbe/iperf3:latest
+    container_name: iperf3
+    restart: unless-stopped
+    command: -s
+    ports:
+      - "5201:5201/tcp"
+      - "5201:5201/udp"
+    networks:
+      - monitoring
+
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:3.2.14
+    container_name: socket-proxy
+    restart: unless-stopped
+    environment:
+      - CONTAINERS=1
+      - POST=0
+    ports:
+      - "2375:2375"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - monitoring
+    read_only: true
+    tmpfs:
+      - /run
+
+networks:
+  monitoring:
+    driver: bridge
+  homeserver:
+    external: true
+    name: homeserver
