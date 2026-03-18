@@ -19,37 +19,44 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
       volumes:
-      - name: config
+      - name: {{ .Release.Name }}
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}
       - name: udev
-        persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-udev
+        hostPath:
+          path: /run/udev
+          type: Directory
+      - name: dev
+        hostPath:
+          path: /dev
+          type: Directory
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         securityContext:
+          privileged: true
           capabilities:
             add:
               - SYS_RAWIO
-              - SYS_RAWIO
-          privileged: true
         envFrom:
-        - secretRef:
-            name: {{ .Release.Name }}
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
-        {{ end -}}
+        {{- end }}
         volumeMounts:
         {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
-          name: {{ $val.name }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
           readOnly: {{ $val.readOnly }}
-        {{ end -}}
+        {{- end }}
         - mountPath: /run/udev
           name: udev
           readOnly: true
+        - mountPath: /dev
+          name: dev

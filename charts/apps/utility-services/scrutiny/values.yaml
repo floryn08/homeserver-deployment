@@ -17,7 +17,12 @@ storage:
     podPath: /opt/scrutiny/config
     type: DirectoryOrCreate
     readOnly: false
-    
+  - name: influxdb
+    subPath: influxdb
+    podPath: /opt/scrutiny/influxdb
+    type: DirectoryOrCreate
+    readOnly: false
+
 service:
   type: ClusterIP
   ports:

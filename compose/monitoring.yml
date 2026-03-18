@@ -49,22 +49,29 @@ services:
     networks:
       - monitoring
 
-  scrutiny:
-    image: ghcr.io/analogj/scrutiny:v0.8.6-omnibus
-    container_name: scrutiny
+  scrutiny-collector:
+    image: ghcr.io/analogj/scrutiny:v0.8.6-collector
+    container_name: scrutiny-collector
     restart: unless-stopped
     environment:
       - TZ=Europe/Bucharest
-    ports:
-      - "8083:8080"
+      - COLLECTOR_API_ENDPOINT=https://scrutiny.${HOME_DOMAIN}
+      - COLLECTOR_HOST_ID=minipc
+      - COLLECTOR_CRON_SCHEDULE=0 0 * * *
     volumes:
-      - /srv/appdata/scrutiny/config:/opt/scrutiny/config
       - /run/udev:/run/udev:ro
     networks:
       - monitoring
+      - essentials_homeserver
+    dns:
+      - 172.17.0.1
     privileged: true
     cap_add:
       - SYS_RAWIO
+    devices:
+      - /dev/sda:/dev/sda
+      - /dev/nvme0:/dev/nvme0
+      - /dev/nvme0n1:/dev/nvme0n1
 
   iperf3:
     image: mlabbe/iperf3:latest

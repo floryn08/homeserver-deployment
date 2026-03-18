@@ -4,4 +4,5 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  TZ: ''
+  TZ: 'Europe/Bucharest'
+  SCRUTINY_COLLECT_CRON_SCHEDULE: '0 0 * * *'
