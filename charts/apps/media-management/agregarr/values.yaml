@@ -1,4 +1,4 @@
-image: agregarr/agregarr:v2.4.1
+image: agregarr/agregarr:v2.4.2
 namespace: media-management
 
 host:
