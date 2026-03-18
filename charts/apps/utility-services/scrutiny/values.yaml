@@ -30,4 +30,7 @@ service:
     containerPort: 8080
     externalPort: 8083
     protocol: TCP
+
+collectorService:
+  nodePort: 30083
   

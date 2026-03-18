@@ -55,7 +55,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Europe/Bucharest
-      - COLLECTOR_API_ENDPOINT=https://scrutiny.${HOME_DOMAIN}
+      - COLLECTOR_API_ENDPOINT=http://${K8S_NODE_IP}:${K8S_NODE_PORT}
       - COLLECTOR_HOST_ID=minipc
       - COLLECTOR_CRON_SCHEDULE=0 0 * * *
     volumes:

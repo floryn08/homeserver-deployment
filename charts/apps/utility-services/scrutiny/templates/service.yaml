@@ -11,6 +11,21 @@ spec:
     targetPort: {{ $val.name }}
     name: {{ $val.name }}
     protocol: {{ $val.protocol }}
-  {{ end -}}
+  {{- end }}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-collector
+  namespace: {{ .Values.namespace }}
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: http
+    nodePort: {{ .Values.collectorService.nodePort }}
+    protocol: TCP
   selector:
     app.kubernetes.io/name: {{ .Release.Name }}
