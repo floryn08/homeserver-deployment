@@ -1,4 +1,4 @@
-image: ghcr.io/paperless-ngx/paperless-ngx:2.20.11
+image: ghcr.io/paperless-ngx/paperless-ngx:2.20.13
 namespace: &namespace utility-services
 
 valkey:
