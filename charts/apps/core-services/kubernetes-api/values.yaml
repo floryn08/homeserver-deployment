@@ -1,9 +1,0 @@
-namespace: core-services
-
-host:
-  subdomain: kubernetes
-
-secrets:
-  domain:
-    key: primaryDomain
-    path: kv/data/domains

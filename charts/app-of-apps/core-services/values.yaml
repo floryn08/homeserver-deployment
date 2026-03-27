@@ -33,9 +33,6 @@ vault:
 vaultSecretsOperator:
   path: charts/apps/core-services/vault-secrets-operator
 
-kubernetesApi:
-  path: charts/apps/core-services/kubernetes-api
-
 argoCd:
   path: charts/apps/core-services/argo-cd
 
