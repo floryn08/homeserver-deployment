@@ -1,0 +1,27 @@
+image: santiagosayshey/profilarr:v1.1.4
+namespace: media-management
+
+host:
+  subdomain: profilarr
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/profilarr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 6868
+    externalPort: 6868
+    protocol: TCP

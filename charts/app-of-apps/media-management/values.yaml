@@ -41,6 +41,9 @@ qui:
 prowlarr:
   path: charts/apps/media-management/prowlarr
 
+profilarr:
+  path: charts/apps/media-management/profilarr
+
 jellystat:
   path: charts/apps/media-management/jellystat
 
