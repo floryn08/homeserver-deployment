@@ -50,7 +50,7 @@ services:
       - mqtt
 
   technitium:
-    image: technitium/dns-server:14.3.0
+    image: technitium/dns-server:15.0.0
     container_name: technitium
     restart: unless-stopped
     environment:
