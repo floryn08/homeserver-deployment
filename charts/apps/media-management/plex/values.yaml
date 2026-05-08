@@ -1,4 +1,4 @@
-image: linuxserver/plex:1.43.1@sha256:e5c7c283b242966416a4bed2d666acf6f3fb8f957c704be8333f8dc987364825
+image: linuxserver/plex:1.43.1@sha256:c5e295f023b4e92b3ca467626dbc2ba8a9b5e53934810df74d99c14e38ae1857
 namespace: media-management
 
 host:
