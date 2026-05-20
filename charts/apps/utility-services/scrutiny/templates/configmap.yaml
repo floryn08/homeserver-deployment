@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   TZ: 'Europe/Bucharest'
-  SCRUTINY_COLLECT_CRON_SCHEDULE: '0 0 * * *'
+  COLLECTOR_CRON_SCHEDULE: '0 0 * * *'
