@@ -1,5 +1,6 @@
 image: ghcr.io/dictionarry-hub/profilarr:2.0.3
 namespace: media-management
+origin: https://profilarr.home
 
 host:
   subdomain: profilarr

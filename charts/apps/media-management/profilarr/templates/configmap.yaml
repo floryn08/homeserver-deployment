@@ -6,4 +6,5 @@ metadata:
 data:
   PGID: '1000'
   PUID: '1000'
+  ORIGIN: {{ .Values.origin | quote }}
   TZ: 'Europe/Bucharest'
