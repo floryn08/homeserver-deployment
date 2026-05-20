@@ -1,9 +1,9 @@
 dependencies:
 - name: immich
   repository: https://immich-app.github.io/immich-charts
-  version: 0.11.1
+  version: 0.12.0
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 18.6.6
-digest: sha256:1c2e22b3dcfef5ab20128b2e5271b572c688b25e0c7078cea9fc8b35b2cf6a77
-generated: "2026-05-15T01:53:07.25718872Z"
+  version: 18.6.7
+digest: sha256:4ae973f23b3b711e74de7fd8da656bfcdfc4d9cbb62dc9aea47dafb6deb92a47
+generated: "2026-05-20T00:41:58.517716797Z"
