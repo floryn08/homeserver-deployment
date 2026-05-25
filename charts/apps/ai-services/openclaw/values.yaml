@@ -1,4 +1,4 @@
-image: ghcr.io/openclaw/openclaw:2026.5.18
+image: ghcr.io/openclaw/openclaw:2026.5.22
 namespace: ai-services
 
 host:
