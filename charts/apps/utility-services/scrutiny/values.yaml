@@ -1,4 +1,4 @@
-image: ghcr.io/starosdev/scrutiny:1.58.1-omnibus
+image: ghcr.io/starosdev/scrutiny:1.61.0-omnibus
 namespace: utility-services
 
 host:
