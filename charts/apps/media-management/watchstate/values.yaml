@@ -1,4 +1,4 @@
-image: ghcr.io/arabcoders/watchstate:v1.8.3
+image: ghcr.io/arabcoders/watchstate:v1.8.5
 namespace: media-management
 
 securityContext:
