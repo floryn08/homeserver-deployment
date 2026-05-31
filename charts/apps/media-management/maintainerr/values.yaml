@@ -1,4 +1,4 @@
-image: ghcr.io/maintainerr/maintainerr:3.12.1
+image: ghcr.io/maintainerr/maintainerr:3.13.0
 namespace: media-management
 
 host:
