@@ -6,8 +6,8 @@ host:
   subdomain: odysseus
 
 secrets:
-  primaryDomain:
-    key: primaryDomain
+  domain:
+    key: homeDomain
     path: kv/data/domains
 
 storage:
