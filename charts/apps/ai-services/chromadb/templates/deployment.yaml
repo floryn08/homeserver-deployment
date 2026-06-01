@@ -59,20 +59,16 @@ spec:
             cpu: "1000m"
         
         livenessProbe:
-          httpGet:
-            path: /healthz
+          tcpSocket:
             port: http
-            scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30
           timeoutSeconds: 5
           failureThreshold: 3
         
         readinessProbe:
-          httpGet:
-            path: /healthz
+          tcpSocket:
             port: http
-            scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 5

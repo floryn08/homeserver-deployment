@@ -30,6 +30,8 @@ spec:
           value: "duckduckgo"
         - name: BASE_URL
           value: "http://{{ .Release.Name }}:8888"
+        - name: SEARXNG_PORT
+          value: "8888"
         
         ports:
         {{- range $key, $val := $.Values.service.ports }}
