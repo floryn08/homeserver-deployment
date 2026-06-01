@@ -39,7 +39,7 @@ spec:
         - mountPath: {{ $val.podPath }}
           name: {{ $.Release.Name }}-data
           subPath: {{ $val.subPath }}
-        {{ end -}}
+        {{ end }}
 
       containers:
       - name: {{ .Release.Name }}
@@ -63,14 +63,14 @@ spec:
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
-        {{ end -}}
+        {{ end }}
         
         volumeMounts:
         {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
           name: {{ $.Release.Name }}-data
           subPath: {{ $val.subPath }}
-        {{ end -}}
+        {{ end }}
         
         resources:
           requests:
