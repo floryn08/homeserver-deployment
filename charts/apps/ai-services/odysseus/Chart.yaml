@@ -1,0 +1,6 @@
+apiVersion: v2
+name: odysseus
+description: Self-hosted AI workspace and chat platform with local model support
+type: application
+version: 0.1.0
+appVersion: "2026.6.1"

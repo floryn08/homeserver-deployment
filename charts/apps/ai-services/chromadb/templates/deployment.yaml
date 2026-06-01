@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: chromadb
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: chromadb
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: chromadb
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}-data
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      
+      containers:
+      - name: chromadb
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        
+        ports:
+        {{- range $key, $val := $.Values.service.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        
+        volumeMounts:
+        {{- range $index, $val := $.Values.storage.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $.Release.Name }}-data
+          subPath: {{ $val.subPath }}
+        {{ end -}}
+        
+        env:
+        - name: CHROMA_SERVER_HTTP_PORT
+          value: "8000"
+        - name: CHROMA_DB_IMPL
+          value: "duckdb+parquet"
+        - name: ALLOW_RESET
+          value: "TRUE"
+        
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3

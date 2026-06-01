@@ -1,0 +1,16 @@
+# Patterns to ignore when building packages.
+# This supports shell glob patterns, relative paths relative to the chart root path.
+# Files matching these patterns will not be packaged into the chart.
+.git/
+.gitignore
+.bzr/
+.bzrignore
+.hg/
+.hgignore
+.svn/
+*.swp
+*.swo
+*~
+.DS_Store
+*.orig
+*.rej

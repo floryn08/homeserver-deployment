@@ -20,9 +20,12 @@ ollama:
 openWebui:
   path: charts/apps/ai-services/open-webui
 
-comfyui:
-  enabled: false
-  path: charts/apps/ai-services/comfyui
 
-openclaw:
-  path: charts/apps/ai-services/openclaw
+chromadb:
+  path: charts/apps/ai-services/chromadb
+
+searxng:
+  path: charts/apps/ai-services/searxng
+
+odysseus:
+  path: charts/apps/ai-services/odysseus

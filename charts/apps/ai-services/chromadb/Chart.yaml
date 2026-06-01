@@ -1,0 +1,6 @@
+apiVersion: v2
+name: chromadb
+description: Vector database for AI services (RAG, embeddings, semantic search)
+type: application
+version: 0.1.0
+appVersion: "0.4.24"

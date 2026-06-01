@@ -1,0 +1,83 @@
+image: odysseus:latest
+namespace: ai-services
+imagePullPolicy: IfNotPresent
+
+host:
+  subdomain: odysseus
+
+secrets:
+  primaryDomain:
+    key: primaryDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/ai-services/odysseus
+  volumes:
+  - name: data
+    subPath: data
+    podPath: /app/data
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 7000
+    externalPort: 7000
+    protocol: TCP
+
+# FastAPI/Uvicorn settings
+appBind: 0.0.0.0
+appPort: 7000
+
+# Model and service discovery
+models:
+  # Local model endpoints (auto-discovered on these ports)
+  localPorts:
+    - 8000
+    - 8001
+    - 8002
+    - 8003
+    - 8004
+    - 8005
+    - 8006
+    - 8007
+    - 8008
+    - 8009
+    - 8010
+
+# Service endpoints (managed as standalone charts)
+chromadb:
+  service: chromadb
+  namespace: ai-services
+  port: 8000
+
+searxng:
+  service: searxng
+  namespace: ai-services
+  port: 8888
+
+# Optional: Cloud provider API keys can be set via Vault secrets
+# See vault-static-secret.yaml for where these are mounted
+cloudProviders:
+  # OpenAI
+  openaiApiKey: ""
+  # Anthropic
+  anthropicApiKey: ""
+  # Google
+  googleApiKey: ""
+  # Other providers via environment variables
+
+# Email/CalDAV configuration (optional)
+email:
+  enabled: false
+  imapServer: ""
+  imapPort: 993
+  smtpServer: ""
+  smtpPort: 587
+
+caldav:
+  enabled: false
+  url: ""
+  username: ""

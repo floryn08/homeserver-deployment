@@ -1,0 +1,16 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  # Chromadb configuration
+  CHROMA_API_IMPL: "rest"
+  CHROMA_SERVER_HOST: "{{ .Values.chromadb.service }}.{{ .Values.chromadb.namespace }}.svc"
+  CHROMA_SERVER_HTTP_PORT: "{{ .Values.chromadb.port }}"
+  
+  # SearXNG for research/web search
+  SEARXNG_API_URL: "http://{{ .Values.searxng.service }}.{{ .Values.searxng.namespace }}.svc:{{ .Values.searxng.port }}"
+  
+  # Ollama and other local models discovery
+  OLLAMA_BASE_URL: "http://ollama.ai-services.svc:11434"

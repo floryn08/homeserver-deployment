@@ -1,0 +1,20 @@
+image: chromadb/chroma:1.5.9
+namespace: ai-services
+imagePullPolicy: Always
+
+storage:
+  appdataBasePath: /srv/appdata/ai-services/chromadb
+  volumes:
+  - name: data
+    subPath: data
+    podPath: /chroma/data
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8000
+    externalPort: 8000
+    protocol: TCP

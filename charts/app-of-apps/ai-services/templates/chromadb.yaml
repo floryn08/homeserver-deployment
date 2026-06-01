@@ -1,8 +1,7 @@
-{{- if .Values.comfyui.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: comfyui
+  name: chromadb
   namespace: {{ .Values.argocdNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,7 +10,7 @@ spec:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.comfyui.path }}
+    path: {{ .Values.chromadb.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:
@@ -21,5 +20,3 @@ spec:
   syncPolicy:
     automated:
       prune: {{ .Values.syncPolicy.automated.prune }}
-
-{{- end}}
