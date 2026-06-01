@@ -68,15 +68,6 @@ authentik:
   authentik:
     log_level: trace
 
-  server:    
-    containerPorts:
-      http: 8094
-      https: 8095
-    service:
-      type: LoadBalancer
-      servicePortHttp: 8094
-      servicePortHttps: 8095
-
   postgresql:
     enabled: false
 
