@@ -1,6 +1,6 @@
 services:
   vmagent:
-    image: victoriametrics/vmagent:v1.109.1
+    image: victoriametrics/vmagent:v1.144.0
     container_name: vmagent
     restart: unless-stopped
     environment:
@@ -22,7 +22,7 @@ services:
       - node-exporter
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.51.0
+    image: gcr.io/cadvisor/cadvisor:v0.55.1
     container_name: cadvisor
     restart: unless-stopped
     privileged: true
@@ -38,7 +38,7 @@ services:
       - monitoring
 
   node-exporter:
-    image: prom/node-exporter:v1.9.0
+    image: prom/node-exporter:v1.11.1
     container_name: node-exporter
     restart: unless-stopped
     command:
@@ -50,7 +50,7 @@ services:
       - monitoring
 
   scrutiny-collector:
-    image: ghcr.io/starosdev/scrutiny:1.58.1-collector
+    image: ghcr.io/starosdev/scrutiny:1.62.3-collector
     container_name: scrutiny-collector
     restart: unless-stopped
     environment:
@@ -85,7 +85,7 @@ services:
       - monitoring
 
   socket-proxy:
-    image: lscr.io/linuxserver/socket-proxy:3.2.14
+    image: lscr.io/linuxserver/socket-proxy:3.2.19
     container_name: socket-proxy
     restart: unless-stopped
     environment:
