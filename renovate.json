@@ -13,6 +13,11 @@
   "reviewers": [
     "floryn08"
   ],
+  "docker-compose": {
+    "managerFilePatterns": [
+      "/^compose/monitoring\\.ya?ml$/"
+    ]
+  },
   "packageRules": [
     {
       "versioning": "regex:^(?<compatibility>.*(\\d+\\.)?)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
