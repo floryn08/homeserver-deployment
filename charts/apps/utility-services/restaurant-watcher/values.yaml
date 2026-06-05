@@ -27,6 +27,12 @@ restaurant-watcher:
     storageClass: ""
     accessMode: ReadWriteOnce
     size: 100Mi
+    pv:
+      enabled: true
+      storageClass: manual
+      path: /srv/appdata/utility-services/restaurant-watcher
+      type: DirectoryOrCreate
+      reclaimPolicy: Retain
 
   vault:
     enabled: true

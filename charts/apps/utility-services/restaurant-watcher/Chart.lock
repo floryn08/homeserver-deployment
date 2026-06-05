@@ -1,6 +1,6 @@
 dependencies:
 - name: restaurant-watcher
   repository: oci://ghcr.io/floryn08/charts
-  version: 1.0.6
-digest: sha256:9e61f70cd49b50b33ecb04ba3dcc2ca01224891694ac96941b8e67fb648d27b3
-generated: "2026-06-05T21:56:20.322925924+03:00"
+  version: 1.0.7
+digest: sha256:38583da37ee990bc6afe029e52092cf9e364abbee439301d2c41347b8b30075f
+generated: "2026-06-05T22:04:46.850531394+03:00"
