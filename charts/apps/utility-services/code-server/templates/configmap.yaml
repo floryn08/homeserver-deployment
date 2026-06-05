@@ -4,8 +4,6 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Values.namespace }}
 data:
-  PGID: "1000"
-  PUID: "1000"
-  TZ: "Europe/Bucharest"
-  EXTENSIONS_GALLERY: |
-    {"serviceUrl":"https://marketplace.visualstudio.com/_apis/public/gallery","itemUrl":"https://marketplace.visualstudio.com/items"}
+{{ range $key, $val := .Values.env }}
+  {{ $key }}: {{ $val | quote }}
+{{ end }}

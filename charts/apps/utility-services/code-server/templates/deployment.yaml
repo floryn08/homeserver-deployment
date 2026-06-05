@@ -26,6 +26,10 @@ spec:
         hostPath:
           path: /code
           type: DirectoryOrCreate
+      - name: helm-install
+        configMap:
+          name: {{ .Release.Name }}-helm-install
+          defaultMode: 0555
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -47,10 +51,27 @@ spec:
         {{ end -}}
         - mountPath: /config/workspace
           name: code
+        - mountPath: /custom-cont-init.d/10-install-helm
+          name: helm-install
+          subPath: 10-install-helm
+        startupProbe:
+          httpGet:
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.probes.port }}
+          failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+          periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+          timeoutSeconds: {{ .Values.probes.startup.timeoutSeconds }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.probes.port }}
+          failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+          periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+          timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
         livenessProbe:
           httpGet:
-            path: /healthz
-            port: 8443
-          failureThreshold: 5
-          periodSeconds: 10
-          timeoutSeconds: 5
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.probes.port }}
+          failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+          periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+          timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
