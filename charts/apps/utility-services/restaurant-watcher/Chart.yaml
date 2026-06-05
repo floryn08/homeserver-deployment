@@ -1,0 +1,10 @@
+apiVersion: v2
+name: restaurant-watcher
+description: A Helm chart for restaurant-watcher
+type: application
+version: 0.1.0
+
+dependencies:
+- name: restaurant-watcher
+  version: 1.0.6
+  repository: oci://ghcr.io/floryn08/charts

@@ -1,0 +1,48 @@
+restaurant-watcher:
+  namespace: utility-services
+
+  image:
+    repository: ghcr.io/floryn08/restaurant-watcher
+    tag: "1.0.6"
+    pullPolicy: IfNotPresent
+
+  schedule: "0 4 * * 1"
+  activeDeadlineSeconds: 1800
+  ttlSecondsAfterFinished: 86400
+
+  config:
+    swLat: "45.612356"
+    swLng: "25.566216"
+    neLat: "45.678301"
+    neLng: "25.664063"
+    gridSize: "4"
+    dataFile: "/data/city_center_registry.json"
+    ollamaHost: "http://ollama.ai-services.svc:11434"
+    ollamaModel: "gemma4:e4b"
+    requestTimeoutMs: "30000"
+    ollamaTimeoutMs: "60000"
+    notifyOnInitialScan: "false"
+
+  persistence:
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 100Mi
+
+  vault:
+    enabled: true
+    type: kv-v2
+    mount: kv
+    path: utility-services/restaurant-watcher
+    refreshAfter: 1h
+    vaultAuthRef: vaultauth-utility-services
+    destination:
+      name: restaurant-watcher
+      overwrite: true
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
