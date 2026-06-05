@@ -1,6 +1,6 @@
 dependencies:
 - name: valheim-discord-bot
   repository: https://floryn08.github.io/valheim-server-discord-bot
-  version: 2.0.11
-digest: sha256:92f40b83524d987fbde2961f09d88d09a2282505fe23deb2b84dc78106271a20
-generated: "2026-05-11T01:44:50.921351795Z"
+  version: 2.0.12
+digest: sha256:d6e2f87dcb0e5be69553ed840c2843de297051e95ad91f44a881cc77ac40aefa
+generated: "2026-06-05T17:59:32.779453576Z"
