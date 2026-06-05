@@ -6,6 +6,7 @@ env:
   PGID: "1000"
   TZ: Europe/Bucharest
   DEFAULT_WORKSPACE: /config/workspace
+  NODEJS_MOD_VERSION: "24"
   EXTENSIONS_GALLERY: |
     {"serviceUrl":"https://marketplace.visualstudio.com/_apis/public/gallery","itemUrl":"https://marketplace.visualstudio.com/items"}
   DOCKER_MODS: linuxserver/mods:code-server-nodejs|linuxserver/mods:code-server-npmglobal|linuxserver/mods:code-server-golang|linuxserver/mods:code-server-python3|linuxserver/mods:universal-package-install
