@@ -3,7 +3,7 @@ restaurant-watcher:
 
   image:
     repository: ghcr.io/floryn08/restaurant-watcher
-    tag: "1.0.7"
+    tag: "1.1.0"
     pullPolicy: IfNotPresent
 
   schedule: "0 4 * * 1"
@@ -44,6 +44,11 @@ restaurant-watcher:
     destination:
       name: restaurant-watcher
       overwrite: true
+
+  volumePermissions:
+    enabled: true
+    image: busybox:1.37
+    runAsUser: 0
 
   resources:
     requests:
