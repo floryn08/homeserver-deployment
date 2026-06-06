@@ -3,7 +3,7 @@ restaurant-watcher:
 
   image:
     repository: ghcr.io/floryn08/restaurant-watcher
-    tag: "1.1.0"
+    tag: "1.2.0"
     pullPolicy: IfNotPresent
 
   schedule: "0 4 * * 1"
@@ -16,6 +16,8 @@ restaurant-watcher:
     neLat: "45.678301"
     neLng: "25.664063"
     gridSize: "4"
+    minCellDepth: "1"
+    maxCellDepth: "6"
     dataFile: "/data/city_center_registry.json"
     ollamaHost: "http://ollama.ai-services.svc:11434"
     ollamaModel: "gemma4:e4b"
