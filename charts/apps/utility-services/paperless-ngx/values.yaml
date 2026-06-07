@@ -1,6 +1,11 @@
 image: ghcr.io/paperless-ngx/paperless-ngx:2.20.15
 namespace: &namespace utility-services
 
+backup:
+  enabled: true
+  resticImage: restic/restic:0.18.1
+  rcloneImage: rclone/rclone:1.74.3
+
 valkey:
   dataStorage:
     enabled: false

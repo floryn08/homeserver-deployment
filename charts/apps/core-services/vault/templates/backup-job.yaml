@@ -1,3 +1,4 @@
+{{- if .Values.backup.enabled }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -5,13 +6,14 @@ metadata:
   namespace: {{ .Values.vault.global.namespace }}
 spec:
   schedule: "0 4 * * *"  # every night at 4AM
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
         spec:
           containers:
             - name: restic
-              image: restic/restic:latest
+              image: {{ .Values.backup.resticImage }}
               command: ["/bin/sh", "-c"]
               args: 
                 - |
@@ -44,7 +46,7 @@ spec:
                   mountPath: /backups
 
             - name: rclone
-              image: rclone/rclone:latest
+              image: {{ .Values.backup.rcloneImage }}
               env:
                 - name: B2_ACCOUNT_ID
                   valueFrom:
@@ -96,3 +98,4 @@ spec:
             - name: local-backup
               hostPath:
                 path: /mnt/hdd2/backups/restic  # adjust to your local backup storage
+{{- end }}

@@ -1,6 +1,11 @@
 image: itzg/minecraft-server:2026.5.4
 namespace: game-servers
 
+backup:
+  enabled: true
+  resticImage: restic/restic:0.18.1
+  rcloneImage: rclone/rclone:1.74.3
+
 ports:
 - name: minecraft
   containerPort: 25565

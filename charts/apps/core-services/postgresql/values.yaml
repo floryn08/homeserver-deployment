@@ -2,6 +2,11 @@
 namespace: &namespace core-services
 postgresqlDataPath: /srv/appdata/core-services/postgresql
 
+backup:
+  enabled: true
+  resticImage: restic/restic:0.18.1
+  rcloneImage: rclone/rclone:1.74.3
+
 postgresql:
   enabled: true
   namespaceOverride: *namespace

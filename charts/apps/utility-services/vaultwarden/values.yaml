@@ -1,6 +1,11 @@
 image: vaultwarden/server:1.36.0
 namespace: utility-services
 
+backup:
+  enabled: true
+  resticImage: restic/restic:0.18.1
+  rcloneImage: rclone/rclone:1.74.3
+
 host:
   subdomain: vault
 
