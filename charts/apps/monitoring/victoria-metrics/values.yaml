@@ -121,3 +121,5 @@ prometheus-node-exporter:
 kube-state-metrics:
   namespaceOverride: monitoring
   fullnameOverride: kube-state-metrics
+  metricLabelsAllowlist:
+    - pods=[app.kubernetes.io/name,app.kubernetes.io/instance,argocd.argoproj.io/instance]
