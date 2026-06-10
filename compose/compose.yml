@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2026.6.0
+    image: ghcr.io/home-assistant/home-assistant:2026.6.2
     container_name: home-assistant
     restart: unless-stopped
     environment:
@@ -34,7 +34,7 @@ services:
     privileged: true
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.11.0
+    image: koenkk/zigbee2mqtt:2.12.0
     container_name: zigbee2mqtt
     restart: unless-stopped
     environment:
