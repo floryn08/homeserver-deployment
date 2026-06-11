@@ -22,6 +22,10 @@ spec:
       - name: {{ .Release.Name }}
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}
+      - name: hdd12tb
+        hostPath:
+          path: /mnt/hdd12tb
+          type: Directory
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -41,6 +45,9 @@ spec:
           name: {{ $.Release.Name }}
           subPath: {{ $val.subPath }}
         {{ end -}}
+        - mountPath: /hdd12tb
+          name: hdd12tb
+          readOnly: true
         {{- if .Values.resources }}
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
