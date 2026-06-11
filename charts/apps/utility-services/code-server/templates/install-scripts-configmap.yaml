@@ -7,15 +7,16 @@ data:
   05-enable-bwrap-sandbox: |
     #!/usr/bin/with-contenv bash
     set -euo pipefail
+    found_bwrap=false
+    for bwrap_path in $(command -v bwrap || true) $(command -v bubblewrap || true) $(find /config/extensions -path "*/codex-resources/bwrap" -type f 2>/dev/null); do
+      found_bwrap=true
+      setcap cap_sys_admin+ep "${bwrap_path}"
+      getcap "${bwrap_path}" || true
+    done
 
-    bwrap_path="$(command -v bwrap || command -v bubblewrap || true)"
-    if [ -z "${bwrap_path}" ]; then
+    if [ "${found_bwrap}" = "false" ]; then
       echo "WARN: bwrap not found; Codex sandbox may still be unavailable" >&2
-      exit 0
     fi
-
-    setcap cap_sys_admin+ep "${bwrap_path}"
-    getcap "${bwrap_path}" || true
   10-install-helm: |
     #!/usr/bin/with-contenv bash
     set -euo pipefail
