@@ -31,7 +31,7 @@ storage:
 
 securityContext:
   enabled: true
-  privileged: false
+  privileged: true
   allowPrivilegeEscalation: true
   seccompProfile:
     type: Unconfined

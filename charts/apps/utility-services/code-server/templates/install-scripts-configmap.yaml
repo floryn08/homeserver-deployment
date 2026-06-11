@@ -4,18 +4,18 @@ metadata:
   name: {{ .Release.Name }}-install-scripts
   namespace: {{ .Values.namespace }}
 data:
-  05-enable-bwrap-sandbox: |
+  05-clean-bwrap-filecap: |
     #!/usr/bin/with-contenv bash
     set -euo pipefail
+
     found_bwrap=false
     for bwrap_path in $(command -v bwrap || true) $(command -v bubblewrap || true) $(find /config/extensions -path "*/codex-resources/bwrap" -type f 2>/dev/null); do
       found_bwrap=true
-      setcap cap_sys_admin+ep "${bwrap_path}"
+      setcap -r "${bwrap_path}" 2>/dev/null || true
       getcap "${bwrap_path}" || true
     done
-
     if [ "${found_bwrap}" = "false" ]; then
-      echo "WARN: bwrap not found; Codex sandbox may still be unavailable" >&2
+      echo "WARN: bwrap not found; no file capability cleanup performed" >&2
     fi
   10-install-helm: |
     #!/usr/bin/with-contenv bash

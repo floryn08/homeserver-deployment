@@ -65,9 +65,9 @@ spec:
         {{ end -}}
         - mountPath: /config/workspace
           name: code
-        - mountPath: /custom-cont-init.d/05-enable-bwrap-sandbox
+        - mountPath: /custom-cont-init.d/05-clean-bwrap-filecap
           name: install-scripts
-          subPath: 05-enable-bwrap-sandbox
+          subPath: 05-clean-bwrap-filecap
         - mountPath: /custom-cont-init.d/10-install-helm
           name: install-scripts
           subPath: 10-install-helm
