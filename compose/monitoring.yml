@@ -22,7 +22,7 @@ services:
       - node-exporter
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.55.1
+    image: ghcr.io/cadvisor/cadvisor:v0.55.1
     container_name: cadvisor
     restart: unless-stopped
     privileged: true

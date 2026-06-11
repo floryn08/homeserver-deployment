@@ -11,7 +11,7 @@ env:
   EXTENSIONS_GALLERY: |
     {"serviceUrl":"https://marketplace.visualstudio.com/_apis/public/gallery","itemUrl":"https://marketplace.visualstudio.com/items"}
   DOCKER_MODS: linuxserver/mods:code-server-nodejs|linuxserver/mods:code-server-npmglobal|linuxserver/mods:code-server-golang|linuxserver/mods:code-server-python3|linuxserver/mods:universal-package-install
-  INSTALL_PACKAGES: ca-certificates|git|openssh-client|apt-transport-https|gpg|build-essential|pkg-config|make|gcc|g++|curl|wget|unzip|tar|jq|ripgrep|shellcheck
+  INSTALL_PACKAGES: ca-certificates|git|openssh-client|apt-transport-https|gpg|libcap2-bin|build-essential|pkg-config|make|gcc|g++|curl|wget|unzip|tar|jq|ripgrep|shellcheck
 
 host:
   subdomain: code

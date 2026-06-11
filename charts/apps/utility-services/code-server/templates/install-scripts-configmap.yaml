@@ -4,6 +4,18 @@ metadata:
   name: {{ .Release.Name }}-install-scripts
   namespace: {{ .Values.namespace }}
 data:
+  05-enable-bwrap-sandbox: |
+    #!/usr/bin/with-contenv bash
+    set -euo pipefail
+
+    bwrap_path="$(command -v bwrap || command -v bubblewrap || true)"
+    if [ -z "${bwrap_path}" ]; then
+      echo "WARN: bwrap not found; Codex sandbox may still be unavailable" >&2
+      exit 0
+    fi
+
+    setcap cap_sys_admin+ep "${bwrap_path}"
+    getcap "${bwrap_path}" || true
   10-install-helm: |
     #!/usr/bin/with-contenv bash
     set -euo pipefail
