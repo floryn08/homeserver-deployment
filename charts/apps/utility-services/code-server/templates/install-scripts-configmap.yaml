@@ -46,7 +46,11 @@ data:
     kubectl_version="${KUBECTL_VERSION:-cluster}"
     if [ "${kubectl_version}" = "cluster" ]; then
       service_account_dir="/var/run/secrets/kubernetes.io/serviceaccount"
-      kubectl_version="$(curl -fsS --cacert "${service_account_dir}/ca.crt" --header "Authorization: Bearer $(cat "${service_account_dir}/token")" "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/version" | sed -n 's/.*"gitVersion":"\([^"]*\)".*/\1/p' | sed 's/+.*//')"
+      kubectl_version="$(curl -fsS --cacert "${service_account_dir}/ca.crt" --header "Authorization: Bearer $(cat "${service_account_dir}/token")" "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/version" | sed -n 's/.*"gitVersion"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | sed 's/+.*//')"
+      if [ -z "${kubectl_version}" ]; then
+        echo "WARN: unable to determine cluster kubectl version; falling back to stable" >&2
+        kubectl_version="$(curl -fsSL https://dl.k8s.io/release/stable.txt)"
+      fi
     elif [ "${kubectl_version}" = "stable" ]; then
       kubectl_version="$(curl -fsSL https://dl.k8s.io/release/stable.txt)"
     fi
