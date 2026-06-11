@@ -18,6 +18,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      serviceAccountName: {{ .Release.Name }}
+      automountServiceAccountToken: true
       volumes:
       - name: {{ .Release.Name }}
         persistentVolumeClaim:
@@ -26,14 +28,26 @@ spec:
         hostPath:
           path: /code
           type: DirectoryOrCreate
-      - name: helm-install
+      - name: install-scripts
         configMap:
-          name: {{ .Release.Name }}-helm-install
+          name: {{ .Release.Name }}-install-scripts
           defaultMode: 0555
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        {{ if .Values.securityContext.enabled }}
+        securityContext:
+          privileged: {{ .Values.securityContext.privileged }}
+          allowPrivilegeEscalation: {{ .Values.securityContext.allowPrivilegeEscalation }}
+          seccompProfile:
+            type: {{ .Values.securityContext.seccompProfile.type }}
+          capabilities:
+            add:
+            {{ range .Values.securityContext.capabilities.add }}
+            - {{ . }}
+            {{ end }}
+        {{ end }}
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
@@ -42,7 +56,7 @@ spec:
         - containerPort: {{ $val.containerPort }}
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
-        {{- end }}
+        {{ end }}
         volumeMounts:
         {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
@@ -52,8 +66,11 @@ spec:
         - mountPath: /config/workspace
           name: code
         - mountPath: /custom-cont-init.d/10-install-helm
-          name: helm-install
+          name: install-scripts
           subPath: 10-install-helm
+        - mountPath: /custom-cont-init.d/20-install-kubectl
+          name: install-scripts
+          subPath: 20-install-kubectl
         startupProbe:
           httpGet:
             path: {{ .Values.probes.path }}
