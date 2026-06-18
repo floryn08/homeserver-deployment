@@ -1,0 +1,41 @@
+image: clusterzx/paperless-ai:v3.0.9
+namespace: utility-services
+
+host:
+  subdomain: paperless-ai
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+paperless:
+  apiUrl: http://paperless-ngx.utility-services.svc:8085/api
+
+ai:
+  provider: ollama
+  ollamaApiUrl: http://ollama.ai-services.svc:11434
+  ollamaModel: llama3.2
+
+rag:
+  enabled: true
+  serviceUrl: http://localhost:8000
+
+storage:
+  appdataBasePath: /srv/appdata/utility-services/paperless-ai
+  size: 5Gi
+  volumes:
+  - name: data
+    subPath: data
+    podPath: /app/data
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 3000
+    externalPort: 3000
+    protocol: TCP
+

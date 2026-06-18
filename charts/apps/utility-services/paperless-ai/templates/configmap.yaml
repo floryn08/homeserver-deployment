@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  PUID: "1000"
+  PGID: "1000"
+  PAPERLESS_AI_PORT: "{{ (index .Values.service.ports 0).containerPort }}"
+  PAPERLESS_AI_INITIAL_SETUP: "yes"
+  PAPERLESS_API_URL: {{ .Values.paperless.apiUrl | quote }}
+  AI_PROVIDER: {{ .Values.ai.provider | quote }}
+  OLLAMA_API_URL: {{ .Values.ai.ollamaApiUrl | quote }}
+  OLLAMA_MODEL: {{ .Values.ai.ollamaModel | quote }}
+  RAG_SERVICE_ENABLED: {{ .Values.rag.enabled | quote }}
+  RAG_SERVICE_URL: {{ .Values.rag.serviceUrl | quote }}
+  SCAN_INTERVAL: "*/30 * * * *"
+  PROCESS_PREDEFINED_DOCUMENTS: "yes"
+  ADD_AI_PROCESSED_TAG: "no"
+  AI_PROCESSED_TAG_NAME: ai-processed
+  USE_PROMPT_TAGS: "no"
+  USE_EXISTING_DATA: "no"
+
