@@ -11,6 +11,8 @@ secrets:
 
 paperless:
   apiUrl: http://paperless-ngx.utility-services.svc:8085/api
+  processPredefinedDocuments: "no"
+  tags: ""
 
 ai:
   provider: ollama

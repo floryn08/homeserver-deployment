@@ -15,7 +15,8 @@ data:
   RAG_SERVICE_ENABLED: {{ .Values.rag.enabled | quote }}
   RAG_SERVICE_URL: {{ .Values.rag.serviceUrl | quote }}
   SCAN_INTERVAL: "*/30 * * * *"
-  PROCESS_PREDEFINED_DOCUMENTS: "yes"
+  PROCESS_PREDEFINED_DOCUMENTS: {{ .Values.paperless.processPredefinedDocuments | quote }}
+  TAGS: {{ .Values.paperless.tags | quote }}
   ADD_AI_PROCESSED_TAG: "no"
   AI_PROCESSED_TAG_NAME: ai-processed
   USE_PROMPT_TAGS: "no"
