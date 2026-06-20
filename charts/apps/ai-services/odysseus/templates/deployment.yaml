@@ -54,6 +54,16 @@ spec:
         env:
           - name: PYTHONUNBUFFERED
             value: "1"
+          - name: ODYSSEUS_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-secrets
+                key: ODYSSEUS_ADMIN_USER
+          - name: ODYSSEUS_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-secrets
+                key: ODYSSEUS_ADMIN_PASSWORD
           - name: APP_BIND
             value: {{ .Values.appBind | quote }}
           - name: APP_PORT
