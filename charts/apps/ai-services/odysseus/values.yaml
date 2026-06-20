@@ -1,6 +1,6 @@
-image: odysseus:latest
+image: odysseus:1.0.0
 namespace: ai-services
-imagePullPolicy: Never
+imagePullPolicy: IfNotPresent
 
 host:
   subdomain: odysseus
