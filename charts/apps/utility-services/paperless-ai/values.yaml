@@ -17,7 +17,7 @@ paperless:
 ai:
   provider: ollama
   ollamaApiUrl: http://ollama.ai-services.svc:11434
-  ollamaModel: llama3.2
+  ollamaModel: gemma4:31b-cloud
 
 rag:
   enabled: true
