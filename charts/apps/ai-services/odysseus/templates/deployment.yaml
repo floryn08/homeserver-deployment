@@ -35,6 +35,16 @@ spec:
         env:
           - name: PYTHONUNBUFFERED
             value: "1"
+          - name: ODYSSEUS_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-secrets
+                key: ODYSSEUS_ADMIN_USER
+          - name: ODYSSEUS_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-secrets
+                key: ODYSSEUS_ADMIN_PASSWORD
         volumeMounts:
         {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
