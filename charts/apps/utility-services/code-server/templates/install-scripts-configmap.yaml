@@ -17,6 +17,14 @@ data:
     if [ "${found_bwrap}" = "false" ]; then
       echo "WARN: bwrap not found; no file capability cleanup performed" >&2
     fi
+  06-enable-vscode-global-navigator: |
+    #!/usr/bin/with-contenv bash
+    set -euo pipefail
+
+    extension_host="/app/code-server/lib/vscode/out/vs/workbench/api/node/extensionHostProcess.js"
+    if [ -f "${extension_host}" ] && grep -q 'Qy.supportGlobalNavigator||Object.defineProperty(globalThis,"navigator"' "${extension_host}"; then
+      sed -i 's/Qy\.supportGlobalNavigator||Object\.defineProperty(globalThis,"navigator"/Qy.supportGlobalNavigator||globalThis.navigator||Object.defineProperty(globalThis,"navigator"/' "${extension_host}"
+    fi
   10-install-helm: |
     #!/usr/bin/with-contenv bash
     set -euo pipefail
