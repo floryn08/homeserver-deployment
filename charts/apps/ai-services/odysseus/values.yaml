@@ -1,4 +1,4 @@
-image: odysseus:1.0.0
+image: ghcr.io/pewdiepie-archdaemon/odysseus:1.0.0
 namespace: ai-services
 imagePullPolicy: IfNotPresent
 
