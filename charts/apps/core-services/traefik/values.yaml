@@ -114,12 +114,11 @@ traefik:
   ingressRoute:
     dashboard:
       enabled: true
-  logs:
-    access:
-      enabled: true
-      fields:
-        headers: 
-          defaultmode: drop
+  accessLog:
+    enabled: true
+    fields:
+      headers: 
+        defaultMode: drop
   experimental:
     plugins:
       bouncer:
