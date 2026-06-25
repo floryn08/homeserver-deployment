@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      - name: config
+        configMap:
+          name: {{ .Release.Name }}
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        command:
+        - ntfy
+        args:
+        - serve
+        env:
+        - name: TZ
+          value: {{ .Values.timezone | quote }}
+        ports:
+        {{- range $key, $val := $.Values.service.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{- end }}
+        readinessProbe:
+          httpGet:
+            path: /v1/health
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 30
+        livenessProbe:
+          httpGet:
+            path: /v1/health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 60
+        volumeMounts:
+        {{- range $index, $val := $.Values.storage.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ $.Release.Name }}
+          subPath: {{ $val.subPath }}
+        {{- end }}
+        - mountPath: /etc/ntfy
+          name: config
+          readOnly: true

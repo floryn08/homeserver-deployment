@@ -56,5 +56,8 @@ wikijs:
 mealie:
   path: charts/apps/utility-services/mealie
 
+ntfy:
+  path: charts/apps/utility-services/ntfy
+
 restaurantWatcher:
   path: charts/apps/utility-services/restaurant-watcher

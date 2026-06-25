@@ -1,0 +1,36 @@
+image: binwiederhier/ntfy:v2.25.0
+namespace: utility-services
+timezone: Europe/Bucharest
+
+host:
+  subdomain: ntfy
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+ntfy:
+  baseUrl: https://ntfy.home
+  listenHttp: ":80"
+  cacheFile: /var/cache/ntfy/cache.db
+  attachmentCacheDir: /var/cache/ntfy/attachments
+  behindProxy: true
+
+storage:
+  appdataBasePath: /srv/appdata/utility-services/ntfy
+  size: 5Gi
+  volumes:
+  - name: cache
+    subPath: cache
+    podPath: /var/cache/ntfy
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 80
+    externalPort: 80
+    protocol: TCP
