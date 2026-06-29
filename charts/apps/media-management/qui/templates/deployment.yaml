@@ -47,7 +47,7 @@ spec:
         {{ end -}}
         - mountPath: /hdd12tb
           name: hdd12tb
-          readOnly: true
+          readOnly: false
         {{- if .Values.resources }}
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
