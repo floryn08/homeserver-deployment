@@ -369,6 +369,77 @@ data:
           }],
           "title": "Pod Readiness by Namespace",
           "type": "timeseries"
+        },
+        {
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 17},
+          "id": 20,
+          "title": "Recent Restarts",
+          "type": "row"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": "auto",
+                "cellOptions": {"type": "auto"},
+                "inspect": false
+              }
+            },
+            "overrides": [{
+              "matcher": {"id": "byName", "options": "Restarts"},
+              "properties": [
+                {"id": "decimals", "value": 0},
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {"color": "green", "value": null},
+                      {"color": "yellow", "value": 1},
+                      {"color": "red", "value": 10}
+                    ]
+                  }
+                },
+                {"id": "custom.cellOptions", "value": {"type": "color-background"}}
+              ]
+            }]
+          },
+          "gridPos": {"h": 8, "w": 24, "x": 0, "y": 18},
+          "id": 21,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": ["sum"],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [{"desc": true, "displayName": "Restarts"}]
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (namespace, pod) (increase(kube_pod_container_status_restarts_total{namespace=~\"{{ $namespaceRegex }}\"}[1h])) > 0",
+            "format": "table",
+            "instant": true,
+            "refId": "A"
+          }],
+          "title": "Pods Restarted in the Last Hour",
+          "transformations": [{
+            "id": "organize",
+            "options": {
+              "excludeByName": {"Time": true},
+              "indexByName": {"namespace": 0, "pod": 1, "Value": 2},
+              "renameByName": {
+                "Value": "Restarts",
+                "namespace": "Namespace",
+                "pod": "Pod"
+              }
+            }
+          }],
+          "type": "table"
         }
       ],
       "schemaVersion": 38,
