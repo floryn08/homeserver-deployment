@@ -1,3 +1,5 @@
+{{- $namespaces := list "ai-services" "core-services" "game-servers" "home-automation" "media-management" "monitoring" "utility-services" -}}
+{{- $namespaceRegex := join "|" $namespaces -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -9,232 +11,380 @@ data:
   namespace-overview.json: |
     {
       "annotations": {"list": []},
-      "description": "Aggregated CPU, Memory and Network per namespace (app-of-apps)",
+      "description": "Health summary and resource comparison for app-of-apps namespaces",
       "editable": true,
       "graphTooltip": 1,
       "links": [],
       "panels": [
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},   "id": 1,  "title": "AI Services",       "type": "row" },
         {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 1}, "id": 2,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"ai-services\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},
+          "id": 1,
+          "title": "Current Health",
+          "type": "row"
         },
         {
           "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 1}, "id": 3,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"ai-services\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "decimals": 0,
+              "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}]},
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 6, "w": 4, "x": 0, "y": 1},
+          "id": 2,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum(kube_pod_status_ready{namespace=~\"{{ $namespaceRegex }}\",condition=\"true\"} and on (namespace, pod) (kube_pod_status_phase{namespace=~\"{{ $namespaceRegex }}\",phase=~\"Pending|Running|Unknown\"} == 1)) or vector(0)",
+            "legendFormat": "Ready",
+            "refId": "A"
+          }],
+          "title": "Ready Pods",
+          "type": "stat"
         },
         {
           "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 1}, "id": 4,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "decimals": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {"color": "green", "value": null},
+                  {"color": "red", "value": 1}
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 6, "w": 4, "x": 4, "y": 1},
+          "id": 3,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "(count(kube_pod_info{namespace=~\"{{ $namespaceRegex }}\"} and on (namespace, pod) (kube_pod_status_phase{namespace=~\"{{ $namespaceRegex }}\",phase=~\"Pending|Running|Unknown\"} == 1)) - sum(kube_pod_status_ready{namespace=~\"{{ $namespaceRegex }}\",condition=\"true\"} and on (namespace, pod) (kube_pod_status_phase{namespace=~\"{{ $namespaceRegex }}\",phase=~\"Pending|Running|Unknown\"} == 1))) or vector(0)",
+            "legendFormat": "Not Ready",
+            "refId": "A"
+          }],
+          "title": "Not Ready Pods",
+          "type": "stat"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "decimals": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {"color": "green", "value": null},
+                  {"color": "yellow", "value": 1},
+                  {"color": "red", "value": 10}
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 6, "w": 4, "x": 8, "y": 1},
+          "id": 4,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum(increase(kube_pod_container_status_restarts_total{namespace=~\"{{ $namespaceRegex }}\"}[1h])) or vector(0)",
+            "legendFormat": "Restarts",
+            "refId": "A"
+          }],
+          "title": "Container Restarts (1h)",
+          "type": "stat"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "decimals": 2,
+              "min": 0,
+              "unit": "cores"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 6, "w": 4, "x": 12, "y": 1},
+          "id": 5,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"{{ $namespaceRegex }}\",container!=\"POD\",container!=\"\"}[2m]))",
+            "legendFormat": "CPU",
+            "refId": "A"
+          }],
+          "title": "CPU Usage",
+          "type": "stat"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "min": 0,
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 6, "w": 4, "x": 16, "y": 1},
+          "id": 6,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum(container_memory_working_set_bytes{namespace=~\"{{ $namespaceRegex }}\",container!=\"POD\",container!=\"\"})",
+            "legendFormat": "Memory",
+            "refId": "A"
+          }],
+          "title": "Memory Usage",
+          "type": "stat"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "min": 0,
+              "unit": "Bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 6, "w": 4, "x": 20, "y": 1},
+          "id": 7,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+            "textMode": "auto"
+          },
           "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"ai-services\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"ai-services\"}[2m]))", "legendFormat": "tx", "refId": "B"}
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum(rate(container_network_receive_bytes_total{namespace=~\"{{ $namespaceRegex }}\"}[2m]))",
+              "legendFormat": "RX",
+              "refId": "A"
+            },
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=~\"{{ $namespaceRegex }}\"}[2m]))",
+              "legendFormat": "TX",
+              "refId": "B"
+            }
           ],
-          "title": "Network", "type": "timeseries"
+          "title": "Network Throughput",
+          "type": "stat"
         },
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 9},   "id": 10, "title": "Core Services",     "type": "row" },
         {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 10}, "id": 11,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"core-services\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 7},
+          "id": 10,
+          "title": "Namespaces Over Time",
+          "type": "row"
         },
         {
           "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 10}, "id": 12,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"core-services\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
+              "links": [{
+                "targetBlank": false,
+                "title": "Open namespace dashboard",
+                "url": "/d/${__field.labels.namespace}/${__field.labels.namespace}?${__url_time_range}"
+              }],
+              "min": 0,
+              "unit": "cores"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 9, "w": 6, "x": 0, "y": 8},
+          "id": 11,
+          "options": {
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (namespace) (rate(container_cpu_usage_seconds_total{namespace=~\"{{ $namespaceRegex }}\",container!=\"POD\",container!=\"\"}[2m]))",
+            "legendFormat": "{{ "{{namespace}}" }}",
+            "refId": "A"
+          }],
+          "title": "CPU by Namespace",
+          "type": "timeseries"
         },
         {
           "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 10}, "id": 13,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
+              "links": [{
+                "targetBlank": false,
+                "title": "Open namespace dashboard",
+                "url": "/d/${__field.labels.namespace}/${__field.labels.namespace}?${__url_time_range}"
+              }],
+              "min": 0,
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 9, "w": 6, "x": 6, "y": 8},
+          "id": 12,
+          "options": {
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (namespace) (container_memory_working_set_bytes{namespace=~\"{{ $namespaceRegex }}\",container!=\"POD\",container!=\"\"})",
+            "legendFormat": "{{ "{{namespace}}" }}",
+            "refId": "A"
+          }],
+          "title": "Memory by Namespace",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "custom": {"lineWidth": 2, "fillOpacity": 5, "spanNulls": false},
+              "links": [{
+                "targetBlank": false,
+                "title": "Open namespace dashboard",
+                "url": "/d/${__field.labels.namespace}/${__field.labels.namespace}?${__url_time_range}"
+              }],
+              "min": 0,
+              "unit": "Bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 9, "w": 6, "x": 12, "y": 8},
+          "id": 13,
+          "options": {
+            "legend": {"displayMode": "table", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
           "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"core-services\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"core-services\"}[2m]))", "legendFormat": "tx", "refId": "B"}
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum by (namespace) (rate(container_network_receive_bytes_total{namespace=~\"{{ $namespaceRegex }}\"}[2m]))",
+              "legendFormat": "{{ "{{namespace}}" }} RX",
+              "refId": "A"
+            },
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum by (namespace) (rate(container_network_transmit_bytes_total{namespace=~\"{{ $namespaceRegex }}\"}[2m]))",
+              "legendFormat": "{{ "{{namespace}}" }} TX",
+              "refId": "B"
+            }
           ],
-          "title": "Network", "type": "timeseries"
-        },
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 18},  "id": 20, "title": "Game Servers",      "type": "row" },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 19}, "id": 21,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"game-servers\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
+          "title": "Network by Namespace",
+          "type": "timeseries"
         },
         {
           "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 19}, "id": 22,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"game-servers\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 19}, "id": 23,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"game-servers\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"game-servers\"}[2m]))", "legendFormat": "tx", "refId": "B"}
-          ],
-          "title": "Network", "type": "timeseries"
-        },
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 27},  "id": 30, "title": "Home Automation",   "type": "row" },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 28}, "id": 31,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"home-automation\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 28}, "id": 32,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"home-automation\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 28}, "id": 33,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"home-automation\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"home-automation\"}[2m]))", "legendFormat": "tx", "refId": "B"}
-          ],
-          "title": "Network", "type": "timeseries"
-        },
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 36},  "id": 40, "title": "Media Management",  "type": "row" },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 37}, "id": 41,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"media-management\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 37}, "id": 42,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"media-management\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 37}, "id": 43,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"media-management\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"media-management\"}[2m]))", "legendFormat": "tx", "refId": "B"}
-          ],
-          "title": "Network", "type": "timeseries"
-        },
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 45},  "id": 50, "title": "Utility Services",  "type": "row" },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 46}, "id": 51,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"utility-services\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 46}, "id": 52,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"utility-services\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 46}, "id": 53,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"utility-services\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"utility-services\"}[2m]))", "legendFormat": "tx", "refId": "B"}
-          ],
-          "title": "Network", "type": "timeseries"
-        },
-
-        { "collapsed": false, "gridPos": {"h": 1, "w": 24, "x": 0, "y": 54},  "id": 60, "title": "Monitoring",         "type": "row" },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "short", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 0, "y": 55}, "id": 61,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"monitoring\",container!=\"POD\",container!=\"\"}[2m]))", "legendFormat": "cpu", "refId": "A"}],
-          "title": "CPU", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10}, "unit": "bytes", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 8, "y": 55}, "id": 62,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [{"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(container_memory_working_set_bytes{namespace=\"monitoring\",container!=\"POD\",container!=\"\"})", "legendFormat": "memory", "refId": "A"}],
-          "title": "Memory", "type": "timeseries"
-        },
-        {
-          "datasource": {"type": "prometheus", "uid": "${datasource}"},
-          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5}, "unit": "Bps", "min": 0}, "overrides": []},
-          "gridPos": {"h": 8, "w": 8, "x": 16, "y": 55}, "id": 63,
-          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
-          "targets": [
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"monitoring\"}[2m]))", "legendFormat": "rx", "refId": "A"},
-            {"datasource": {"type": "prometheus", "uid": "${datasource}"}, "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"monitoring\"}[2m]))", "legendFormat": "tx", "refId": "B"}
-          ],
-          "title": "Network", "type": "timeseries"
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
+              "links": [{
+                "targetBlank": false,
+                "title": "Open namespace dashboard",
+                "url": "/d/${__field.labels.namespace}/${__field.labels.namespace}?${__url_time_range}"
+              }],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {"color": "red", "value": null},
+                  {"color": "yellow", "value": 90},
+                  {"color": "green", "value": 100}
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {"h": 9, "w": 6, "x": 18, "y": 8},
+          "id": 14,
+          "options": {
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
+          },
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "100 * sum by (namespace) (kube_pod_status_ready{namespace=~\"{{ $namespaceRegex }}\",condition=\"true\"} and on (namespace, pod) (kube_pod_status_phase{namespace=~\"{{ $namespaceRegex }}\",phase=~\"Pending|Running|Unknown\"} == 1)) / count by (namespace) (kube_pod_info{namespace=~\"{{ $namespaceRegex }}\"} and on (namespace, pod) (kube_pod_status_phase{namespace=~\"{{ $namespaceRegex }}\",phase=~\"Pending|Running|Unknown\"} == 1))",
+            "legendFormat": "{{ "{{namespace}}" }}",
+            "refId": "A"
+          }],
+          "title": "Pod Readiness by Namespace",
+          "type": "timeseries"
         }
-
       ],
       "schemaVersion": 38,
       "tags": ["overview", "kubernetes"],
       "templating": {
-        "list": [
-          {
-            "current": {},
-            "hide": 0,
-            "includeAll": false,
-            "multi": false,
-            "name": "datasource",
-            "options": [],
-            "query": "prometheus",
-            "refresh": 1,
-            "type": "datasource"
-          }
-        ]
+        "list": [{
+          "current": {},
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "type": "datasource"
+        }]
       },
       "time": {"from": "now-1h", "to": "now"},
       "timepicker": {},
