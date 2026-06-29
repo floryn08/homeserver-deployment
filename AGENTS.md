@@ -78,7 +78,10 @@ spec:
 2. Update `values.yaml` (image, subdomain, secrets, storage paths, ports)
 3. Add ArgoCD Application YAML to `charts/app-of-apps/{category}/templates/`
 4. Update `charts/app-of-apps/{category}/values.yaml` with service.path entry
-5. ArgoCD auto-syncs and deploys (or use `argocd app sync`)
+5. Add the service to the static `$applications` list in `charts/app-of-apps/{category}/templates/grafana-dashboard.yaml`
+6. Ensure the service pods expose a matching `app.kubernetes.io/name` or `app.kubernetes.io/instance` label used by the dashboard selector
+7. If adding a new category namespace, also add it to the static `$namespaces` list in `charts/app-of-apps/monitoring/templates/grafana-dashboard-overview.yaml`
+8. ArgoCD auto-syncs and deploys (or use `argocd app sync`)
 
 **Manual Helm operations** (avoid unless bootstrapping):
 ```bash
