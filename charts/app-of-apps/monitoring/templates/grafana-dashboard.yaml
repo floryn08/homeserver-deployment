@@ -1,3 +1,4 @@
+{{- $applications := list (dict "name" "Grafana" "selector" "grafana") (dict "name" "VictoriaMetrics" "selector" "victoria-metrics") -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -9,18 +10,18 @@ data:
   monitoring.json: |
     {
       "annotations": {"list": []},
-      "description": "Per-pod CPU, Memory, Network and Status for the monitoring namespace",
+      "description": "Static per-application CPU, memory, network and replica readiness for the {{ .Values.namespace }} namespace",
       "editable": true,
       "graphTooltip": 1,
       "links": [],
       "panels": [
+        {{- range $index, $application := $applications }}
+        {{- if $index }},{{ end }}
         {
           "collapsed": false,
-          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},
-          "id": 1,
-          "repeat": "pod",
-          "repeatDirection": "v",
-          "title": "$pod",
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": {{ mul $index 9 }}},
+          "id": {{ add (mul $index 5) 1 }},
+          "title": "{{ $application.name }}",
           "type": "row"
         },
         {
@@ -29,25 +30,23 @@ data:
             "defaults": {
               "color": {"mode": "palette-classic"},
               "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
-              "unit": "short",
-              "min": 0
+              "min": 0,
+              "unit": "cores"
             },
             "overrides": []
           },
-          "gridPos": {"h": 8, "w": 6, "x": 0, "y": 1},
-          "id": 2,
+          "gridPos": {"h": 8, "w": 6, "x": 0, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 2 }},
           "options": {
             "legend": {"displayMode": "list", "placement": "bottom"},
             "tooltip": {"mode": "multi"}
           },
-          "targets": [
-            {
-              "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"monitoring\",pod=~\"$pod\",container!=\"POD\",container!=\"\"}[2m]))",
-              "legendFormat": "cpu",
-              "refId": "A"
-            }
-          ],
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (namespace, pod) (rate(container_cpu_usage_seconds_total{namespace=\"{{ $.Values.namespace }}\",container!=\"POD\",container!=\"\"}[2m])) and on (namespace, pod) (kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_instance=\"{{ $application.selector }}\"} or kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_name=~\"{{ $application.selector }}\"})",
+            "legendFormat": "{{ "{{pod}}" }}",
+            "refId": "A"
+          }],
           "title": "CPU Usage",
           "type": "timeseries"
         },
@@ -57,25 +56,23 @@ data:
             "defaults": {
               "color": {"mode": "palette-classic"},
               "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
-              "unit": "bytes",
-              "min": 0
+              "min": 0,
+              "unit": "bytes"
             },
             "overrides": []
           },
-          "gridPos": {"h": 8, "w": 6, "x": 6, "y": 1},
-          "id": 3,
+          "gridPos": {"h": 8, "w": 6, "x": 6, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 3 }},
           "options": {
             "legend": {"displayMode": "list", "placement": "bottom"},
             "tooltip": {"mode": "multi"}
           },
-          "targets": [
-            {
-              "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "sum(container_memory_working_set_bytes{namespace=\"monitoring\",pod=~\"$pod\",container!=\"POD\",container!=\"\"})",
-              "legendFormat": "memory",
-              "refId": "A"
-            }
-          ],
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (namespace, pod) (container_memory_working_set_bytes{namespace=\"{{ $.Values.namespace }}\",container!=\"POD\",container!=\"\"}) and on (namespace, pod) (kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_instance=\"{{ $application.selector }}\"} or kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_name=~\"{{ $application.selector }}\"})",
+            "legendFormat": "{{ "{{pod}}" }}",
+            "refId": "A"
+          }],
           "title": "Memory Usage",
           "type": "timeseries"
         },
@@ -85,13 +82,13 @@ data:
             "defaults": {
               "color": {"mode": "palette-classic"},
               "custom": {"lineWidth": 2, "fillOpacity": 5, "spanNulls": false},
-              "unit": "Bps",
-              "min": 0
+              "min": 0,
+              "unit": "Bps"
             },
             "overrides": []
           },
-          "gridPos": {"h": 8, "w": 6, "x": 12, "y": 1},
-          "id": 4,
+          "gridPos": {"h": 8, "w": 6, "x": 12, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 4 }},
           "options": {
             "legend": {"displayMode": "list", "placement": "bottom"},
             "tooltip": {"mode": "multi"}
@@ -99,14 +96,14 @@ data:
           "targets": [
             {
               "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"monitoring\",pod=~\"$pod\"}[2m]))",
-              "legendFormat": "rx",
+              "expr": "sum by (namespace, pod) (rate(container_network_receive_bytes_total{namespace=\"{{ $.Values.namespace }}\"}[2m])) and on (namespace, pod) (kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_instance=\"{{ $application.selector }}\"} or kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_name=~\"{{ $application.selector }}\"})",
+              "legendFormat": "{{ "{{pod}}" }} RX",
               "refId": "A"
             },
             {
               "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"monitoring\",pod=~\"$pod\"}[2m]))",
-              "legendFormat": "tx",
+              "expr": "sum by (namespace, pod) (rate(container_network_transmit_bytes_total{namespace=\"{{ $.Values.namespace }}\"}[2m])) and on (namespace, pod) (kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_instance=\"{{ $application.selector }}\"} or kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_name=~\"{{ $application.selector }}\"})",
+              "legendFormat": "{{ "{{pod}}" }} TX",
               "refId": "B"
             }
           ],
@@ -118,15 +115,16 @@ data:
           "fieldConfig": {
             "defaults": {
               "color": {"mode": "thresholds"},
-              "mappings": [
-                {
-                  "options": {
-                    "0": {"color": "red", "index": 0, "text": "Not Ready"},
-                    "1": {"color": "green", "index": 1, "text": "Ready"}
-                  },
-                  "type": "value"
-                }
-              ],
+              "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false},
+              "mappings": [{
+                "options": {
+                  "0": {"color": "red", "index": 0, "text": "Not Ready"},
+                  "1": {"color": "green", "index": 1, "text": "Ready"}
+                },
+                "type": "value"
+              }],
+              "max": 1,
+              "min": 0,
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -137,61 +135,37 @@ data:
             },
             "overrides": []
           },
-          "gridPos": {"h": 8, "w": 6, "x": 18, "y": 1},
-          "id": 5,
+          "gridPos": {"h": 8, "w": 6, "x": 18, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 5 }},
           "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "auto",
-            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-            "textMode": "auto"
+            "legend": {"displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi"}
           },
-          "targets": [
-            {
-              "datasource": {"type": "prometheus", "uid": "${datasource}"},
-              "expr": "kube_pod_status_ready{namespace=\"monitoring\",pod=~\"$pod\",condition=\"true\"}",
-              "legendFormat": "status",
-              "refId": "A"
-            }
-          ],
-          "title": "Status",
-          "type": "stat"
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "max by (namespace, pod) (kube_pod_status_ready{namespace=\"{{ $.Values.namespace }}\",condition=\"true\"} and on (namespace, pod) (kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_instance=\"{{ $application.selector }}\"} or kube_pod_labels{namespace=\"{{ $.Values.namespace }}\",label_app_kubernetes_io_name=~\"{{ $application.selector }}\"}))",
+            "legendFormat": "{{ "{{pod}}" }}",
+            "refId": "A"
+          }],
+          "title": "Replica Readiness",
+          "type": "timeseries"
         }
+        {{- end }}
       ],
       "schemaVersion": 38,
       "tags": ["monitoring", "kubernetes"],
       "templating": {
-        "list": [
-          {
-            "current": {},
-            "hide": 0,
-            "includeAll": false,
-            "multi": false,
-            "name": "datasource",
-            "options": [],
-            "query": "prometheus",
-            "refresh": 1,
-            "type": "datasource"
-          },
-          {
-            "current": {},
-            "datasource": {"type": "prometheus", "uid": "${datasource}"},
-            "definition": "label_values(kube_pod_info{namespace=\"monitoring\"}, pod)",
-            "hide": 0,
-            "includeAll": true,
-            "multi": true,
-            "name": "pod",
-            "options": [],
-            "query": {
-              "query": "label_values(kube_pod_info{namespace=\"monitoring\"}, pod)",
-              "refId": "StandardVariableQuery"
-            },
-            "refresh": 2,
-            "sort": 1,
-            "type": "query"
-          }
-        ]
+        "list": [{
+          "current": {},
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "type": "datasource"
+        }]
       },
       "time": {"from": "now-1h", "to": "now"},
       "timepicker": {},
