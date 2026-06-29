@@ -119,11 +119,11 @@ data:
           },
           "targets": [{
             "datasource": {"type": "prometheus", "uid": "${datasource}"},
-            "expr": "sum(increase(kube_pod_container_status_restarts_total{namespace=~\"{{ $namespaceRegex }}\"}[1h])) or vector(0)",
+            "expr": "sum(increase(kube_pod_container_status_restarts_total{namespace=~\"{{ $namespaceRegex }}\"}[$__range])) or vector(0)",
             "legendFormat": "Restarts",
             "refId": "A"
           }],
-          "title": "Container Restarts (1h)",
+          "title": "Container Restarts (Selected Range)",
           "type": "stat"
         },
         {
@@ -421,12 +421,12 @@ data:
           },
           "targets": [{
             "datasource": {"type": "prometheus", "uid": "${datasource}"},
-            "expr": "sum by (namespace, pod) (increase(kube_pod_container_status_restarts_total{namespace=~\"{{ $namespaceRegex }}\"}[1h])) > 0",
+            "expr": "sum by (namespace, pod) (increase(kube_pod_container_status_restarts_total{namespace=~\"{{ $namespaceRegex }}\"}[$__range])) > 0",
             "format": "table",
             "instant": true,
             "refId": "A"
           }],
-          "title": "Pods Restarted in the Last Hour",
+          "title": "Pods Restarted in Selected Range",
           "transformations": [{
             "id": "organize",
             "options": {
