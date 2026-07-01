@@ -25,11 +25,15 @@ service:
     containerPort: 8383
     externalPort: 8383
     protocol: TCP
+
+peerService:
+  type: LoadBalancer
+  ports:
   - name: tcp
-    containerPort: 6881
-    externalPort: 6881
+    containerPort: 57972
+    externalPort: 57972
     protocol: TCP
   - name: udp
-    containerPort: 6881
-    externalPort: 6881
+    containerPort: 57972
+    externalPort: 57972
     protocol: UDP

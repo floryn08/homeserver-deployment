@@ -14,3 +14,20 @@ spec:
   {{ end -}}
   selector:
     app.kubernetes.io/name: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-peer
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.peerService.type }}
+  ports:
+  {{- range $key, $val := $.Values.peerService.ports }}
+  - port: {{ $val.externalPort }}
+    targetPort: {{ $val.name }}
+    name: {{ $val.name }}
+    protocol: {{ $val.protocol }}
+  {{ end -}}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}

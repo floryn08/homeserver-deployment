@@ -8,3 +8,4 @@ data:
   PUID: '1000'
   TZ: 'Europe/Bucharest'
   WEBUI_PORT: '8383'
+  TORRENTING_PORT: '57972'

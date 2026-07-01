@@ -43,6 +43,11 @@ spec:
           name: {{ $val.name }}
           protocol: {{ $val.protocol }}
         {{ end -}}
+        {{- range $key, $val := $.Values.peerService.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
         volumeMounts:
         {{- range $index, $val := $.Values.storage.volumes }}
         - mountPath: {{ $val.podPath }}
