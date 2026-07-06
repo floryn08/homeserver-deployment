@@ -27,6 +27,7 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/name: postgresql
     spec:
+      serviceAccountName: default
       automountServiceAccountToken: false
       terminationGracePeriodSeconds: 30
       initContainers:
