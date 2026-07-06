@@ -80,27 +80,26 @@ immich:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v2.7.5
 
-# https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
 postgresql:
   image:
-    registry: ghcr.io
-    repository: immich-app/postgres
-    tag: 16-vectorchord0.3.0-pgvectors0.2.0
-  primary:
-    persistence:
-      storageClass: manual
-      existingClaim: immich-postgres-data-pvc
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    resourcesPreset: large
-  global:
-    security:
-      allowInsecureImages: true
-    postgresql:
-      auth:
-        username: immich
-        database: immich
-        existingSecret: immich
-        secretKeys:
-          adminPasswordKey: postgres-password
-          userPasswordKey: postgres-user-password
+    repository: ghcr.io/immich-app/postgres
+    tag: 18-vectorchord0.5.3-pgvector0.8.1
+    pullPolicy: IfNotPresent
+  auth:
+    username: immich
+    database: immich
+    existingSecret: immich
+    passwordKey: postgres-user-password
+  persistence:
+    existingClaim: immich-postgres-data-pvc
+    # Keep the old Bitnami data/ directory untouched for rollback.
+    dataDirectory: /var/lib/postgresql/18/docker
+  resources:
+    requests:
+      cpu: "1"
+      ephemeral-storage: 50Mi
+      memory: 2Gi
+    limits:
+      cpu: 1500m
+      ephemeral-storage: 2Gi
+      memory: 3Gi
