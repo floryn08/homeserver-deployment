@@ -17,6 +17,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/services: {{ include (print $.Template.BasePath "/services-configmap.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ .Release.Name }}
       automountServiceAccountToken: true

@@ -21,13 +21,32 @@ This is a Kubernetes-based homeserver deployment using **ArgoCD's App of Apps pa
 ### Helm Chart Structure
 Every service in `charts/apps/` follows this template structure:
 - `values.yaml` - Service configuration (image, namespace, host.subdomain, secrets.path, storage.appdataBasePath, service.ports)
-- `templates/deployment.yaml` - Standard deployment with Reloader annotation (`reloader.stakater.com/auto: "true"`)
+- `templates/deployment.yaml` - Standard deployment with pod-template checksums for consumed ConfigMaps
 - `templates/pv.yaml` + `pvc.yaml` - Local persistent volumes using `storageClass: manual`
 - `templates/ingress-request.yaml` - Traefik IngressRoute with cert-manager TLS
 - `templates/certificate-request.yaml` - cert-manager Certificate
 - `templates/configmap.yaml` - Environment variables from values
 
 **Storage pattern:** All apps use host paths at `/srv/appdata/{namespace}/{service}/` mounted via PV/PVC. Media services additionally mount `/mnt/hdd` and `/mnt/hdd12tb` as hostPath volumes.
+
+### Configuration and Secret Rollouts
+- Do not add Reloader, `reloader.stakater.com` annotations, or another general-purpose restart controller.
+- Every Deployment or StatefulSet that consumes a chart-rendered ConfigMap must include one checksum annotation per consumed ConfigMap under `spec.template.metadata.annotations`. This is mandatory even for ConfigMaps mounted as volumes.
+- Use distinct annotation keys when a workload consumes multiple ConfigMaps:
+  ```yaml
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    checksum/services: {{ include (print $.Template.BasePath "/services-configmap.yaml") . | sha256sum }}
+  ```
+- ConfigMap checksums trigger rollouts only when Helm renders and ArgoCD syncs the changed chart. Do not rely on out-of-band ConfigMap edits to restart workloads.
+- Every `VaultStaticSecret` whose destination Secret is consumed by a workload that cannot reload secrets dynamically must declare that exact controller in `spec.rolloutRestartTargets`:
+  ```yaml
+  rolloutRestartTargets:
+    - kind: Deployment
+      name: {{ .Release.Name }}
+  ```
+- Add the target to every Vault secret custom resource consumed by the workload. Use the actual controller kind and rendered name; supported kinds are `Deployment`, `DaemonSet`, `StatefulSet`, and `argo.Rollout`.
+- Do not add rollout targets for backup-only Secrets consumed exclusively by CronJobs; CronJobs are unsupported targets and each new Job reads the current Secret.
 
 ### App-of-Apps Pattern
 Each category chart in `charts/app-of-apps/{category}/templates/` contains YAML files generating ArgoCD Applications. Example from [core-services/templates/argo-cd.yaml](charts/app-of-apps/core-services/templates/argo-cd.yaml):
@@ -50,6 +69,7 @@ spec:
 - Services reference secrets via `secrets.path` in values.yaml (e.g., `kv/data/domains`)
 - Vault Secrets Operator syncs Vault secrets to Kubernetes Secret resources
 - Each namespace has `VaultConnection` and `VaultAuth` (ServiceAccount-based K8s auth)
+- Vault-backed workloads that require a restart use `spec.rolloutRestartTargets` on their `VaultStaticSecret`
 - When wiring secrets into Deployments, prefer explicit `env[].valueFrom.secretKeyRef` entries over broad `envFrom.secretRef` imports so each environment variable shows the exact Kubernetes Secret name and key it consumes.
 
 ### Namespace Strategy
@@ -82,7 +102,9 @@ spec:
 6. Ensure the service pods expose a matching `app.kubernetes.io/name` or `app.kubernetes.io/instance` label used by the dashboard selector
 7. If adding a new category namespace, also add it to the static `$namespaces` list in `charts/app-of-apps/monitoring/templates/grafana-dashboard-overview.yaml`
 8. Add the service to the appropriate category in `charts/apps/utility-services/homepage/templates/services-configmap.yaml`; keep credentials in Vault and reference them through Homepage environment-variable placeholders
-9. ArgoCD auto-syncs and deploys (or use `argocd app sync`)
+9. Add a pod-template checksum for every ConfigMap consumed by the workload
+10. Add `rolloutRestartTargets` to every VaultStaticSecret consumed by a workload that requires restart-based secret reloads
+11. ArgoCD auto-syncs and deploys (or use `argocd app sync`)
 
 **Manual Helm operations** (avoid unless bootstrapping):
 ```bash
@@ -94,7 +116,8 @@ helm upgrade {service} ./charts/apps/{category}/{service} --install --namespace 
 - Check ArgoCD UI for sync status and errors
 - Verify Vault secret paths match `secrets.path` in values.yaml
 - Confirm PV/PVC creation: `kubectl get pv,pvc -n {namespace}`
-- Check Reloader for automatic restarts on configmap/secret changes
+- For ConfigMap changes, verify the workload pod template contains a checksum of every consumed ConfigMap
+- For Vault secret changes, verify the `VaultStaticSecret` has the consuming workload in `spec.rolloutRestartTargets`
 
 ## Project-Specific Patterns
 
