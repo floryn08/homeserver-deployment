@@ -18,9 +18,6 @@ grafana:
     userKey: adminUser
     passwordKey: adminPassword
 
-  podAnnotations:
-    reloader.stakater.com/auto: "true"
-
   envValueFrom:
     GF_SERVER_ROOT_URL:
       secretKeyRef:

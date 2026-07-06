@@ -36,9 +36,6 @@ vaultSecretsOperator:
 argoCd:
   path: charts/apps/core-services/argo-cd
 
-reloader:
-  path: charts/apps/core-services/reloader
-
 crowdsec:
   path: charts/apps/core-services/crowdsec
 

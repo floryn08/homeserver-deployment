@@ -21,7 +21,7 @@ This is a Kubernetes-based homeserver deployment using **ArgoCD's App of Apps pa
 ### Helm Chart Structure
 Every service in `charts/apps/` follows this template structure:
 - `values.yaml` - Service configuration (image, namespace, host.subdomain, secrets.path, storage.appdataBasePath, service.ports)
-- `templates/deployment.yaml` - Standard deployment with Reloader annotation (`reloader.stakater.com/auto: "true"`)
+- `templates/deployment.yaml` - Standard deployment with pod-template checksums for consumed ConfigMaps
 - `templates/pv.yaml` + `pvc.yaml` - Local persistent volumes using `storageClass: manual`
 - `templates/ingress-request.yaml` - Traefik IngressRoute with cert-manager TLS
 - `templates/certificate-request.yaml` - cert-manager Certificate
@@ -50,6 +50,7 @@ spec:
 - Services reference secrets via `secrets.path` in values.yaml (e.g., `kv/data/domains`)
 - Vault Secrets Operator syncs Vault secrets to Kubernetes Secret resources
 - Each namespace has `VaultConnection` and `VaultAuth` (ServiceAccount-based K8s auth)
+- Vault-backed workloads that require a restart use `spec.rolloutRestartTargets` on their `VaultStaticSecret`
 - When wiring secrets into Deployments, prefer explicit `env[].valueFrom.secretKeyRef` entries over broad `envFrom.secretRef` imports so each environment variable shows the exact Kubernetes Secret name and key it consumes.
 
 ### Namespace Strategy
@@ -94,7 +95,8 @@ helm upgrade {service} ./charts/apps/{category}/{service} --install --namespace 
 - Check ArgoCD UI for sync status and errors
 - Verify Vault secret paths match `secrets.path` in values.yaml
 - Confirm PV/PVC creation: `kubectl get pv,pvc -n {namespace}`
-- Check Reloader for automatic restarts on configmap/secret changes
+- For ConfigMap changes, verify the workload pod template contains a checksum of every consumed ConfigMap
+- For Vault secret changes, verify the `VaultStaticSecret` has the consuming workload in `spec.rolloutRestartTargets`
 
 ## Project-Specific Patterns
 
