@@ -17,6 +17,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        reloader.stakater.com/auto: "true"
     spec:
       volumes:
       - name: {{ .Release.Name }}
@@ -37,6 +38,27 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
+        env:
+        - name: QUI__OIDC_ISSUER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: QUI__OIDC_ISSUER
+        - name: QUI__OIDC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: QUI__OIDC_CLIENT_ID
+        - name: QUI__OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: QUI__OIDC_CLIENT_SECRET
+        - name: QUI__OIDC_REDIRECT_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: QUI__OIDC_REDIRECT_URL
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
