@@ -13,6 +13,11 @@ grafana:
   namespaceOverride: *namespace
   assertNoLeakedSecrets: false
 
+  admin:
+    existingSecret: grafana-vault
+    userKey: adminUser
+    passwordKey: adminPassword
+
   podAnnotations:
     reloader.stakater.com/auto: "true"
 

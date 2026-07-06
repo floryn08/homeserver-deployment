@@ -20,11 +20,21 @@ Create the Grafana application and OAuth2/OIDC provider in Authentik before sync
 
    ```shell
    vault kv put kv/monitoring/grafana \
+     adminUser='admin' \
+     adminPassword='<stable-strong-password>' \
      authentikClientId='<client-id>' \
      authentikClientSecret='<client-secret>' \
      authentikDomain='<primary-domain-without-auth-prefix>' \
      localDomain='<home-domain>'
    ```
+
+For an existing Grafana database, the environment variable does not replace the stored
+admin password. After the first sync with `adminPassword` populated, reset it once using
+the value already injected into the container:
+
+```shell
+kubectl -n monitoring exec deploy/grafana -c grafana -- sh -c 'grafana cli admin reset-admin-password "$GF_SECURITY_ADMIN_PASSWORD"'
+```
 
 After Argo CD syncs the chart, the Grafana login page displays **Sign in with Authentik**.
 The existing Grafana login form remains enabled as a recovery path.
