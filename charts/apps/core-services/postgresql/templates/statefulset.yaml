@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/component: primary
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/name: postgresql
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  serviceName: {{ .Release.Name }}-hl
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: primary
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: postgresql
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: primary
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: postgresql
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 30
+      initContainers:
+        - name: prepare-data-directory
+          image: "{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}"
+          imagePullPolicy: {{ .Values.postgresql.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -ec
+            - |
+              install -d -o 999 -g 999 -m 0700 {{ .Values.postgresql.persistence.dataDirectory }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - CHOWN
+                - DAC_OVERRIDE
+                - FOWNER
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
+            runAsUser: 0
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql
+      containers:
+        - name: postgresql
+          image: "{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}"
+          imagePullPolicy: {{ .Values.postgresql.image.pullPolicy }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false
+            runAsGroup: 999
+            runAsNonRoot: true
+            runAsUser: 999
+            seccompProfile:
+              type: RuntimeDefault
+          env:
+            - name: PGDATA
+              value: {{ .Values.postgresql.persistence.dataDirectory | quote }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresql.auth.database | quote }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresql.auth.username | quote }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.auth.existingSecret }}
+                  key: {{ .Values.postgresql.auth.passwordKey }}
+            - name: POSTGRES_INITDB_ARGS
+              value: --data-checksums
+          ports:
+            - name: tcp-postgresql
+              containerPort: 5432
+              protocol: TCP
+          startupProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -ec
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" -h 127.0.0.1 -p 5432
+            failureThreshold: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -ec
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" -h 127.0.0.1 -p 5432
+            failureThreshold: 6
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -ec
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" -h 127.0.0.1 -p 5432
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          resources:
+            {{- toYaml .Values.postgresql.resources | nindent 12 }}
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql
+            - name: dshm
+              mountPath: /dev/shm
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.postgresql.persistence.existingClaim }}
+        - name: dshm
+          emptyDir:
+            medium: Memory

@@ -1,27 +1,33 @@
-# https://github.com/bitnami/charts/blob/main/bitnami/postgresql/values.yaml
-namespace: &namespace core-services
+namespace: core-services
 postgresqlDataPath: /srv/appdata/core-services/postgresql
 
 backup:
   enabled: true
+  postgresImage: postgres:18.4-alpine
   resticImage: restic/restic:0.19.0
   rcloneImage: rclone/rclone:1.74.3
 
 postgresql:
-  enabled: true
-  namespaceOverride: *namespace
-  primary:
-    persistence:
-      storageClass: manual
-      existingClaim: postgresql-pvc
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    resourcesPreset: large
-  global:
-    postgresql:
-      auth:
-        username: postgres
-        existingSecret: postgresql
-        secretKeys:
-          adminPasswordKey: password
-          userPasswordKey: password
+  image:
+    repository: postgres
+    tag: "18.4"
+    pullPolicy: IfNotPresent
+  auth:
+    username: postgres
+    database: postgres
+    existingSecret: postgresql
+    passwordKey: POSTGRES_PASSWORD
+  persistence:
+    existingClaim: postgresql-pvc
+    # PostgreSQL 18 uses a versioned directory. The previous Bitnami data remains
+    # at data/ in the same PVC until the migration has been verified.
+    dataDirectory: /var/lib/postgresql/18/docker
+  resources:
+    requests:
+      cpu: "1"
+      ephemeral-storage: 50Mi
+      memory: 2Gi
+    limits:
+      cpu: 1500m
+      ephemeral-storage: 2Gi
+      memory: 3Gi
