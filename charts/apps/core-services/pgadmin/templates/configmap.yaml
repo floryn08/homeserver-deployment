@@ -4,6 +4,5 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
-  PGADMIN_DEFAULT_EMAIL: admin@admin.com
-  PGADMIN_DEFAULT_PASSWORD: admin
-  PGADMIN_CONFIG_SERVER_MODE: "False"
+  PGADMIN_CONFIG_SERVER_MODE: "True"
+  PGADMIN_CONFIG_AUTHENTICATION_SOURCES: "['oauth2', 'internal']"

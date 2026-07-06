@@ -17,6 +17,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        reloader.stakater.com/auto: "true"
     spec:
       containers:
       - name: {{ .Release.Name }}
@@ -25,6 +26,22 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: PGADMIN_DEFAULT_EMAIL
+        - name: PGADMIN_DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: PGADMIN_DEFAULT_PASSWORD
+        - name: PGADMIN_CONFIG_OAUTH2_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: PGADMIN_CONFIG_OAUTH2_CONFIG
         ports:
         {{- range $key, $val := $.Values.ports }}
         - containerPort: {{ $val.containerPort }}

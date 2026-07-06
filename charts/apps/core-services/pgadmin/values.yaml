@@ -1,5 +1,14 @@
 image: dpage/pgadmin4:9.16
 namespace: core-services
+
+host:
+  subdomain: pgadmin
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
 ports:
 - name: pgadmin4
   containerPort: 80
