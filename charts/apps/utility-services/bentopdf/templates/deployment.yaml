@@ -31,6 +31,8 @@ spec:
             drop:
             - ALL
           runAsNonRoot: true
+          runAsUser: 101
+          runAsGroup: 101
         ports:
         {{- range $val := .Values.service.ports }}
         - name: {{ $val.name }}
