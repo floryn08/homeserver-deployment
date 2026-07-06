@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   {{- range $key, $val := $.Values.ports }}
   - port: {{ $val.externalPort }}

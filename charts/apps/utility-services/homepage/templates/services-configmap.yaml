@@ -51,13 +51,13 @@ data:
 
       - Pgadmin:
           icon: pgadmin.png
-          href: http://192.168.0.150:5050
+          href: https://pgadmin.home
           namespace: core-services
           app: pgadmin
 
       - Postgresql:
           icon: postgres.png
-          href: http://192.168.0.150:5050
+          href: https://postgresql.home
           namespace: core-services
           app: postgresql
 
