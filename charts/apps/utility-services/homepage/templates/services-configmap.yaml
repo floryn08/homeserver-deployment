@@ -18,18 +18,18 @@ data:
           widget:
             type: argocd
             url: http://argo-cd-argocd-server.core-services.svc
-            key: ${HOMEPAGE_ARGOCD_TOKEN}
+            key: {{ "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}" }}
             fields: ["healthy", "progressing", "degraded"]
 
       - Authentik:
           icon: authentik.png
-          href: https://auth.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://auth.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: core-services
           app: authentik
           widget:
             type: authentik
             url: http://authentik-server.core-services.svc
-            key: ${HOMEPAGE_AUTHENTIK_TOKEN}
+            key: {{ "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}" }}
             version: 2
 
       - Crowdsec:
@@ -40,8 +40,8 @@ data:
     #      widget:
     #        type: crowdsec
     #        url: http://crowdsec-service.core-services.svc:8080
-    #        username: ${HOMEPAGE_CROWDSEC_USERNAME}
-    #        password: ${HOMEPAGE_CROWDSEC_PASSWORD}
+    #        username: {{ "{{HOMEPAGE_VAR_CROWDSEC_USERNAME}}" }}
+    #        password: {{ "{{HOMEPAGE_VAR_CROWDSEC_PASSWORD}}" }}
     #        limit24h: true
 
       - ddclient:
@@ -72,10 +72,10 @@ data:
 
       - UptimeKuma:
           icon: uptime-kuma.png
-          href: https://kuma.${HOMEPAGE_PRIMARY_DOMAIN}/dashboard
+          href: https://kuma.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}/dashboard
           widget:
             type: uptimekuma
-            url: https://kuma.${HOMEPAGE_PRIMARY_DOMAIN}
+            url: https://kuma.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
             slug: server
 
       - Vault:
@@ -101,7 +101,7 @@ data:
           widget:
             type: autobrr
             url: http://autobrr.media-management.svc:7474
-            key: ${HOMEPAGE_AUTOBRR_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_AUTOBRR_API_KEY}}" }}
 
       - Bazarr:
           icon: bazarr.png
@@ -111,17 +111,17 @@ data:
           widget:
             type: bazarr
             url: http://bazarr.media-management.svc:6767
-            key: ${HOMEPAGE_BAZARR_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_BAZARR_API_KEY}}" }}
 
       - Immich:
           icon: immich.png
-          href: https://immich.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://immich.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: media-management
           app: server
           widget:
             type: immich
-            url: https://immich.${HOMEPAGE_PRIMARY_DOMAIN}
-            key: ${HOMEPAGE_IMMICH_API_KEY}
+            url: https://immich.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
+            key: {{ "{{HOMEPAGE_VAR_IMMICH_API_KEY}}" }}
             version: 2
 
       - Jellyfin:
@@ -132,7 +132,7 @@ data:
           widget:
             type: jellyfin
             url: http://jellyfin.media-management.svc:8096
-            key: ${HOMEPAGE_JELLYFIN_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}" }}
             enableBlocks: true
             enableNowOPlaying: true
             fields: ["movies", "series", "episodes"]
@@ -167,7 +167,7 @@ data:
           widget:
             type: plex
             url: http://plex.media-management.svc:32400
-            key: ${HOMEPAGE_PLEX_TOKEN}
+            key: {{ "{{HOMEPAGE_VAR_PLEX_TOKEN}}" }}
             fields: ["streams", "movies", "tv"]
 
       - Profilarr:
@@ -190,8 +190,8 @@ data:
           widget:
             type: qbittorrent
             url: http://qbittorrent.media-management.svc:8383
-            username: ${HOMEPAGE_QBITTORRENT_USERNAME}
-            password: ${HOMEPAGE_QBITTORRENT_PASSWORD}
+            username: {{ "{{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}" }}
+            password: {{ "{{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}" }}
 
       - Qui:
           icon: qui.png
@@ -207,17 +207,17 @@ data:
           widget:
             type: radarr
             url: http://radarr.media-management.svc:7878
-            key: ${HOMEPAGE_RADARR_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_RADARR_API_KEY}}" }}
 
       - Seerr:
           icon: seerr.png
-          href: https://seerr.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://seerr.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: media-management
           app: seerr
           widget:
             type: jellyseerr
-            url: https://seerr.${HOMEPAGE_PRIMARY_DOMAIN}
-            key: ${HOMEPAGE_SEERR_API_KEY}
+            url: https://seerr.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
+            key: {{ "{{HOMEPAGE_VAR_SEERR_API_KEY}}" }}
 
       - Sonarr:
           icon: sonarr.png
@@ -227,7 +227,7 @@ data:
           widget:
             type: sonarr
             url: http://sonarr.media-management.svc:8989
-            key: ${HOMEPAGE_SONARR_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_SONARR_API_KEY}}" }}
 
       - Tautulli:
           icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/tautulli-icon.png
@@ -237,7 +237,7 @@ data:
           widget:
             type: tautulli
             url: http://tautulli.media-management.svc:8181
-            key: ${HOMEPAGE_TAUTULLI_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_TAUTULLI_API_KEY}}" }}
             enableUser: true
             showEpisodeNumber: true
             expandOneStreamToTwoRows: false
@@ -250,7 +250,7 @@ data:
 
       - Wizarr:
           icon: wizarr.png
-          href: https://wizarr.${HOMEPAGE_PRIMARY_DOMAIN}/
+          href: https://wizarr.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}/
           namespace: media-management
           app: wizarr
 
@@ -270,13 +270,13 @@ data:
 
       - CodeServer:
           icon: code-server.png
-          href: https://code.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://code.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: utility-services
           app: code-server
 
       - Mealie:
           icon: mealie.png
-          href: https://mealie.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://mealie.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: utility-services
           app: mealie
 
@@ -310,7 +310,7 @@ data:
           widget:
             type: paperlessngx
             url: http://paperless-ngx.utility-services.svc:8085
-            key: ${HOMEPAGE_PAPERLESS_NGX_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_PAPERLESS_NGX_API_KEY}}" }}
 
       - Portainer:
           icon: portainer-alt.png
@@ -321,7 +321,7 @@ data:
             type: portainer
             url: http://192.168.0.150:9000
             env: 2
-            key: ${HOMEPAGE_PORTAINER_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_PORTAINER_API_KEY}}" }}
 
       - Scrutiny:
           icon: scrutiny.png
@@ -334,13 +334,13 @@ data:
 
       - BentoPDF:
           icon: bentopdf.png
-          href: https://pdf.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://pdf.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: utility-services
           app: bentopdf
 
       - Vaultwarden:
           icon: vaultwarden.png
-          href: https://vault.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://vault.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: utility-services
           app: vaultwarden
 
@@ -360,7 +360,7 @@ data:
 
       - open-webui:
           icon: open-webui.svg
-          href: https://ollama.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://ollama.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: ai-services
           app: open-webui
 
@@ -389,7 +389,7 @@ data:
 
       - RomM:
           icon: https://docs.romm.app/latest/resources/romm/isotipo.svg
-          href: https://romm.${HOMEPAGE_PRIMARY_DOMAIN}
+          href: https://romm.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: game-servers
           app: romm
           widget:
@@ -427,7 +427,7 @@ data:
             type: portainer
             url: http://192.168.0.15:9000
             env: 3
-            key: ${HOMEPAGE_MINIPC_PORTAINER_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_MINIPC_PORTAINER_API_KEY}}" }}
 
       - Home Assistant:
           icon: home-assistant.png
@@ -437,7 +437,7 @@ data:
           widget:
             type: homeassistant
             url: http://192.168.0.15:8123
-            key: ${HOMEPAGE_HOME_ASSISTANT_TOKEN}
+            key: {{ "{{HOMEPAGE_VAR_HOME_ASSISTANT_TOKEN}}" }}
 
       - MQTT:
           icon: mqtt.png
@@ -453,8 +453,8 @@ data:
           widget:
             type: omada
             url: https://192.168.0.15:8043
-            username: ${HOMEPAGE_OMADA_USERNAME}
-            password: ${HOMEPAGE_OMADA_PASSWORD}
+            username: {{ "{{HOMEPAGE_VAR_OMADA_USERNAME}}" }}
+            password: {{ "{{HOMEPAGE_VAR_OMADA_PASSWORD}}" }}
             site: Acasă
 
       - Technitium:
@@ -466,7 +466,7 @@ data:
             type: technitium
             fields: ["totalQueries", "totalBlocked", "totalServerFailure"]
             url: http://192.168.0.15:5380
-            key: ${HOMEPAGE_TECHNITIUM_API_KEY}
+            key: {{ "{{HOMEPAGE_VAR_TECHNITIUM_API_KEY}}" }}
             range: LastDay
 
       - Zigbee2MQTT:
