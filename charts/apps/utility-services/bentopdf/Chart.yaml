@@ -1,0 +1,5 @@
+apiVersion: v2
+name: bentopdf
+description: A Helm chart for BentoPDF
+type: application
+version: 0.1.0

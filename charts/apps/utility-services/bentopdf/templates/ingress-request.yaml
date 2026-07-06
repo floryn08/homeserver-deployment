@@ -5,13 +5,15 @@ metadata:
 spec:
   vaultPath: {{ .Values.secrets.domain.path }}
   domainKey: {{ .Values.secrets.domain.key }}
-  serviceName: {{ .Release.Name }}-{{ .Release.Name }}-chart
+  serviceName: {{ .Release.Name }}
   servicePort: http
   subdomain: {{ .Values.host.subdomain }}
   entrypoints:
-    - websecure
+  - websecure
   middlewares:
   - name: bouncer
     namespace: core-services
+  - name: {{ .Release.Name }}
+    namespace: {{ .Values.namespace }}
   tls:
     certResolver: letsencrypt

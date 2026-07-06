@@ -1,0 +1,40 @@
+image: ghcr.io/alam00000/bentopdf-simple:2.8.5
+namespace: utility-services
+
+host:
+  subdomain: pdf
+
+secrets:
+  domain:
+    key: primaryDomain
+    path: kv/data/domains
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8080
+    externalPort: 8080
+    protocol: TCP
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 16Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+
+probes:
+  startup:
+    failureThreshold: 30
+    periodSeconds: 2
+    timeoutSeconds: 2
+  readiness:
+    failureThreshold: 3
+    periodSeconds: 10
+    timeoutSeconds: 2
+  liveness:
+    failureThreshold: 3
+    periodSeconds: 30
+    timeoutSeconds: 2

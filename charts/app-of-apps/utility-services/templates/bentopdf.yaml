@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: stirling-pdf
+  name: bentopdf
   namespace: {{ .Values.argocdNamespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,12 +10,12 @@ spec:
     namespace: {{ .Values.namespace }}
     server: {{ .Values.server }}
   source:
-    path: {{ .Values.stirlingPdf.path }}
+    path: {{ .Values.bentopdf.path }}
     repoURL: {{ .Values.repoUrl }}
     targetRevision: {{ .Values.targetRevision }}
     helm:
       valueFiles:
-        - values.yaml                  
+        - values.yaml
   project: {{ .Values.project }}
   syncPolicy:
     automated:

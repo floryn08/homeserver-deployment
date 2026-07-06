@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+    spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+        ports:
+        {{- range $val := .Values.service.ports }}
+        - name: {{ $val.name }}
+          containerPort: {{ $val.containerPort }}
+          protocol: {{ $val.protocol }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        startupProbe:
+          httpGet:
+            path: /
+            port: http
+          {{- toYaml .Values.probes.startup | nindent 10 }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          {{- toYaml .Values.probes.readiness | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          {{- toYaml .Values.probes.liveness | nindent 10 }}

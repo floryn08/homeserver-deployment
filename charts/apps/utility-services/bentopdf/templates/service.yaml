@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  {{- range $val := .Values.service.ports }}
+  - name: {{ $val.name }}
+    port: {{ $val.externalPort }}
+    targetPort: {{ $val.name }}
+    protocol: {{ $val.protocol }}
+  {{- end }}
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}

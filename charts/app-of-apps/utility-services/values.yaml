@@ -44,8 +44,8 @@ codeServer:
 flaresolverr:
   path: charts/apps/utility-services/flaresolverr
 
-stirlingPdf:
-  path: charts/apps/utility-services/stirling-pdf
+bentopdf:
+  path: charts/apps/utility-services/bentopdf
 
 onlyoffice:
   path: charts/apps/utility-services/onlyoffice
