@@ -17,6 +17,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        reloader.stakater.com/auto: "true"
     spec:
       containers:
       - name: {{ .Release.Name }}
@@ -25,6 +26,27 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-config
+        env:
+        - name: AUTOBRR__OIDC_ISSUER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: AUTOBRR__OIDC_ISSUER
+        - name: AUTOBRR__OIDC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: AUTOBRR__OIDC_CLIENT_ID
+        - name: AUTOBRR__OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: AUTOBRR__OIDC_CLIENT_SECRET
+        - name: AUTOBRR__OIDC_REDIRECT_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: AUTOBRR__OIDC_REDIRECT_URL
         ports:
         {{- range .Values.service.ports }}
         - name: {{ .name }}
