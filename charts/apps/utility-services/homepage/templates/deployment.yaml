@@ -38,6 +38,9 @@ spec:
         hostPath:
           path: /mnt/hdd12tb
           type: Directory
+      - name: services
+        configMap:
+          name: {{ .Release.Name }}-services
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -45,6 +48,112 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
+        env:
+        - name: HOMEPAGE_ARGOCD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_ARGOCD_TOKEN
+        - name: HOMEPAGE_AUTHENTIK_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_AUTHENTIK_TOKEN
+        - name: HOMEPAGE_AUTOBRR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_AUTOBRR_API_KEY
+        - name: HOMEPAGE_BAZARR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_BAZARR_API_KEY
+        - name: HOMEPAGE_IMMICH_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_IMMICH_API_KEY
+        - name: HOMEPAGE_JELLYFIN_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_JELLYFIN_API_KEY
+        - name: HOMEPAGE_PLEX_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_PLEX_TOKEN
+        - name: HOMEPAGE_QBITTORRENT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_QBITTORRENT_USERNAME
+        - name: HOMEPAGE_QBITTORRENT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_QBITTORRENT_PASSWORD
+        - name: HOMEPAGE_RADARR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_RADARR_API_KEY
+        - name: HOMEPAGE_SEERR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_SEERR_API_KEY
+        - name: HOMEPAGE_SONARR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_SONARR_API_KEY
+        - name: HOMEPAGE_TAUTULLI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_TAUTULLI_API_KEY
+        - name: HOMEPAGE_PAPERLESS_NGX_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_PAPERLESS_NGX_API_KEY
+        - name: HOMEPAGE_PORTAINER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_PORTAINER_API_KEY
+        - name: HOMEPAGE_MINIPC_PORTAINER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_MINIPC_PORTAINER_API_KEY
+        - name: HOMEPAGE_HOME_ASSISTANT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_HOME_ASSISTANT_TOKEN
+        - name: HOMEPAGE_OMADA_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_OMADA_USERNAME
+        - name: HOMEPAGE_OMADA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_OMADA_PASSWORD
+        - name: HOMEPAGE_TECHNITIUM_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: HOMEPAGE_TECHNITIUM_API_KEY
+        - name: HOMEPAGE_PRIMARY_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-domains
+              key: HOMEPAGE_PRIMARY_DOMAIN
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
@@ -65,4 +174,8 @@ spec:
           readOnly: true
         - mountPath: /hdd12tb
           name: hdd12tb
+          readOnly: true
+        - mountPath: /app/config/services.yaml
+          name: services
+          subPath: services.yaml
           readOnly: true

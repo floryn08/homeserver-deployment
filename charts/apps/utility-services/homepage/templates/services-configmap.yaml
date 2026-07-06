@@ -1,0 +1,483 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-services
+  namespace: {{ .Values.namespace }}
+data:
+  services.yaml: |
+    # For configuration options and examples, please see:
+    # https://gethomepage.dev/configs/services/
+
+    - Core Services:
+
+      - ArgoCD:
+          icon: argo-cd.png
+          href: http://argocd.home
+          namespace: core-services
+          app: argocd-server
+          widget:
+            type: argocd
+            url: http://argo-cd-argocd-server.core-services.svc
+            key: ${HOMEPAGE_ARGOCD_TOKEN}
+            fields: ["healthy", "progressing", "degraded"]
+
+      - Authentik:
+          icon: authentik.png
+          href: https://auth.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: core-services
+          app: authentik
+          widget:
+            type: authentik
+            url: http://authentik-server.core-services.svc
+            key: ${HOMEPAGE_AUTHENTIK_TOKEN}
+            version: 2
+
+      - Crowdsec:
+          icon: crowdsec.png
+          href: https://app.crowdsec.net/sign-in
+          namespace: core-services
+          app: crowdsec
+    #      widget:
+    #        type: crowdsec
+    #        url: http://crowdsec-service.core-services.svc:8080
+    #        username: ${HOMEPAGE_CROWDSEC_USERNAME}
+    #        password: ${HOMEPAGE_CROWDSEC_PASSWORD}
+    #        limit24h: true
+
+      - ddclient:
+          namespace: core-services
+          app: ddclient
+          icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/ddclient.png
+
+      - Pgadmin:
+          icon: pgadmin.png
+          href: http://192.168.0.150:5050
+          namespace: core-services
+          app: pgadmin
+
+      - Postgresql:
+          icon: postgres.png
+          href: http://192.168.0.150:5050
+          namespace: core-services
+          app: postgresql
+
+      - Traefik:
+          icon: traefik.png
+          href: http://192.168.0.150:8082/dashboard/
+          namespace: core-services
+          app: traefik
+          widget:
+            type: traefik
+            url: http://traefik.core-services.svc:8082
+
+      - UptimeKuma:
+          icon: uptime-kuma.png
+          href: https://kuma.${HOMEPAGE_PRIMARY_DOMAIN}/dashboard
+          widget:
+            type: uptimekuma
+            url: https://kuma.${HOMEPAGE_PRIMARY_DOMAIN}
+            slug: server
+
+      - Vault:
+          icon: vault.png
+          href: http://192.168.0.150:8200
+          namespace: core-services
+          app: vault
+
+
+    - Media Management:
+
+      - Agregarr:
+          icon: agregarr.png
+          href: http://agregarr.home
+          namespace: media-management
+          app: agregarr
+
+      - Autobrr:
+          icon: autobrr.png
+          href: http://autobrr.home/
+          namespace: media-management
+          app: autobrr
+          widget:
+            type: autobrr
+            url: http://autobrr.media-management.svc:7474
+            key: ${HOMEPAGE_AUTOBRR_API_KEY}
+
+      - Bazarr:
+          icon: bazarr.png
+          href: http://bazarr.home
+          namespace: media-management
+          app: bazarr
+          widget:
+            type: bazarr
+            url: http://bazarr.media-management.svc:6767
+            key: ${HOMEPAGE_BAZARR_API_KEY}
+
+      - Immich:
+          icon: immich.png
+          href: https://immich.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: media-management
+          app: server
+          widget:
+            type: immich
+            url: https://immich.${HOMEPAGE_PRIMARY_DOMAIN}
+            key: ${HOMEPAGE_IMMICH_API_KEY}
+            version: 2
+
+      - Jellyfin:
+          icon: jellyfin.png
+          href: https://jellyfin.home
+          namespace: media-management
+          app: jellyfin
+          widget:
+            type: jellyfin
+            url: http://jellyfin.media-management.svc:8096
+            key: ${HOMEPAGE_JELLYFIN_API_KEY}
+            enableBlocks: true
+            enableNowOPlaying: true
+            fields: ["movies", "series", "episodes"]
+
+      - Jellystat:
+          icon: jellystat.svg
+          href: http://jellystat.home
+          namespace: media-management
+          app: jellystat
+
+      - Lingarr:
+          icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/lingarr.png
+          href: http://lingarr.home
+          namespace: media-management
+          app: lingarr
+
+      - Maintainerr:
+          icon: maintainerr.png
+          href: http://maintainerr.home
+          namespace: media-management
+          app: maintainerr
+
+      - PastaTool:
+          icon: pastatool.png
+          href: https://pastatool.com
+
+      - Plex:
+          icon: plex.png
+          href: http://plex.home
+          namespace: media-management
+          app: plex
+          widget:
+            type: plex
+            url: http://plex.media-management.svc:32400
+            key: ${HOMEPAGE_PLEX_TOKEN}
+            fields: ["streams", "movies", "tv"]
+
+      - Profilarr:
+          icon: profilarr.png
+          href: http://profilarr.home
+          namespace: media-management
+          app: profilarr
+
+      - Prowlarr:
+          icon: prowlarr.png
+          href: http://prowlarr.home
+          namespace: media-management
+          app: prowlarr
+
+      - Qbittorrent:
+          icon: qbittorrent.png
+          href: https://qbittorrent.home
+          namespace: media-management
+          app: qbittorrent
+          widget:
+            type: qbittorrent
+            url: http://qbittorrent.media-management.svc:8383
+            username: ${HOMEPAGE_QBITTORRENT_USERNAME}
+            password: ${HOMEPAGE_QBITTORRENT_PASSWORD}
+
+      - Qui:
+          icon: qui.png
+          href: http://qui.home/
+          namespace: media-management
+          app: qui
+
+      - Radarr:
+          icon: radarr.png
+          href: http://radarr.home
+          namespace: media-management
+          app: radarr
+          widget:
+            type: radarr
+            url: http://radarr.media-management.svc:7878
+            key: ${HOMEPAGE_RADARR_API_KEY}
+
+      - Seerr:
+          icon: seerr.png
+          href: https://seerr.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: media-management
+          app: seerr
+          widget:
+            type: jellyseerr
+            url: https://seerr.${HOMEPAGE_PRIMARY_DOMAIN}
+            key: ${HOMEPAGE_SEERR_API_KEY}
+
+      - Sonarr:
+          icon: sonarr.png
+          href: http://sonarr.home
+          namespace: media-management
+          app: sonarr
+          widget:
+            type: sonarr
+            url: http://sonarr.media-management.svc:8989
+            key: ${HOMEPAGE_SONARR_API_KEY}
+
+      - Tautulli:
+          icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/tautulli-icon.png
+          href: http://tautulli.home
+          namespace: media-management
+          app: tautulli
+          widget:
+            type: tautulli
+            url: http://tautulli.media-management.svc:8181
+            key: ${HOMEPAGE_TAUTULLI_API_KEY}
+            enableUser: true
+            showEpisodeNumber: true
+            expandOneStreamToTwoRows: false
+
+      - Watchstate:
+          icon: https://raw.githubusercontent.com/arabcoders/watchstate/refs/heads/master/frontend/public/favicon.ico
+          href: http://watchstate.home
+          namespace: media-management
+          app: watchstate
+
+      - Wizarr:
+          icon: wizarr.png
+          href: https://wizarr.${HOMEPAGE_PRIMARY_DOMAIN}/
+          namespace: media-management
+          app: wizarr
+
+
+    - Utility Services:
+
+      - Changedetection.io:
+          icon: changedetection.png
+          href: http://changedetection.home
+          namespace: utility-services
+          app: changedetection
+
+      - Chrome:
+          icon: chrome.png
+          namespace: utility-services
+          app: changedetection-chrome
+
+      - CodeServer:
+          icon: code-server.png
+          href: https://code.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: utility-services
+          app: code-server
+
+      - Mealie:
+          icon: mealie.png
+          href: https://mealie.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: utility-services
+          app: mealie
+
+      - Netronome:
+          icon: netronome.png
+          href: http://netronome.home/
+          namespace: utility-services
+          app: netronome
+
+      - ntfy:
+          icon: ntfy.svg
+          href: http://ntfy.home
+          namespace: utility-services
+          app: ntfy
+          widget:
+            type: ntfy
+            url: http://ntfy.utility-services.svc
+            topic: sonarr
+
+      - PaperlessAI:
+          icon: paperless-ai.webp
+          href: http://paperless-ai.home
+          namespace: utility-services
+          app: paperless-ai
+
+      - PaperlessNgx:
+          icon: paperless-ngx.png
+          href: http://paperless-ngx.home
+          namespace: utility-services
+          app: paperless-ngx
+          widget:
+            type: paperlessngx
+            url: http://paperless-ngx.utility-services.svc:8085
+            key: ${HOMEPAGE_PAPERLESS_NGX_API_KEY}
+
+      - Portainer:
+          icon: portainer-alt.png
+          href: http://192.168.0.150:9000
+          namespace: utility-services
+          app: portainer
+          widget:
+            type: portainer
+            url: http://192.168.0.150:9000
+            env: 2
+            key: ${HOMEPAGE_PORTAINER_API_KEY}
+
+      - Scrutiny:
+          icon: scrutiny.png
+          href: http://scrutiny.home
+          namespace: utility-services
+          app: scrutiny
+          widget:
+            type: scrutiny
+            url: http://scrutiny.utility-services.svc:8083
+
+      - BentoPDF:
+          icon: bentopdf.png
+          href: https://pdf.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: utility-services
+          app: bentopdf
+
+      - Vaultwarden:
+          icon: vaultwarden.png
+          href: https://vault.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: utility-services
+          app: vaultwarden
+
+      - Wiki.js:
+          icon: wikijs.png
+          href: https://wiki.home/
+          namespace: utility-services
+          app: wikijs
+
+
+    - AI Services:
+
+      - Ollama:
+          icon: ollama-dark.svg
+          namespace: ai-services
+          app: ollama
+
+      - open-webui:
+          icon: open-webui.svg
+          href: https://ollama.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: ai-services
+          app: open-webui
+
+      - Odysseus:
+          icon: odysseus.svg
+          href: http://odysseus.home
+          namespace: ai-services
+          app: odysseus
+
+    - Game Servers:
+
+      - Minecraft:
+          icon: minecraft.png
+          namespace: game-servers
+          app: minecraft
+
+      - Valheim:
+          icon: https://pbs.twimg.com/profile_images/1355087978033504259/ghm06InW_400x400.png
+          namespace: game-servers
+          app: valheim
+
+      - Valheim Discord Bot:
+          icon: https://pbs.twimg.com/profile_images/1355087978033504259/ghm06InW_400x400.png
+          namespace: game-servers
+          app: valheim-discord-bot
+
+      - RomM:
+          icon: https://docs.romm.app/latest/resources/romm/isotipo.svg
+          href: https://romm.${HOMEPAGE_PRIMARY_DOMAIN}
+          namespace: game-servers
+          app: romm
+          widget:
+            type: romm
+            url: http://romm.game-servers.svc:8080
+            fields: ["platforms", "totalRoms", "saves", "states"]
+
+      - Terraria:
+          icon: terraria.png
+          namespace: game-servers
+          app: terraria
+
+    - Monitoring:
+
+      - Grafana:
+          icon: grafana.png
+          href: http://grafana.home
+          namespace: monitoring
+          app: grafana
+
+      - VictoriaMetrics:
+          icon: victoriametrics.png
+          href: http://metrics.home
+          namespace: monitoring
+          app: victoria-metrics-single
+
+    - Mini PC Services:
+
+      - Portainer Mini PC:
+          icon: portainer-alt.png
+          href: http://192.168.0.15:9000
+          server: minipc-docker
+          container: portainer
+          widget:
+            type: portainer
+            url: http://192.168.0.15:9000
+            env: 3
+            key: ${HOMEPAGE_MINIPC_PORTAINER_API_KEY}
+
+      - Home Assistant:
+          icon: home-assistant.png
+          href: http://192.168.0.15:8123
+          server: minipc-docker
+          container: home-assistant
+          widget:
+            type: homeassistant
+            url: http://192.168.0.15:8123
+            key: ${HOMEPAGE_HOME_ASSISTANT_TOKEN}
+
+      - MQTT:
+          icon: mqtt.png
+          href: http://192.168.0.15:9001
+          server: minipc-docker
+          container: mqtt
+
+      - Omada:
+          icon: https://omada.tplinkcloud.com/favicon.ico?v=2
+          href: http://192.168.0.15:8088
+          server: minipc-docker
+          container: omada
+          widget:
+            type: omada
+            url: https://192.168.0.15:8043
+            username: ${HOMEPAGE_OMADA_USERNAME}
+            password: ${HOMEPAGE_OMADA_PASSWORD}
+            site: Acasă
+
+      - Technitium:
+          icon: technitium.png
+          href: http://192.168.0.15:5380
+          server: minipc-docker
+          container: technitium
+          widget:
+            type: technitium
+            fields: ["totalQueries", "totalBlocked", "totalServerFailure"]
+            url: http://192.168.0.15:5380
+            key: ${HOMEPAGE_TECHNITIUM_API_KEY}
+            range: LastDay
+
+      - Zigbee2MQTT:
+          icon: zigbee2mqtt.png
+          href: http://192.168.0.15:8080
+          server: minipc-docker
+          container: zigbee2mqtt
+
+      - ESPHome:
+          icon: esphome.png
+          href: http://192.168.0.15:6052
+          server: minipc-docker
+          container: esphome
+

@@ -20,9 +20,6 @@ netronome:
 vaultwarden:
   path: charts/apps/utility-services/vaultwarden
 
-wireguard:
-  path: charts/apps/utility-services/wireguard
-
 paperlessNgx:
   path: charts/apps/utility-services/paperless-ngx
 
@@ -46,9 +43,6 @@ flaresolverr:
 
 bentopdf:
   path: charts/apps/utility-services/bentopdf
-
-onlyoffice:
-  path: charts/apps/utility-services/onlyoffice
 
 wikijs:
   path: charts/apps/utility-services/wikijs
