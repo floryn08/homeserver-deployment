@@ -22,10 +22,17 @@ crowdsec:
     env:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik firix/authentik crowdsecurity/plex"
-      - name: CROWDSEC_BYPASS_DB_VOLUME_CHECK 
+      - name: CROWDSEC_BYPASS_DB_VOLUME_CHECK
         value: "true"
   lapi:
     env:
+      # postgres config
+      - name: DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec
+            key: DB_PASSWORD
+
       # To enroll the Security Engine to the console
       - name: ENROLL_KEY
         valueFrom:
@@ -73,3 +80,11 @@ crowdsec:
             allowed_ranges:
               - "127.0.0.1/32"
               - "10.0.0.0/8"
+      db_config:
+        type: postgresql
+        user: crowdsec
+        password: "${DB_PASSWORD}"
+        db_name: crowdsec
+        host: postgresql.core-services.svc
+        port: 5432
+        sslmode: disable
