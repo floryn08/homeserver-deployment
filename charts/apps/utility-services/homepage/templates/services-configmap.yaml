@@ -34,7 +34,7 @@ data:
 
       - Crowdsec:
           icon: crowdsec.png
-          href: https://app.crowdsec.net/sign-in
+          href: https://crowdsec.home
           namespace: core-services
           app: crowdsec
     #      widget:
