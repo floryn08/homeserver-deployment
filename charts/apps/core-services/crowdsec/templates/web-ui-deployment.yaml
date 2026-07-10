@@ -17,8 +17,6 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}-web-ui
-      annotations:
-        reloader.stakater.com/auto: "true"
     spec:
       securityContext:
         fsGroup: 1000

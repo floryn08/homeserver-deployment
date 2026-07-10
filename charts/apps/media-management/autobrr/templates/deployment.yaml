@@ -17,7 +17,6 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-        reloader.stakater.com/auto: "true"
     spec:
       containers:
       - name: {{ .Release.Name }}

@@ -32,11 +32,11 @@ data:
             key: {{ "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}" }}
             version: 2
 
-      - Crowdsec:
+      - CrowdSec Web UI:
           icon: crowdsec.png
           href: https://crowdsec.home
           namespace: core-services
-          app: crowdsec
+          app: crowdsec-web-ui
     #      widget:
     #        type: crowdsec
     #        url: http://crowdsec-service.core-services.svc:8080
