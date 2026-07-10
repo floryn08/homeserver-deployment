@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-web-ui
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}-web-ui
+spec:
+  storageClassName: manual
+  capacity:
+    storage: {{ .Values.webUi.storage.size }}
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: {{ .Values.webUi.storage.hostPath }}
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-web-ui
+  namespace: {{ .Values.webUi.namespace }}
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.webUi.storage.size }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}-web-ui

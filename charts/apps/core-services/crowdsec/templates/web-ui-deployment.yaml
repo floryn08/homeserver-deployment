@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-web-ui
+  namespace: {{ .Values.webUi.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}-web-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}-web-ui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}-web-ui
+      annotations:
+        reloader.stakater.com/auto: "true"
+    spec:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: web-ui
+        image: {{ .Values.webUi.image }}
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: AUTH_ENABLED
+          value: "true"
+        - name: CROWDSEC_URL
+          value: {{ .Values.webUi.crowdsec.url | quote }}
+        - name: CROWDSEC_USER
+          value: {{ .Values.webUi.crowdsec.user | quote }}
+        - name: CROWDSEC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: {{ .Values.webUi.crowdsec.passwordKey }}
+        - name: TZ
+          value: {{ .Values.webUi.timezone | quote }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.webUi.service.port }}
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 15
+          periodSeconds: 30
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            memory: 256Mi
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-web-ui

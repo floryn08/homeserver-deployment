@@ -33,6 +33,12 @@ crowdsec:
             name: crowdsec
             key: DB_PASSWORD
 
+      - name: CROWDSEC_WEB_UI_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec
+            key: CROWDSEC_WEB_UI_PASSWORD
+
       # To enroll the Security Engine to the console
       - name: ENROLL_KEY
         valueFrom:
@@ -88,3 +94,23 @@ crowdsec:
         host: postgresql.core-services.svc
         port: 5432
         sslmode: disable
+
+webUi:
+  image: ghcr.io/theduffman85/crowdsec-web-ui:2026.7.6
+  namespace: core-services
+  timezone: Europe/Bucharest
+  host:
+    subdomain: crowdsec
+  secrets:
+    domain:
+      key: homeDomain
+      path: kv/data/domains
+  crowdsec:
+    url: http://crowdsec-service:8080
+    user: crowdsec-web-ui
+    passwordKey: CROWDSEC_WEB_UI_PASSWORD
+  storage:
+    hostPath: /srv/appdata/core-services/crowdsec-web-ui
+    size: 1Gi
+  service:
+    port: 3000

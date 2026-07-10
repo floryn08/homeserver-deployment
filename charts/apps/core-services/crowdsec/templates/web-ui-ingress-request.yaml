@@ -1,0 +1,15 @@
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}-web-ui
+  namespace: {{ .Values.webUi.namespace }}
+spec:
+  vaultPath: {{ .Values.webUi.secrets.domain.path }}
+  domainKey: {{ .Values.webUi.secrets.domain.key }}
+  serviceName: {{ .Release.Name }}-web-ui
+  servicePort: http
+  subdomain: {{ .Values.webUi.host.subdomain }}
+  entrypoints:
+  - websecure
+  tls:
+    secretName: {{ .Release.Name }}-web-ui-certificate-secret

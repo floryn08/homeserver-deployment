@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-web-ui
+  namespace: {{ .Values.webUi.namespace }}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: {{ .Release.Name }}-web-ui
+  ports:
+  - name: http
+    port: {{ .Values.webUi.service.port }}
+    targetPort: http
+    protocol: TCP
