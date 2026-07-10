@@ -30,6 +30,27 @@ spec:
         env:
         - name: AUTH_ENABLED
           value: "true"
+        - name: CROWDSEC_AUTH_OIDC_ISSUER_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-web-ui-oidc
+              key: CROWDSEC_AUTH_OIDC_ISSUER_URL
+        - name: CROWDSEC_AUTH_OIDC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-web-ui-oidc
+              key: CROWDSEC_AUTH_OIDC_CLIENT_ID
+        - name: CROWDSEC_AUTH_OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-web-ui-oidc
+              key: CROWDSEC_AUTH_OIDC_CLIENT_SECRET
+        - name: CROWDSEC_AUTH_OIDC_ADMIN_GROUPS
+          value: {{ .Values.webUi.oidc.adminGroups | quote }}
+        - name: CROWDSEC_AUTH_OIDC_READ_ONLY_GROUPS
+          value: {{ .Values.webUi.oidc.readOnlyGroups | quote }}
+        - name: CROWDSEC_AUTH_OIDC_UNMATCHED_ROLE
+          value: "deny"
         - name: CROWDSEC_URL
           value: {{ .Values.webUi.crowdsec.url | quote }}
         - name: CROWDSEC_USER

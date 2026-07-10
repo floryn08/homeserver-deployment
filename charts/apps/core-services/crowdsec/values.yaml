@@ -19,6 +19,11 @@ crowdsec:
         podName: authentik-server*
         # as in crowdsec configuration, we need to specify the program name to find a matching parser
         program: authentik
+      - namespace: media-management
+        # The pod name
+        podName: plex-*
+        # as in crowdsec configuration, we need to specify the program name to find a matching parser
+        program: plex
     env:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik firix/authentik crowdsecurity/plex"
@@ -109,6 +114,9 @@ webUi:
     url: http://crowdsec-service:8080
     user: crowdsec-web-ui
     passwordKey: CROWDSEC_WEB_UI_PASSWORD
+  oidc:
+    adminGroups: crowdsec-admins
+    readOnlyGroups: crowdsec-viewers
   storage:
     hostPath: /srv/appdata/core-services/crowdsec-web-ui
     size: 1Gi
