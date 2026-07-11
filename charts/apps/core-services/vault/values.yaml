@@ -3,7 +3,7 @@ vaultDataPath: /srv/appdata/core-services/vault/data
 backup:
   enabled: true
   resticImage: restic/restic:0.19.1
-  rcloneImage: rclone/rclone:1.74.3
+  rcloneImage: rclone/rclone:1.74.4
 
 vault:
   global:
