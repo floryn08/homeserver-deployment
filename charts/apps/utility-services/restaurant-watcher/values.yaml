@@ -3,7 +3,7 @@ restaurant-watcher:
 
   image:
     repository: ghcr.io/floryn08/restaurant-watcher
-    tag: "1.2.1"
+    tag: "1.2.2"
     pullPolicy: IfNotPresent
 
   schedule: "0 4 * * 1"
