@@ -5,7 +5,7 @@ backup:
   enabled: true
   postgresImage: postgres:18.4-alpine
   resticImage: restic/restic:0.19.1
-  rcloneImage: rclone/rclone:1.74.3
+  rcloneImage: rclone/rclone:1.74.4
 
 postgresql:
   image:
