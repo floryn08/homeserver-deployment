@@ -29,6 +29,8 @@ services:
       - "8123:8123"
     volumes:
       - /srv/appdata/home-assistant:/config
+    dns:
+      - 172.17.0.1
     networks:
       - homeserver
     privileged: true
