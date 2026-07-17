@@ -1,0 +1,106 @@
+{{- $applications := list (dict "name" "MQTT" "selector" "mqtt") (dict "name" "Home Assistant" "selector" "home-assistant") (dict "name" "Zigbee2MQTT" "selector" "zigbee2mqtt") (dict "name" "Technitium" "selector" "technitium") (dict "name" "Omada" "selector" "omada") (dict "name" "ESPHome" "selector" "esphome") -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-compose-services
+  namespace: {{ .Values.namespace }}
+  labels:
+    grafana_dashboard: "1"
+data:
+  compose-services.json: |
+    {
+      "annotations": {"list": []},
+      "description": "CPU, memory, network, and running replica count for the Docker Compose application services on the mini PC, collected by cAdvisor.",
+      "editable": true,
+      "graphTooltip": 1,
+      "links": [],
+      "panels": [
+        {{- range $index, $application := $applications }}
+        {{- if $index }},{{ end }}
+        {
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": {{ mul $index 9 }}},
+          "id": {{ add (mul $index 5) 1 }},
+          "title": "{{ $application.name }}",
+          "type": "row"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false}, "min": 0, "unit": "cores"}, "overrides": []},
+          "gridPos": {"h": 8, "w": 6, "x": 0, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 2 }},
+          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (name) (rate(container_cpu_usage_seconds_total{job=\"cadvisor\",container_label_com_docker_compose_service=\"{{ $application.selector }}\",image!=\"\"}[2m]))",
+            "legendFormat": "{{ "{{name}}" }}",
+            "refId": "A"
+          }],
+          "title": "CPU Usage",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false}, "min": 0, "unit": "bytes"}, "overrides": []},
+          "gridPos": {"h": 8, "w": 6, "x": 6, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 3 }},
+          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum by (name) (container_memory_working_set_bytes{job=\"cadvisor\",container_label_com_docker_compose_service=\"{{ $application.selector }}\",image!=\"\"})",
+            "legendFormat": "{{ "{{name}}" }}",
+            "refId": "A"
+          }],
+          "title": "Memory Usage",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "custom": {"lineWidth": 2, "fillOpacity": 5, "spanNulls": false}, "min": 0, "unit": "Bps"}, "overrides": []},
+          "gridPos": {"h": 8, "w": 6, "x": 12, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 4 }},
+          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
+          "targets": [
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum by (name) (rate(container_network_receive_bytes_total{job=\"cadvisor\",container_label_com_docker_compose_service=\"{{ $application.selector }}\"}[2m]))",
+              "legendFormat": "{{ "{{name}}" }} RX",
+              "refId": "A"
+            },
+            {
+              "datasource": {"type": "prometheus", "uid": "${datasource}"},
+              "expr": "sum by (name) (rate(container_network_transmit_bytes_total{job=\"cadvisor\",container_label_com_docker_compose_service=\"{{ $application.selector }}\"}[2m]))",
+              "legendFormat": "{{ "{{name}}" }} TX",
+              "refId": "B"
+            }
+          ],
+          "title": "Network",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "custom": {"lineWidth": 2, "fillOpacity": 10, "spanNulls": false}, "min": 0, "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}, "unit": "short"}, "overrides": []},
+          "gridPos": {"h": 8, "w": 6, "x": 18, "y": {{ add (mul $index 9) 1 }}},
+          "id": {{ add (mul $index 5) 5 }},
+          "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}},
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "sum(time() - container_last_seen{job=\"cadvisor\",container_label_com_docker_compose_service=\"{{ $application.selector }}\"} < bool 90)",
+            "legendFormat": "Running replicas",
+            "refId": "A"
+          }],
+          "title": "Running Replicas",
+          "type": "timeseries"
+        }
+        {{- end }}
+      ],
+      "schemaVersion": 38,
+      "tags": ["docker", "compose", "cadvisor"],
+      "templating": {"list": [{"current": {}, "hide": 0, "includeAll": false, "multi": false, "name": "datasource", "options": [], "query": "prometheus", "refresh": 1, "type": "datasource"}]},
+      "time": {"from": "now-1h", "to": "now"},
+      "timepicker": {},
+      "timezone": "browser",
+      "title": "Docker Compose Services",
+      "uid": "docker-compose-services",
+      "version": 1
+    }

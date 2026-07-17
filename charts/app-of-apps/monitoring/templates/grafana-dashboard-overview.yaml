@@ -1,5 +1,6 @@
 {{- $namespaces := list "ai-services" "core-services" "game-servers" "home-automation" "media-management" "monitoring" "utility-services" -}}
 {{- $namespaceRegex := join "|" $namespaces -}}
+{{- $composeServiceRegex := "mqtt|home-assistant|zigbee2mqtt|technitium|omada|esphome" -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -11,7 +12,7 @@ data:
   namespace-overview.json: |
     {
       "annotations": {"list": []},
-      "description": "Health summary and resource comparison for app-of-apps namespaces",
+      "description": "Health summary and resource comparison for Kubernetes namespaces and the mini PC Docker Compose services",
       "editable": true,
       "graphTooltip": 1,
       "links": [],
@@ -440,10 +441,74 @@ data:
             }
           }],
           "type": "table"
+        },
+        {
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 26},
+          "id": 30,
+          "title": "Docker Compose on Mini PC",
+          "type": "row"
+        },
+        {
+          "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "decimals": 0, "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}, "unit": "short"}, "overrides": []},
+          "gridPos": {"h": 6, "w": 4, "x": 0, "y": 27},
+          "id": 31,
+          "options": {"colorMode": "background", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+          "targets": [{"expr": "max(up{job=\"cadvisor\"}) or vector(0)", "legendFormat": "cAdvisor", "refId": "A"}],
+          "title": "cAdvisor Scrape",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "decimals": 0, "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}, "unit": "short"}, "overrides": []},
+          "gridPos": {"h": 6, "w": 4, "x": 4, "y": 27},
+          "id": 32,
+          "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+          "targets": [{"expr": "count(sum by (container_label_com_docker_compose_service) (time() - container_last_seen{job=\"cadvisor\",container_label_com_docker_compose_service=~\"{{ $composeServiceRegex }}\"} < bool 90))", "legendFormat": "Services", "refId": "A"}],
+          "title": "Services Running",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "decimals": 0, "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}, "unit": "short"}, "overrides": []},
+          "gridPos": {"h": 6, "w": 4, "x": 8, "y": 27},
+          "id": 33,
+          "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+          "targets": [{"expr": "sum(time() - container_last_seen{job=\"cadvisor\",container_label_com_docker_compose_service=~\"{{ $composeServiceRegex }}\"} < bool 90)", "legendFormat": "Containers", "refId": "A"}],
+          "title": "Running Containers",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "decimals": 2, "min": 0, "unit": "cores"}, "overrides": []},
+          "gridPos": {"h": 6, "w": 4, "x": 12, "y": 27},
+          "id": 34,
+          "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+          "targets": [{"expr": "sum(rate(container_cpu_usage_seconds_total{job=\"cadvisor\",container_label_com_docker_compose_service=~\"{{ $composeServiceRegex }}\",image!=\"\"}[2m]))", "legendFormat": "CPU", "refId": "A"}],
+          "title": "CPU Usage",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "min": 0, "unit": "bytes"}, "overrides": []},
+          "gridPos": {"h": 6, "w": 4, "x": 16, "y": 27},
+          "id": 35,
+          "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+          "targets": [{"expr": "sum(container_memory_working_set_bytes{job=\"cadvisor\",container_label_com_docker_compose_service=~\"{{ $composeServiceRegex }}\",image!=\"\"})", "legendFormat": "Memory", "refId": "A"}],
+          "title": "Memory Usage",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "min": 0, "unit": "Bps"}, "overrides": []},
+          "gridPos": {"h": 6, "w": 4, "x": 20, "y": 27},
+          "id": 36,
+          "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+          "targets": [
+            {"expr": "sum(rate(container_network_receive_bytes_total{job=\"cadvisor\",container_label_com_docker_compose_service=~\"{{ $composeServiceRegex }}\"}[2m]))", "legendFormat": "RX", "refId": "A"},
+            {"expr": "sum(rate(container_network_transmit_bytes_total{job=\"cadvisor\",container_label_com_docker_compose_service=~\"{{ $composeServiceRegex }}\"}[2m]))", "legendFormat": "TX", "refId": "B"}
+          ],
+          "title": "Network Throughput",
+          "type": "stat"
         }
       ],
       "schemaVersion": 38,
-      "tags": ["overview", "kubernetes"],
+      "tags": ["overview", "kubernetes", "docker", "compose"],
       "templating": {
         "list": [{
           "current": {},
@@ -460,7 +525,7 @@ data:
       "time": {"from": "now-1h", "to": "now"},
       "timepicker": {},
       "timezone": "browser",
-      "title": "Namespace Overview",
+      "title": "Infrastructure Overview",
       "uid": "namespace-overview",
       "version": 1
     }
