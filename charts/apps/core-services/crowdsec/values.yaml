@@ -14,16 +14,22 @@ crowdsec:
         podName: traefik-*
         # as in crowdsec configuration, we need to specify the program name to find a matching parser
         program: traefik
+        # Container log paths are symlinks; poll them so rotation is detected.
+        poll_without_inotify: true
       - namespace: core-services
         # The pod name
         podName: authentik-server*
         # as in crowdsec configuration, we need to specify the program name to find a matching parser
         program: authentik
+        # Container log paths are symlinks; poll them so rotation is detected.
+        poll_without_inotify: true
       - namespace: media-management
         # The pod name
         podName: plex-*
         # as in crowdsec configuration, we need to specify the program name to find a matching parser
         program: plex
+        # Container log paths are symlinks; poll them so rotation is detected.
+        poll_without_inotify: true
     env:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik firix/authentik crowdsecurity/plex"
