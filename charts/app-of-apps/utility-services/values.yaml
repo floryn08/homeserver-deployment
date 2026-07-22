@@ -41,6 +41,9 @@ codeServer:
 trawl:
   path: charts/apps/utility-services/trawl
 
+flaresolverr:
+  path: charts/apps/utility-services/flaresolverr
+
 bentopdf:
   path: charts/apps/utility-services/bentopdf
 
