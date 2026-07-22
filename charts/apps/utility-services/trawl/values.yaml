@@ -9,3 +9,4 @@ valkey:
   dataStorage:
     enabled: false
   auth:
+    enabled: false
