@@ -1,0 +1,11 @@
+image: ghcr.io/germondai/trawl:1.0.1
+namespace: utility-services
+
+service:
+  type: ClusterIP
+  port: 8191
+
+valkey:
+  dataStorage:
+    enabled: false
+  auth:

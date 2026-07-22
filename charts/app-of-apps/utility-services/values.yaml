@@ -38,8 +38,8 @@ scrutiny:
 codeServer:
   path: charts/apps/utility-services/code-server
 
-flaresolverr:
-  path: charts/apps/utility-services/flaresolverr
+trawl:
+  path: charts/apps/utility-services/trawl
 
 bentopdf:
   path: charts/apps/utility-services/bentopdf

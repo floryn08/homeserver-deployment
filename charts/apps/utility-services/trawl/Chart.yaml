@@ -1,0 +1,9 @@
+apiVersion: v2
+name: trawl
+description: FlareSolverr-compatible web scraping engine
+type: application
+version: 0.1.0
+dependencies:
+- name: valkey
+  version: 0.10.0
+  repository: https://valkey-io.github.io/valkey-helm/

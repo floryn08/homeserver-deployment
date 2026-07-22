@@ -6,11 +6,11 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ .Release.Name }}
 spec:
+  replicas: 1
+  revisionHistoryLimit: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ .Release.Name }}
-  replicas: 1
-  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
@@ -18,6 +18,11 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -26,15 +31,29 @@ spec:
         - configMapRef:
             name: {{ .Release.Name }}
         ports:
-        {{- range $key, $val := $.Values.ports }}
-        - containerPort: {{ $val.containerPort }}
-          name: {{ $val.name }}-port
-          protocol: {{ $val.protocol }}
-        {{ end -}}
+        - name: http
+          containerPort: 8191
+          protocol: TCP
+        volumeMounts:
+        - name: dshm
+          mountPath: /dev/shm
+        startupProbe:
+          httpGet:
+            path: /health
+            port: http
+          failureThreshold: 12
+          periodSeconds: 10
+          timeoutSeconds: 5
         livenessProbe:
           httpGet:
             path: /health
-            port: 8191
-          failureThreshold: 5
+            port: http
+          failureThreshold: 3
+          periodSeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http
           periodSeconds: 10
           timeoutSeconds: 5

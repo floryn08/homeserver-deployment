@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  BROWSER_POOL_SIZE: "3"
+  PORT: "8191"
+  REDIS_URL: redis://{{ .Release.Name }}-valkey.{{ .Values.namespace }}.svc:6379
+  SESSION_TTL_SECONDS: "3600"
