@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2026.7.2
+    image: ghcr.io/home-assistant/home-assistant:2026.7.3
     container_name: home-assistant
     restart: unless-stopped
     environment:
@@ -67,7 +67,7 @@ services:
       - homeserver
 
   omada:
-    image: mbentley/omada-controller:6.2.10.17
+    image: mbentley/omada-controller:6.2.14.11
     container_name: omada
     restart: unless-stopped
     network_mode: host
@@ -103,7 +103,7 @@ services:
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
   esphome:
-    image: ghcr.io/esphome/esphome:2026.7.0
+    image: ghcr.io/esphome/esphome:2026.7.1
     container_name: esphome
     restart: unless-stopped
     network_mode: host
