@@ -5,5 +5,5 @@ type: application
 version: 0.1.0
 dependencies:
 - name: valkey
-  version: 0.10.0
+  version: 0.11.0
   repository: https://valkey-io.github.io/valkey-helm/
