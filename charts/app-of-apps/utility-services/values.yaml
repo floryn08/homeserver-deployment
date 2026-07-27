@@ -38,9 +38,6 @@ scrutiny:
 codeServer:
   path: charts/apps/utility-services/code-server
 
-trawl:
-  path: charts/apps/utility-services/trawl
-
 flaresolverr:
   path: charts/apps/utility-services/flaresolverr
 
