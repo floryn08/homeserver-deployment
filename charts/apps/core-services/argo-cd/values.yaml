@@ -1,6 +1,12 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 namespace: &namespace core-services
 
+valkey:
+  dataStorage:
+    enabled: false
+  auth:
+    enabled: false
+
 host:
   subdomain: argocd
 
@@ -89,6 +95,13 @@ argo-cd:
 
   dex:
     enabled: false
+
+  redis:
+    enabled: false
+
+  externalRedis:
+    host: argo-cd-valkey
+    port: 6379
 
   server:
     service:
