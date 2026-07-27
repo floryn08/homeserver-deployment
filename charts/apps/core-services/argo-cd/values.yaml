@@ -69,20 +69,15 @@ argo-cd:
           - BackgroundScanReport
           - ClusterBackgroundScanReport
           - UpdateRequest
-      dex.config: |
-        connectors:
-        - config: 
-            issuer: $argo-cd-vault:dex.authentik.issuer
-            clientID: $argo-cd-vault:dex.authentik.clientId
-            clientSecret: $argo-cd-vault:dex.authentik.clientSecret
-            insecureEnableGroups: true
-            scopes:
-              - openid
-              - profile
-              - email
-          name: authentik
-          type: oidc
-          id: authentik
+      oidc.config: |
+        name: Authentik
+        issuer: $argo-cd-vault:dex.authentik.issuer
+        clientID: $argo-cd-vault:dex.authentik.clientId
+        clientSecret: $argo-cd-vault:dex.authentik.clientSecret
+        requestedScopes: ["openid", "profile", "email", "groups"]
+        requestedIDTokenClaims: {"groups": {"essential": true}}
+        enableUserInfoGroups: true
+        userInfoCacheExpiration: "5m"
 
     params:
       application.namespaces: "*"
@@ -92,8 +87,8 @@ argo-cd:
         g, ArgoCD Viewers, role:readonly
         g, readonly, role:readonly
 
-  dex: 
-    enabled: true
+  dex:
+    enabled: false
 
   server:
     service:
