@@ -121,4 +121,4 @@ traefik:
     plugins:
       bouncer:
         moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
-        version: v1.6.0
+        version: v1.7.0
