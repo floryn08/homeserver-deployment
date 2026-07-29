@@ -23,9 +23,6 @@ vaultwarden:
 paperlessNgx:
   path: charts/apps/utility-services/paperless-ngx
 
-paperlessAi:
-  path: charts/apps/utility-services/paperless-ai
-
 changedetection:
   path: charts/apps/utility-services/changedetection
 

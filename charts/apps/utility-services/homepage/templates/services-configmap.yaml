@@ -296,12 +296,6 @@ data:
             url: http://ntfy.utility-services.svc
             topic: sonarr
 
-      - PaperlessAI:
-          icon: paperless-ai.webp
-          href: http://paperless-ai.home
-          namespace: utility-services
-          app: paperless-ai
-
       - PaperlessNgx:
           icon: paperless-ngx.png
           href: http://paperless-ngx.home
