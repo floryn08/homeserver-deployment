@@ -15,6 +15,7 @@ data:
   OIDC_SIGNUP_ENABLED: "true"
   OIDC_AUTO_REDIRECT: "true"
   OIDC_REMEMBER_ME: "true"
+  OIDC_REQUIRES_EMAIL_VERIFICATION: "false"
 
   OPENAI_BASE_URL: http://ollama.ai-services.svc:11434/v1
   OPENAI_API_KEY: test # not needed for ollama
