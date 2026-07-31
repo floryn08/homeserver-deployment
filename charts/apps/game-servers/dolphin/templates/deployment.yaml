@@ -32,6 +32,19 @@ spec:
         hostPath:
           path: /dev/dri
           type: Directory
+      initContainers:
+      - name: initialize-config-permissions
+        image: busybox:1.37.0
+        command:
+        - sh
+        - -c
+        - >-
+          mkdir -p /config/.config/dolphin-emu /config/.local/share/dolphin-emu
+          && chown -R 1000:1000 /config/.config/dolphin-emu /config/.local/share/dolphin-emu
+        volumeMounts:
+        - name: {{ .Release.Name }}
+          mountPath: /config
+          subPath: config
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -65,6 +78,13 @@ spec:
         - mountPath: /dev/dri
           name: dri
           readOnly: true
+        startupProbe:
+          httpGet:
+            path: /health
+            port: broker
+          failureThreshold: 18
+          periodSeconds: 5
+          timeoutSeconds: 5
         livenessProbe:
           httpGet:
             path: /health
