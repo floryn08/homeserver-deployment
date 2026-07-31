@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/dolphin:2606
+image: lscr.io/linuxserver/dolphin:version-2606
 namespace: &namespace game-servers
 
 host:
