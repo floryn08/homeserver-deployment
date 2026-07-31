@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  PUID: "1000"
+  PGID: "1000"
+  DOCKER_MODS: ghcr.io/loneangelfayt/dolphin-romm-integration-mod:v1.3.2
+  ROM_ROOT: /romm/library

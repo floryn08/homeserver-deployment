@@ -1,4 +1,4 @@
-{{- $applications := list (dict "name" "Minecraft" "selector" "minecraft") (dict "name" "RomM" "selector" "romm") (dict "name" "Terraria" "selector" "terraria") (dict "name" "Valheim" "selector" "valheim") -}}
+{{- $applications := list (dict "name" "Dolphin" "selector" "dolphin") (dict "name" "Minecraft" "selector" "minecraft") (dict "name" "RomM" "selector" "romm") (dict "name" "Terraria" "selector" "terraria") (dict "name" "Valheim" "selector" "valheim") -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:

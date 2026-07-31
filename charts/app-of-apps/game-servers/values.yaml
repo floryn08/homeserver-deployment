@@ -23,5 +23,8 @@ minecraft:
 romm:
   path: charts/apps/game-servers/romm
 
+dolphin:
+  path: charts/apps/game-servers/dolphin
+
 terraria:
   path: charts/apps/game-servers/terraria

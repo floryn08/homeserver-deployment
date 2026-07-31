@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-streaming-config
+  namespace: {{ .Values.namespace }}
+data:
+  config.yml: |
+    scan:
+      media: [box2d, box3d, physical, miximage, screenshot, manual, bezel]
+    streaming:
+      enabled: true
+      containers:
+        - platform: ngc
+          host: {{ .Values.streaming.dolphin.host | quote }}
+          broker_host: {{ .Values.streaming.dolphin.brokerHost | quote }}
+          label: Dolphin
+          memory_card_sync: true
+        - platform: wii
+          host: {{ .Values.streaming.dolphin.host | quote }}
+          broker_host: {{ .Values.streaming.dolphin.brokerHost | quote }}
+          label: Dolphin

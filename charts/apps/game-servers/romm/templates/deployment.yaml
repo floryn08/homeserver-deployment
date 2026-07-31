@@ -17,6 +17,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/streaming-config: {{ include (print $.Template.BasePath "/streaming-configmap.yaml") . | sha256sum }}
     spec:
       volumes:
       - name: {{ .Release.Name }}
@@ -30,6 +31,9 @@ spec:
         hostPath:
           path: /mnt/hdd
           type: Directory
+      - name: streaming-config
+        configMap:
+          name: {{ .Release.Name }}-streaming-config
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -87,6 +91,11 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}
                 key: OIDC_SERVER_APPLICATION_URL
+          - name: STREAMING_BROKER_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: STREAMING_BROKER_SECRET
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
@@ -105,6 +114,9 @@ spec:
         - mountPath: /dev/dri
           name: dri
           readOnly: true
+        - mountPath: /romm/config/config.yml
+          name: streaming-config
+          subPath: config.yml
         livenessProbe:
           exec:
             command:

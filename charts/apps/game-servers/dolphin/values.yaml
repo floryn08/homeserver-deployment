@@ -1,0 +1,38 @@
+image: lscr.io/linuxserver/dolphin:2606
+namespace: &namespace game-servers
+
+host:
+  subdomain: dolphin
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
+
+nodeSelector:
+  kubernetes.io/hostname: server
+
+storage:
+  appdataBasePath: /srv/appdata/game-servers/dolphin
+  rommLibraryPath: /srv/appdata/game-servers/romm/library
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+romm:
+  secretName: romm
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 3000
+    externalPort: 3000
+    protocol: TCP
+  - name: broker
+    containerPort: 8000
+    externalPort: 8000
+    protocol: TCP

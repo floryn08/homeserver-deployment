@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dolphin
+description: Dolphin emulator streaming broker for RomM
+type: application
+version: 0.1.0
+appVersion: latest

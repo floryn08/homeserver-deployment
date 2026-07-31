@@ -391,6 +391,12 @@ data:
             url: http://romm.game-servers.svc:8080
             fields: ["platforms", "totalRoms", "saves", "states"]
 
+      - Dolphin:
+          icon: mdi-gamepad-variant
+          href: https://dolphin.home
+          namespace: game-servers
+          app: dolphin
+
       - Terraria:
           icon: terraria.png
           namespace: game-servers
