@@ -7,4 +7,5 @@ data:
   PGID: '1000'
   PUID: '1000'
   ORIGIN: {{ .Values.origin | quote }}
+  AUTH: oidc
   TZ: 'Europe/Bucharest'

@@ -29,6 +29,22 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
+        env:
+        - name: OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: OIDC_CLIENT_SECRET
+        - name: OIDC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: OIDC_CLIENT_ID
+        - name: OIDC_DISCOVERY_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-vault
+              key: OIDC_DISCOVERY_URL
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
