@@ -25,6 +25,9 @@ storage:
 romm:
   secretName: romm
 
+sharedMemory:
+  sizeLimit: 1Gi
+
 service:
   type: ClusterIP
   ports:

@@ -32,6 +32,10 @@ spec:
         hostPath:
           path: /dev/dri
           type: Directory
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: {{ .Values.sharedMemory.sizeLimit }}
       initContainers:
       - name: initialize-config-permissions
         image: busybox:1.37.0
@@ -78,6 +82,8 @@ spec:
         - mountPath: /dev/dri
           name: dri
           readOnly: true
+        - mountPath: /dev/shm
+          name: dshm
         startupProbe:
           httpGet:
             path: /health
