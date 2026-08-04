@@ -1,10 +1,10 @@
-image: itzg/minecraft-server:2026.7.2
+image: itzg/minecraft-server:2026.8.0
 namespace: game-servers
 
 backup:
   enabled: true
   resticImage: restic/restic:0.19.1
-  rcloneImage: rclone/rclone:1.74.4
+  rcloneImage: rclone/rclone:1.75.0
 
 ports:
 - name: minecraft
