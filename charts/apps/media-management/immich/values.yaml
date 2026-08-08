@@ -3,7 +3,7 @@ namespace: media-management
 backup:
   enabled: true
   resticImage: restic/restic:0.19.1
-  rcloneImage: rclone/rclone:1.74.4
+  rcloneImage: rclone/rclone:1.75.0
 
 host:
   subdomain: immich
