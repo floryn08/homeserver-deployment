@@ -8,6 +8,68 @@ data:
     # For configuration options and examples, please see:
     # https://gethomepage.dev/configs/services/
 
+    - At a Glance:
+
+      - Uptime Kuma:
+          icon: uptime-kuma.png
+          href: https://kuma.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}/dashboard
+          widget:
+            type: uptimekuma
+            url: https://kuma.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
+            slug: server
+
+      - ArgoCD:
+          icon: argo-cd.png
+          href: http://argocd.home
+          namespace: core-services
+          app: argocd-server
+          widget:
+            type: argocd
+            url: http://argo-cd-argocd-server.core-services.svc
+            key: {{ "{{HOMEPAGE_VAR_ARGOCD_TOKEN}}" }}
+            fields: ["healthy", "progressing", "degraded"]
+
+      - Jellyfin:
+          icon: jellyfin.png
+          href: https://jellyfin.home
+          namespace: media-management
+          app: jellyfin
+          widget:
+            type: jellyfin
+            url: http://jellyfin.media-management.svc:8096
+            key: {{ "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}" }}
+            enableBlocks: true
+            enableNowOPlaying: true
+            fields: ["movies", "series", "episodes"]
+
+      - qBittorrent:
+          icon: qbittorrent.png
+          href: https://qbittorrent.home
+          namespace: media-management
+          app: qbittorrent
+          widget:
+            type: qbittorrent
+            url: http://qbittorrent.media-management.svc:8383
+            username: {{ "{{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}" }}
+            password: {{ "{{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}" }}
+
+      - Home Assistant:
+          icon: home-assistant.png
+          href: http://192.168.0.15:8123
+          widget:
+            type: homeassistant
+            url: http://192.168.0.15:8123
+            key: {{ "{{HOMEPAGE_VAR_HOME_ASSISTANT_TOKEN}}" }}
+
+      - Scrutiny:
+          icon: scrutiny.png
+          href: http://scrutiny.home
+          namespace: utility-services
+          app: scrutiny
+          widget:
+            type: scrutiny
+            url: http://scrutiny.utility-services.svc:8083
+
     - Core Services:
 
       - ArgoCD:
@@ -481,3 +543,119 @@ data:
           server: minipc-docker
           container: esphome
 
+
+  settings.yaml: |
+    # For configuration options and examples, please see:
+    # https://gethomepage.dev/configs/settings/
+    title: Homelab
+    theme: dark
+    color: slate
+    headerStyle: boxedWidgets
+    fullWidth: true
+    useEqualHeights: true
+    statusStyle: dot
+
+    providers:
+      openweathermap: openweathermapapikey
+      weatherapi: weatherapiapikey
+
+    layout:
+      At a Glance:
+        tab: Overview
+        icon: mdi-view-dashboard-outline
+        style: row
+        columns: 3
+      Core Services:
+        tab: Operations
+        icon: mdi-server
+        style: row
+        columns: 3
+      Media Management:
+        tab: Media
+        icon: mdi-multimedia
+        style: row
+        columns: 5
+      Utility Services:
+        tab: Utilities
+        icon: mdi-tools
+        style: row
+        columns: 5
+      AI Services:
+        tab: AI
+        icon: mdi-creation
+        style: row
+        columns: 3
+      Game Servers:
+        tab: Games
+        icon: mdi-gamepad-variant
+        style: row
+        columns: 3
+        initiallyCollapsed: true
+      Monitoring:
+        tab: Operations
+        icon: mdi-chart-line
+        style: row
+        columns: 3
+      Mini PC Services:
+        tab: Home
+        icon: mdi-home-assistant
+        style: row
+        columns: 3
+  widgets.yaml: |
+    # For configuration options and examples, please see:
+    # https://gethomepage.dev/configs/widgets/
+    - resources:
+        label: System
+        cpu: true
+        memory: true
+        cputemp: true
+        units: metric
+        disk: /
+        uptime: true
+
+    - resources:
+        label: Media
+        disk: /media
+        expanded: true
+
+    - resources:
+        label: Backup
+        disk: /backup
+        expanded: true
+
+    - resources:
+        label: 12TB
+        disk: /hdd12tb
+        expanded: true
+
+    - datetime:
+        text_size: xl
+        format:
+          dateStyle: long
+          timeStyle: short
+          hour12: false
+
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: cluster
+        nodes:
+          show: false
+          cpu: true
+          memory: true
+          showLabel: true
+
+    - openmeteo:
+        label: Brasov
+        latitude: 45.674894
+        longitude: 25.5942961
+        timezone: Europe/Bucharest
+        units: metric
+        cache: 5
+        format:
+          maximumFractionDigits: 1
+  kubernetes.yaml: |
+    mode: cluster

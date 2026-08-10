@@ -180,3 +180,15 @@ spec:
           name: services
           subPath: services.yaml
           readOnly: true
+        - mountPath: /app/config/settings.yaml
+          name: services
+          subPath: settings.yaml
+          readOnly: true
+        - mountPath: /app/config/widgets.yaml
+          name: services
+          subPath: widgets.yaml
+          readOnly: true
+        - mountPath: /app/config/kubernetes.yaml
+          name: services
+          subPath: kubernetes.yaml
+          readOnly: true
