@@ -47,7 +47,7 @@ data:
       - ddclient:
           namespace: core-services
           app: ddclient
-          icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/ddclient.png
+          icon: sh-ddclient
 
       - Pgadmin:
           icon: pgadmin.png
@@ -144,7 +144,7 @@ data:
           app: jellystat
 
       - Lingarr:
-          icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/lingarr.png
+          icon: sh-lingarr
           href: http://lingarr.home
           namespace: media-management
           app: lingarr
@@ -208,6 +208,16 @@ data:
             type: radarr
             url: http://radarr.media-management.svc:7878
             key: {{ "{{HOMEPAGE_VAR_RADARR_API_KEY}}" }}
+            fields: ["wanted", "queued"]
+            highlight:
+              queued:
+                numeric:
+                  - level: warn
+                    when: gte
+                    value: 5
+                  - level: danger
+                    when: gte
+                    value: 20
 
       - Seerr:
           icon: seerr.png
@@ -228,6 +238,16 @@ data:
             type: sonarr
             url: http://sonarr.media-management.svc:8989
             key: {{ "{{HOMEPAGE_VAR_SONARR_API_KEY}}" }}
+            fields: ["wanted", "queued"]
+            highlight:
+              queued:
+                numeric:
+                  - level: warn
+                    when: gte
+                    value: 5
+                  - level: danger
+                    when: gte
+                    value: 20
 
       - Tautulli:
           icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/tautulli-icon.png
@@ -488,16 +508,24 @@ data:
     title: Homelab
     theme: dark
     color: slate
-    headerStyle: boxedWidgets
+    headerStyle: clean
     fullWidth: true
     useEqualHeights: true
     statusStyle: dot
+    iconStyle: theme
+    bookmarksStyle: icons
+    background:
+      image: /images/homelab-background.jpg
+      opacity: 20
+    cardBlur: md
 
     providers:
       openweathermap: openweathermapapikey
       weatherapi: weatherapiapikey
 
     layout:
+      Quick Links:
+        header: false
       Core Services:
         icon: mdi-server
         style: row
@@ -530,6 +558,51 @@ data:
         icon: mdi-home-assistant
         style: row
         columns: 3
+  bookmarks.yaml: |
+    # For configuration options and examples, please see:
+    # https://gethomepage.dev/configs/bookmarks/
+    - Developer:
+        - Github:
+            - abbr: GH
+              href: https://github.com/
+              icon: github-light.png
+        - Cloudflare:
+            - abbr: CF
+              href: https://cloudflare.com
+              icon: cloudflare.png
+        - Router:
+            - abbr: RT
+              href: http://router.asus.com
+              icon: asus-router.png
+        - Fly.io:
+            - abbr: FL
+              href: https://fly.io/dashboard
+              icon: fly-io.png
+
+    - Social:
+        - Reddit:
+            - abbr: RE
+              href: https://reddit.com/
+              icon: reddit.png
+        - YouTube:
+            - abbr: YT
+              href: https://youtube.com/
+              icon: youtube.png
+
+    - Other:
+        - nanokvm:
+            - abbr: KVM
+              href: http://192.168.0.14/
+              icon: https://avatars.githubusercontent.com/u/44034752?s=48&v=4
+        - backblaze:
+            - abbr: b2
+              href: https://backblaze.com
+              icon: backblaze.png
+        - SLZB-06:
+            - abbr: SLZB
+              icon: smlight.png
+              href: http://slzb-06.local/
+
   widgets.yaml: |
     # For configuration options and examples, please see:
     # https://gethomepage.dev/configs/widgets/
@@ -588,3 +661,6 @@ data:
           maximumFractionDigits: 1
   kubernetes.yaml: |
     mode: cluster
+
+binaryData:
+  homelab-background.jpg: {{ .Files.Get "files/homelab-background.jpg" | b64enc | quote }}

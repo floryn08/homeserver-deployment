@@ -42,6 +42,12 @@ spec:
       - name: services
         configMap:
           name: {{ .Release.Name }}-services
+      - name: background
+        configMap:
+          name: {{ .Release.Name }}-services
+          items:
+          - key: homelab-background.jpg
+            path: homelab-background.jpg
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -191,4 +197,11 @@ spec:
         - mountPath: /app/config/kubernetes.yaml
           name: services
           subPath: kubernetes.yaml
+          readOnly: true
+        - mountPath: /app/config/bookmarks.yaml
+          name: services
+          subPath: bookmarks.yaml
+          readOnly: true
+        - mountPath: /app/public/images
+          name: background
           readOnly: true
