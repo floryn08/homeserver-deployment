@@ -29,6 +29,15 @@ Every service in `charts/apps/` follows this template structure:
 
 **Storage pattern:** All apps use host paths at `/srv/appdata/{namespace}/{service}/` mounted via PV/PVC. Media services additionally mount `/mnt/hdd` and `/mnt/hdd12tb` as hostPath volumes.
 
+### Chart Authoring Rules
+- Start from the closest existing chart in the same category and preserve its patterns for values, dependencies, storage, labels, ingress, dashboard registration, and Homepage registration. Do not add optional configuration merely because an upstream chart supports it.
+- Before writing a local workload for a supporting service, search this repository for an existing Helm dependency for that role. If one exists, use the same dependency, versioning approach, and minimal values shape. Run `helm dependency build` so `Chart.lock` and the vendored archive match `Chart.yaml`.
+- Use upstream components only for their intended deployment model. Confirm whether an image or chart is single-node, replicated, or HA before choosing it; default to the simplest model that satisfies the requested service unless redundancy is explicitly required.
+- Confirm the product architecture from official documentation. Do not model an extension, plugin, or add-on as an independent backing service when it runs inside another engine; provision its actual underlying engine correctly.
+- Keep `values.yaml` and handwritten Kubernetes templates in block-style YAML. Do not use flow-style maps or lists such as `{key: value}` or `[item]`; Helm delimiters and compact shell arguments are the only exceptions when they materially improve correctness.
+- Follow the repository's existing image convention for the component category. Do not introduce a digest, tag override, image override, custom configuration, persistence, resource requests, or resource limits unless the user requested it or the closest existing chart requires it. PVC storage requests remain required Kubernetes storage declarations, not workload resource requests.
+- After rendering, inspect the generated workload names, service DNS names, persistent storage mode, image references, replicas, and resource settings. Validate the service chart, its app-of-apps chart, and any chart changed for registration with `helm lint`, `helm template`, and `git diff --check`.
+
 ### Configuration and Secret Rollouts
 - Do not add Reloader, `reloader.stakater.com` annotations, or another general-purpose restart controller.
 - Every Deployment or StatefulSet that consumes a chart-rendered ConfigMap must include one checksum annotation per consumed ConfigMap under `spec.template.metadata.annotations`. This is mandatory even for ConfigMaps mounted as volumes.
