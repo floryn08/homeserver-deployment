@@ -50,7 +50,7 @@ spec:
           readOnly: true
         livenessProbe:
           httpGet:
-            path: /
+            path: /api/v1/status
             port: 7171
           failureThreshold: 5
           periodSeconds: 10
