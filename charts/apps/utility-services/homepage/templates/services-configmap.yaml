@@ -590,7 +590,6 @@ data:
         icon: mdi-gamepad-variant
         style: row
         columns: 3
-        initiallyCollapsed: true
       Monitoring:
         tab: Operations
         icon: mdi-chart-line
