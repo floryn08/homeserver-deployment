@@ -80,10 +80,11 @@ argo-cd:
         issuer: $argo-cd-vault:dex.authentik.issuer
         clientID: $argo-cd-vault:dex.authentik.clientId
         clientSecret: $argo-cd-vault:dex.authentik.clientSecret
-        requestedScopes: ["openid", "profile", "email", "groups"]
+        requestedScopes: ["openid", "profile", "email", "groups", "offline_access"]
         requestedIDTokenClaims: {"groups": {"essential": true}}
         enableUserInfoGroups: true
         userInfoCacheExpiration: "5m"
+        refreshTokenThreshold: "30s"
 
     params:
       application.namespaces: "*"
