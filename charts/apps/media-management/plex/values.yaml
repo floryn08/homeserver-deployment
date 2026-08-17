@@ -24,7 +24,7 @@ storage:
 service:
   type: ClusterIP
   ports:
-  - name: https
+  - name: http
     containerPort: 32400
     externalPort: 32400
     protocol: TCP
