@@ -6,7 +6,7 @@ spec:
   vaultPath: {{ .Values.secrets.primaryDomain.path }}
   domainKey: {{ .Values.secrets.primaryDomain.key }}
   serviceName: {{ .Release.Name }}
-  servicePort: http
+  servicePort: https
   subdomain: {{ .Values.host.subdomain }}
   middlewares: 
     - name: bouncer
@@ -24,7 +24,7 @@ spec:
   vaultPath: {{ .Values.secrets.homeDomain.path }}
   domainKey: {{ .Values.secrets.homeDomain.key }}
   serviceName: {{ .Release.Name }}
-  servicePort: http
+  servicePort: https
   subdomain: {{ .Values.host.subdomain }}
   entrypoints:
     - websecure
