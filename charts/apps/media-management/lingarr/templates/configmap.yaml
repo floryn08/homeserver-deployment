@@ -5,3 +5,4 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   ASPNETCORE_URLS: 'http://+:9876'
+  DB_CONNECTION: sqlite
