@@ -44,9 +44,6 @@ prowlarr:
 profilarr:
   path: charts/apps/media-management/profilarr
 
-jellystat:
-  path: charts/apps/media-management/jellystat
-
 seerr:
   path: charts/apps/media-management/seerr
 

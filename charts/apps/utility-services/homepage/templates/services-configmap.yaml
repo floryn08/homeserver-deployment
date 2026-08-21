@@ -137,12 +137,6 @@ data:
             enableNowOPlaying: true
             fields: ["movies", "series", "episodes"]
 
-      - Jellystat:
-          icon: jellystat.svg
-          href: http://jellystat.home
-          namespace: media-management
-          app: jellystat
-
       - Lingarr:
           icon: sh-lingarr
           href: http://lingarr.home
