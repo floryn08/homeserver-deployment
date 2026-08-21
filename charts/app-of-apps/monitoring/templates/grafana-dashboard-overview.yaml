@@ -505,6 +505,23 @@ data:
           ],
           "title": "Network Throughput",
           "type": "stat"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${datasource}"},
+          "fieldConfig": {"defaults": {"custom": {"align": "auto", "cellOptions": {"type": "auto"}, "inspect": false}}, "overrides": []},
+          "gridPos": {"h": 10, "w": 24, "x": 0, "y": 33},
+          "id": 40,
+          "options": {"cellHeight": "sm", "showHeader": true},
+          "targets": [{
+            "datasource": {"type": "prometheus", "uid": "${datasource}"},
+            "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",fstype=~\"ext4|nfs4\",mountpoint=~\"/|/mnt/nvme|/mnt/hdd|/mnt/hdd2|/mnt/hdd12tb|/mnt/minipc\"} / node_filesystem_size_bytes{job=\"node-exporter\",fstype=~\"ext4|nfs4\",mountpoint=~\"/|/mnt/nvme|/mnt/hdd|/mnt/hdd2|/mnt/hdd12tb|/mnt/minipc\"})",
+            "format": "table",
+            "instant": true,
+            "refId": "A"
+          }],
+          "title": "Storage Drives",
+          "transformations": [{"id": "organize", "options": {"excludeByName": {"Time": true, "__name__": true, "job": true}, "renameByName": {"Value": "Used (%)", "device": "Device", "instance": "Host", "mountpoint": "Mount"}}}],
+          "type": "table"
         }
       ],
       "schemaVersion": 38,
