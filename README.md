@@ -118,7 +118,7 @@ Once the master app is active, prefer Git changes and let Argo CD reconcile them
 
 ## Backups and Restores
 
-Backup CronJobs are defined per application chart and can be toggled with `backup.enabled` in each chart values file. The current backup jobs write a local restic repository to `/mnt/hdd2/backups/restic/<release-name>` and then mirror that repository to Backblaze B2 at `<bucket>/<release-name>` using rclone. B2 credentials and `RESTIC_PASSWORD` are synced from Vault into the `<release-name>-backup-job` secret.
+Backup CronJobs are defined per application chart and can be toggled with `backup.enabled` in each chart values file. They write Restic repositories to `/mnt/minipc/<release-name>` on the Kubernetes node, which is an NFSv4 mount of the MiniPC export `/mnt/minipc/restic`. The export is restricted to the Kubernetes node and uses synchronous writes; the repositories are then mirrored to Backblaze B2 at `<bucket>/<release-name>` using rclone. B2 credentials and `RESTIC_PASSWORD` are synced from Vault into the `<release-name>-backup-job` secret.
 
 Pinned backup images are configured per chart:
 
@@ -131,20 +131,31 @@ backup:
 
 Each backup CronJob uses `concurrencyPolicy: Forbid` so a slow or stuck backup does not overlap with the next scheduled run against the same restic repository.
 
+### Repository Health Checks
+
+Before enabling or troubleshooting backup jobs, confirm that the node has the NFS mount and that the target repository is healthy:
+
+```sh
+findmnt -T /mnt/minipc
+restic -r /mnt/minipc/<release-name> check
+```
+
+Run `restic check` after a repository migration and periodically thereafter. If the NFS mount is unavailable, resolve it before running a backup or restore.
+
 ### Common Restore Flow
 
 1. Stop the application that owns the data before restoring files. For Deployments, scale replicas to `0`; for StatefulSets, scale replicas to `0`.
-2. Make the restic repository available locally under `/mnt/hdd2/backups/restic/<release-name>`. If the local copy is missing, sync it back from B2 first.
+2. Make the restic repository available locally under `/mnt/minipc/<release-name>`. If the local copy is missing, sync it back from B2 first.
 3. Inspect snapshots:
 
 ```sh
-restic -r /mnt/hdd2/backups/restic/<release-name> snapshots
+restic -r /mnt/minipc/<release-name> snapshots
 ```
 
 4. Restore the desired snapshot to a temporary restore directory:
 
 ```sh
-restic -r /mnt/hdd2/backups/restic/<release-name> restore latest --target /tmp/restore-<release-name>
+restic -r /mnt/minipc/<release-name> restore latest --target /tmp/restore-<release-name>
 ```
 
 5. Copy only the restored data needed for the service back into the service hostPath. Confirm ownership and permissions before starting the workload again.
@@ -170,5 +181,5 @@ PGPASSWORD="$POSTGRES_PASSWORD" psql -h postgresql.core-services.svc -U postgres
 For B2 recovery, configure rclone with the same `B2_ACCOUNT_ID`, `B2_ACCOUNT_KEY`, and `B2_BUCKET` values used by the backup job, then sync the repository back before running restic commands:
 
 ```sh
-rclone sync "b2remote:${B2_BUCKET}/<release-name>" "/mnt/hdd2/backups/restic/<release-name>" --fast-list
+rclone sync "b2remote:${B2_BUCKET}/<release-name>" "/mnt/minipc/<release-name>" --fast-list
 ```
