@@ -97,5 +97,5 @@ spec:
                 path: {{ .Values.storage.appdataBasePath }}
             - name: local-backup
               hostPath:
-                path: /mnt/hdd2/backups/restic  # adjust to your local backup storage
+                path: /mnt/minipc
 {{- end }}
