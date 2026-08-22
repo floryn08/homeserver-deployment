@@ -1,4 +1,4 @@
-image: vaultwarden/server:1.37.1
+image: vaultwarden/server:1.37.2
 namespace: utility-services
 
 backup:
