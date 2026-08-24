@@ -54,5 +54,8 @@ mealie:
 ntfy:
   path: charts/apps/utility-services/ntfy
 
+opencode:
+  path: charts/apps/utility-services/opencode
+
 restaurantWatcher:
   path: charts/apps/utility-services/restaurant-watcher

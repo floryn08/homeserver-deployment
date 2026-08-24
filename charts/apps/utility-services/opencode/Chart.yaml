@@ -1,0 +1,5 @@
+apiVersion: v2
+name: opencode
+description: A Helm chart for OpenCode
+type: application
+version: 0.1.0

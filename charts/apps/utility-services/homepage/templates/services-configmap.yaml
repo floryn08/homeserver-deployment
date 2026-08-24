@@ -300,6 +300,12 @@ data:
           namespace: utility-services
           app: netronome
 
+      - OpenCode:
+          icon: opencode.png
+          href: https://opencode.home
+          namespace: utility-services
+          app: opencode
+
 
       - OpenGym:
           icon: mdi-dumbbell
