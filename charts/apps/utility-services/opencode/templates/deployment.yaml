@@ -31,11 +31,11 @@ spec:
         command:
         - /bin/sh
         - -ec
-          args:
-          - |
-            apk add --no-cache {{ join " " .Values.tools.packages }}
-            git config --global --get-all safe.directory | grep -Fxq '/code/*' || git config --global --add safe.directory '/code/*'
-            exec opencode web --hostname 0.0.0.0 --port 4096
+        args:
+        - |
+          apk add --no-cache {{ join " " .Values.tools.packages }}
+          git config --global --get-all safe.directory | grep -Fxq '/code/*' || git config --global --add safe.directory '/code/*'
+          exec opencode web --hostname 0.0.0.0 --port 4096
         env:
         - name: OPENCODE_SERVER_PASSWORD
           valueFrom:
