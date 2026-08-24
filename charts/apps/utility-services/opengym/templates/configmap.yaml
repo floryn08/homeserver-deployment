@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  ORIGIN: {{ .Values.host.origin | quote }}
+  RP_ID: {{ trimPrefix "https://" .Values.host.origin | quote }}
+  RP_NAME: openGym
+  PORT: {{ .Values.api.port | quote }}
+  DATA_DIR: /data
+  BACKEND: {{ .Release.Name }}-api
+  NGINX_PORT: {{ .Values.web.port | quote }}

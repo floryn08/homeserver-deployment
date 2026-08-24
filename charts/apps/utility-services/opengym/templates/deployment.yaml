@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/component: api
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+      app.kubernetes.io/component: api
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+        app.kubernetes.io/component: api
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      containers:
+      - name: api
+        image: {{ .Values.api.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}
+        ports:
+        - containerPort: {{ .Values.api.port }}
+          name: api
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: api
+          initialDelaySeconds: 5
+          periodSeconds: 30
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: api
+          initialDelaySeconds: 30
+          periodSeconds: 60
+        volumeMounts:
+        - mountPath: /data
+          name: {{ .Release.Name }}
+          subPath: data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/component: web
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+      app.kubernetes.io/component: web
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+        app.kubernetes.io/component: web
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}
+      initContainers:
+      - name: media
+        image: {{ .Values.media.image }}
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/sh
+        - -ec
+        - |
+          mkdir -p /media/img /media/gif
+          if [ -z "$(ls -A /media/img 2>/dev/null)" ]; then
+            git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/dataset
+            cp /tmp/dataset/images/*.jpg /media/img/
+            cp /tmp/dataset/videos/*.gif /media/gif/
+          fi
+        volumeMounts:
+        - mountPath: /media
+          name: {{ .Release.Name }}
+          subPath: media
+      containers:
+      - name: web
+        image: {{ .Values.web.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}
+        ports:
+        - containerPort: {{ .Values.web.port }}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 30
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 60
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html/img
+          name: {{ .Release.Name }}
+          subPath: media/img
+          readOnly: true
+        - mountPath: /usr/share/nginx/html/gif
+          name: {{ .Release.Name }}
+          subPath: media/gif
+          readOnly: true

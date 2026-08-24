@@ -17,6 +17,10 @@ syncPolicy:
 netronome:
   path: charts/apps/utility-services/netronome
 
+
+opengym:
+  path: charts/apps/utility-services/opengym
+
 vaultwarden:
   path: charts/apps/utility-services/vaultwarden
 

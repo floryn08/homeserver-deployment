@@ -1,0 +1,33 @@
+namespace: utility-services
+
+host:
+  subdomain: opengym
+  origin: https://opengym.home
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata
+  size: 5Gi
+
+api:
+  image: registry.gitlab.com/duartesantos8/opengym/api:1.2.9
+  port: 3000
+
+web:
+  image: registry.gitlab.com/duartesantos8/opengym/web:1.2.9
+  port: 80
+
+media:
+  image: alpine/git
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 80
+    externalPort: 80
+    protocol: TCP

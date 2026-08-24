@@ -300,6 +300,12 @@ data:
           namespace: utility-services
           app: netronome
 
+
+      - OpenGym:
+          icon: mdi-dumbbell
+          href: https://opengym.home
+          namespace: utility-services
+          app: opengym
       - ntfy:
           icon: ntfy.svg
           href: http://ntfy.home

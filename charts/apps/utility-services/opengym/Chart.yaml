@@ -1,0 +1,7 @@
+apiVersion: v2
+name: opengym
+description: A Helm chart for OpenGym
+
+type: application
+
+version: 0.1.0
