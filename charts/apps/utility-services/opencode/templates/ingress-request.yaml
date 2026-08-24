@@ -10,5 +10,10 @@ spec:
   subdomain: {{ .Values.host.subdomain }}
   entrypoints:
     - websecure
+  middlewares:
+  - name: bouncer
+    namespace: core-services
+  - name: {{ .Release.Name }}
+    namespace: {{ .Values.namespace }}
   tls:
-    secretName: {{ .Release.Name }}-certificate-secret
+    certResolver: letsencrypt

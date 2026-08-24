@@ -302,7 +302,7 @@ data:
 
       - OpenCode:
           icon: opencode.png
-          href: https://opencode.home
+          href: https://opencode.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
           namespace: utility-services
           app: opencode
 
