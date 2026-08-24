@@ -15,7 +15,11 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      serviceAccountName: {{ .Release.Name }}
+      automountServiceAccountToken: true
       volumes:
       - name: {{ .Release.Name }}
         persistentVolumeClaim:
@@ -24,6 +28,9 @@ spec:
         hostPath:
           path: /code
           type: DirectoryOrCreate
+      - name: config
+        configMap:
+          name: {{ .Release.Name }}-config
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -34,6 +41,27 @@ spec:
         args:
         - |
           apk add --no-cache {{ join " " .Values.tools.packages }}
+          export KUBECONFIG=/tmp/kubeconfig
+          cat > "${KUBECONFIG}" <<EOF
+          apiVersion: v1
+          kind: Config
+          clusters:
+            - name: in-cluster
+              cluster:
+                certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                server: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
+          contexts:
+            - name: in-cluster
+              context:
+                cluster: in-cluster
+                namespace: {{ .Values.namespace }}
+                user: service-account
+          current-context: in-cluster
+          users:
+            - name: service-account
+              user:
+                tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+          EOF
           git config --global --get-all safe.directory | grep -Fxq '/code/*' || git config --global --add safe.directory '/code/*'
           exec opencode web --hostname 0.0.0.0 --port 4096
         ports:
@@ -63,5 +91,9 @@ spec:
           name: {{ $.Release.Name }}
           subPath: {{ $val.subPath }}
         {{- end }}
+        - mountPath: /root/.config/opencode/opencode.json
+          name: config
+          subPath: opencode.json
+          readOnly: true
         - mountPath: /code
           name: workspace

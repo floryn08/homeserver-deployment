@@ -30,7 +30,10 @@ tools:
   - curl
   - git
   - go
+  - helm
   - jq
+  - kubectl
+  - kustomize
   - openssh-client
   - py3-pip
   - python3
@@ -39,6 +42,8 @@ tools:
   - tar
   - unzip
   - wget
+  - yamllint
+  - yq
 
 service:
   type: ClusterIP

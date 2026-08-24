@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+data:
+  opencode.json: |
+    {
+      "$schema": "https://opencode.ai/config.json",
+      "plugin": [
+        "oh-my-opencode@4.19.4"
+      ],
+      "lsp": {
+        "yaml": {
+          "command": [
+            "npx",
+            "-y",
+            "yaml-language-server@1.24.0",
+            "--stdio"
+          ],
+          "extensions": [
+            ".yaml",
+            ".yml"
+          ]
+        }
+      },
+      "mcp": {
+        "github": {
+          "type": "remote",
+          "url": "https://api.githubcopilot.com/mcp/",
+          "enabled": false
+        },
+        "kubernetes": {
+          "type": "local",
+          "command": [
+            "npx",
+            "-y",
+            "mcp-server-kubernetes@4.1.4"
+          ],
+          "enabled": false,
+          "environment": {
+            "ALLOW_ONLY_NON_DESTRUCTIVE_TOOLS": "true"
+          }
+        },
+        "argocd": {
+          "type": "local",
+          "command": [
+            "npx",
+            "-y",
+            "argocd-mcp-server@0.1.0"
+          ],
+          "enabled": false
+        }
+      }
+    }
