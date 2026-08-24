@@ -32,6 +32,17 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
+        env:
+        - name: ORIGIN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-domains
+              key: ORIGIN
+        - name: RP_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-domains
+              key: RP_ID
         ports:
         - containerPort: {{ .Values.api.port }}
           name: api

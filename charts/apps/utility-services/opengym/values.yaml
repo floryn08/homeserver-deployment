@@ -2,7 +2,6 @@ namespace: utility-services
 
 host:
   subdomain: opengym
-  origin: https://opengym.home
 
 secrets:
   domain:
