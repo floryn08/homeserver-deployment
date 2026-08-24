@@ -63,7 +63,7 @@ spec:
                 tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
           EOF
           git config --global --get-all safe.directory | grep -Fxq '/code/*' || git config --global --add safe.directory '/code/*'
-          exec opencode serve --hostname 0.0.0.0 --port 4096
+          exec opencode web --hostname 0.0.0.0 --port 4096
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
