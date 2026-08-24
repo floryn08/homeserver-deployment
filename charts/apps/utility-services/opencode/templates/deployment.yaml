@@ -35,12 +35,22 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        env:
+        - name: HOME
+          value: /home/opencode
+        - name: XDG_CONFIG_HOME
+          value: /home/opencode/.config
+        - name: XDG_DATA_HOME
+          value: /home/opencode/.local/share
         command:
         - /bin/sh
         - -ec
         args:
         - |
           apk add --no-cache {{ join " " .Values.tools.packages }}
+          mkdir -p "${HOME}/.config/opencode" "${HOME}/.local/share/opencode"
+          chown 1000:1000 "${HOME}" "${HOME}/.config" "${HOME}/.config/opencode" "${HOME}/.local" "${HOME}/.local/share"
+          chown -R 1000:1000 "${HOME}/.local/share/opencode"
           export KUBECONFIG=/tmp/kubeconfig
           cat > "${KUBECONFIG}" <<EOF
           apiVersion: v1
@@ -63,7 +73,8 @@ spec:
                 tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
           EOF
           git config --global --get-all safe.directory | grep -Fxq '/code/*' || git config --global --add safe.directory '/code/*'
-          exec opencode web --hostname 0.0.0.0 --port 4096
+          chown 1000:1000 "${HOME}/.gitconfig"
+          exec setpriv --reuid=1000 --regid=1000 --clear-groups opencode web --hostname 0.0.0.0 --port 4096
         ports:
         {{- range $key, $val := $.Values.service.ports }}
         - containerPort: {{ $val.containerPort }}
@@ -91,7 +102,7 @@ spec:
           name: {{ $.Release.Name }}
           subPath: {{ $val.subPath }}
         {{- end }}
-        - mountPath: /root/.config/opencode/opencode.json
+        - mountPath: /home/opencode/.config/opencode/opencode.json
           name: config
           subPath: opencode.json
           readOnly: true

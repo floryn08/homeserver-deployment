@@ -15,11 +15,11 @@ storage:
   volumes:
   - name: data
     subPath: data
-    podPath: /root/.local/share/opencode
+    podPath: /home/opencode/.local/share/opencode
     type: DirectoryOrCreate
   - name: config
     subPath: config
-    podPath: /root/.config/opencode
+    podPath: /home/opencode/.config/opencode
     type: DirectoryOrCreate
 
 tools:
