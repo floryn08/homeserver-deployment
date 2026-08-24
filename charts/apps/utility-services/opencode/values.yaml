@@ -42,6 +42,7 @@ tools:
   - shellcheck
   - tar
   - unzip
+  - util-linux
   - wget
   - yamllint
   - yq
