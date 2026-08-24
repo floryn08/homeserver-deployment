@@ -10,7 +10,7 @@ data:
     {
       "$schema": "https://opencode.ai/config.json",
       "plugin": [
-        "oh-my-opencode@4.19.4"
+        "oh-my-openagent@4.19.4"
       ],
       "lsp": {
         "yaml": {
@@ -30,7 +30,7 @@ data:
         "github": {
           "type": "remote",
           "url": "https://api.githubcopilot.com/mcp/",
-          "enabled": false
+          "enabled": true
         },
         "kubernetes": {
           "type": "local",
@@ -39,7 +39,7 @@ data:
             "-y",
             "mcp-server-kubernetes@4.1.4"
           ],
-          "enabled": false,
+          "enabled": true,
           "environment": {
             "ALLOW_ONLY_NON_DESTRUCTIVE_TOOLS": "true"
           }
@@ -51,7 +51,7 @@ data:
             "-y",
             "argocd-mcp-server@0.1.0"
           ],
-          "enabled": false
+          "enabled": true
         }
       }
     }

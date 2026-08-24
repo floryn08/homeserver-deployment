@@ -34,6 +34,7 @@ tools:
   - jq
   - kubectl
   - kustomize
+  - npm
   - openssh-client
   - py3-pip
   - python3
