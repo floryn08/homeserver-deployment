@@ -22,8 +22,23 @@ storage:
     podPath: /root/.config/opencode
     type: DirectoryOrCreate
 
-ollama:
-  baseUrl: http://ollama.ai-services.svc:11434/v1
+tools:
+  packages:
+  - bash
+  - build-base
+  - ca-certificates
+  - curl
+  - git
+  - go
+  - jq
+  - openssh-client
+  - py3-pip
+  - python3
+  - ripgrep
+  - shellcheck
+  - tar
+  - unzip
+  - wget
 
 service:
   type: ClusterIP
