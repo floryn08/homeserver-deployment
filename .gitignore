@@ -1,4 +1,5 @@
 .vscode/
+.omo/
 charts/**/charts
 argo-cd/charts
 .env
