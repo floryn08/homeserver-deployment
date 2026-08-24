@@ -7,7 +7,7 @@ nodes=$(kubectl get nodes -o name)
 for node in $nodes; do
   echo "Cleaning up images on $node..."
   # Use k3s crictl to prune unused images
-  kubectl ssh $node -- sudo k3s crictl rmi --prune
+  kubectl ssh $node -- sudo k3s crictl --timeout 10m rmi --prune
 done
 
 echo "Cleanup complete."
