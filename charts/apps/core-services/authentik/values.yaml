@@ -9,6 +9,10 @@ secrets:
     path: kv/data/domains
 
 authentik:
+  blueprints:
+    configMaps:
+      - authentik-access-control
+
   global:
     env:
       - name: AUTHENTIK_SECRET_KEY

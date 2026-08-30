@@ -1,0 +1,124 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authentik-access-control
+  namespace: {{ .Values.namespace }}
+data:
+  application-access.yaml: |
+    version: 1
+    metadata:
+      name: Application access control
+      labels:
+        blueprints.goauthentik.io/instantiate: "true"
+    entries:
+      - model: authentik_core.group
+        identifiers: {name: app-argocd-users}
+      - model: authentik_core.group
+        identifiers: {name: app-autobrr-users}
+      - model: authentik_core.group
+        identifiers: {name: app-bento-pdf-users}
+      - model: authentik_core.group
+        identifiers: {name: app-code-users}
+      - model: authentik_core.group
+        identifiers: {name: app-crowdsec-users}
+      - model: authentik_core.group
+        identifiers: {name: app-grafana-users}
+      - model: authentik_core.group
+        identifiers: {name: app-home-assistant-users}
+      - model: authentik_core.group
+        identifiers: {name: app-immich-users}
+      - model: authentik_core.group
+        identifiers: {name: app-mealie-users}
+      - model: authentik_core.group
+        identifiers: {name: app-netronome-users}
+      - model: authentik_core.group
+        identifiers: {name: app-opencode-users}
+      - model: authentik_core.group
+        identifiers: {name: app-open-webui-users}
+      - model: authentik_core.group
+        identifiers: {name: app-paperless-users}
+      - model: authentik_core.group
+        identifiers: {name: app-pgadmin-users}
+      - model: authentik_core.group
+        identifiers: {name: app-profilarr-users}
+      - model: authentik_core.group
+        identifiers: {name: app-qui-users}
+      - model: authentik_core.group
+        identifiers: {name: app-romm-users}
+
+      - model: authentik_core.group
+        identifiers: {name: ArgoCD Admins}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-argocd-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: ArgoCD Viewers}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-argocd-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: crowdsec-admins}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-crowdsec-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: crowdsec-viewers}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-crowdsec-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: Grafana Admins}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-grafana-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: Grafana Editors}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-grafana-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: Mealie Admins}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-mealie-users]]]}
+      - model: authentik_core.group
+        identifiers: {name: Mealie Users}
+        attrs: {parents: [!Find [authentik_core.group, [name, app-mealie-users]]]}
+
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, argocd]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-argocd-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, autobrr]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-autobrr-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, bento-pdf]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-bento-pdf-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, code]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-code-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, crowdsec]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-crowdsec-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, grafana]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-grafana-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, home-assistant]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-home-assistant-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, immich]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-immich-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, mealie]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-mealie-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, netronome]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-netronome-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, opencode]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-opencode-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, open-webui]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-open-webui-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, paperless]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-paperless-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, pgadmin]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-pgadmin-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, profilarr]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-profilarr-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, qui]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-qui-users]]}
+      - model: authentik_policies.policybinding
+        identifiers: {target: !Find [authentik_core.application, [slug, romm]], order: 0}
+        attrs: {group: !Find [authentik_core.group, [name, app-romm-users]]}
