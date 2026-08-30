@@ -81,6 +81,14 @@ spec:
 - Vault-backed workloads that require a restart use `spec.rolloutRestartTargets` on their `VaultStaticSecret`
 - When wiring secrets into Deployments, prefer explicit `env[].valueFrom.secretKeyRef` entries over broad `envFrom.secretRef` imports so each environment variable shows the exact Kubernetes Secret name and key it consumes.
 
+### Authentik SSO and Application Access
+- Keep Authentik Applications and OAuth2/OIDC or proxy Providers manually managed. Do not put OAuth client secrets in Git or in the Authentik Blueprint ConfigMap; store their client ID/secret with the application's existing Vault secret path and sync them with a `VaultStaticSecret`.
+- Every new Authentik Application must have explicit access control. Update `charts/apps/core-services/authentik/templates/access-control-blueprint-configmap.yaml` in the same change to add an `app-<slug>-users` group and a group `policybinding` for the application slug. Authentik applications are deliberately not automatically discovered or made accessible by default.
+- If the application has separate in-application roles, retain them as child groups of `app-<slug>-users`. This grants application access to role holders while the downstream application continues to decide its own permissions.
+- Configure the application workload with the provider discovery URL, client ID, and client secret sourced from Vault. Add the consuming Deployment to the corresponding `VaultStaticSecret.spec.rolloutRestartTargets`.
+- Before rollout, verify the provider's redirect URIs, requested scopes, and property mappings meet the downstream application's requirements. At minimum, OIDC applications commonly require `openid`, `profile`, and `email`; group-gated applications must receive the configured groups claim.
+- Test with both an assigned and an unassigned user. For assigned users, ensure the Authentik profile has all claims the application requires (commonly email and a non-empty display name), then confirm successful login and expected downstream role. Confirm an unassigned user is denied at Authentik.
+
 ### Namespace Strategy
 - `core-services` - Infrastructure (ArgoCD, Vault, Traefik, Authentik, PostgreSQL, cert-manager)
 - `ai-services` - AI/LLM workloads (Ollama, Open WebUI, ComfyUI)
