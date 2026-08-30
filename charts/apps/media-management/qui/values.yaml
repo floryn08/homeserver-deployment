@@ -1,4 +1,4 @@
-image: ghcr.io/autobrr/qui:v1.26.0
+image: ghcr.io/autobrr/qui:v1.27.0
 namespace: media-management
 
 resources:
