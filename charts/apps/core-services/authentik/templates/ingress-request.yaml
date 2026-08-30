@@ -15,3 +15,5 @@ spec:
   middlewares:
   - name: bouncer
     namespace: core-services
+  - name: {{ .Release.Name }}-client-ip
+    namespace: {{ .Values.namespace }}

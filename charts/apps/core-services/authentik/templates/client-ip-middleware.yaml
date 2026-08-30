@@ -1,0 +1,11 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ .Release.Name }}-client-ip
+  namespace: {{ .Values.namespace }}
+spec:
+  headers:
+    customRequestHeaders:
+      # Traefik derives this from its direct Cloudflare connection. Authentik
+      # then uses it instead of the trusted X-Forwarded-For client address.
+      X-Real-IP: ""
