@@ -1,3 +1,5 @@
+
+
 # Homeserver Deployment
 The charts folder contains helm charts organized using the `App of Apps` strategy for my homeserver deployment.
 
@@ -31,7 +33,7 @@ targetRevision: HEAD
 argocdNamespace: core-services
 ```
 
-Update those values first if deploying from a fork or a non-`HEAD` revision.
+Update those values and the `repoURL`/`targetRevision` in `charts/master-app.yaml` first if deploying from a fork or a non-`HEAD` revision.
 
 ### Bootstrap Core Services
 
