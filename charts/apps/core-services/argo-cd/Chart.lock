@@ -1,9 +1,9 @@
 dependencies:
 - name: argo-cd
   repository: https://argoproj.github.io/argo-helm
-  version: 10.4.2
+  version: 10.8.0
 - name: valkey
   repository: https://valkey-io.github.io/valkey-helm/
-  version: 0.11.0
-digest: sha256:ea17f2ca9a932fd538714d4fd3222133f6021f3fad0af5e8a0bab2ca4a466fda
-generated: "2026-08-29T21:29:19.927006662Z"
+  version: 0.12.0
+digest: sha256:e5427d04d6bb9e70b43eb43fd18907d23c7b26b27429e8565aec9eb6c63f321e
+generated: "2026-09-04T22:38:20.760124577Z"
