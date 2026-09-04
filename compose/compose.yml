@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2026.8.3
+    image: ghcr.io/home-assistant/home-assistant:2026.9.0
     container_name: home-assistant
     restart: unless-stopped
     environment:
@@ -36,7 +36,7 @@ services:
     privileged: true
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.13.0
+    image: koenkk/zigbee2mqtt:2.14.1
     container_name: zigbee2mqtt
     restart: unless-stopped
     environment:
@@ -67,7 +67,7 @@ services:
       - homeserver
 
   omada:
-    image: mbentley/omada-controller:6.2.14.11
+    image: mbentley/omada-controller:6.3.0.45
     container_name: omada
     restart: unless-stopped
     network_mode: host
