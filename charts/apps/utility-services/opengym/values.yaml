@@ -13,11 +13,11 @@ storage:
   size: 5Gi
 
 api:
-  image: registry.gitlab.com/duartesantos8/opengym/api:1.2.14
+  image: registry.gitlab.com/duartesantos8/opengym/api:1.3.1
   port: 3000
 
 web:
-  image: registry.gitlab.com/duartesantos8/opengym/web:1.2.14
+  image: registry.gitlab.com/duartesantos8/opengym/web:1.3.1
   port: 80
 
 media:
