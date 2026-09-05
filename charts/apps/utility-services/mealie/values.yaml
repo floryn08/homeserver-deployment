@@ -1,4 +1,4 @@
-image: ghcr.io/mealie-recipes/mealie:v3.24.0
+image: ghcr.io/mealie-recipes/mealie:v3.25.1
 namespace: utility-services
 
 host:
