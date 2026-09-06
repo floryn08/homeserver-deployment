@@ -1,6 +1,6 @@
 services:
   vmagent:
-    image: victoriametrics/vmagent:v1.150.0
+    image: victoriametrics/vmagent:v1.151.0
     container_name: vmagent
     restart: unless-stopped
     environment:
@@ -50,7 +50,7 @@ services:
       - monitoring
 
   scrutiny-collector:
-    image: ghcr.io/starosdev/scrutiny:1.70.0-collector
+    image: ghcr.io/starosdev/scrutiny:1.71.0-collector
     container_name: scrutiny-collector
     restart: unless-stopped
     environment:
