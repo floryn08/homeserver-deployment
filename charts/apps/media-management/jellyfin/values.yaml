@@ -1,4 +1,4 @@
-image: linuxserver/jellyfin:10.11.11
+image: linuxserver/jellyfin:12.0ubu2604-ls48
 namespace: media-management
 
 resources:
