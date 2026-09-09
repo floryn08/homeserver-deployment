@@ -130,6 +130,7 @@ data:
           namespace: media-management
           app: jellyfin
           widget:
+            version: 2
             type: jellyfin
             url: http://jellyfin.media-management.svc:8096
             key: {{ "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}" }}
@@ -451,7 +452,7 @@ data:
 
       - Home Assistant:
           icon: home-assistant.png
-          href: http://192.168.0.15:8123
+          href: https://homeassistant.home
           server: minipc-docker
           container: home-assistant
           widget:
