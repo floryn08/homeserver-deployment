@@ -1,4 +1,4 @@
-image: ghcr.io/anomalyco/opencode:1.18.29
+image: ghcr.io/anomalyco/opencode:1.18.30
 namespace: utility-services
 
 host:
