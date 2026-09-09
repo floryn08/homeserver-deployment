@@ -28,6 +28,12 @@
       ]
     },
     {
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?(?<compatibility>ubu\\d+)-ls(?<revision>\\d+)$",
+      "matchPackageNames": [
+        "/^linuxserver\\/jellyfin$/"
+      ]
+    },
+    {
       "allowedVersions": "/^(\\d{1,3}\\.)(\\d*\\.)*\\d{1,3}$/",
       "matchPackageNames": [
         "/^.+/linuxserver\\/prowlarr/"
