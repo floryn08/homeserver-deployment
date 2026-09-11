@@ -64,9 +64,9 @@ spec:
         - >-
           set -eu
           && mkdir -p /config/Desktop /config/nx-optimizer
-          && if [ ! -f {{ .Values.nxOptimizer.appImagePath }} ]; then curl --fail --location --output {{ .Values.nxOptimizer.appImagePath }}.tmp {{ .Values.nxOptimizer.downloadUrl }} && mv {{ .Values.nxOptimizer.appImagePath }}.tmp {{ .Values.nxOptimizer.appImagePath }}; fi
-          && chmod 0755 {{ .Values.nxOptimizer.appImagePath }}
-          && ln -sf {{ .Values.nxOptimizer.appImagePath }} /config/nx-optimizer/nx-optimizer
+          && if [ ! -f "{{ .Values.nxOptimizer.appImagePath }}" ]; then curl --fail --location --output "{{ .Values.nxOptimizer.appImagePath }}.tmp" {{ .Values.nxOptimizer.downloadUrl }} && mv "{{ .Values.nxOptimizer.appImagePath }}.tmp" "{{ .Values.nxOptimizer.appImagePath }}"; fi
+          && chmod 0755 "{{ .Values.nxOptimizer.appImagePath }}"
+          && ln -sf "{{ .Values.nxOptimizer.appImagePath }}" /config/nx-optimizer/nx-optimizer
           && printf "%s\n" "[Desktop Entry]" "Type=Application" "Name=NX Optimizer" "Exec=/config/nx-optimizer/nx-optimizer" "Icon=applications-games" "Terminal=false" "Categories=Game;" "Path={{ .Values.nxOptimizer.appImagePath | dir }}" > /config/Desktop/NX\ Optimizer.desktop
           && chmod 0755 /config/Desktop/NX\ Optimizer.desktop
           && chown -R 1000:1000 /config/nx-optimizer /config/Desktop/NX\ Optimizer.desktop
