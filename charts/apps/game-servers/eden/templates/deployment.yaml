@@ -56,6 +56,25 @@ spec:
         - name: {{ .Release.Name }}
           mountPath: /config
           subPath: config
+      - name: install-nx-optimizer
+        image: {{ .Values.nxOptimizer.image }}
+        command:
+        - sh
+        - -c
+        - >-
+          set -eu
+          && mkdir -p /config/Desktop /config/nx-optimizer
+          && if [ ! -f {{ .Values.nxOptimizer.appImagePath }} ]; then curl --fail --location --output {{ .Values.nxOptimizer.appImagePath }}.tmp {{ .Values.nxOptimizer.downloadUrl }} && mv {{ .Values.nxOptimizer.appImagePath }}.tmp {{ .Values.nxOptimizer.appImagePath }}; fi
+          && chmod 0755 {{ .Values.nxOptimizer.appImagePath }}
+          && printf "%s\n" "[Desktop Entry]" "Type=Application" "Name=NX Optimizer" "Exec={{ .Values.nxOptimizer.appImagePath }} --appimage-extract-and-run" "Icon=applications-games" "Terminal=false" "Categories=Game;" > /config/Desktop/NX\ Optimizer.desktop
+          && chmod 0755 /config/Desktop/NX\ Optimizer.desktop
+          && chown -R 1000:1000 /config/nx-optimizer /config/Desktop/NX\ Optimizer.desktop
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: {{ .Release.Name }}
+          mountPath: /config
+          subPath: config
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
