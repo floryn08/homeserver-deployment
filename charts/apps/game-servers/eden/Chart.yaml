@@ -1,0 +1,6 @@
+apiVersion: v2
+name: eden
+description: Eden Nintendo Switch emulator
+type: application
+version: 0.1.0
+appVersion: v0.2.1

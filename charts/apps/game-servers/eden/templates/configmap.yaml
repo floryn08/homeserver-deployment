@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data:
+  PUID: "1000"
+  PGID: "1000"
+  TZ: Etc/UTC
+  DOCKER_MODS: ghcr.io/loneangelfayt/eden-romm-integration-mod:latest
+  ROM_ROOT: /romm/library
+  BROKER_LOG_LEVEL: DEBUG

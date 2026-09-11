@@ -19,3 +19,7 @@ data:
           host: {{ .Values.streaming.dolphin.host | quote }}
           broker_host: {{ .Values.streaming.dolphin.brokerHost | quote }}
           label: Dolphin
+        - platform: switch
+          host: {{ .Values.streaming.eden.host | quote }}
+          broker_host: {{ .Values.streaming.eden.brokerHost | quote }}
+          label: Eden

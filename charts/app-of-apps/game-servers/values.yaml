@@ -26,5 +26,8 @@ romm:
 dolphin:
   path: charts/apps/game-servers/dolphin
 
+eden:
+  path: charts/apps/game-servers/eden
+
 terraria:
   path: charts/apps/game-servers/terraria

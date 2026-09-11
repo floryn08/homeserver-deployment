@@ -40,6 +40,9 @@ streaming:
   dolphin:
     host: https://dolphin.home
     brokerHost: http://dolphin.game-servers.svc:8000
+  eden:
+    host: https://eden.home
+    brokerHost: http://eden.game-servers.svc:8000
 
 service:
   type: ClusterIP

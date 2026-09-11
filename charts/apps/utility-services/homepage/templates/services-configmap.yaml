@@ -418,6 +418,12 @@ data:
           namespace: game-servers
           app: dolphin
 
+      - Eden:
+          icon: mdi-gamepad-variant
+          href: https://eden.home
+          namespace: game-servers
+          app: eden
+
       - Terraria:
           icon: terraria.png
           namespace: game-servers
