@@ -13,7 +13,7 @@ secrets:
     path: kv/data/domains
 
 storage:
-  appdataBasePath: /srv/appdata/game-servers/romm
+  appdataBasePath: /mnt/hdd12tb/game-servers/romm
   volumes:
   - name: library
     subPath: library
