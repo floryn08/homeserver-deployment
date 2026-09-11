@@ -14,7 +14,7 @@ nodeSelector:
 
 storage:
   appdataBasePath: /srv/appdata/game-servers/dolphin
-  rommLibraryPath: /srv/appdata/game-servers/romm/library
+  rommLibraryPath: /mnt/hdd12tb/game-servers/romm/library
   volumes:
   - name: config
     subPath: config
