@@ -49,6 +49,19 @@ data:
     apt-get update
     apt-get install -y --no-install-recommends helm
     rm -rf /var/lib/apt/lists/*
+  15-install-nodejs: |
+    #!/usr/bin/with-contenv bash
+    set -euo pipefail
+
+    if command -v node >/dev/null 2>&1; then
+      exit 0
+    fi
+
+    apt-get update
+    apt-get install -y --no-install-recommends nodejs
+    node --version
+    npm --version
+    rm -rf /var/lib/apt/lists/*
   20-install-kubectl: |
     #!/usr/bin/with-contenv bash
     set -euo pipefail

@@ -75,6 +75,9 @@ spec:
         - mountPath: /custom-cont-init.d/10-install-helm
           name: install-scripts
           subPath: 10-install-helm
+        - mountPath: /custom-cont-init.d/15-install-nodejs
+          name: install-scripts
+          subPath: 15-install-nodejs
         - mountPath: /custom-cont-init.d/20-install-kubectl
           name: install-scripts
           subPath: 20-install-kubectl
