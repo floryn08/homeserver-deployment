@@ -28,6 +28,12 @@ spec:
         hostPath:
           path: {{ .Values.storage.rommLibraryPath }}
           type: Directory
+      - name: eden-keys
+        secret:
+          secretName: {{ .Release.Name }}
+          items:
+          - key: prod.keys
+            path: prod.keys
       - name: dri
         hostPath:
           path: /dev/dri
@@ -36,6 +42,19 @@ spec:
         emptyDir:
           medium: Memory
           sizeLimit: {{ .Values.sharedMemory.sizeLimit }}
+      initContainers:
+      - name: initialize-eden-keys-directory
+        image: busybox:1.37.0
+        command:
+        - sh
+        - -c
+        - >-
+          mkdir -p /config/.local/share/eden/keys
+          && chown -R 1000:1000 /config/.local/share/eden
+        volumeMounts:
+        - name: {{ .Release.Name }}
+          mountPath: /config
+          subPath: config
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
@@ -63,6 +82,10 @@ spec:
         {{ end -}}
         - mountPath: /romm/library
           name: romm-library
+          readOnly: true
+        - mountPath: /config/.local/share/eden/keys/prod.keys
+          name: eden-keys
+          subPath: prod.keys
           readOnly: true
         - mountPath: /dev/dri
           name: dri
