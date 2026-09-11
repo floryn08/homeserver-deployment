@@ -7,6 +7,7 @@ data:
   PUID: "1000"
   PGID: "1000"
   TZ: Etc/UTC
+  NVIDIA_VISIBLE_DEVICES: all
   DOCKER_MODS: ghcr.io/loneangelfayt/eden-romm-integration-mod:latest
   ROM_ROOT: /romm/library
   BROKER_LOG_LEVEL: DEBUG
