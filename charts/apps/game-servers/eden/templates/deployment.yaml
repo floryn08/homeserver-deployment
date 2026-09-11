@@ -18,6 +18,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      runtimeClassName: nvidia
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
       volumes:
