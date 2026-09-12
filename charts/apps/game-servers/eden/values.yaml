@@ -26,7 +26,7 @@ romm:
   secretName: romm
 
 nxOptimizer:
-  image: curlimages/curl:8.16.0
+  image: curlimages/curl:8.22.0
   downloadUrl: https://github.com/MaxLastBreath/nx-optimizer/releases/download/manager-3.2.0/NX.Optimizer.3.2.0.AppImage
   appImagePath: /config/nx-optimizer/NX Optimizer.AppImage
 
