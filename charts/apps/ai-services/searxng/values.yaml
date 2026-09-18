@@ -1,6 +1,6 @@
 image: searxng/searxng:2026.5.31-7159b8aed
 namespace: ai-services
-imagePullPolicy: Always
+imagePullPolicy: IfNotPresent
 
 service:
   type: ClusterIP

@@ -1,6 +1,6 @@
 image: chromadb/chroma:1.5.9
 namespace: ai-services
-imagePullPolicy: Always
+imagePullPolicy: IfNotPresent
 
 storage:
   appdataBasePath: /srv/appdata/ai-services/chromadb

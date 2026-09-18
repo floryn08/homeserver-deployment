@@ -25,7 +25,7 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}

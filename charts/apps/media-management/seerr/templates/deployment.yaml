@@ -28,7 +28,7 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
             name: {{ .Release.Name }}

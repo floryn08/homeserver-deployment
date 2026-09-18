@@ -5,7 +5,7 @@ metadata:
   name: {{ .Release.Name }}-backup-job
   namespace: {{ .Values.namespace }}
 spec:
-  schedule: "0 2 * * *"  # every night at 2AM
+  schedule: "30 4 * * *"  # every night at 4:30AM
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
