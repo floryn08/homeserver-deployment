@@ -379,12 +379,6 @@ data:
           namespace: ai-services
           app: open-webui
 
-      - Odysseus:
-          icon: odysseus.svg
-          href: http://odysseus.home
-          namespace: ai-services
-          app: odysseus
-
     - Game Servers:
 
       - Minecraft:

@@ -26,6 +26,3 @@ chromadb:
 
 searxng:
   path: charts/apps/ai-services/searxng
-
-odysseus:
-  path: charts/apps/ai-services/odysseus
