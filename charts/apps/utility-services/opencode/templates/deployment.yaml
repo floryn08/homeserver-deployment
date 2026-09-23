@@ -16,6 +16,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      serviceAccountName: {{ .Release.Name }}
+      automountServiceAccountToken: true
       volumes:
       - name: {{ .Release.Name }}
         persistentVolumeClaim:
