@@ -31,6 +31,7 @@ Every service in `charts/apps/` follows this template structure:
 
 ### Chart Authoring Rules
 - Start from the closest existing chart in the same category and preserve its patterns for values, dependencies, storage, labels, ingress, dashboard registration, and Homepage registration. Do not add optional configuration merely because an upstream chart supports it.
+- For Homepage service entries, use the matching SVG from [Dashboard Icons](https://dashboardicons.com/icons) when available. Use its CDN SVG URL in the `icon` field.
 - Before writing a local workload for a supporting service, search this repository for an existing Helm dependency for that role. If one exists, use the same dependency, versioning approach, and minimal values shape. Run `helm dependency build` so `Chart.lock` and the vendored archive match `Chart.yaml`.
 - Use upstream components only for their intended deployment model. Confirm whether an image or chart is single-node, replicated, or HA before choosing it; default to the simplest model that satisfies the requested service unless redundancy is explicitly required.
 - Confirm the product architecture from official documentation. Do not model an extension, plugin, or add-on as an independent backing service when it runs inside another engine; provision its actual underlying engine correctly.

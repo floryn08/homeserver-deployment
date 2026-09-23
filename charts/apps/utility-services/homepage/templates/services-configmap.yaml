@@ -380,7 +380,7 @@ data:
           app: open-webui
 
       - Hermes:
-          icon: https://raw.githubusercontent.com/NousResearch/hermes-agent/main/website/static/img/favicon.svg
+          icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/hermes.svg
           href: https://hermes.home
           namespace: ai-services
           app: hermes
