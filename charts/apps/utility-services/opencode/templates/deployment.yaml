@@ -28,6 +28,12 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        env:
+        - name: OPENCODE_SERVER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}
+              key: OPENCODE_SERVER_PASSWORD
         command:
         - /bin/sh
         - -ec
