@@ -8,6 +8,7 @@ spec:
     address: http://authentik-server.core-services.svc/outpost.goauthentik.io/auth/traefik
     trustForwardHeader: true
     authResponseHeaders:
+      - Authorization
       - X-authentik-username
       - X-authentik-groups
       - X-authentik-email
