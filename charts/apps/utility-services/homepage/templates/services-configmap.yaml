@@ -380,7 +380,7 @@ data:
           app: open-webui
 
       - Hermes:
-          icon: mdi-robot
+          icon: https://raw.githubusercontent.com/NousResearch/hermes-agent/main/website/static/img/favicon.svg
           href: https://hermes.home
           namespace: ai-services
           app: hermes
