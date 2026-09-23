@@ -1,4 +1,4 @@
-image: ghcr.io/anomalyco/opencode:1.18.32
+image: ghcr.io/anomalyco/opencode:2.0.12
 namespace: utility-services
 
 host:
@@ -15,11 +15,11 @@ storage:
   volumes:
   - name: data
     subPath: data
-    podPath: /home/opencode/.local/share/opencode
+    podPath: /root/.local/share/opencode
     type: DirectoryOrCreate
   - name: config
     subPath: config
-    podPath: /home/opencode/.config/opencode
+    podPath: /root/.config/opencode
     type: DirectoryOrCreate
 
 tools:
