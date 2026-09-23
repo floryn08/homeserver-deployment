@@ -6,3 +6,4 @@ metadata:
 data:
   HERMES_DASHBOARD: "1"
   HERMES_DASHBOARD_PUBLIC_URL: "https://{{ .Values.host.subdomain }}.home"
+  HERMES_DASHBOARD_OIDC_SCOPES: "openid profile email offline_access"
