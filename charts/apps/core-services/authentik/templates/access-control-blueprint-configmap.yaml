@@ -24,6 +24,9 @@ data:
       - model: authentik_core.group
         identifiers: {name: app-grafana-users}
       - model: authentik_core.group
+        identifiers:
+          name: app-hermes-users
+      - model: authentik_core.group
         identifiers: {name: app-home-assistant-users}
       - model: authentik_core.group
         identifiers: {name: app-immich-users}
@@ -89,6 +92,18 @@ data:
       - model: authentik_policies.policybinding
         identifiers: {target: !Find [authentik_core.application, [slug, grafana]], order: 0}
         attrs: {group: !Find [authentik_core.group, [name, app-grafana-users]]}
+      - model: authentik_policies.policybinding
+        identifiers:
+          target: !Find
+            - authentik_core.application
+            - - slug
+              - hermes
+          order: 0
+        attrs:
+          group: !Find
+            - authentik_core.group
+            - - name
+              - app-hermes-users
       - model: authentik_policies.policybinding
         identifiers: {target: !Find [authentik_core.application, [slug, home-assistant]], order: 0}
         attrs: {group: !Find [authentik_core.group, [name, app-home-assistant-users]]}

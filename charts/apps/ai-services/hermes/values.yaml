@@ -1,0 +1,22 @@
+image: nousresearch/hermes-agent:v2026.9.21
+namespace: ai-services
+imagePullPolicy: IfNotPresent
+
+host:
+  subdomain: hermes
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/ai-services/hermes
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      containerPort: 9119
+      externalPort: 9119
+      protocol: TCP

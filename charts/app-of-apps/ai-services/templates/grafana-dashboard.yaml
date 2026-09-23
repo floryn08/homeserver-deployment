@@ -1,4 +1,4 @@
-{{- $applications := list (dict "name" "ChromaDB" "selector" "chromadb") (dict "name" "Ollama" "selector" "ollama") (dict "name" "Open WebUI" "selector" "open-webui") (dict "name" "SearXNG" "selector" "searxng") -}}
+{{- $applications := list (dict "name" "ChromaDB" "selector" "chromadb") (dict "name" "Hermes" "selector" "hermes") (dict "name" "Ollama" "selector" "ollama") (dict "name" "Open WebUI" "selector" "open-webui") (dict "name" "SearXNG" "selector" "searxng") -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:

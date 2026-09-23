@@ -379,6 +379,11 @@ data:
           namespace: ai-services
           app: open-webui
 
+      - Hermes:
+          icon: mdi-robot
+          href: https://hermes.home
+          namespace: ai-services
+          app: hermes
     - Game Servers:
 
       - Minecraft:
