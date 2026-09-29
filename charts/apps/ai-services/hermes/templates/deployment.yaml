@@ -69,7 +69,7 @@ spec:
           volumeMounts:
             - mountPath: /opt/data
               name: {{ .Release.Name }}-data
-            - mountPath: /code/opencode
+            - mountPath: /opt/data/workspace
               name: workspace
           livenessProbe:
             httpGet:
