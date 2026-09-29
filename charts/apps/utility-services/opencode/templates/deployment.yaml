@@ -24,7 +24,7 @@ spec:
           claimName: {{ .Release.Name }}
       - name: workspace
         hostPath:
-          path: /code/opencode
+          path: /code/hermes
           type: DirectoryOrCreate
       containers:
       - name: {{ .Release.Name }}
@@ -70,5 +70,5 @@ spec:
           name: {{ $.Release.Name }}
           subPath: {{ $val.subPath }}
         {{- end }}
-        - mountPath: /code/opencode
+        - mountPath: /code/hermes
           name: workspace
