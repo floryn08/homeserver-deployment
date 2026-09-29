@@ -22,6 +22,10 @@ spec:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}
+        - name: workspace
+          hostPath:
+            path: /code/opencode
+            type: DirectoryOrCreate
       containers:
         - name: {{ .Release.Name }}
           image: {{ .Values.image }}
@@ -65,6 +69,8 @@ spec:
           volumeMounts:
             - mountPath: /opt/data
               name: {{ .Release.Name }}-data
+            - mountPath: /code/opencode
+              name: workspace
           livenessProbe:
             httpGet:
               path: /api/status
