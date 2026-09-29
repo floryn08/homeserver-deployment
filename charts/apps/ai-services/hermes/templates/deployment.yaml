@@ -24,7 +24,7 @@ spec:
             claimName: {{ .Release.Name }}
         - name: workspace
           hostPath:
-            path: /code/opencode
+            path: /code/hermes
             type: DirectoryOrCreate
       containers:
         - name: {{ .Release.Name }}
@@ -69,7 +69,7 @@ spec:
           volumeMounts:
             - mountPath: /opt/data
               name: {{ .Release.Name }}-data
-            - mountPath: /opt/data/workspace
+            - mountPath: /opt/data/workspace/code
               name: workspace
           livenessProbe:
             httpGet:
