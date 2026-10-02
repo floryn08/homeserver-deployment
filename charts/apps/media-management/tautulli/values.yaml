@@ -1,4 +1,4 @@
-image: linuxserver/tautulli:2.18.1
+image: linuxserver/tautulli:2.18.2
 namespace: media-management
 replicas: 1
 

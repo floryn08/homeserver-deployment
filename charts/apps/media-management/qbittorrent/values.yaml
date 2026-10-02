@@ -1,4 +1,4 @@
-image: lscr.io/linuxserver/qbittorrent:5.2.3
+image: lscr.io/linuxserver/qbittorrent:5.2.4
 namespace: media-management
 
 host:
