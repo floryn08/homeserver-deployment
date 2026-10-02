@@ -1,4 +1,4 @@
-image: ghcr.io/requarks/wiki:2.5.315
+image: ghcr.io/requarks/wiki:2.5.316
 namespace: utility-services
 
 host:
