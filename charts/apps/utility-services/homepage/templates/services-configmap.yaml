@@ -115,7 +115,7 @@ data:
 
       - Chaptarr:
           icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/chaptarr.svg
-          href: https://chaptarr.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
+          href: https://chaptarr.home
           namespace: media-management
           app: chaptarr
 
