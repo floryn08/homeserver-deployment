@@ -67,3 +67,6 @@ lingarr:
 
 maintainerr:
   path: charts/apps/media-management/maintainerr
+
+chaptarr:
+  path: charts/apps/media-management/chaptarr

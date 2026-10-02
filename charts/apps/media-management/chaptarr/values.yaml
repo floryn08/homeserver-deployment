@@ -1,0 +1,27 @@
+image: chaptarr/chaptarr:0.9.965
+namespace: media-management
+
+host:
+  subdomain: chaptarr
+
+secrets:
+  domain:
+    key: homeDomain
+    path: kv/data/domains
+
+storage:
+  appdataBasePath: /srv/appdata/media-management/chaptarr
+  volumes:
+  - name: config
+    subPath: config
+    podPath: /config
+    type: DirectoryOrCreate
+    readOnly: false
+
+service:
+  type: ClusterIP
+  ports:
+  - name: http
+    containerPort: 8789
+    externalPort: 8789
+    protocol: TCP

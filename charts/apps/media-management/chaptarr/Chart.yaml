@@ -1,0 +1,7 @@
+apiVersion: v2
+name: chaptarr
+description: Chaptarr media management service
+
+type: application
+
+version: 0.1.0
