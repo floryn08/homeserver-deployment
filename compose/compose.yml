@@ -36,7 +36,7 @@ services:
     privileged: true
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.14.1
+    image: koenkk/zigbee2mqtt:2.14.2
     container_name: zigbee2mqtt
     restart: unless-stopped
     environment:
@@ -52,7 +52,7 @@ services:
       - mqtt
 
   technitium:
-    image: technitium/dns-server:15.5.1
+    image: technitium/dns-server:15.6.0
     container_name: technitium
     restart: unless-stopped
     environment:
@@ -103,7 +103,7 @@ services:
       - /srv/appdata/omada/logs:/opt/tplink/EAPController/logs
 
   esphome:
-    image: ghcr.io/esphome/esphome:2026.9.0
+    image: ghcr.io/esphome/esphome:2026.9.1
     container_name: esphome
     restart: unless-stopped
     network_mode: host
