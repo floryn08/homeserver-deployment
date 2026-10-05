@@ -68,6 +68,11 @@ data:
       "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${binary_arch}"
     chmod 0755 /usr/local/bin/yq
 
+    argocd_version="v3.5.3"
+    curl -fsSLo /usr/local/bin/argocd \
+      "https://github.com/argoproj/argo-cd/releases/download/${argocd_version}/argocd-linux-${binary_arch}"
+    chmod 0755 /usr/local/bin/argocd
+
     mkdir -p /etc/hermes
     cat > /etc/hermes/kubeconfig <<EOF
     apiVersion: v1
