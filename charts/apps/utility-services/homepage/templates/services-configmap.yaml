@@ -307,12 +307,6 @@ data:
           namespace: utility-services
           app: netronome
 
-      - OpenCode:
-          icon: opencode.png
-          href: https://opencode.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
-          namespace: utility-services
-          app: opencode
-
       - ntfy:
           icon: ntfy.svg
           href: http://ntfy.home
@@ -378,12 +372,6 @@ data:
           icon: ollama-dark.svg
           namespace: ai-services
           app: ollama
-
-      - open-webui:
-          icon: open-webui.svg
-          href: https://ollama.{{ "{{HOMEPAGE_VAR_PRIMARY_DOMAIN}}" }}
-          namespace: ai-services
-          app: open-webui
 
       - Hermes:
           icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/hermes.svg

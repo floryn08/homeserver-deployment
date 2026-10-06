@@ -17,9 +17,6 @@ syncPolicy:
 ollama:
   path: charts/apps/ai-services/ollama
 
-openWebui:
-  path: charts/apps/ai-services/open-webui
-
 
 chromadb:
   path: charts/apps/ai-services/chromadb

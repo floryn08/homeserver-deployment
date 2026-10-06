@@ -28,4 +28,4 @@ docker run --rm nousresearch/hermes-agent:v2026.9.21 python -c "from plugins.das
 
 Hermes only supports public PKCE OIDC clients, so no OIDC client secret is required. After the first deployment, configure the model provider from the Hermes dashboard; all agent state is persisted at `/srv/appdata/ai-services/hermes`.
 
-The container installs the OpenCode command-line toolset during startup, including kubectl, Helm, Kustomize, yq, Git, Go, Python, and YAML/shell utilities. Its `hermes` service account is bound to the Kubernetes `cluster-admin` role, matching the access granted to OpenCode.
+The container installs a command-line toolset during startup, including kubectl, Helm, Kustomize, yq, Git, Go, Python, and YAML/shell utilities. Its `hermes` service account is bound to the Kubernetes `cluster-admin` role.

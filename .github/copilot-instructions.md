@@ -74,7 +74,7 @@ spec:
 
 ### Namespace Strategy
 - `core-services` - Infrastructure (ArgoCD, Vault, Traefik, Authentik, PostgreSQL, cert-manager)
-- `ai-services` - AI/LLM workloads (Ollama, Open WebUI, ComfyUI)
+- `ai-services` - AI/LLM workloads (Ollama, ComfyUI)
 - `media-management` - Media stack (Plex, Jellyfin, *arr apps, qBittorrent)
 - `game-servers` - Game hosting (Minecraft, Valheim, ROMM)
 - `home-automation` - IoT/smart home (Home Assistant)

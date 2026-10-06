@@ -34,10 +34,7 @@ data:
         identifiers: {name: app-mealie-users}
       - model: authentik_core.group
         identifiers: {name: app-netronome-users}
-      - model: authentik_core.group
-        identifiers: {name: app-opencode-users}
-      - model: authentik_core.group
-        identifiers: {name: app-open-webui-users}
+
       - model: authentik_core.group
         identifiers: {name: app-paperless-users}
       - model: authentik_core.group
@@ -116,12 +113,7 @@ data:
       - model: authentik_policies.policybinding
         identifiers: {target: !Find [authentik_core.application, [slug, netronome]], order: 0}
         attrs: {group: !Find [authentik_core.group, [name, app-netronome-users]]}
-      - model: authentik_policies.policybinding
-        identifiers: {target: !Find [authentik_core.application, [slug, opencode]], order: 0}
-        attrs: {group: !Find [authentik_core.group, [name, app-opencode-users]]}
-      - model: authentik_policies.policybinding
-        identifiers: {target: !Find [authentik_core.application, [slug, open-webui]], order: 0}
-        attrs: {group: !Find [authentik_core.group, [name, app-open-webui-users]]}
+
       - model: authentik_policies.policybinding
         identifiers: {target: !Find [authentik_core.application, [slug, paperless]], order: 0}
         attrs: {group: !Find [authentik_core.group, [name, app-paperless-users]]}
