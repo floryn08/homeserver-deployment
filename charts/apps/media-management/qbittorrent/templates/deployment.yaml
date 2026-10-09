@@ -34,6 +34,9 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}

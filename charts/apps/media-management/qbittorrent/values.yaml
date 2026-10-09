@@ -1,6 +1,10 @@
 image: lscr.io/linuxserver/qbittorrent:5.2.4
 namespace: media-management
 
+resources:
+  limits:
+    cpu: 2
+
 host:
   subdomain: qbittorrent
 

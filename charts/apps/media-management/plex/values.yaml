@@ -1,6 +1,10 @@
 image: linuxserver/plex:1.43.4@sha256:3f71bd6eb6a4478ac19b11c5d0ba9746a5eacad1976f9b99ed4a2c21767e57bb
 namespace: media-management
 
+resources:
+  limits:
+    cpu: 4
+
 host:
   subdomain: plex
 
