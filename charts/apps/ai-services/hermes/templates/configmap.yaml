@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}
-  namespace: {{ .Values.namespace }}
-data:
-  HERMES_DASHBOARD: "1"
-  HERMES_DASHBOARD_PUBLIC_URL: "https://{{ .Values.host.subdomain }}.home"
-  HERMES_DASHBOARD_OIDC_SCOPES: "openid profile email offline_access"

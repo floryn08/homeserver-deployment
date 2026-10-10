@@ -23,6 +23,3 @@ chromadb:
 
 searxng:
   path: charts/apps/ai-services/searxng
-
-hermes:
-  path: charts/apps/ai-services/hermes
