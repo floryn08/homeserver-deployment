@@ -1,10 +1,10 @@
-image: ghcr.io/paperless-ngx/paperless-ngx:3.2.1
+image: ghcr.io/paperless-ngx/paperless-ngx:3.3.0
 namespace: &namespace utility-services
 
 backup:
   enabled: true
   resticImage: restic/restic:0.19.1
-  rcloneImage: rclone/rclone:1.75.1
+  rcloneImage: rclone/rclone:1.75.2
 
 valkey:
   dataStorage:
