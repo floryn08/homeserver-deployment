@@ -1,0 +1,7 @@
+apiVersion: v2
+name: hermes-webui
+description: Ingress routing for the host-installed Hermes WebUI
+
+type: application
+
+version: 0.1.0

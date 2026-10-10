@@ -1,0 +1,13 @@
+namespace: ai-services
+
+external:
+  ip: "192.168.0.150"
+  port: 8787
+
+host:
+  subdomain: hermes
+
+secrets:
+  homeDomain:
+    key: homeDomain
+    path: kv/data/domains
