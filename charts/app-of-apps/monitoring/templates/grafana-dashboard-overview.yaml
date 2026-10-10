@@ -514,7 +514,7 @@ data:
           "options": {"cellHeight": "sm", "showHeader": true},
           "targets": [{
             "datasource": {"type": "prometheus", "uid": "${datasource}"},
-            "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",fstype=~\"ext4|nfs4\",mountpoint=~\"/|/mnt/nvme|/mnt/hdd|/mnt/hdd2|/mnt/hdd12tb|/mnt/minipc\"} / node_filesystem_size_bytes{job=\"node-exporter\",fstype=~\"ext4|nfs4\",mountpoint=~\"/|/mnt/nvme|/mnt/hdd|/mnt/hdd2|/mnt/hdd12tb|/mnt/minipc\"})",
+            "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",fstype=~\"ext4|nfs4\",mountpoint=~\"/|/mnt/ssd|/mnt/hdd|/mnt/hdd2|/mnt/hdd12tb|/mnt/minipc\"} / node_filesystem_size_bytes{job=\"node-exporter\",fstype=~\"ext4|nfs4\",mountpoint=~\"/|/mnt/ssd|/mnt/hdd|/mnt/hdd2|/mnt/hdd12tb|/mnt/minipc\"})",
             "format": "table",
             "instant": true,
             "refId": "A"
