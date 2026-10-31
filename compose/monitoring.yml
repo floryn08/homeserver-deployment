@@ -50,7 +50,7 @@ services:
       - monitoring
 
   scrutiny-collector:
-    image: ghcr.io/starosdev/scrutiny:1.77.0-collector
+    image: ghcr.io/starosdev/scrutiny:1.78.0-collector
     container_name: scrutiny-collector
     restart: unless-stopped
     environment:
