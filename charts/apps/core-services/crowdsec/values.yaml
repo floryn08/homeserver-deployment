@@ -4,7 +4,7 @@ crowdsec:
   container_runtime: containerd
   image:
     repository: crowdsecurity/crowdsec
-    tag: v1.8.1
+    tag: v1.8.2
   agent:
     # Specify each pod whose logs you want to process
     acquisition:
@@ -107,7 +107,7 @@ crowdsec:
         sslmode: disable
 
 webUi:
-  image: ghcr.io/theduffman85/crowdsec-web-ui:2026.10.11
+  image: ghcr.io/theduffman85/crowdsec-web-ui:2026.10.13
   namespace: core-services
   timezone: Europe/Bucharest
   host:
