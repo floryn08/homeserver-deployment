@@ -1,0 +1,10 @@
+apiVersion: networking.alm.homelab/v1
+kind: CertificateRequest
+metadata:
+  name: {{ .Release.Name }}-4k-certificaterequest
+  namespace: {{ .Release.Namespace }}
+spec:
+  domainKey: {{ .Values.secrets.domain.key }}
+  secretName: {{ .Release.Name }}-4k-certificate-secret
+  subdomain: {{ .Values.radarr4k.host.subdomain }}
+  vaultPath: {{ .Values.secrets.domain.path }}

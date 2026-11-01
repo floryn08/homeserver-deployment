@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-4k
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}-4k
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}-4k
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}-4k
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-4k.yaml") . | sha256sum }}
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}-4k
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-4k
+      - name: hdd12tb
+        hostPath:
+          path: /mnt/hdd12tb
+          type: Directory
+      containers:
+      - name: {{ .Release.Name }}-4k
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-4k
+        ports:
+        {{- range $key, $val := $.Values.service.ports }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+          protocol: {{ $val.protocol }}
+        {{ end -}}
+        volumeMounts:
+        {{- range $index, $val := $.Values.radarr4k.storage.volumes }}
+        - mountPath: {{ $val.podPath }}
+          name: {{ .Release.Name }}-4k
+          subPath: {{ $val.subPath }}
+        {{ end -}}
+        - mountPath: /hdd12tb
+          name: hdd12tb
+          readOnly: false
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost:7878/ping
+          failureThreshold: 5
+          periodSeconds: 10

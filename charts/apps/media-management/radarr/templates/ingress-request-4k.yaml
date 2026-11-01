@@ -1,0 +1,14 @@
+apiVersion: networking.alm.homelab/v1
+kind: IngressRequest
+metadata:
+  name: {{ .Release.Name }}-4k
+spec:
+  vaultPath: {{ .Values.secrets.domain.path }}
+  domainKey: {{ .Values.secrets.domain.key }}
+  serviceName: {{ .Release.Name }}-4k
+  servicePort: http
+  subdomain: {{ .Values.radarr4k.host.subdomain }}
+  entrypoints:
+    - websecure
+  tls:
+    secretName: {{ .Release.Name }}-4k-certificate-secret

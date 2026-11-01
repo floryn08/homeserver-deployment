@@ -18,6 +18,18 @@ storage:
     type: DirectoryOrCreate
     readOnly: false
 
+radarr4k:
+  host:
+    subdomain: radarr-4k
+  storage:
+    appdataBasePath: /srv/appdata/media-management/radarr-4k
+    volumes:
+    - name: config
+      subPath: config
+      podPath: /config
+      type: DirectoryOrCreate
+      readOnly: false
+
 service:
   type: ClusterIP
   ports:

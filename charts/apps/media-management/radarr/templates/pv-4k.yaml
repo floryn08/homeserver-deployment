@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-4k
+  labels:
+    release: {{ .Release.Name }}-4k
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 700Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{ .Values.radarr4k.storage.appdataBasePath }}
+    type: DirectoryOrCreate
