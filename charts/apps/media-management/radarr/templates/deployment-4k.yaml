@@ -42,7 +42,7 @@ spec:
         volumeMounts:
         {{- range $index, $val := $.Values.radarr4k.storage.volumes }}
         - mountPath: {{ $val.podPath }}
-          name: {{ .Release.Name }}-4k
+          name: {{ $.Release.Name }}-4k
           subPath: {{ $val.subPath }}
         {{ end -}}
         - mountPath: /hdd12tb
