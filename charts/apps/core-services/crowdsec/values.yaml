@@ -33,6 +33,9 @@ crowdsec:
     env:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik firix/authentik crowdsecurity/plex"
+      # Seerr's discovery pages burst successful API GETs; these are not crawlers.
+      - name: PARSERS
+        value: "crowdsecurity/jellyseerr-whitelist"
       - name: CROWDSEC_BYPASS_DB_VOLUME_CHECK
         value: "true"
   lapi:
