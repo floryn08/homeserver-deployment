@@ -1,6 +1,6 @@
 dependencies:
 - name: crowdsec
   repository: https://crowdsecurity.github.io/helm-charts
-  version: 0.24.2
-digest: sha256:2a1596a594a663128bdf1a1dcb25a3ba95753d55cd1bdd3647a92319ae11c726
-generated: "2026-09-06T21:42:52.894446743Z"
+  version: 0.24.3
+digest: sha256:b379d118dfc1f2be94dd7feb113b5cbbaecf274856506e46efcc2014d7441403
+generated: "2026-11-06T23:16:48.150089454Z"
