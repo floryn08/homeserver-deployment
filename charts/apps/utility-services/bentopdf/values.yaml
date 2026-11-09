@@ -1,4 +1,4 @@
-image: ghcr.io/alam00000/bentopdf-simple:2.8.10
+image: ghcr.io/alam00000/bentopdf-simple:2.8.11
 namespace: utility-services
 
 host:
