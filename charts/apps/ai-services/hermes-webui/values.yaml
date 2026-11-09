@@ -2,7 +2,7 @@ namespace: ai-services
 
 external:
   ip: "192.168.0.150"
-  port: 8787
+  port: 9120
 
 host:
   subdomain: hermes
