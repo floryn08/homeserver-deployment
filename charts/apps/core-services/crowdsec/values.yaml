@@ -110,7 +110,7 @@ crowdsec:
         sslmode: disable
 
 webUi:
-  image: ghcr.io/theduffman85/crowdsec-web-ui:2026.11.6
+  image: ghcr.io/theduffman85/crowdsec-web-ui:2026.11.10
   namespace: core-services
   timezone: Europe/Bucharest
   host:
