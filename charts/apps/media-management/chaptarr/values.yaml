@@ -1,4 +1,4 @@
-image: chaptarr/chaptarr:0.9.965
+image: chaptarr/chaptarr:0.9.1000
 namespace: media-management
 
 host:
