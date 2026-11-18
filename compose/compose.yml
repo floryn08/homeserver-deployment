@@ -1,6 +1,6 @@
 services:
   mqtt:
-    image: eclipse-mosquitto:2.0.22
+    image: eclipse-mosquitto:2.0.23
     container_name: mqtt
     restart: unless-stopped
     environment:
@@ -18,7 +18,7 @@ services:
       - homeserver
 
   home-assistant:
-    image: ghcr.io/home-assistant/home-assistant:2026.11.1
+    image: ghcr.io/home-assistant/home-assistant:2026.11.2
     container_name: home-assistant
     restart: unless-stopped
     environment:
