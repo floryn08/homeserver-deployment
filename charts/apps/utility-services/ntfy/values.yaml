@@ -1,4 +1,4 @@
-image: binwiederhier/ntfy:v2.37.2
+image: binwiederhier/ntfy:v2.38.1
 namespace: utility-services
 timezone: Europe/Bucharest
 
