@@ -2,8 +2,9 @@
 namespace: &namespace core-services
 
 valkey:
-  dataStorage:
+  persistence:
     enabled: false
+  deploymentStrategy: RollingUpdate
   auth:
     enabled: false
 
