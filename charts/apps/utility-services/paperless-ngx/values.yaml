@@ -7,8 +7,9 @@ backup:
   rcloneImage: rclone/rclone:1.76.0
 
 valkey:
-  dataStorage:
+  persistence:
     enabled: false
+  deploymentStrategy: RollingUpdate
   auth:
     enabled: false
 
