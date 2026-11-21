@@ -3,14 +3,14 @@ postgresqlDataPath: /srv/appdata/core-services/postgresql
 
 backup:
   enabled: true
-  postgresImage: postgres:18.7-alpine
+  postgresImage: postgres:19.0-alpine
   resticImage: restic/restic:0.20.0
   rcloneImage: rclone/rclone:1.76.0
 
 postgresql:
   image:
     repository: postgres
-    tag: "18.7"
+    tag: "19.0"
     pullPolicy: IfNotPresent
   auth:
     username: postgres
