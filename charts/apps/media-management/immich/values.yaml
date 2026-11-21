@@ -2,7 +2,7 @@ namespace: media-management
 
 backup:
   enabled: true
-  resticImage: restic/restic:0.19.1
+  resticImage: restic/restic:0.20.0
   rcloneImage: rclone/rclone:1.76.0
 
 host:
@@ -52,7 +52,7 @@ immich:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v3.4.1
+              tag: v3.4.2
             env:
               REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
               IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
@@ -78,7 +78,7 @@ immich:
           main:
             image:  
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v3.4.1
+              tag: v3.4.2
 
 postgresql:
   image:

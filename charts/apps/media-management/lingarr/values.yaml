@@ -1,4 +1,4 @@
-image: lingarr/lingarr:1.4.1
+image: lingarr/lingarr:1.5.0
 namespace: media-management
 
 resources:
