@@ -1,6 +1,6 @@
 services:
   vmagent:
-    image: victoriametrics/vmagent:v1.156.0
+    image: victoriametrics/vmagent:v1.157.0
     container_name: vmagent
     restart: unless-stopped
     environment:
